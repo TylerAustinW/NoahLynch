@@ -1,21 +1,17 @@
-import BiographySection from "@/components/biography-section";
-import DiscographySection from "@/components/discography-section";
-import Footer from "@/components/footer";
-import HeroSection from "@/components/hero-section";
-import Navbar from "@/components/navbar";
-import TourDatesSection from "@/components/tour-dates-section";
-
+import DiscographySection from "@/app/Music/discography/page";
+import Navbar from "@/components/layout/navbar";
+import BiographySection from "@/components/sections/biography-section";
+import HeroSection from "@/components/sections/hero";
 export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white">
       <Navbar />
+
       <main>
         <HeroSection />
         <BiographySection />
         <DiscographySection />
-        <TourDatesSection />
       </main>
-      <Footer />
     </div>
   );
 }
