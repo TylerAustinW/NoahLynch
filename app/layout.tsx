@@ -1,29 +1,30 @@
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
-import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Noah Lynch | Musician & Singer-Songwriter',
-  description: 'Mississippi-Born Musician, Singer-Songwriter',
-  keywords: ['Noah Lynch', 'musician', 'singer-songwriter', 'Mississippi', 'music'],
+   title: 'Noah Lynch | Musician & Singer-Songwriter',
+   description: 'Mississippi-Born Musician, Singer-Songwriter',
+   keywords: ['Noah Lynch', 'musician', 'singer-songwriter', 'Mississippi', 'music'],
 };
 
 export default function RootLayout({
-  children,
+   children,
 }: Readonly<{
-  children: React.ReactNode;
+   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="bg-background min-h-screen font-sans antialiased">
-        <ThemeProvider attribute="class" defaultTheme="dark">
-          {children}
-          <Analytics />
-          <Toaster />
-        </ThemeProvider>
-      </body>
-    </html>
-  );
+   return (
+      <html lang="en" suppressHydrationWarning>
+         <head>
+            <link rel="icon" href="/noah-portrait.jpeg" sizes="32x32" />
+         </head>
+         <body className="bg-background min-h-screen font-sans antialiased">
+            <ThemeProvider attribute="class" defaultTheme="dark">
+               {children}
+               <Toaster />
+            </ThemeProvider>
+         </body>
+      </html>
+   );
 }

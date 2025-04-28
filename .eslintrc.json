@@ -1,44 +1,39 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "prettier"
-  ],
-  "plugins": ["@typescript-eslint", "react", "react-hooks"],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaVersion": 2023,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
-  "rules": {
-    // TypeScript rules
-    "@typescript-eslint/no-unused-vars": "warn",
-    "@typescript-eslint/no-explicit-any": "warn",
-    "@typescript-eslint/no-empty-object-type": "warn",
-    "@typescript-eslint/no-empty-interface": "warn",
-    "@typescript-eslint/no-non-null-assertion": "warn",
-
-    // React rules
-    "react/react-in-jsx-scope": "off",
-    "react/prop-types": "off",
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-
-    // General rules
-    "no-console": ["warn", { "allow": ["warn", "error"] }],
-    "prefer-const": "warn",
-    "no-unused-expressions": "warn"
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
-  },
-  "ignorePatterns": ["node_modules/", ".next/", "public/"]
+   "extends": [
+      "next/core-web-vitals",
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:react/recommended",
+      "plugin:react-hooks/recommended",
+      "prettier"
+   ],
+   "plugins": ["@typescript-eslint", "react", "react-hooks"],
+   "parser": "@typescript-eslint/parser",
+   "parserOptions": {
+      "ecmaVersion": 2023,
+      "sourceType": "module",
+      "ecmaFeatures": {
+         "jsx": true
+      }
+   },
+   "rules": {
+      "@typescript-eslint/no-unused-vars": "warn",
+      "@typescript-eslint/no-explicit-any": "warn",
+      "@typescript-eslint/no-empty-object-type": "warn",
+      "@typescript-eslint/no-empty-interface": "warn",
+      "@typescript-eslint/no-non-null-assertion": "warn",
+      "react/react-in-jsx-scope": "off",
+      "react/prop-types": "off",
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
+      "no-console": ["warn", { "allow": ["warn", "error"] }],
+      "prefer-const": "warn",
+      "no-unused-expressions": "warn"
+   },
+   "settings": {
+      "react": {
+         "version": "detect"
+      }
+   },
+   "ignorePatterns": ["node_modules/", ".next/", "public/"]
 }
