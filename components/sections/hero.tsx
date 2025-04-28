@@ -17,25 +17,25 @@ export default function HeroSection(): React.ReactElement {
    const [loaded, setLoaded] = useState(false);
    const [imageError, setImageError] = useState(false);
 
-   // Set loaded state to trigger animations after component mounts
    useEffect(() => {
       setLoaded(true);
    }, []);
 
-   // Fallback content in case of image loading error
    if (imageError) {
       return (
          <section
             ref={ref}
-            className="relative min-h-screen flex items-center justify-center pt-16 bg-zinc-900"
+            className="relative min-h-screen flex items-center justify-center pt-16 bg-black"
          >
             <div className="text-center">
                <h1 className="text-5xl md:text-7xl font-bold mb-4">
                   Noah Lynch
                   <br />
-                  <span className="text-5xl md:text-7xl text-sky-100 font-bold mb-4">Musician</span>
+                  <span className="text-5xl md:text-7xl text-amber-100 font-bold mb-4">
+                     Musician
+                  </span>
                </h1>
-               <p className="text-gray-300 mb-8 max-w-md text-lg">
+               <p className="text-zinc-400 mb-8 max-w-md text-lg">
                   Mississippi-Born Musician, Singer-Songwriter
                </p>
             </div>
@@ -65,7 +65,7 @@ export default function HeroSection(): React.ReactElement {
                   }}
                   onError={() => setImageError(true)}
                />
-               <div className="absolute inset-0 bg-black/40 bg-gradient-to-b from-black/0 to-black/80" />
+               <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/90" />
             </div>
 
             <div className="container mx-auto px-6 md:px-12 relative z-10">
@@ -74,23 +74,30 @@ export default function HeroSection(): React.ReactElement {
                      loaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
                   }`}
                >
-                  <div className="inline-block mb-4 bg-sky-100/20 backdrop-blur-sm px-3 py-1 rounded-full">
-                     <span className="text-sky-100 font-medium">Coming May 2025</span>
+                  <div className="inline-block mb-4 bg-zinc-900/70 backdrop-blur-sm px-4 py-2 rounded-full border border-zinc-700/30">
+                     <span className="text-amber-200/90 font-medium">Coming May 2025</span>
                   </div>
 
                   <h1 className="text-5xl md:text-7xl font-bold mb-4">
                      New Single
                      <br />
-                     <span className="text-5xl md:text-7xl text-sky-100 font-bold mb-4">
+                     <span className="text-5xl md:text-7xl text-white font-bold mb-4 drop-shadow-md">
                         Honest
                      </span>
                   </h1>
 
-                  <p className="text-gray-300 mb-8 max-w-md text-lg">
+                  <p className="text-zinc-400 mb-8 max-w-md text-lg leading-relaxed">
                      Mississippi-Born Musician, Singer-Songwriter
                   </p>
 
-                  <div className="flex flex-wrap gap-4"></div>
+                  <div className="flex flex-wrap gap-4 mt-8">
+                     <a
+                        href="#music"
+                        className="px-6 py-3 bg-zinc-900/50 hover:bg-zinc-800/60 border border-zinc-700/40 hover:border-zinc-600/60 text-white rounded-full transition-all duration-300 font-medium"
+                     >
+                        Explore Music
+                     </a>
+                  </div>
                </div>
             </div>
          </section>

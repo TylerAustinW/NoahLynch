@@ -77,7 +77,7 @@ const previousReleases: ReleaseWithPlatforms[] = [
    {
       id: 'For You',
       title: 'For You',
-      year: '2023',
+      year: '2024',
       description:
          "A collection of acoustic demos showcasing Noah's songwriting process and musical evolution. These raw, unfiltered tracks provide an intimate look into the artist's creative journey.",
       imageURL: '/foryou.jpg',
@@ -113,69 +113,78 @@ const upcomingRelease: ReleaseWithPlatforms = {
    linkText: 'PRE-SAVE NOW!',
 };
 
-const contentVariants = {
-   hidden: (direction: 'left' | 'right' | 'up' | 'down') => {
-      const xValue = direction === 'left' ? '-100%' : direction === 'right' ? '100%' : 0;
-      const yValue = direction === 'up' ? '-100%' : direction === 'down' ? '100%' : 0;
-
-      return {
-         x: xValue,
-         y: yValue,
-         opacity: 0,
-         scale: 0.95,
-      };
-   },
+const coverArtVariants = {
+   hidden: (direction: 'left' | 'right' | 'up' | 'down') => ({
+      opacity: 0,
+      scale: 0.98,
+      x: direction === 'left' ? -20 : direction === 'right' ? 20 : 0,
+   }),
    visible: {
-      x: 0,
-      y: 0,
       opacity: 1,
       scale: 1,
+      x: 0,
       transition: {
          type: 'spring',
-         stiffness: 80,
-         damping: 20,
+         stiffness: 50,
+         damping: 15,
+      },
+   },
+   exit: (direction: 'left' | 'right' | 'up' | 'down') => ({
+      opacity: 0,
+      scale: 0.98,
+      x: direction === 'left' ? 20 : direction === 'right' ? -20 : 0,
+      transition: {
+         type: 'spring',
+         stiffness: 50,
+         damping: 15,
+      },
+   }),
+};
+
+const contentVariants = {
+   hidden: (direction: 'left' | 'right' | 'up' | 'down') => ({
+      opacity: 0,
+      y: 10,
+   }),
+   visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+         type: 'spring',
+         stiffness: 50,
+         damping: 15,
          when: 'beforeChildren',
          staggerChildren: 0.1,
       },
    },
-   exit: (direction: 'left' | 'right' | 'up' | 'down') => {
-      const xValue = direction === 'left' ? '100%' : direction === 'right' ? '-100%' : 0;
-      const yValue = direction === 'up' ? '100%' : direction === 'down' ? '-100%' : 0;
-
-      return {
-         x: xValue,
-         y: yValue,
-         opacity: 0,
-         scale: 0.95,
-         transition: {
-            type: 'spring',
-            stiffness: 100,
-            damping: 20,
-            when: 'afterChildren',
-            staggerChildren: 0.05,
-            staggerDirection: -1,
-         },
-      };
-   },
+   exit: (direction: 'left' | 'right' | 'up' | 'down') => ({
+      opacity: 0,
+      y: -10,
+      transition: {
+         type: 'spring',
+         stiffness: 50,
+         damping: 15,
+      },
+   }),
 };
 
 const platformIconVariants = {
-   hidden: { opacity: 0, y: 20 },
+   hidden: { opacity: 0, y: 10 },
    visible: {
       opacity: 1,
       y: 0,
       transition: {
          type: 'spring',
-         stiffness: 200,
+         stiffness: 50,
          damping: 15,
       },
    },
    exit: {
       opacity: 0,
-      y: 20,
+      y: 10,
       transition: {
          type: 'spring',
-         stiffness: 200,
+         stiffness: 50,
          damping: 15,
       },
    },
@@ -184,57 +193,70 @@ const platformIconVariants = {
 const ReleaseCard = React.memo(
    ({ release, inView }: { release: ReleaseWithPlatforms; inView: boolean }) => {
       return (
-         <div className="flex flex-col md:flex-row items-center md:items-start gap-12">
-            <div
-               className={`transition-all duration-700 ${
-                  inView ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-               }`}
-               style={{ flex: '0 0 auto' }}
+         <div className="flex flex-col md:flex-row items-center md:items-center gap-8 md:gap-16">
+            <motion.div
+               className="w-full md:w-5/12 flex-shrink-0 max-w-sm md:max-w-md"
+               style={{ flexBasis: 'auto' }}
+               variants={coverArtVariants}
+               initial="hidden"
+               animate="visible"
+               exit="exit"
             >
-               <div className="relative">
+               <div className="relative aspect-square mx-auto md:mx-0">
                   <Image
                      src={release.imageURL}
                      alt={`${release.title} - ${release.year}`}
-                     width={400}
-                     height={400}
-                     className="w-full max-w-md h-auto shadow-xl rounded-sm"
+                     fill
+                     sizes="(max-width: 768px) 90vw, 40vw"
+                     className="object-cover shadow-xl rounded-sm border border-zinc-800/50"
                      draggable={false}
                      priority
                      loading="eager"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
                </div>
-            </div>
+            </motion.div>
 
-            <div className="max-w-lg">
-               <h3 className="text-3xl font-bold mb-2">{release.title}</h3>
-               <p className="text-gray-400 mb-6">Single • {release.year}</p>
+            <motion.div
+               className="w-full md:w-7/12 mt-6 md:mt-0 flex flex-col"
+               variants={contentVariants}
+               initial="hidden"
+               animate="visible"
+               exit="exit"
+            >
+               <div>
+                  <h3 className="text-3xl font-bold mb-2 text-white">{release.title}</h3>
+                  <p className="text-zinc-500 mb-4">Single • {release.year}</p>
 
-               <p className="text-gray-300 mb-8 text-lg">{release.description}</p>
+                  <p className="text-zinc-300 mb-6 text-lg leading-relaxed">
+                     {release.description}
+                  </p>
 
-               {release.linkText ? (
-                  <div className="mb-6">
-                     <button className="text-lg font-bold mb-4 bg-sky-100/20 hover:bg-sky-100/30 px-3 py-1 rounded-full transition-colors">
-                        <Link href={release.platforms[0]?.url || '#'}>{release.linkText}</Link>
-                     </button>
+                  {release.linkText ? (
+                     <div className="mb-4">
+                        <button className="text-lg font-medium bg-zinc-900/70 hover:bg-zinc-800/80 border border-zinc-700/50 hover:border-zinc-600/60 px-5 py-2 rounded-full transition-all">
+                           <Link href={release.platforms[0]?.url || '#'}>{release.linkText}</Link>
+                        </button>
+                     </div>
+                  ) : null}
+
+                  <div className="flex flex-wrap gap-4 items-center">
+                     {release.platforms.map((platform, index) => (
+                        <motion.div key={index} variants={platformIconVariants}>
+                           <Link
+                              href={platform.url}
+                              className="text-zinc-400 hover:text-amber-200 transition-colors"
+                              aria-label={`Listen on ${platform.name}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                           >
+                              {platform.icon}
+                           </Link>
+                        </motion.div>
+                     ))}
                   </div>
-               ) : null}
-
-               <div className="flex flex-wrap gap-4 items-center">
-                  {release.platforms.map((platform, index) => (
-                     <motion.div key={index} variants={platformIconVariants}>
-                        <Link
-                           href={platform.url}
-                           className="text-white hover:text-sky-300 transition-colors"
-                           aria-label={`Listen on ${platform.name}`}
-                           target="_blank"
-                           rel="noopener noreferrer"
-                        >
-                           {platform.icon}
-                        </Link>
-                     </motion.div>
-                  ))}
                </div>
-            </div>
+            </motion.div>
          </div>
       );
    }
@@ -284,7 +306,7 @@ export default function DiscographySection(): React.ReactElement {
 
          setTimeout(() => {
             setIsChangingTab(false);
-         }, 100);
+         }, 300);
       }, 50);
    }, [isChangingTab, previousReleases.length]);
 
@@ -299,7 +321,7 @@ export default function DiscographySection(): React.ReactElement {
 
          setTimeout(() => {
             setIsChangingTab(false);
-         }, 100);
+         }, 300);
       }, 50);
    }, [isChangingTab, previousReleases.length]);
 
@@ -315,7 +337,7 @@ export default function DiscographySection(): React.ReactElement {
 
             setTimeout(() => {
                setIsChangingTab(false);
-            }, 100);
+            }, 300);
          }, 50);
       },
       [activeIndex, isChangingTab]
@@ -335,8 +357,8 @@ export default function DiscographySection(): React.ReactElement {
 
             setTimeout(() => {
                setIsChangingTab(false);
-            }, 100);
-         }, 300); // Longer delay for tab changes
+            }, 300);
+         }, 300);
       },
       [releaseType, isChangingTab]
    );
@@ -355,17 +377,9 @@ export default function DiscographySection(): React.ReactElement {
             tabIndex={0}
          >
             <AnimatePresence mode="wait" custom={direction}>
-               <motion.div
-                  key={previousReleases[activeIndex].id}
-                  custom={direction}
-                  variants={contentVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                  className="overflow-hidden"
-               >
+               <div key={previousReleases[activeIndex].id} className="overflow-hidden">
                   <ReleaseCard release={currentRelease} inView={inView} />
-               </motion.div>
+               </div>
             </AnimatePresence>
 
             {previousReleases.length > 1 && (
@@ -377,8 +391,8 @@ export default function DiscographySection(): React.ReactElement {
                            onClick={() => handleDotClick(index)}
                            className={`w-2 h-2 rounded-full transition-all duration-300 ${
                               index === activeIndex
-                                 ? 'bg-sky-100 w-4'
-                                 : 'bg-gray-500 hover:bg-gray-400'
+                                 ? 'bg-zinc-300 w-4'
+                                 : 'bg-zinc-700 hover:bg-zinc-600'
                            }`}
                            aria-label={`View ${release.title}`}
                            aria-selected={index === activeIndex}
@@ -388,23 +402,22 @@ export default function DiscographySection(): React.ReactElement {
                      ))}
                   </div>
 
-                  {/* animation for the buttons */}
                   <div className="flex gap-2">
                      <button
                         onClick={handlePrev}
                         disabled={isChangingTab}
-                        className="p-2 rounded-full bg-sky-100/10 hover:bg-sky-100/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="p-2 rounded-full bg-zinc-900/70 hover:bg-zinc-800/80 border border-zinc-700/50 hover:border-zinc-600/60 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                         aria-label="Previous release"
                      >
-                        <ChevronLeft className="w-5 h-5 text-sky-100" />
+                        <ChevronLeft className="w-5 h-5 text-zinc-300" />
                      </button>
                      <button
                         onClick={handleNext}
                         disabled={isChangingTab}
-                        className="p-2 rounded-full bg-sky-100/10 hover:bg-sky-100/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="p-2 rounded-full bg-zinc-900/70 hover:bg-zinc-800/80 border border-zinc-700/50 hover:border-zinc-600/60 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                         aria-label="Next release"
                      >
-                        <ChevronRight className="w-5 h-5 text-sky-100" />
+                        <ChevronRight className="w-5 h-5 text-zinc-300" />
                      </button>
                   </div>
                </div>
@@ -422,23 +435,23 @@ export default function DiscographySection(): React.ReactElement {
       <section
          id="music"
          ref={ref}
-         className="py-24 px-6 md:px-12 bg-black/90 relative
-                   after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0
-                   after:h-40 after:bg-gradient-to-t after:from-black after:to-transparent after:pointer-events-none"
+         className="py-20 px-4 md:px-8 bg-gradient-to-b from-black via-zinc-950/99 to-black relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-40 after:bg-gradient-to-t after:from-black after:to-transparent after:pointer-events-none"
       >
-         <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16">
-               <h2 className="text-3xl md:text-5xl font-bold text-sky-100 mb-4 md:mb-0">
+         <div className="max-w-5xl mx-auto">
+            <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+               <h2 className="text-3xl md:text-4xl font-bold text-white text-center md:text-left">
                   {releaseType === 'upcoming' ? 'UPCOMING RELEASES' : 'PREVIOUS RELEASES'}
                </h2>
-
-               <div className="flex space-x-2 bg-black/50 p-1 rounded-full" role="tablist">
+               <div
+                  className="flex space-x-2 bg-black/70 p-1 rounded-full border border-zinc-800/50"
+                  role="tablist"
+               >
                   <button
                      onClick={() => handleTabChange('upcoming')}
-                     className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                         releaseType === 'upcoming'
-                           ? 'bg-sky-100/20 text-sky-100'
-                           : 'text-gray-400 hover:text-sky-100'
+                           ? 'bg-zinc-800/80 text-white border border-zinc-700/50'
+                           : 'text-zinc-400 hover:text-white'
                      }`}
                      role="tab"
                      aria-selected={releaseType === 'upcoming'}
@@ -449,10 +462,10 @@ export default function DiscographySection(): React.ReactElement {
                   </button>
                   <button
                      onClick={() => handleTabChange('previous')}
-                     className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                     className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                         releaseType === 'previous'
-                           ? 'bg-sky-100/20 text-sky-100'
-                           : 'text-gray-400 hover:text-sky-100'
+                           ? 'bg-zinc-800/80 text-white border border-zinc-700/50'
+                           : 'text-zinc-400 hover:text-white'
                      }`}
                      role="tab"
                      aria-selected={releaseType === 'previous'}
@@ -470,20 +483,15 @@ export default function DiscographySection(): React.ReactElement {
                role="tabpanel"
             >
                <AnimatePresence mode="wait" custom={direction}>
-                  <motion.div
-                     key={releaseType}
-                     custom={direction}
-                     variants={contentVariants}
-                     initial="hidden"
-                     animate="visible"
-                     exit="exit"
-                  >
+                  <div key={releaseType}>
                      {releaseType === 'upcoming' ? (
-                        <ReleaseCard release={upcomingRelease} inView={inView} />
+                        <div className="mx-auto max-w-xl w-full">
+                           <ReleaseCard release={upcomingRelease} inView={inView} />
+                        </div>
                      ) : (
-                        renderPreviousReleases()
+                        <div className="mx-auto max-w-xl w-full">{renderPreviousReleases()}</div>
                      )}
-                  </motion.div>
+                  </div>
                </AnimatePresence>
             </div>
          </div>

@@ -17,7 +17,7 @@ export default function RootLayout({
    return (
       <html lang="en" suppressHydrationWarning>
          <head>
-            <link rel="icon" href="/noah-portrait.jpeg" sizes="32x32" />
+            <link rel="icon" href="/noah-portrait.jpeg" sizes="60x60" />
          </head>
          <body className="bg-background min-h-screen font-sans antialiased">
             <ThemeProvider attribute="class" defaultTheme="dark">
