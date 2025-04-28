@@ -1,18 +1,12 @@
-import { ThemeProvider } from "@/components/theme-provider";
-import type { Metadata } from "next";
-import "./globals.css";
+import { ThemeProvider } from '@/components/theme-provider';
+import { Toaster } from '@/components/ui/toaster';
+import type { Metadata } from 'next';
+import './globals.css';
 
 export const metadata: Metadata = {
-  title: "Noah Lynch | Musician & Singer-Songwriter",
-  description:
-    "Mississippi-Born Musician, Singer-Songwriter Noah Lynch. Explore music, tour dates, and more.",
-  keywords: [
-    "Noah Lynch",
-    "musician",
-    "singer-songwriter",
-    "Mississippi",
-    "music",
-  ],
+  title: 'Noah Lynch | Musician & Singer-Songwriter',
+  description: 'Mississippi-Born Musician, Singer-Songwriter',
+  keywords: ['Noah Lynch', 'musician', 'singer-songwriter', 'Mississippi', 'music'],
 };
 
 export default function RootLayout({
@@ -25,6 +19,7 @@ export default function RootLayout({
       <body className="bg-background min-h-screen font-sans antialiased">
         <ThemeProvider attribute="class" defaultTheme="dark">
           {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

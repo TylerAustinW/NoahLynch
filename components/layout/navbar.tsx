@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { cn } from "@/lib/utils";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { cn } from '@/lib/utils';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -15,15 +15,15 @@ export default function Navbar() {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [scrolled]);
 
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 md:px-12 py-4",
-        scrolled ? "bg-black/90 backdrop-blur-sm" : "bg-transparent"
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 md:px-12 py-4',
+        scrolled ? 'bg-black/90 backdrop-blur-sm' : 'bg-transparent'
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -31,22 +31,10 @@ export default function Navbar() {
 
         <nav className="hidden md:flex items-center space-x-8">
           <Link
-            href="#contact"
-            className="text-sm tracking-wider hover:text-sky-100 transition-colors"
-          >
-            CONTACT
-          </Link>
-          <Link
             href="#music"
             className="text-sm tracking-wider hover:text-sky-100 transition-colors"
           >
             MUSIC
-          </Link>
-          <Link
-            href="#tour"
-            className="text-sm tracking-wider hover:text-sky-100 transition-colors"
-          >
-            LIVE
           </Link>
           <Link
             href="#biography"
