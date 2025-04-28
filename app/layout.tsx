@@ -1,5 +1,6 @@
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
+import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 import './globals.css';
 
@@ -19,6 +20,7 @@ export default function RootLayout({
       <body className="bg-background min-h-screen font-sans antialiased">
         <ThemeProvider attribute="class" defaultTheme="dark">
           {children}
+          <Analytics />
           <Toaster />
         </ThemeProvider>
       </body>
