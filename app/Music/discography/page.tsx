@@ -113,7 +113,6 @@ const upcomingRelease: ReleaseWithPlatforms = {
    linkText: 'PRE-SAVE NOW!',
 };
 
-// Animation variants for Framer Motion
 const contentVariants = {
    hidden: (direction: 'left' | 'right' | 'up' | 'down') => {
       const xValue = direction === 'left' ? '-100%' : direction === 'right' ? '100%' : 0;
