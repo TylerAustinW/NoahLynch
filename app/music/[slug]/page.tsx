@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 interface PageProps {
-   params: { slug: string };
+   params: Promise<{ slug: string }>;
    searchParams: Record<string, string | string[] | undefined>;
 }
 
