@@ -1,7 +1,7 @@
-import DiscographySection from '@/components//sections/biography-section';
 import Navbar from '@/components/layout/navbar';
 import BiographySection from '@/components/sections/biography-section';
 import HeroSection from '@/components/sections/hero';
+import MusicShowcaseSection from '@/components/sections/MusicShowcaseSection';
 import TourSection from '@/components/sections/tour-section';
 
 export default function Home() {
@@ -11,7 +11,7 @@ export default function Home() {
          <main>
             <HeroSection />
             <BiographySection />
-            <DiscographySection />
+            <MusicShowcaseSection />
             <TourSection />
          </main>
       </div>

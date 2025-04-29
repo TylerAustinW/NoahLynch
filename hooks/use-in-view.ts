@@ -2,19 +2,16 @@
 
 import { useState, useEffect, useRef, type RefObject } from 'react';
 
-   
 type UseInViewOptions = {
    threshold?: number;
    rootMargin?: string;
    once?: boolean;
 };
 
-
 type UseInViewReturn = {
    ref: RefObject<HTMLElement>;
    inView: boolean;
 };
-
 
 export function useInView({
    threshold = 0,
