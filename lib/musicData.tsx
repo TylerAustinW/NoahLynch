@@ -26,19 +26,30 @@ export interface ReleaseWithPlatforms extends Release {
 
 // Data creation functions
 export const createPlatformLink = (name: string, url: string): Platform => {
-   const icons = {
-      Spotify: <FaSpotify className="w-6 h-6" />,
-      'Apple Music': <FaApple className="w-6 h-6" />,
-      'Amazon Music': <FaAmazon className="w-6 h-6" />,
-      'YouTube Music': <FaYoutube className="w-6 h-6" />,
-      Deezer: <FaDeezer className="w-6 h-6" />,
-      Pandora: <SiPandora className="w-6 h-6" />,
+   // Map platform names to their icons (function that returns React elements)
+   const getIcon = (platformName: string): React.ReactNode => {
+      switch (platformName) {
+         case 'Spotify':
+            return <FaSpotify className="w-6 h-6" />;
+         case 'Apple Music':
+            return <FaApple className="w-6 h-6" />;
+         case 'Amazon Music':
+            return <FaAmazon className="w-6 h-6" />;
+         case 'YouTube Music':
+            return <FaYoutube className="w-6 h-6" />;
+         case 'Deezer':
+            return <FaDeezer className="w-6 h-6" />;
+         case 'Pandora':
+            return <SiPandora className="w-6 h-6" />;
+         default:
+            return null;
+      }
    };
 
    return {
       name,
       url,
-      icon: icons[name as keyof typeof icons] || null,
+      icon: getIcon(name),
    };
 };
 

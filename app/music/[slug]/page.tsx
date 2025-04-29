@@ -1,22 +1,20 @@
 import { allReleases, getReleaseById, Platform, ReleaseWithPlatforms } from '@/lib/musicData';
-import { Metadata, ResolvingMetadata } from 'next';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-type Props = {
+interface PageProps {
    params: { slug: string };
-};
-// Generate static paths for all releases at build time
+   searchParams: Record<string, string | string[] | undefined>;
+}
+
 export async function generateStaticParams() {
    return allReleases.map((release: ReleaseWithPlatforms) => ({ slug: release.id }));
 }
 
-export async function generateMetadata(
-   { params }: Props,
-   parent: ResolvingMetadata
-): Promise<Metadata> {
-   const slug = params.slug;
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+   const slug = (await params).slug;
    const release = getReleaseById(slug);
 
    if (!release) {
@@ -24,8 +22,6 @@ export async function generateMetadata(
          title: 'Release Not Found',
       };
    }
-
-   // const previousImages = (await parent).openGraph?.images || []
 
    return {
       title: `${release.title} | Noah Lynch Music`,
@@ -35,25 +31,22 @@ export async function generateMetadata(
          description: release.description,
          images: [
             {
-               url: release.imageURL, // Must be absolute URL for Open Graph
+               url: release.imageURL,
                width: 800,
-               height: 800, // Adjust if your images aren't square
+               height: 800,
                alt: `${release.title} Cover Art`,
             },
-            // ...previousImages, // If you want to inherit parent images
          ],
       },
    };
 }
 
-// The Page component
-export default function MusicReleasePage({ params }: Props) {
-   const slug = params.slug;
+export default async function MusicReleasePage({ params }: PageProps) {
+   const slug = (await params).slug;
    const release = getReleaseById(slug);
 
-   // Handle case where release is not found
    if (!release) {
-      notFound(); // Triggers the not-found page
+      notFound();
    }
 
    const isUpcoming = release.type === 'upcoming';
@@ -65,7 +58,6 @@ export default function MusicReleasePage({ params }: Props) {
       <div className="min-h-screen bg-gradient-to-b from-zinc-900 via-black to-black text-white py-24 px-4 sm:px-6 lg:px-8">
          <div className="max-w-4xl mx-auto">
             <div className="flex flex-col md:flex-row gap-8 md:gap-12">
-               {/* Left Side: Image */}
                <div className="w-full md:w-1/2 flex-shrink-0">
                   <div className="relative aspect-square rounded-lg shadow-xl overflow-hidden border border-zinc-800/60">
                      <Image
@@ -76,7 +68,6 @@ export default function MusicReleasePage({ params }: Props) {
                         sizes="(max-width: 768px) 90vw, 50vw"
                         className="object-cover"
                      />
-                     {/* Type Badge */}
                      <div
                         className={`absolute top-3 right-3 px-3 py-1 rounded-full text-sm font-semibold ${typeBgColor} ${typeColor} border ${typeBorderColor} backdrop-blur-sm`}
                      >
@@ -85,7 +76,6 @@ export default function MusicReleasePage({ params }: Props) {
                   </div>
                </div>
 
-               {/* Right Side: Details */}
                <div className="w-full md:w-1/2 flex flex-col">
                   <h1 className="text-4xl md:text-5xl font-bold mb-2">{release.title}</h1>
                   <p className="text-lg text-zinc-400 mb-4">Single • {release.year}</p>
@@ -101,7 +91,6 @@ export default function MusicReleasePage({ params }: Props) {
 
                   <p className="text-zinc-300 leading-relaxed mb-8">{release.description}</p>
 
-                  {/* Platform Links / Button */}
                   <div className="mt-auto pt-6 border-t border-zinc-700/50">
                      {release.platforms && release.platforms.length > 0 ? (
                         <>
@@ -123,12 +112,10 @@ export default function MusicReleasePage({ params }: Props) {
                            </div>
                         </>
                      ) : (
-                        // Display Pre-save button or similar for upcoming
                         <button className="w-full px-6 py-3 bg-amber-600 hover:bg-amber-500 text-black font-bold rounded-full transition-all duration-300">
                            {release.linkText || 'Coming Soon'}
                         </button>
                      )}
-                     {/* Optional Back Link */}
                      <div className="mt-8 text-center">
                         <Link
                            href="/#music"

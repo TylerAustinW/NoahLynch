@@ -2,7 +2,7 @@
 
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Navbar() {
    const [scrolled, setScrolled] = useState(false);
@@ -27,8 +27,6 @@ export default function Navbar() {
          window.history.pushState(null, '', `/#${id}`);
       }
    };
-
-   const audioRef = useRef<HTMLAudioElement>(null);
 
    return (
       <header
