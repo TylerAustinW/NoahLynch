@@ -1,8 +1,8 @@
+import DiscographySection from '@/components//sections/biography-section';
 import Navbar from '@/components/layout/navbar';
 import BiographySection from '@/components/sections/biography-section';
 import HeroSection from '@/components/sections/hero';
 import TourSection from '@/components/sections/tour-section';
-import DiscographySection from './music/discography/page';
 
 export default function Home() {
    return (
