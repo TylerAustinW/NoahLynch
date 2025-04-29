@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation';
 
 interface PageProps {
    params: Promise<{ slug: string }>;
-   searchParams: Record<string, string | string[] | undefined>;
+   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }
 
 export async function generateStaticParams() {
@@ -14,7 +14,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-   const slug = (await params).slug;
+   const resolvedParams = await params;
+   const slug = resolvedParams.slug;
    const release = getReleaseById(slug);
 
    if (!release) {
@@ -41,8 +42,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
    };
 }
 
-export default async function MusicReleasePage({ params }: PageProps) {
-   const slug = (await params).slug;
+export default async function MusicReleasePage({ params }: { params: Promise<{ slug: string }> }) {
+   const resolvedParams = await params;
+   const slug = resolvedParams.slug;
    const release = getReleaseById(slug);
 
    if (!release) {
