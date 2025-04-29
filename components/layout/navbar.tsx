@@ -2,7 +2,7 @@
 
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Navbar() {
    const [scrolled, setScrolled] = useState(false);
@@ -28,6 +28,8 @@ export default function Navbar() {
       }
    };
 
+   const audioRef = useRef<HTMLAudioElement>(null);
+
    return (
       <header
          className={cn(
@@ -36,7 +38,9 @@ export default function Navbar() {
          )}
       >
          <div className="max-w-7xl mx-auto flex items-center justify-between">
-            <h1 className="text-white font-bold text-2xl tracking-wider">NOAH LYNCH</h1>
+            <div className="flex items-center space-x-4">
+               <h1 className="text-white font-bold text-2xl tracking-wider">NOAH LYNCH</h1>
+            </div>
 
             <nav className="hidden md:flex items-center space-x-8">
                <Link
@@ -59,6 +63,12 @@ export default function Navbar() {
                   onClick={e => handleNavClick(e, 'biography')}
                >
                   ABOUT
+               </Link>
+               <Link
+                  href="/merch"
+                  className="text-sm tracking-wider text-zinc-400 hover:text-white transition-colors relative after:absolute after:w-0 after:h-[1px] after:bg-white/40 after:bottom-[-4px] after:left-0 hover:after:w-full after:transition-all after:duration-300"
+               >
+                  MERCH
                </Link>
             </nav>
          </div>

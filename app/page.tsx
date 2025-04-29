@@ -1,4 +1,4 @@
-import DiscographySection from '@/app/Music/discography/page';
+import DiscographySection from '@/app/music/discography/page';
 import Navbar from '@/components/layout/navbar';
 import BiographySection from '@/components/sections/biography-section';
 import HeroSection from '@/components/sections/hero';

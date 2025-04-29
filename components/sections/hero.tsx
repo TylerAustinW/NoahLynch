@@ -86,7 +86,7 @@ export default function HeroSection(): React.ReactElement {
                      </span>
                   </h1>
 
-                  <p className="text-zinc-400 mb-8 max-w-md text-lg leading-relaxed">
+                  <p className="text-zinc-200 mb-8 max-w-md text-lg leading-relaxed">
                      Mississippi-Born Musician, Singer-Songwriter
                   </p>
 
@@ -96,6 +96,12 @@ export default function HeroSection(): React.ReactElement {
                         className="px-6 py-3 bg-zinc-900/50 hover:bg-zinc-800/60 border border-zinc-700/40 hover:border-zinc-600/60 text-white rounded-full transition-all duration-300 font-medium"
                      >
                         Explore Music
+                     </a>
+                     <a
+                        href="/merch"
+                        className="px-6 py-3 bg-zinc-900/50 hover:bg-zinc-800/60 border border-zinc-700/40 hover:border-zinc-600/60 text-white rounded-full transition-all duration-300 font-medium"
+                     >
+                        Explore Merch
                      </a>
                   </div>
                </div>

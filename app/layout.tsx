@@ -8,7 +8,6 @@ export const metadata: Metadata = {
    description: 'Mississippi-Born Musician, Singer-Songwriter',
    keywords: ['Noah Lynch', 'musician', 'singer-songwriter', 'Mississippi', 'music'],
 };
-
 export default function RootLayout({
    children,
 }: Readonly<{
@@ -24,6 +23,9 @@ export default function RootLayout({
                {children}
                <Toaster />
             </ThemeProvider>
+            <audio autoPlay loop>
+               <source src="/background.mp3" type="audio/mpeg" />
+            </audio>
          </body>
       </html>
    );

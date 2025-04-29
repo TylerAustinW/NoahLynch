@@ -29,7 +29,7 @@ const nextConfig = {
             img-src 'self' blob: data: https://i.scdn.co;
             font-src 'self';
             connect-src 'self' https://api.spotify.com;
-            frame-src 'self';
+            frame-src 'self' https://*.creator-spring.com;
             object-src 'none';
             base-uri 'self';
             form-action 'self';
