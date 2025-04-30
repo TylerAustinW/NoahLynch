@@ -1,6 +1,7 @@
 'use client';
 
 import { useInView } from '@/hooks/use-in-view';
+import { upcomingRelease } from '@/lib/musicData';
 import { motion } from 'framer-motion';
 import { Bell, Calendar, MapPin } from 'lucide-react';
 import Link from 'next/link';
@@ -126,6 +127,11 @@ export default function TourSection(): React.ReactElement {
                       <Bell className="h-4 w-4" />
                     </Link>
                   </motion.div>
+
+                  <div className="flex items-center justify-center gap-2 rounded-full border border-zinc-700/50 bg-zinc-900/70 px-6 py-3 text-white transition-all hover:border-zinc-600/60 hover:bg-zinc-800/80">
+                    Get Directions
+                    <MapPin className="h-5 w-5 text-amber-200/70" />
+                  </div>
 
                   <motion.div variants={buttonVariants}>
                     <Link

@@ -117,7 +117,16 @@ export default async function MusicReleasePage({
             </p>
 
             <div className="mt-auto border-t border-zinc-700/50 pt-6">
-              {release.platforms && release.platforms.length > 0 ? (
+              {isUpcoming && release.linkURL ? (
+                <Link
+                  href={release.linkURL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full rounded-full bg-amber-600 px-6 py-3 text-center font-bold text-black transition-all duration-300 hover:bg-amber-500"
+                >
+                  {release.linkText || 'Coming Soon'}
+                </Link>
+              ) : release.platforms && release.platforms.length > 0 ? (
                 <>
                   <h2 className="mb-4 text-xl font-semibold">Listen Now:</h2>
                   <div className="flex flex-wrap items-center gap-4">
@@ -139,9 +148,9 @@ export default async function MusicReleasePage({
                   </div>
                 </>
               ) : (
-                <button className="w-full rounded-full bg-amber-600 px-6 py-3 font-bold text-black transition-all duration-300 hover:bg-amber-500">
-                  {release.linkText || 'Coming Soon'}
-                </button>
+                <p className="text-center text-zinc-500">
+                  Details coming soon.
+                </p>
               )}
               <div className="mt-8 text-center">
                 <Link

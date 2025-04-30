@@ -28,6 +28,7 @@ export interface ReleaseWithPlatforms extends Release {
   type: 'upcoming' | 'previous';
   releasedBy: string;
   releaseDate: string;
+  linkURL?: string;
 }
 
 export const createPlatformLink = (name: string, url: string): Platform => {
@@ -141,6 +142,7 @@ export const upcomingRelease: ReleaseWithPlatforms = {
   releasedBy: 'Ready Records',
   releaseDate: 'May 9, 2025',
   platforms: [],
+  linkURL: 'https://symphony.to/noah-lynch/honest',
   linkText: 'PRE-SAVE NOW!',
 };
 
