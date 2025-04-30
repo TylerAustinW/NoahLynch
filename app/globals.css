@@ -1,8 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-:root {
+@theme {
   --background: 0 0% 0%;
   --foreground: 0 0% 100%;
   --card: 240 10% 3.9%;
@@ -26,7 +24,7 @@
 }
 
 body {
-  @apply bg-black text-white font-sans;
+  @apply bg-black font-sans text-white;
 }
 
 html {
@@ -41,57 +39,6 @@ html {
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: var(--border);
   }
-}
-
-@keyframes animateGrain {
-  0%,
-  100% {
-    transform: translate(0, 0);
-  }
-  10% {
-    transform: translate(-5%, -10%);
-  }
-  20% {
-    transform: translate(-15%, -20%);
-  }
-  30% {
-    transform: translate(-5%, -10%);
-  }
-  40% {
-    transform: translate(-15%, -20%);
-  }
-  50% {
-    transform: translate(-5%, -10%);
-  }
-  60% {
-    transform: translate(-15%, -20%);
-  }
-  70% {
-    transform: translate(-5%, -10%);
-  }
-  80% {
-    transform: translate(-15%, -20%);
-  }
-  90% {
-    transform: translate(-5%, -10%);
-  }
-  100% {
-    transform: translate(-15%, -20%);
-  }
-}
-
-.grain-overlay {
-  pointer-events: none;
-  position: fixed;
-  inset: 0; 
-  width: 300%;
-  height: 300%;
-  left: -100%;
-  top: -100%;
-  z-index: 0;
-  opacity: 0.1;
-  background-image: url("/Noise_Texture.png");
-  background-repeat: repeat;
 }

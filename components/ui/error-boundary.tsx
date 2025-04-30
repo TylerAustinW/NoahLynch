@@ -36,17 +36,17 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     if (this.state.hasError) {
       return (
         this.props.fallback || (
-          <div className="flex flex-col items-center justify-center min-h-[200px] p-4 bg-destructive/10 rounded-md">
-            <h2 className="text-xl font-semibold text-destructive mb-2">
+          <div className="flex min-h-[200px] flex-col items-center justify-center rounded-md bg-destructive/10 p-4">
+            <h2 className="mb-2 text-xl font-semibold text-destructive">
               Something went wrong
             </h2>
-            <p className="text-sm text-muted-foreground mb-4">
+            <p className="mb-4 text-sm text-muted-foreground">
               {this.state.error?.message ||
                 "An error occurred while rendering this component"}
             </p>
             <button
               onClick={() => this.setState({ hasError: false, error: null })}
-              className="px-4 py-2 bg-primary text-primary-foreground rounded-md text-sm"
+              className="rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground"
             >
               Try again
             </button>

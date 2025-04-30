@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import ErrorBoundary from "@/components/ui/error-boundary";
-import { useInView } from "@/hooks/use-in-view";
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import ErrorBoundary from '@/components/ui/error-boundary';
+import { useInView } from '@/hooks/use-in-view';
+import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
 
 export default function HeroSection(): React.ReactElement {
   const { ref } = useInView({ threshold: 0.1 });
@@ -18,17 +18,17 @@ export default function HeroSection(): React.ReactElement {
     return (
       <section
         ref={ref}
-        className="relative min-h-screen flex items-center justify-center pt-16 bg-black"
+        className="relative flex min-h-screen items-center justify-center bg-black pt-16"
       >
         <div className="text-center">
-          <h1 className="text-5xl md:text-7xl font-bold mb-4">
+          <h1 className="mb-4 text-5xl font-bold md:text-7xl">
             Noah Lynch
             <br />
-            <span className="text-5xl md:text-7xl text-amber-100 font-bold mb-4">
+            <span className="mb-4 text-5xl font-bold text-amber-100 md:text-7xl">
               Musician
             </span>
           </h1>
-          <p className="text-zinc-400 mb-8 max-w-md text-lg">
+          <p className="mb-8 max-w-md text-lg text-zinc-400">
             Mississippi-Born Musician, Singer-Songwriter
           </p>
         </div>
@@ -40,9 +40,9 @@ export default function HeroSection(): React.ReactElement {
     <ErrorBoundary>
       <section
         ref={ref}
-        className="relative min-h-screen flex items-center pt-16 overflow-hidden"
+        className="relative flex min-h-screen items-center overflow-hidden pt-16"
       >
-        <div className="absolute inset-0 w-full h-full">
+        <div className="absolute inset-0 h-full w-full">
           <Image
             src="/noah-studio.jpeg"
             alt="Noah Lynch - Honest"
@@ -50,45 +50,45 @@ export default function HeroSection(): React.ReactElement {
             className="object-cover"
             priority
             style={{
-              objectPosition: "center 30%",
-              transform: loaded ? "scale(1.05)" : "scale(1)",
-              transition: "transform 30s ease-out",
+              objectPosition: 'center 30%',
+              transform: loaded ? 'scale(1.05)' : 'scale(1)',
+              transition: 'transform 30s ease-out',
             }}
             onError={() => setImageError(true)}
           />
-          <div className="absolute inset-0 bg" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/0 to-black/100" />
         </div>
-        <div className="container mx-auto px-6 md:px-12 relative z-10">
+        <div className="relative z-10 container mx-auto px-6 md:px-12">
           <div
             className={`max-w-xl transition-all duration-1000 ${
-              loaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+              loaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}
           >
-            <div className="inline-block mb-4 bg-zinc-900/70 backdrop-blur-sm px-4 py-2 rounded-full border border-zinc-700/30">
-              <span className="text-amber-200/90 font-medium">
+            <div className="mb-4 inline-block rounded-full border border-zinc-700/30 bg-zinc-900/70 px-4 py-2 backdrop-blur-sm">
+              <span className="font-medium text-amber-200/90">
                 Coming May 2025
               </span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold mb-4">
+            <h1 className="mb-4 text-5xl font-bold md:text-7xl">
               New Single
               <br />
-              <span className="text-5xl md:text-7xl text-white font-bold mb-4 drop-shadow-md">
+              <span className="mb-4 text-5xl font-bold text-white drop-shadow-md md:text-7xl">
                 Honest
               </span>
             </h1>
-            <p className="text-zinc-200 mb-8 max-w-md text-lg leading-relaxed">
+            <p className="mb-8 max-w-md text-lg leading-relaxed text-zinc-200">
               Mississippi-Born Musician, Singer-Songwriter
             </p>
-            <div className="flex flex-wrap gap-4 mt-8">
+            <div className="mt-8 flex flex-wrap gap-4">
               <a
                 href="#music"
-                className="px-6 py-3 bg-zinc-900/50 hover:bg-zinc-800/60 border border-zinc-700/40 hover:border-zinc-600/60 text-white rounded-full transition-all duration-300 font-medium"
+                className="rounded-full border border-zinc-700/40 bg-zinc-900/50 px-6 py-3 font-medium text-white transition-all duration-300 hover:border-zinc-600/60 hover:bg-zinc-800/60"
               >
                 Explore Music
               </a>
               <a
                 href="/merch"
-                className="px-6 py-3 bg-zinc-900/50 hover:bg-zinc-800/60 border border-zinc-700/40 hover:border-zinc-600/60 text-white rounded-full transition-all duration-300 font-medium"
+                className="rounded-full border border-zinc-700/40 bg-zinc-900/50 px-6 py-3 font-medium text-white transition-all duration-300 hover:border-zinc-600/60 hover:bg-zinc-800/60"
               >
                 Explore Merch
               </a>

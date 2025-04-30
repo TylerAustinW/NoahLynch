@@ -24,7 +24,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/noah-portrait.jpeg" sizes="60x60" />
       </head>
-      <body className="min-h-screen font-sans antialiased">
+      <body className="relative min-h-screen bg-background font-sans antialiased">
         <div className="grain-overlay" />
         <ThemeProvider attribute="class" defaultTheme="dark">
           {children}

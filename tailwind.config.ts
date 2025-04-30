@@ -19,7 +19,7 @@ const config = {
     },
     extend: {
       backgroundImage: {
-        "grain-overlay": "url('/Noise_Texture.png')",
+        "grain-overlay": "url('/texture.png')",
       },
       colors: {
         border: "hsl(var(--border))",

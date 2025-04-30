@@ -5,10 +5,10 @@ export const metadata = {
 
 export default function MerchPage() {
   return (
-    <div className="w-full max-w-4xl mx-auto aspect-w-16 aspect-h-9 bg-black rounded-lg shadow-xl overflow-hidden">
+    <div className="aspect-w-16 aspect-h-9 mx-auto w-full max-w-4xl overflow-hidden rounded-lg bg-black shadow-xl">
       <iframe
         src="https://noahlynch.creator-spring.com/"
-        className="w-full h-full border-0"
+        className="h-full w-full border-0"
         title="Noah Lynch Merchandise"
         style={{
           position: "absolute",

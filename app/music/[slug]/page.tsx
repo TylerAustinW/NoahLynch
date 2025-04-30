@@ -72,11 +72,11 @@ export default async function MusicReleasePage({
     : "border-cyan-700/50";
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-zinc-900 via-black to-black text-white py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="flex flex-col md:flex-row gap-8 md:gap-12">
-          <div className="w-full md:w-1/2 flex-shrink-0">
-            <div className="relative aspect-square rounded-lg shadow-xl overflow-hidden border border-zinc-800/60">
+    <div className="min-h-screen bg-gradient-to-b from-zinc-900 via-black to-black px-4 py-24 text-white sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-4xl">
+        <div className="flex flex-col gap-8 md:flex-row md:gap-12">
+          <div className="w-full flex-shrink-0 md:w-1/2">
+            <div className="relative aspect-square overflow-hidden rounded-lg border border-zinc-800/60 shadow-xl">
               <Image
                 src={release.imageURL}
                 alt={`${release.title} Cover Art`}
@@ -86,18 +86,18 @@ export default async function MusicReleasePage({
                 className="object-cover"
               />
               <div
-                className={`absolute top-3 right-3 px-3 py-1 rounded-full text-sm font-semibold ${typeBgColor} ${typeColor} border ${typeBorderColor} backdrop-blur-sm`}
+                className={`absolute right-3 top-3 rounded-full px-3 py-1 text-sm font-semibold ${typeBgColor} ${typeColor} border ${typeBorderColor} backdrop-blur-sm`}
               >
                 {release.type.toUpperCase()}
               </div>
             </div>
           </div>
 
-          <div className="w-full md:w-1/2 flex flex-col">
-            <h1 className="text-4xl md:text-5xl font-bold mb-2">
+          <div className="flex w-full flex-col md:w-1/2">
+            <h1 className="mb-2 text-4xl font-bold md:text-5xl">
               {release.title}
             </h1>
-            <p className="text-lg text-zinc-400 mb-4">
+            <p className="mb-4 text-lg text-zinc-400">
               Single • {release.year}
             </p>
 
@@ -112,22 +112,22 @@ export default async function MusicReleasePage({
               </p>
             </div>
 
-            <p className="text-zinc-300 leading-relaxed mb-8">
+            <p className="mb-8 leading-relaxed text-zinc-300">
               {release.description}
             </p>
 
-            <div className="mt-auto pt-6 border-t border-zinc-700/50">
+            <div className="mt-auto border-t border-zinc-700/50 pt-6">
               {release.platforms && release.platforms.length > 0 ? (
                 <>
-                  <h2 className="text-xl font-semibold mb-4">Listen Now:</h2>
-                  <div className="flex flex-wrap gap-4 items-center">
+                  <h2 className="mb-4 text-xl font-semibold">Listen Now:</h2>
+                  <div className="flex flex-wrap items-center gap-4">
                     {release.platforms.map((platform: Platform) => (
                       <Link
                         key={platform.name}
                         href={platform.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 bg-zinc-800/70 hover:bg-zinc-700/90 border border-zinc-700/50 rounded-full transition-all text-zinc-300 hover:text-white"
+                        className="flex items-center gap-2 rounded-full border border-zinc-700/50 bg-zinc-800/70 px-4 py-2 text-zinc-300 transition-all hover:bg-zinc-700/90 hover:text-white"
                         aria-label={`Listen on ${platform.name}`}
                       >
                         {platform.icon}
@@ -139,14 +139,14 @@ export default async function MusicReleasePage({
                   </div>
                 </>
               ) : (
-                <button className="w-full px-6 py-3 bg-amber-600 hover:bg-amber-500 text-black font-bold rounded-full transition-all duration-300">
+                <button className="w-full rounded-full bg-amber-600 px-6 py-3 font-bold text-black transition-all duration-300 hover:bg-amber-500">
                   {release.linkText || "Coming Soon"}
                 </button>
               )}
               <div className="mt-8 text-center">
                 <Link
                   href="/#music"
-                  className="text-sm text-zinc-400 hover:text-amber-200 transition-colors"
+                  className="text-sm text-zinc-400 transition-colors hover:text-amber-200"
                 >
                   &larr; Back to All Music
                 </Link>

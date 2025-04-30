@@ -1,36 +1,58 @@
-"use client";
+'use client';
 
-import { useInView } from "@/hooks/use-in-view";
+import { useInView } from '@/hooks/use-in-view';
 import {
   allReleases,
   ReleaseWithPlatforms,
   upcomingRelease,
-} from "@/lib/musicData";
-import { AnimatePresence, motion } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import React, { useCallback, useState } from "react";
+} from '@/lib/musicData';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import React, { useCallback, useState } from 'react';
+
+const cardVariants = {
+  initial: {
+    opacity: 1,
+    scale: 1,
+    borderColor: 'rgba(63, 63, 70, 0.6)',
+  },
+  hover: {
+    scale: 1.02,
+    borderColor: 'rgba(161, 98, 7, 0.6)',
+  },
+};
+
+const titleVariants = {
+  initial: { color: 'rgba(255, 255, 255, 1)' },
+  hover: { color: 'rgba(252, 237, 198, 1)' },
+};
+
+const textVariants = {
+  initial: { color: 'rgba(161, 161, 170, 1)' },
+  hover: { color: 'rgba(212, 212, 216, 1)' },
+};
 
 const ShowcaseCard = React.memo(
   ({ release }: { release: ReleaseWithPlatforms }) => {
-    const isUpcoming = release.type === "upcoming";
-    const typeColor = isUpcoming ? "text-amber-400" : "text-cyan-400";
-    const typeBgColor = isUpcoming ? "bg-amber-900/50" : "bg-cyan-900/50";
+    const isUpcoming = release.type === 'upcoming';
+    const typeColor = isUpcoming ? 'text-amber-400' : 'text-cyan-400';
+    const typeBgColor = isUpcoming ? 'bg-amber-900/50' : 'bg-cyan-900/50';
     const typeBorderColor = isUpcoming
-      ? "border-amber-700/50"
-      : "border-cyan-700/50";
+      ? 'border-amber-700/50'
+      : 'border-cyan-700/50';
 
     return (
-      <Link href={`/music/${release.id}`} className="group block w-full h-full">
+      <Link href={`/music/${release.id}`} className="group block h-full w-full">
         <motion.div
-          className="flex flex-col h-full bg-zinc-950/30 rounded-lg border border-zinc-800/60 shadow-lg shadow-black/30 overflow-hidden group-hover:border-zinc-700/80 transition-all duration-300"
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          whileHover={{ scale: 1.02, borderColor: "rgba(161, 98, 7, 0.6)" }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
+          className="flex h-full flex-col overflow-hidden rounded-lg border bg-zinc-950/30 shadow-lg shadow-black/30"
+          variants={cardVariants}
+          initial="initial"
+          whileHover="hover"
+          transition={{ duration: 0.2, ease: 'easeOut' }} 
         >
-          <div className="relative w-full aspect-[4/3] overflow-hidden">
+          <div className="relative aspect-[4/3] w-full overflow-hidden">
             <Image
               src={release.imageURL}
               alt={`${release.title} - ${release.year}`}
@@ -39,33 +61,41 @@ const ShowcaseCard = React.memo(
               className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
               draggable={false}
               priority={release.id === upcomingRelease.id}
-              loading={release.id === upcomingRelease.id ? "eager" : "lazy"}
+              loading={release.id === upcomingRelease.id ? 'eager' : 'lazy'}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
             <div
-              className={`absolute top-2 right-2 px-2.5 py-1 rounded-full text-xs font-semibold ${typeBgColor} ${typeColor} border ${typeBorderColor} backdrop-blur-sm shadow-md`}
+              className={`absolute top-2 right-2 rounded-full px-2.5 py-1 text-xs font-semibold ${typeBgColor} ${typeColor} border ${typeBorderColor} shadow-md backdrop-blur-sm`}
             >
               {release.type.toUpperCase()}
             </div>
           </div>
 
-          <div className="p-4 flex flex-col flex-grow">
-            <h3 className="text-lg md:text-xl font-semibold text-white mb-1 group-hover:text-amber-100 transition-colors">
+          <div className="flex flex-grow flex-col p-4">
+            <motion.h3
+              variants={titleVariants}
+              transition={{ duration: 0.2 }}
+              className="mb-1 text-lg font-semibold md:text-xl"
+            >
               {release.title}
-            </h3>
-            <p className="text-sm text-zinc-400 mb-3 group-hover:text-zinc-300 transition-colors">
+            </motion.h3>
+            <motion.p
+              variants={textVariants}
+              transition={{ duration: 0.2 }}
+              className="mb-3 text-sm"
+            >
               {release.year}
-            </p>
+            </motion.p>
 
-            <div className="text-xs text-zinc-400 mt-auto pt-2 border-t border-zinc-700/60">
+            <div className="mt-auto border-t border-zinc-700/60 pt-2 text-xs text-zinc-400">
               <p>
-                Released by:{" "}
+                Released by:{' '}
                 <span className="font-medium text-zinc-300">
                   {release.releasedBy}
                 </span>
               </p>
               <p>
-                Release date:{" "}
+                Release date:{' '}
                 <span className="font-medium text-zinc-300">
                   {release.releaseDate}
                 </span>
@@ -77,10 +107,10 @@ const ShowcaseCard = React.memo(
     );
   },
 );
-ShowcaseCard.displayName = "ShowcaseCard";
+ShowcaseCard.displayName = 'ShowcaseCard';
 
 export default function MusicShowcaseSection(): React.ReactElement {
-  const { ref, inView } = useInView({ threshold: 0.1 });
+  const { ref, inView } = useInView({ threshold: 0.1, once: true });
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
@@ -100,7 +130,7 @@ export default function MusicShowcaseSection(): React.ReactElement {
 
   const mobileSlideVariants = {
     enter: (direction: number) => ({
-      x: direction > 0 ? "100%" : "-100%",
+      x: direction > 0 ? '100%' : '-100%',
       opacity: 0,
       scale: 0.95,
     }),
@@ -112,7 +142,7 @@ export default function MusicShowcaseSection(): React.ReactElement {
     },
     exit: (direction: number) => ({
       zIndex: 0,
-      x: direction < 0 ? "100%" : "-100%",
+      x: direction < 0 ? '100%' : '-100%',
       opacity: 0,
       scale: 0.95,
     }),
@@ -120,22 +150,22 @@ export default function MusicShowcaseSection(): React.ReactElement {
 
   return (
     <section
-      id="music"
       ref={ref}
-      className="py-12 px-4 md:px-8 bg-gradient-to-b from-black via-zinc-950/99 to-black relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-40 after:bg-gradient-to-t after:from-black after:to-transparent after:pointer-events-none overflow-hidden"
+      id="music"
+      className="relative overflow-hidden px-4 py-20 md:px-8"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="pointer-events-none absolute inset-0 bg-[url('/texture.png')] bg-repeat opacity-5"></div>
+
+      <div className="relative z-10 mx-auto max-w-7xl">
         <motion.h2
-          className="text-3xl md:text-4xl lg:text-5xl font-bold text-white text-center mb-8"
+          className="mb-8 text-center text-3xl font-bold text-white md:text-4xl lg:text-5xl"
           initial={{ opacity: 0, y: -20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.1 }}
         >
           Explore The Music
         </motion.h2>
 
         <motion.div
-          className="hidden sm:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10"
+          className="hidden grid-cols-1 gap-8 sm:grid sm:grid-cols-2 md:gap-10 lg:grid-cols-3"
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.2, staggerChildren: 0.1 }}
@@ -149,7 +179,7 @@ export default function MusicShowcaseSection(): React.ReactElement {
                 visible: { opacity: 1, y: 0 },
               }}
               initial="hidden"
-              animate={inView ? "visible" : "hidden"}
+              animate={inView ? 'visible' : 'hidden'}
               transition={{ delay: index * 0.1 }}
             >
               <ShowcaseCard release={release} />
@@ -157,7 +187,7 @@ export default function MusicShowcaseSection(): React.ReactElement {
           ))}
         </motion.div>
 
-        <div className="sm:hidden relative h-[550px] flex items-center justify-center">
+        <div className="relative flex h-[550px] items-center justify-center sm:hidden">
           <AnimatePresence initial={false} custom={direction}>
             <motion.div
               key={activeIndex}
@@ -167,7 +197,7 @@ export default function MusicShowcaseSection(): React.ReactElement {
               animate="center"
               exit="exit"
               transition={{
-                x: { type: "spring", stiffness: 300, damping: 30 },
+                x: { type: 'spring', stiffness: 300, damping: 30 },
                 opacity: { duration: 0.2 },
                 scale: { duration: 0.2 },
               }}
@@ -190,17 +220,17 @@ export default function MusicShowcaseSection(): React.ReactElement {
 
           <button
             onClick={handlePrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-black/30 hover:bg-black/50 rounded-full backdrop-blur-sm text-white disabled:opacity-30"
+            className="absolute top-1/2 left-0 z-10 -translate-y-1/2 rounded-full bg-black/30 p-2 text-white backdrop-blur-sm hover:bg-black/50 disabled:opacity-30"
             aria-label="Previous Release"
           >
-            <ChevronLeft className="w-6 h-6" />
+            <ChevronLeft className="h-6 w-6" />
           </button>
           <button
             onClick={handleNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-black/30 hover:bg-black/50 rounded-full backdrop-blur-sm text-white disabled:opacity-30"
+            className="absolute top-1/2 right-0 z-10 -translate-y-1/2 rounded-full bg-black/30 p-2 text-white backdrop-blur-sm hover:bg-black/50 disabled:opacity-30"
             aria-label="Next Release"
           >
-            <ChevronRight className="w-6 h-6" />
+            <ChevronRight className="h-6 w-6" />
           </button>
         </div>
       </div>
