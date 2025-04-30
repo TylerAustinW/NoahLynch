@@ -3,44 +3,95 @@
 @tailwind utilities;
 
 :root {
-   --background: 0 0% 0%;
-   --foreground: 0 0% 100%;
-   --card: 240 10% 3.9%;
-   --card-foreground: 0 0% 98%;
-   --popover: 240 10% 3.9%;
-   --popover-foreground: 0 0% 98%;
-   --primary: 47.9 95.8% 53.1%;
-   --primary-foreground: 26 83.3% 14.1%;
-   --secondary: 240 3.7% 15.9%;
-   --secondary-foreground: 0 0% 98%;
-   --muted: 240 3.7% 15.9%;
-   --muted-foreground: 240 5% 64.9%;
-   --accent: 240 3.7% 15.9%;
-   --accent-foreground: 0 0% 98%;
-   --destructive: 0 62.8% 30.6%;
-   --destructive-foreground: 0 0% 98%;
-   --border: 240 3.7% 15.9%;
-   --input: 240 3.7% 15.9%;
-   --ring: 47.9 95.8% 53.1%;
-   --radius: 0.5rem;
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 47.9 95.8% 53.1%;
+  --primary-foreground: 26 83.3% 14.1%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --ring: 47.9 95.8% 53.1%;
+  --radius: 0.5rem;
 }
 
 body {
-   @apply bg-black text-white font-sans;
+  @apply bg-black text-white font-sans;
 }
 
 html {
-   scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 @layer utilities {
-   .text-balance {
-      text-wrap: balance;
-   }
+  .text-balance {
+    text-wrap: balance;
+  }
 }
 
 @layer base {
-   * {
-      @apply border-border;
-   }
+  * {
+    @apply border-border;
+  }
+}
+
+@keyframes animateGrain {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-5%, -10%);
+  }
+  20% {
+    transform: translate(-15%, -20%);
+  }
+  30% {
+    transform: translate(-5%, -10%);
+  }
+  40% {
+    transform: translate(-15%, -20%);
+  }
+  50% {
+    transform: translate(-5%, -10%);
+  }
+  60% {
+    transform: translate(-15%, -20%);
+  }
+  70% {
+    transform: translate(-5%, -10%);
+  }
+  80% {
+    transform: translate(-15%, -20%);
+  }
+  90% {
+    transform: translate(-5%, -10%);
+  }
+  100% {
+    transform: translate(-15%, -20%);
+  }
+}
+
+.grain-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0; 
+  width: 300%;
+  height: 300%;
+  left: -100%;
+  top: -100%;
+  z-index: 0;
+  opacity: 0.1;
+  background-image: url("/Noise_Texture.png");
+  background-repeat: repeat;
 }

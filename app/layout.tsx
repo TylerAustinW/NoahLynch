@@ -1,32 +1,36 @@
-import { ThemeProvider } from '@/components/theme-provider';
-import { Toaster } from '@/components/ui/toaster';
-import type { Metadata } from 'next';
-import './globals.css';
+import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
+import type { Metadata } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
-   title: 'Noah Lynch | Musician & Singer-Songwriter',
-   description: 'Mississippi-Born Musician, Singer-Songwriter',
-   keywords: ['Noah Lynch', 'musician', 'singer-songwriter', 'Mississippi', 'music'],
+  title: "Noah Lynch | Musician & Singer-Songwriter",
+  description: "Mississippi-Born Musician, Singer-Songwriter",
+  keywords: [
+    "Noah Lynch",
+    "musician",
+    "singer-songwriter",
+    "Mississippi",
+    "music",
+  ],
 };
 export default function RootLayout({
-   children,
+  children,
 }: Readonly<{
-   children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-   return (
-      <html lang="en" suppressHydrationWarning>
-         <head>
-            <link rel="icon" href="/noah-portrait.jpeg" sizes="60x60" />
-         </head>
-         <body className="bg-background min-h-screen font-sans antialiased">
-            <ThemeProvider attribute="class" defaultTheme="dark">
-               {children}
-               <Toaster />
-            </ThemeProvider>
-            <audio autoPlay loop>
-               <source src="/background.mp3" type="audio/mpeg" />
-            </audio>
-         </body>
-      </html>
-   );
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/noah-portrait.jpeg" sizes="60x60" />
+      </head>
+      <body className="min-h-screen font-sans antialiased">
+        <div className="grain-overlay" />
+        <ThemeProvider attribute="class" defaultTheme="dark">
+          {children}
+          <Toaster />
+        </ThemeProvider>
+      </body>
+    </html>
+  );
 }
