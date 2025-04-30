@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useInView } from "@/hooks/use-in-view";
-import Image from "next/image";
+import { useInView } from '@/hooks/use-in-view';
+import Image from 'next/image';
 
 export default function BiographySection() {
   const { ref, inView } = useInView({ threshold: 0.1, once: true });
@@ -13,8 +13,8 @@ export default function BiographySection() {
     >
       <div className="pointer-events-none absolute inset-0 bg-[url('/texture.png')] bg-repeat opacity-5"></div>
 
-      <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-full overflow-hidden opacity-5">
-        <div className="absolute -right-[10%] -top-[30%] h-[60%] w-[60%] rounded-full bg-amber-500/10 blur-[120px]" />
+      <div className="pointer-events-none absolute top-0 left-0 z-10 h-full w-full overflow-hidden opacity-5">
+        <div className="absolute -top-[30%] -right-[10%] h-[60%] w-[60%] rounded-full bg-amber-500/10 blur-[120px]" />
         <div className="bg-red/5 absolute -bottom-[30%] -left-[10%] h-[60%] w-[60%] rounded-full blur-[120px]" />
       </div>
 
@@ -26,7 +26,7 @@ export default function BiographySection() {
         <div className="grid items-center gap-12 md:grid-cols-2">
           <div
             className={`space-y-6 transition-all duration-700 ${
-              inView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+              inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}
           >
             <p className="text-lg leading-relaxed text-zinc-300">
@@ -78,7 +78,7 @@ export default function BiographySection() {
 
           <div
             className={`transition-all delay-300 duration-700 ${
-              inView ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"
+              inView ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
             }`}
           >
             <div className="relative">

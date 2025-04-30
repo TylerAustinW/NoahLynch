@@ -3,11 +3,11 @@ import {
   getReleaseById,
   Platform,
   ReleaseWithPlatforms,
-} from "@/lib/musicData";
-import { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import { notFound } from "next/navigation";
+} from '@/lib/musicData';
+import { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -29,7 +29,7 @@ export async function generateMetadata({
 
   if (!release) {
     return {
-      title: "Release Not Found",
+      title: 'Release Not Found',
     };
   }
 
@@ -64,12 +64,12 @@ export default async function MusicReleasePage({
     notFound();
   }
 
-  const isUpcoming = release.type === "upcoming";
-  const typeColor = isUpcoming ? "text-amber-400" : "text-cyan-400";
-  const typeBgColor = isUpcoming ? "bg-amber-900/50" : "bg-cyan-900/50";
+  const isUpcoming = release.type === 'upcoming';
+  const typeColor = isUpcoming ? 'text-amber-400' : 'text-cyan-400';
+  const typeBgColor = isUpcoming ? 'bg-amber-900/50' : 'bg-cyan-900/50';
   const typeBorderColor = isUpcoming
-    ? "border-amber-700/50"
-    : "border-cyan-700/50";
+    ? 'border-amber-700/50'
+    : 'border-cyan-700/50';
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-zinc-900 via-black to-black px-4 py-24 text-white sm:px-6 lg:px-8">
@@ -86,7 +86,7 @@ export default async function MusicReleasePage({
                 className="object-cover"
               />
               <div
-                className={`absolute right-3 top-3 rounded-full px-3 py-1 text-sm font-semibold ${typeBgColor} ${typeColor} border ${typeBorderColor} backdrop-blur-sm`}
+                className={`absolute top-3 right-3 rounded-full px-3 py-1 text-sm font-semibold ${typeBgColor} ${typeColor} border ${typeBorderColor} backdrop-blur-sm`}
               >
                 {release.type.toUpperCase()}
               </div>
@@ -103,11 +103,11 @@ export default async function MusicReleasePage({
 
             <div className="mb-6 space-y-1 text-sm text-zinc-300">
               <p>
-                <span className="text-zinc-500">Released by:</span>{" "}
+                <span className="text-zinc-500">Released by:</span>{' '}
                 {release.releasedBy}
               </p>
               <p>
-                <span className="text-zinc-500">Release date:</span>{" "}
+                <span className="text-zinc-500">Release date:</span>{' '}
                 {release.releaseDate}
               </p>
             </div>
@@ -140,7 +140,7 @@ export default async function MusicReleasePage({
                 </>
               ) : (
                 <button className="w-full rounded-full bg-amber-600 px-6 py-3 font-bold text-black transition-all duration-300 hover:bg-amber-500">
-                  {release.linkText || "Coming Soon"}
+                  {release.linkText || 'Coming Soon'}
                 </button>
               )}
               <div className="mt-8 text-center">

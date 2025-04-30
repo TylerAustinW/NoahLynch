@@ -50,7 +50,7 @@ const ShowcaseCard = React.memo(
           variants={cardVariants}
           initial="initial"
           whileHover="hover"
-          transition={{ duration: 0.2, ease: 'easeOut' }} 
+          transition={{ duration: 0.2, ease: 'easeOut' }}
         >
           <div className="relative aspect-[4/3] w-full overflow-hidden">
             <Image

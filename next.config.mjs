@@ -1,25 +1,25 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
-    dirs: ["app", "components", "hooks", "lib", "styles"],
+    dirs: ['app', 'components', 'hooks', 'lib', 'styles'],
   },
   typescript: {},
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "i.scdn.co",
-        pathname: "**",
+        protocol: 'https',
+        hostname: 'i.scdn.co',
+        pathname: '**',
       },
     ],
   },
   headers: async () => [
     {
       // Apply these headers to al routes
-      source: "/:path*",
+      source: '/:path*',
       headers: [
         {
-          key: "Content-Security-Policy",
+          key: 'Content-Security-Policy',
           value: `
             default-src 'self';
             script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.vercel.com;
@@ -35,28 +35,28 @@ const nextConfig = {
             block-all-mixed-content;
             upgrade-insecure-requests;
           `
-            .replace(/\s{2,}/g, " ")
+            .replace(/\s{2,}/g, ' ')
             .trim(),
         },
         {
-          key: "X-Content-Type-Options",
-          value: "nosniff",
+          key: 'X-Content-Type-Options',
+          value: 'nosniff',
         },
         {
-          key: "X-Frame-Options",
-          value: "DENY",
+          key: 'X-Frame-Options',
+          value: 'DENY',
         },
         {
-          key: "X-XSS-Protection",
-          value: "1; mode=block",
+          key: 'X-XSS-Protection',
+          value: '1; mode=block',
         },
         {
-          key: "Referrer-Policy",
-          value: "strict-origin-when-cross-origin",
+          key: 'Referrer-Policy',
+          value: 'strict-origin-when-cross-origin',
         },
         {
-          key: "Permissions-Policy",
-          value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+          key: 'Permissions-Policy',
+          value: 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
         },
       ],
     },
