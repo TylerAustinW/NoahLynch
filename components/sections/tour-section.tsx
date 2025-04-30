@@ -127,11 +127,6 @@ export default function TourSection(): React.ReactElement {
                     </Link>
                   </motion.div>
 
-                  <div className="flex items-center justify-center gap-2 rounded-full border border-zinc-700/50 bg-zinc-900/70 px-6 py-3 text-white transition-all hover:border-zinc-600/60 hover:bg-zinc-800/80">
-                    Get Directions
-                    <MapPin className="h-5 w-5 text-amber-200/70" />
-                  </div>
-
                   <motion.div variants={buttonVariants}>
                     <Link
                       href="https://www.expedia.com/Hotel-Search?adults=2&destination=Regal%20UA%20Westbrook&endDate=2025-06-15&latLong=31.5812%2C-90.4493&numRoom=1&startDate=2025-06-14&clickref=1110lqUGME&affcid=US.DIRECT.PHG.1011l45458.0&ref_id=1110lqUGME&my_ad=AFF.US.DIRECT.PHG.1011l45458.0&afflid=1110lqUGME&affdtl=PHG.1110lqUGME."
