@@ -1,7 +1,6 @@
 'use client';
 
 import { useInView } from '@/hooks/use-in-view';
-import { upcomingRelease } from '@/lib/musicData';
 import { motion } from 'framer-motion';
 import { Bell, Calendar, MapPin } from 'lucide-react';
 import Link from 'next/link';
