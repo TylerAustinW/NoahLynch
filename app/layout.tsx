@@ -43,6 +43,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <title>Noah Lynch | Musician & Singer-Songwriter</title>
+        <meta
+          name="description"
+          content="Mississippi-Born Musician, Singer-Songwriter"
+        />
         <link rel="icon" href="/noah-portrait.jpeg" sizes="60x60" />
       </head>
       <body className="bg-background relative min-h-screen font-sans antialiased">
