@@ -15,10 +15,24 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/noah-portrait.jpeg',
-        width: 960,
-        height: 960,
+        width: 1200,
+        height: 630,
       },
     ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Noah Lynch | Musician & Singer-Songwriter',
+    description: 'Mississippi-Born Musician, Singer-Songwriter',
+    images: [
+      {
+        url: '/noah-portrait.jpeg',
+        width: 1200,
+        height: 630,
+      },
+    ],
+    site: '@noahlynch17',
+    creator: '@noahlynch17',
   },
 };
 export default function RootLayout({
