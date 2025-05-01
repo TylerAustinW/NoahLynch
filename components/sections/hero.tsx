@@ -99,7 +99,7 @@ export default function HeroSection(): React.ReactElement {
                 Explore Merch
               </a>
             </div>
-            <div className="mt-6 flex gap-6">
+            <div className="mt-6 flex gap-6 ">
               <a
                 href="https://instagram.com/noahlynchmusic"
                 target="_blank"

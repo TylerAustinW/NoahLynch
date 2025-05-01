@@ -62,7 +62,7 @@ export default function TourSection(): React.ReactElement {
     <section
       id="tour"
       ref={ref}
-      className="relative overflow-hidden px-6 pt-8 pb-10 md:px-8 md:pt-10 md:pb-14"
+      className="relative overflow-hidden px-6 pt-4 pb-6 md:px-8 md:pt-6 md:pb-10"
     >
       <div className="pointer-events-none absolute inset-0 bg-[url('/texture.png')] bg-repeat opacity-10 md:opacity-10"></div>
 

@@ -9,7 +9,7 @@ export default function BiographySection() {
     <section
       id="biography"
       ref={ref}
-      className="relative overflow-hidden px-6 pt-8 pb-12 md:px-8 md:pt-10 md:pb-14 bg-neutral-950"
+      className="relative overflow-hidden px-6 pt-4 pb-8 md:px-8 md:pt-6 md:pb-10 bg-neutral-950"
     >
       <div className="pointer-events-none absolute inset-0 bg-[url('/texture.png')] bg-repeat opacity-10 md:opacity-10"></div>
 
