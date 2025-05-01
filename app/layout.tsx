@@ -15,8 +15,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/noah-portrait.jpeg',
-        width: 1200,
-        height: 630,
+        width: 960,
+        height: 960,
       },
     ],
   },
