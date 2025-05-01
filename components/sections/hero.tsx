@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 import CountdownTimer from '@/components/ui/countdown-timer';
 
 export default function HeroSection(): React.ReactElement {
-  const { ref, inView } = useInView({ threshold: 0.1, once: true });
+  const { ref } = useInView({ threshold: 0.1 });
   const [loaded, setLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
 
@@ -19,10 +19,8 @@ export default function HeroSection(): React.ReactElement {
     return (
       <section
         ref={ref}
-        id="home"
-        className="relative flex h-[calc(100vh-80px)] min-h-[600px] items-center justify-center overflow-hidden px-4 py-16 text-center md:px-8"
+        className="relative flex min-h-screen items-center justify-center bg-black pt-16"
       >
-        <div className="pointer-events-none absolute inset-0 z-0 bg-[url('/texture.png')] bg-repeat opacity-10"></div>
         <div className="text-center">
           <h1 className="mb-4 text-5xl font-bold md:text-7xl">
             Noah Lynch
@@ -43,10 +41,8 @@ export default function HeroSection(): React.ReactElement {
     <ErrorBoundary>
       <section
         ref={ref}
-        id="home"
-        className="relative flex h-[calc(100vh-80px)] min-h-[600px] items-center justify-center overflow-hidden px-4 py-16 text-center md:px-8"
+        className="relative flex min-h-screen items-center overflow-hidden pt-16"
       >
-        <div className="pointer-events-none absolute inset-0 z-0 bg-[url('/texture.png')] bg-repeat opacity-10"></div>
         <div className="absolute inset-0 h-full w-full">
           <Image
             src="/noah-studio.jpeg"

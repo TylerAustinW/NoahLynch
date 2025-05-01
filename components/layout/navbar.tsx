@@ -4,8 +4,6 @@ import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { Menu } from 'lucide-react';
-import MobileNav from './mobile-nav';
 
 const linkVariants = {
   initial: { color: 'rgba(161, 161, 170, 1)' },
@@ -14,8 +12,6 @@ const linkVariants = {
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 10;
@@ -40,115 +36,86 @@ export default function Navbar() {
   };
 
   return (
-    <>
-      <header
-        className={cn(
-          'fixed top-0 right-0 left-0 z-50 px-6 py-4 transition-all duration-300 md:px-12',
-          scrolled ? 'bg-black/50 backdrop-blur-sm' : 'bg-transparent',
-        )}
-      >
-        <div className="mx-auto flex max-w-7xl items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <Link href="#home" onClick={(e) => handleNavClick(e, 'home')} className="cursor-pointer">
-              <h1 className="text-2xl font-bold tracking-wider text-white">
-                NOAH LYNCH
-              </h1>
-            </Link>
-          </div>
-
-          <nav className="hidden items-center space-x-8 md:flex">
-            <motion.div className="relative" initial="initial" whileHover="hover">
-              <Link
-                href="#home"
-                className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full"
-                onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
-                  handleNavClick(e, 'home')
-                }
-              >
-                <motion.span
-                  variants={linkVariants}
-                  transition={{ duration: 0.3 }}
-                >
-                  HOME
-                </motion.span>
-              </Link>
-            </motion.div>
-            <motion.div className="relative" initial="initial" whileHover="hover">
-              <Link
-                href="#music"
-                className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full"
-                onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
-                  handleNavClick(e, 'music')
-                }
-              >
-                <motion.span
-                  variants={linkVariants}
-                  transition={{ duration: 0.3 }}
-                >
-                  MUSIC
-                </motion.span>
-              </Link>
-            </motion.div>
-            <motion.div className="relative" initial="initial" whileHover="hover">
-              <Link
-                href="#tour"
-                className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full"
-                onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
-                  handleNavClick(e, 'tour')
-                }
-              >
-                <motion.span
-                  variants={linkVariants}
-                  transition={{ duration: 0.3 }}
-                >
-                  TOUR
-                </motion.span>
-              </Link>
-            </motion.div>
-            <motion.div className="relative" initial="initial" whileHover="hover">
-              <Link
-                href="#biography"
-                className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full"
-                onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
-                  handleNavClick(e, 'biography')
-                }
-              >
-                <motion.span
-                  variants={linkVariants}
-                  transition={{ duration: 0.3 }}
-                >
-                  ABOUT
-                </motion.span>
-              </Link>
-            </motion.div>
-            <motion.div className="relative" initial="initial" whileHover="hover">
-              <Link
-                href="/merch"
-                className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full"
-              >
-                <motion.span
-                  variants={linkVariants}
-                  transition={{ duration: 0.3 }}
-                >
-                  MERCH
-                </motion.span>
-              </Link>
-            </motion.div>
-          </nav>
-
-          <div className="md:hidden">
-            <button
-              onClick={() => setMobileMenuOpen(true)}
-              className="text-white hover:text-zinc-300"
-              aria-label="Open menu"
-            >
-              <Menu size={24} />
-            </button>
-          </div>
+    <header
+      className={cn(
+        'fixed top-0 right-0 left-0 z-50 px-6 py-4 transition-all duration-300 md:px-12',
+        scrolled ? 'bg-black/50 backdrop-blur-sm' : 'bg-transparent',
+      )}
+    >
+      <div className="mx-auto flex max-w-7xl items-center justify-between">
+        <div className="flex items-center space-x-4">
+          <h1 className="text-2xl font-bold tracking-wider text-white">
+            NOAH LYNCH
+          </h1>
         </div>
-      </header>
 
-      <MobileNav isOpen={mobileMenuOpen} setIsOpen={setMobileMenuOpen} handleNavClick={handleNavClick} />
-    </>
+        <nav className="hidden items-center space-x-8 md:flex">
+          <motion.div className="relative" initial="initial" whileHover="hover">
+            <Link
+              href="#biography"
+              className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full"
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
+                handleNavClick(e, 'biography')
+              }
+            >
+              <motion.span
+                variants={linkVariants}
+                transition={{ duration: 0.3 }}
+              >
+                ABOUT
+              </motion.span>
+            </Link>
+          </motion.div>
+
+          <motion.div className="relative" initial="initial" whileHover="hover">
+            <Link
+              href="#music"
+              className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full"
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
+                handleNavClick(e, 'music')
+              }
+            >
+              <motion.span
+                variants={linkVariants}
+                transition={{ duration: 0.3 }}
+              >
+                MUSIC
+              </motion.span>
+            </Link>
+          </motion.div>
+
+          <motion.div className="relative" initial="initial" whileHover="hover">
+            <Link
+              href="#tour"
+              className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full"
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
+                handleNavClick(e, 'tour')
+              }
+            >
+              <motion.span
+                variants={linkVariants}
+                transition={{ duration: 0.3 }}
+              >
+                TOUR
+              </motion.span>
+            </Link>
+          </motion.div>
+
+          <motion.div className="relative" initial="initial" whileHover="hover">
+            <Link
+              href="/merch"
+              className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full"
+            >
+              <motion.span
+                variants={linkVariants}
+                transition={{ duration: 0.3 }}
+              >
+                MERCH
+              </motion.span>
+            </Link>
+          </motion.div>
+        </nav>
+      </div>
+    </header>
   );
 }
