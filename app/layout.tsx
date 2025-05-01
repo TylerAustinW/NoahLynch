@@ -1,18 +1,25 @@
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import type { Metadata } from 'next';
+import { URL } from 'url';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Noah Lynch | Musician & Singer-Songwriter',
-  description: 'Mississippi-Born Musician, Singer-Songwriter',
-  keywords: [
-    'Noah Lynch',
-    'musician',
-    'singer-songwriter',
-    'Mississippi',
-    'music',
-  ],
+  metadataBase: new URL('https://noahlynch.vercel.app'),
+  openGraph: {
+    type: 'website',
+    url: 'https://noahlynch.vercel.app/',
+    title: 'Noah Lynch | Musician & Singer-Songwriter',
+    description: 'Mississippi-Born Musician, Singer-Songwriter',
+    siteName: 'Noah Lynch',
+    images: [
+      {
+        url: '/noah-portrait.jpeg',
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
 };
 export default function RootLayout({
   children,
