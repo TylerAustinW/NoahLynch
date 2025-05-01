@@ -152,9 +152,9 @@ export default function MusicShowcaseSection(): React.ReactElement {
     <section
       ref={ref}
       id="music"
-      className="relative overflow-hidden px-4 py-20 md:px-8"
+      className="relative overflow-hidden px-4 py-16 md:px-8"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[url('/texture.png')] bg-repeat opacity-10 md:opacity-10"></div>
+      <div className="pointer-events-none absolute inset-0 bg-[url('/texture.png')] bg-repeat opacity-10"></div>
 
       <div className="relative z-10 mx-auto max-w-7xl">
         <motion.h2
