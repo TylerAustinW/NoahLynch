@@ -11,7 +11,7 @@ export default function BiographySection() {
       ref={ref}
       className="relative overflow-hidden px-6 py-24 md:px-12"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[url('/texture.png')] bg-repeat opacity-5"></div>
+      <div className="pointer-events-none absolute inset-0 bg-[url('/texture.png')] bg-repeat opacity-10"></div>
 
       <div className="pointer-events-none absolute top-0 left-0 z-10 h-full w-full overflow-hidden opacity-5">
         <div className="absolute -top-[30%] -right-[10%] h-[60%] w-[60%] rounded-full bg-amber-500/10 blur-[120px]" />

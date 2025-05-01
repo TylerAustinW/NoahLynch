@@ -15,7 +15,6 @@ const nextConfig = {
   },
   headers: async () => [
     {
-      // Apply these headers to al routes
       source: '/:path*',
       headers: [
         {
