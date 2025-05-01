@@ -72,8 +72,8 @@ export default async function MusicReleasePage({
     : 'border-cyan-700/50';
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-zinc-900 via-black to-black px-4 py-24 text-white sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-4xl">
+    <div className="min-h-screen bg-gradient-to-b from-zinc-900 via-black to-black px-4 py-24 text-white sm:px-6 lg:px-8    ">  
+      <div className="mx-auto max-w-4xl"> 
         <div className="flex flex-col gap-8 md:flex-row md:gap-12">
           <div className="w-full flex-shrink-0 md:w-1/2">
             <div className="relative aspect-square overflow-hidden rounded-lg border border-zinc-800/60 shadow-xl">
@@ -81,7 +81,7 @@ export default async function MusicReleasePage({
                 src={release.imageURL}
                 alt={`${release.title} Cover Art`}
                 fill
-                priority
+                priority  
                 sizes="(max-width: 768px) 90vw, 50vw"
                 className="object-cover"
               />

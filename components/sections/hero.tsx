@@ -57,7 +57,7 @@ export default function HeroSection(): React.ReactElement {
             }}
             onError={() => setImageError(true)}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/0 to-black/100" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/0 to-black/75" />
         </div>
         <div className="relative z-10 container mx-auto px-6 md:px-12">
           <div
