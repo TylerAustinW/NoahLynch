@@ -124,7 +124,7 @@ export default function Navbar() {
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-black/90 backdrop-blur-sm px-6 py-8 space-y-6 flex flex-col items-start">
+        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-8 bg-black/80 backdrop-blur-md md:hidden">
           {navLinks}
         </div>
       )}

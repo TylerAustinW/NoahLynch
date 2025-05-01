@@ -30,9 +30,6 @@ export default function HeroSection(): React.ReactElement {
               Musician
             </span>
           </h1>
-          <p className="mb-8 max-w-md text-lg text-zinc-400">
-            Mississippi-Born Musician, Singer-Songwriter
-          </p>
         </div>
       </section>  
     );
@@ -66,22 +63,14 @@ export default function HeroSection(): React.ReactElement {
               loaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}
           >
-            <div className="mb-4 inline-block rounded-full border border-zinc-700/30 bg-zinc-900/70 px-4 py-2 backdrop-blur-sm">
-              <span className="font-medium text-amber-200/90">
-                Coming May 9, 2025
-              </span>
-            </div>
             <h1 className="mb-4 text-5xl font-bold md:text-7xl">
               New Single
               <br />
-              <span className="mb-4 text-5xl font-bold text-white drop-shadow-md md:text-7xl">
+              <span className="mb-4 text-5xl font-bold text-amber-200/90 drop-shadow-md md:text-7xl">
                 Honest
               </span>
             </h1>
-            <p className="mb-8 max-w-md text-lg leading-relaxed text-zinc-200">
-              Mississippi-Born Musician, Singer-Songwriter
-            </p>
-            <CountdownTimer
+            <CountdownTimer 
               targetDate="2025-05-09T00:56:00-05:00"
               className="mb-8"
             />
