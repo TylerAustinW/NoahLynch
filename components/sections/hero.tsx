@@ -5,6 +5,7 @@ import { useInView } from '@/hooks/use-in-view';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import CountdownTimer from '@/components/ui/countdown-timer';
+import { FaInstagram, FaFacebookF, FaTiktok, FaYoutube } from 'react-icons/fa6';
 
 export default function HeroSection(): React.ReactElement {
   const { ref } = useInView({ threshold: 0.1 });
@@ -33,7 +34,7 @@ export default function HeroSection(): React.ReactElement {
             Mississippi-Born Musician, Singer-Songwriter
           </p>
         </div>
-      </section>
+      </section>  
     );
   }
 
@@ -96,6 +97,44 @@ export default function HeroSection(): React.ReactElement {
                 className="rounded-full border border-zinc-700/40 bg-zinc-900/50 px-6 py-3 font-medium text-white transition-all duration-300 hover:border-zinc-600/60 hover:bg-zinc-800/60"
               >
                 Explore Merch
+              </a>
+            </div>
+            <div className="mt-6 flex gap-6">
+              <a
+                href="https://instagram.com/noahlynchmusic"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="text-zinc-400 transition-colors hover:text-pink-500"
+              >
+                <FaInstagram className="h-6 w-6" />
+              </a>
+              <a
+                href="https://facebook.com/noahlynchmusic"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="text-zinc-400 transition-colors hover:text-blue-500"
+              >
+                <FaFacebookF className="h-6 w-6" />
+              </a>
+              <a
+                href="https://tiktok.com/@noahlynchmusic"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Tiktok"
+                className="text-zinc-400 transition-colors hover:text-red-500"
+              >
+                <FaTiktok className="h-6 w-6" />
+              </a>
+              <a
+                href="https://youtube.com/@noahlynch"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+                className="text-zinc-400 transition-colors hover:text-red-500"
+              >
+                <FaYoutube className="h-6 w-6" />
               </a>
             </div>
           </div>

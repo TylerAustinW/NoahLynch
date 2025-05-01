@@ -23,7 +23,7 @@ export default function RootLayout({
         />
         <link rel="icon" href="/noah-portrait.jpeg" sizes="60x60" />
       </head>
-      <body className="bg-background relative min-h-screen font-sans antialiased">
+      <body suppressHydrationWarning className="bg-background relative min-h-screen font-sans antialiased">
         <div className="grain-overlay" />
         <ThemeProvider attribute="class" defaultTheme="dark">
           {children}

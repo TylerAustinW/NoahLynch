@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { Menu, X } from 'lucide-react';
 
 const linkVariants = {
   initial: { color: 'rgba(161, 161, 170, 1)' },
@@ -12,6 +13,8 @@ const linkVariants = {
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 10;
@@ -35,6 +38,64 @@ export default function Navbar() {
     }
   };
 
+  const navLinks = (
+    <>
+      <motion.div className="relative" initial="initial" whileHover="hover">
+        <Link
+          href="#biography"
+          className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full"
+          onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+            handleNavClick(e, 'biography');
+            setMobileOpen(false);
+          }}
+        >
+          <motion.span variants={linkVariants} transition={{ duration: 0.3 }}>
+            ABOUT
+          </motion.span>
+        </Link>
+      </motion.div>
+      <motion.div className="relative" initial="initial" whileHover="hover">
+        <Link
+          href="#music"
+          className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full"
+          onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+            handleNavClick(e, 'music');
+            setMobileOpen(false);
+          }}
+        >
+          <motion.span variants={linkVariants} transition={{ duration: 0.3 }}>
+            MUSIC
+          </motion.span>
+        </Link>
+      </motion.div>
+      <motion.div className="relative" initial="initial" whileHover="hover">
+        <Link
+          href="#tour"
+          className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full"
+          onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+            handleNavClick(e, 'tour');
+            setMobileOpen(false);
+          }}
+        >
+          <motion.span variants={linkVariants} transition={{ duration: 0.3 }}>
+            TOUR
+          </motion.span>
+        </Link>
+      </motion.div>
+      <motion.div className="relative" initial="initial" whileHover="hover">
+        <Link
+          href="/merch"
+          className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full"
+          onClick={() => setMobileOpen(false)}
+        >
+          <motion.span variants={linkVariants} transition={{ duration: 0.3 }}>
+            MERCH
+          </motion.span>
+        </Link>
+      </motion.div>
+    </>
+  );
+
   return (
     <header
       className={cn(
@@ -50,72 +111,23 @@ export default function Navbar() {
         </div>
 
         <nav className="hidden items-center space-x-8 md:flex">
-          <motion.div className="relative" initial="initial" whileHover="hover">
-            <Link
-              href="#biography"
-              className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full"
-              onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
-                handleNavClick(e, 'biography')
-              }
-            >
-              <motion.span
-                variants={linkVariants}
-                transition={{ duration: 0.3 }}
-              >
-                ABOUT
-              </motion.span>
-            </Link>
-          </motion.div>
-
-          <motion.div className="relative" initial="initial" whileHover="hover">
-            <Link
-              href="#music"
-              className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full"
-              onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
-                handleNavClick(e, 'music')
-              }
-            >
-              <motion.span
-                variants={linkVariants}
-                transition={{ duration: 0.3 }}
-              >
-                MUSIC
-              </motion.span>
-            </Link>
-          </motion.div>
-
-          <motion.div className="relative" initial="initial" whileHover="hover">
-            <Link
-              href="#tour"
-              className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full"
-              onClick={(e: React.MouseEvent<HTMLAnchorElement>) =>
-                handleNavClick(e, 'tour')
-              }
-            >
-              <motion.span
-                variants={linkVariants}
-                transition={{ duration: 0.3 }}
-              >
-                TOUR
-              </motion.span>
-            </Link>
-          </motion.div>
-
-          <motion.div className="relative" initial="initial" whileHover="hover">
-            <Link
-              href="/merch"
-              className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full"
-            >
-              <motion.span
-                variants={linkVariants}
-                transition={{ duration: 0.3 }}
-              >
-                MERCH
-              </motion.span>
-            </Link>
-          </motion.div>
+          {navLinks}
         </nav>
+
+        <button
+          className="md:hidden text-zinc-300"
+          aria-label="Toggle Menu"
+          onClick={() => setMobileOpen((prev) => !prev)}
+        >
+          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
       </div>
+
+      {mobileOpen && (
+        <div className="md:hidden absolute top-full left-0 right-0 bg-black/90 backdrop-blur-sm px-6 py-8 space-y-6 flex flex-col items-start">
+          {navLinks}
+        </div>
+      )}
     </header>
   );
 }
