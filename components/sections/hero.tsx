@@ -4,6 +4,7 @@ import ErrorBoundary from '@/components/ui/error-boundary';
 import { useInView } from '@/hooks/use-in-view';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
+import CountdownTimer from '@/components/ui/countdown-timer';
 
 export default function HeroSection(): React.ReactElement {
   const { ref } = useInView({ threshold: 0.1 });
@@ -66,7 +67,7 @@ export default function HeroSection(): React.ReactElement {
           >
             <div className="mb-4 inline-block rounded-full border border-zinc-700/30 bg-zinc-900/70 px-4 py-2 backdrop-blur-sm">
               <span className="font-medium text-amber-200/90">
-                Coming May 2025
+                Coming May 9, 2025
               </span>
             </div>
             <h1 className="mb-4 text-5xl font-bold md:text-7xl">
@@ -79,6 +80,10 @@ export default function HeroSection(): React.ReactElement {
             <p className="mb-8 max-w-md text-lg leading-relaxed text-zinc-200">
               Mississippi-Born Musician, Singer-Songwriter
             </p>
+            <CountdownTimer
+              targetDate="2025-05-09T00:56:00-05:00"
+              className="mb-8"
+            />
             <div className="mt-8 flex flex-wrap gap-4">
               <a
                 href="#music"
