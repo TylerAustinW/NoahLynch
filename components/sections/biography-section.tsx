@@ -9,7 +9,7 @@ export default function BiographySection() {
     <section
       id="biography"
       ref={ref}
-      className="relative overflow-hidden px-6 py-16 md:px-12 bg-neutral-950"
+      className="relative overflow-hidden px-6 pt-8 pb-12 md:px-8 md:pt-10 md:pb-14 bg-neutral-950"
     >
       <div className="pointer-events-none absolute inset-0 bg-[url('/texture.png')] bg-repeat opacity-10 md:opacity-10"></div>
 
@@ -19,11 +19,11 @@ export default function BiographySection() {
       </div>
 
       <div className="relative z-20 mx-auto max-w-7xl">
-        <h2 className="mb-8 text-3xl font-bold text-white md:text-5xl">
+        <h2 className="mb-6 text-3xl font-bold text-white md:text-5xl">
           Biography
         </h2>
 
-        <div className="grid items-center gap-12 md:grid-cols-2">
+        <div className="grid items-center gap-10 md:grid-cols-2">
           <div
             className={`space-y-6 transition-all duration-700 ${
               inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'

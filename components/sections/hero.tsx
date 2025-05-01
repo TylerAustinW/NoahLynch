@@ -42,7 +42,7 @@ export default function HeroSection(): React.ReactElement {
     <ErrorBoundary>
       <section
         ref={ref}
-        className="relative flex min-h-screen items-center overflow-hidden pt-16"
+        className="relative flex min-h-screen items-center overflow-hidden pt-16 pb-0"
       >
         <div className="absolute inset-0 h-full w-full">
           <Image

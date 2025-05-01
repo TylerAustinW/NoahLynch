@@ -62,7 +62,7 @@ export default function TourSection(): React.ReactElement {
     <section
       id="tour"
       ref={ref}
-      className="relative overflow-hidden px-6 py-16 md:px-12"
+      className="relative overflow-hidden px-6 pt-8 pb-10 md:px-8 md:pt-10 md:pb-14"
     >
       <div className="pointer-events-none absolute inset-0 bg-[url('/texture.png')] bg-repeat opacity-10 md:opacity-10"></div>
 
@@ -72,15 +72,15 @@ export default function TourSection(): React.ReactElement {
       </div>
 
       <div className="relative z-20 mx-auto max-w-7xl">
-        <h1 className="mb-10 text-center text-4xl font-bold text-white">
+        <h1 className="mb-6 text-center text-4xl font-bold text-white">
           Tour Dates
         </h1>
-        <div className="mb-8 flex flex-col items-center gap-2">
+        <div className="mb-6 flex flex-col items-center gap-2">
           <h2 className="text-center text-3xl font-bold text-white md:text-4xl">
             Weekend Of Live Music
           </h2>
         </div>
-        <div className="mb-10">
+        <div className="mb-8">
           {tourDates.map((tour) => (
             <motion.div
               key={tour.id}
