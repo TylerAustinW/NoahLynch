@@ -10,9 +10,9 @@ export default function Home() {
       <Navbar />
       <main>
         <HeroSection />
-        <BiographySection />
         <MusicShowcaseSection />
         <TourSection />
+        <BiographySection />
       </main>
     </div>
   );
