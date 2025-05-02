@@ -6,6 +6,8 @@ import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import CountdownTimer from '@/components/ui/countdown-timer';
 import { FaInstagram, FaFacebookF, FaTiktok, FaYoutube } from 'react-icons/fa6';
+import { ChevronDown } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function HeroSection(): React.ReactElement {
   const { ref } = useInView({ threshold: 0.1 });
@@ -128,6 +130,31 @@ export default function HeroSection(): React.ReactElement {
             </div>
           </div>
         </div>
+
+        <motion.div 
+          className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 sm:hidden"
+          initial={{ opacity: 0 }}
+          animate={{ 
+            opacity: loaded ? 1 : 0,
+            y: [0, 10, 0]
+          }}
+          transition={{
+            y: {
+              repeat: Infinity,
+              duration: 1.5,
+              ease: "easeInOut"
+            },
+            opacity: {
+              delay: 1.5,
+              duration: 0.8
+            }
+          }}
+        >
+          <div className="flex flex-col items-center">
+            <span className="mb-1 text-xs font-medium text-zinc-300">Scroll</span>
+            <ChevronDown className="h-6 w-6 text-zinc-300" />
+          </div>
+        </motion.div>
       </section>
     </ErrorBoundary>
   );

@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 export default function BiographySection() {
   const { ref, inView } = useInView({ threshold: 0.1, once: true });
-  return (
+  return (  
     <section
       id="biography"
       ref={ref}

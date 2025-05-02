@@ -1,6 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { createPortal } from 'react-dom';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -14,6 +15,20 @@ const linkVariants = {
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    // Prevent scrolling when menu is open
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,7 +58,7 @@ export default function Navbar() {
       <motion.div className="relative" initial="initial" whileHover="hover">
         <Link
           href="#biography"
-          className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full"
+          className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full md:text-sm"
           onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
             handleNavClick(e, 'biography');
             setMobileOpen(false);
@@ -57,7 +72,7 @@ export default function Navbar() {
       <motion.div className="relative" initial="initial" whileHover="hover">
         <Link
           href="#music"
-          className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full"
+          className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full md:text-sm"
           onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
             handleNavClick(e, 'music');
             setMobileOpen(false);
@@ -71,7 +86,7 @@ export default function Navbar() {
       <motion.div className="relative" initial="initial" whileHover="hover">
         <Link
           href="#tour"
-          className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full"
+          className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full md:text-sm"
           onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
             handleNavClick(e, 'tour');
             setMobileOpen(false);
@@ -85,7 +100,7 @@ export default function Navbar() {
       <motion.div className="relative" initial="initial" whileHover="hover">
         <Link
           href="/merch"
-          className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full"
+          className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full md:text-sm"
           onClick={() => setMobileOpen(false)}
         >
           <motion.span variants={linkVariants} transition={{ duration: 0.3 }}>
@@ -115,7 +130,7 @@ export default function Navbar() {
         </nav>
 
         <button
-          className="md:hidden text-zinc-300"
+          className="relative z-[100] p-2 text-zinc-300 md:hidden"
           aria-label="Toggle Menu"
           onClick={() => setMobileOpen((prev) => !prev)}
         >
@@ -123,10 +138,29 @@ export default function Navbar() {
         </button>
       </div>
 
-      {mobileOpen && (
-        <div className="fixed inset-0 z-50 flex flex-col items-center justify-center gap-8 bg-black/80 backdrop-blur-md md:hidden">
-          {navLinks}
-        </div>
+      {isMounted && (
+        <AnimatePresence>
+          {mobileOpen && (
+            <div className="fixed inset-0 z-[60]">
+              <motion.div
+                className="fixed inset-0 bg-black/95 backdrop-blur-md"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setMobileOpen(false)}
+              />
+              <motion.div
+                className="fixed inset-0 flex flex-col items-center justify-center gap-10 text-xl"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ delay: 0.1 }}
+              >
+                {navLinks}
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
       )}
     </header>
   );
