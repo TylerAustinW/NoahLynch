@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { useEffect, useState, useRef } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Instagram, Menu, X } from 'lucide-react';
+import { FaInstagram } from 'react-icons/fa';
 
 const linkVariants = {
   initial: { color: 'rgba(161, 161, 170, 1)' },
@@ -161,10 +162,9 @@ export default function Navbar() {
       {isMounted && (
         <AnimatePresence>
           {mobileOpen && (
-          
             <motion.div
               className="fixed inset-0 z-[90] flex min-h-screen w-full items-center justify-center overflow-hidden bg-black/95 backdrop-blur-xl md:hidden"
-              initial={{ opacity: 0 }}  
+              initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
@@ -181,14 +181,12 @@ export default function Navbar() {
               >
                 {navLinks}
               </motion.div>
-              {/* tool tip to show they can close the menu  with a tap anywhere that fades in and out*/}
               <motion.div
-                className="absolute bottom-0 left-0 top-0 right-0 p-4 text-center text-bold text-zinc-400"
+                className="pointer-events-none absolute bottom-8 left-0 right-0 p-4 text-center text-sm font-medium text-zinc-400"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                onClick={closeMenu}
               >
                 <p>Tap anywhere to close</p>
               </motion.div>
