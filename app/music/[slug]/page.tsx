@@ -6,12 +6,12 @@ import {
 } from '@/lib/musicData';
 import { Heart } from 'lucide-react';
 import { Metadata } from 'next';
-import { Edu_QLD_Beginner } from 'next/font/google';
+import { Patrick_Hand } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-const eduQLDBeginner = Edu_QLD_Beginner({
+const patrickHand = Patrick_Hand({
   weight: '400',
   subsets: ['latin'],
 });
@@ -195,7 +195,7 @@ export default async function MusicReleasePage({
               <h2 className="mb-6 text-3xl font-semibold text-amber-100 text-center">
                 Special Thanks
               </h2>
-              <div className={`space-y-6 text-zinc-200 leading-relaxed ${eduQLDBeginner.className} text-base md:text-lg`}>
+              <div className={`space-y-6 text-zinc-200 leading-relaxed ${patrickHand.className} text-base md:text-lg`}>
                 <p className="text-center italic">
                   Bringing "Honest" to life has been one of the most meaningful creative experiences of my life, and I couldn't have done it without the support, talent, and heart of some truly incredible people.
                 </p>
@@ -211,7 +211,7 @@ export default async function MusicReleasePage({
                   - <strong>Noah Lynch <Heart className="h-5 w-5 text-red-400 inline-block ml-1 relative -top-px" /></strong>
                 </p>
               </div>
-            </div>
+            </div>  
           )}
 
           {/* Section 3: Back to All Music (Full Width) */}

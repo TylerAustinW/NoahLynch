@@ -4,12 +4,12 @@ import ErrorBoundary from '@/components/ui/error-boundary';
 import { useInView } from '@/hooks/use-in-view';
 import { motion } from 'framer-motion';
 import { ChevronDown, Heart } from 'lucide-react';
-import { Edu_QLD_Beginner, } from 'next/font/google';
+import { Patrick_Hand } from 'next/font/google';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { FaFacebookF, FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa6';
 
-const eduQLDBeginner = Edu_QLD_Beginner({
+const patrickHand = Patrick_Hand({
   weight: '400',
   subsets: ['latin'],
 });
@@ -166,7 +166,7 @@ export default function HeroSection(): React.ReactElement {
 
         <div className="absolute bottom-12 right-4 z-10 p-2 max-w-xs text-right hidden md:block">
           <p 
-            className={`${eduQLDBeginner.className} text-sm text-white/70 leading-tight shadow-text`}
+            className={`${patrickHand.className} text-sm text-white/70 leading-tight shadow-text`}
             style={{ textShadow: '0px 1px 3px rgba(0,0,0,0.5)' }}
           >
             "I hope this record means as much to you as it does to me, thank you for the endless support - <Heart className="h-6 w-6 text-zinc-200 inline-block" />Noah"
