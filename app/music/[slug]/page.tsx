@@ -12,7 +12,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 const patrickHand = Patrick_Hand({
-  weight: '400',
+  weight: ['400'],
   subsets: ['latin'],
 });
 interface PageProps {
@@ -195,18 +195,18 @@ export default async function MusicReleasePage({
               <h2 className="mb-6 text-3xl font-semibold text-amber-100 text-center">
                 Special Thanks
               </h2>
-              <div className={`space-y-6 text-zinc-200 leading-relaxed ${patrickHand.className} text-base md:text-lg`}>
+              <div className={`space-y-6 text-zinc-200 leading-relaxed ${patrickHand.className} text-base md:text-lg font-bold`}>
                 <p className="text-center italic">
                   Bringing "Honest" to life has been one of the most meaningful creative experiences of my life, and I couldn't have done it without the support, talent, and heart of some truly incredible people.
                 </p>
                 <p>
-                  To  <strong>Levi Ready</strong>, <strong>Isaac Moreno</strong>, <strong>Tyler Bridge</strong>, <strong>Jamie Wroten</strong>, <strong>Tyler Williams</strong>, <strong>Christopher Chittom</strong>, <strong>Evan Busbin</strong>, <strong>Hagen Brister</strong>, and <strong>Sherry Thibodeaux</strong>—thank you for your time, energy, and the unique ways each of you contributed to this song. Your support has meant more than words can say.
+                  To  Levi Ready, Isaac Moreno, Tyler Bridge, Jamie Wroten, Tyler Williams, Christopher Chittom, Evan Busbin, Hagen Brister, and Sherry Thibodeaux—thank you for your time, energy, and the unique ways each of you contributed to this song. Your support has meant more than words can say.
                 </p>
                 <p>
-                  And last but never least, to my amazing wife <strong>Hunter Lynch</strong>—your love, strength, and unwavering belief in me are the foundation of everything I do. Thank you for being my home, my muse, and my greatest encouragement.
+                  And last but never least, to my amazing wife Hunter Lynch—your love, strength, and unwavering belief in me are the foundation of everything I do. Thank you for being my home, my muse, and my greatest encouragement.
                 </p>
                 <p className="mt-8 text-center">
-                  With all my gratitude,
+                  With all my gratitude,  
                   <br />
                   - <strong>Noah Lynch <Heart className="h-5 w-5 text-red-400 inline-block ml-1 relative -top-px" /></strong>
                 </p>

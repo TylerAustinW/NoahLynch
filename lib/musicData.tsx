@@ -6,7 +6,7 @@ import {
   FaSpotify,
   FaYoutube,
 } from 'react-icons/fa';
-import { SiPandora } from 'react-icons/si'; 
+import { SiPandora } from 'react-icons/si';
 
 export interface Release {
   id: string;
@@ -69,12 +69,12 @@ const honestAsPreviousRelease: ReleaseWithPlatforms = {
   releasedBy: 'Ready Records',
   releaseDate: 'May 9, 2025',
   platforms: [
-    PlatformLink('Spotify', 'https://open.spotify.com/artist/4IKFKRnwaMGZQoExatIlHH'),
-    PlatformLink('Apple Music', 'https://music.apple.com/us/artist/noah-lynch/1744359568'),
-    PlatformLink('Amazon Music', 'https://music.amazon.com/artists/B08SV61FDK/noah-lynch'),
-    PlatformLink('YouTube Music', 'https://music.youtube.com/channel/UCXDKAVZ1IBGpMaUW7biqAug'),
-    PlatformLink('Pandora', 'https://pandora.com/artist/noah-lynch/AR5kK5wq5fvrlj9'),
-    PlatformLink('Deezer', 'https://www.deezer.com/us/artist/268025222'),
+    PlatformLink('Spotify', 'https://open.spotify.com/album/5HJACu3aHQnYqLjfaIP6hT'),
+    PlatformLink('Apple Music', 'https://music.apple.com/us/album/honest-single/1810499543'),
+    PlatformLink('Amazon Music', 'https://music.amazon.com/albums/B0F67QFWRS'),
+    PlatformLink('YouTube Music', 'https://music.youtube.com/playlist?list=OLAK5uy_n-dgJjbWh8Gvscv_R-2oNQTI7LYSZpwU4'),
+    PlatformLink('Pandora', 'https://pandora.com/artist/noah-lynch/honest/ALmh7tV7nxgZtbV'),
+    PlatformLink('Deezer', 'https://music.youtube.com/playlist?list=OLAK5uy_n-dgJjbWh8Gvscv_R-2oNQTI7LYSZpwU4'),
   ],
   linkText: 'LISTEN NOW!',
 };
