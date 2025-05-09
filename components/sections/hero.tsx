@@ -2,12 +2,17 @@
 
 import ErrorBoundary from '@/components/ui/error-boundary';
 import { useInView } from '@/hooks/use-in-view';
+import { motion } from 'framer-motion';
+import { ChevronDown, Heart } from 'lucide-react';
+import { Edu_QLD_Beginner, } from 'next/font/google';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import CountdownTimer from '@/components/ui/countdown-timer';
-import { FaInstagram, FaFacebookF, FaTiktok, FaYoutube } from 'react-icons/fa6';
-import { ChevronDown } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { FaFacebookF, FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa6';
+
+const eduQLDBeginner = Edu_QLD_Beginner({
+  weight: '400',
+  subsets: ['latin'],
+});
 
 export default function HeroSection(): React.ReactElement {
   const { ref } = useInView({ threshold: 0.1 });
@@ -20,7 +25,7 @@ export default function HeroSection(): React.ReactElement {
 
   if (imageError) {
     return (
-      <section
+      <section  
         ref={ref}
         className="relative flex min-h-screen items-center justify-center bg-black pt-16"
       >
@@ -45,10 +50,10 @@ export default function HeroSection(): React.ReactElement {
       >
         <div className="absolute inset-0 h-full w-full">
           <Image
-            src="/noah-studio.jpeg"
+            src="/honest-coverr.png"
             alt="Noah Lynch - Honest"
             fill
-            className="object-cover"
+            className="object-center"
             priority
             style={{
               objectPosition: 'center 30%',
@@ -65,18 +70,21 @@ export default function HeroSection(): React.ReactElement {
               loaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}
           >
-            <h1 className="mb-4 text-5xl font-bold md:text-7xl">
-              New Single
+            <h1 className="mb-4 text-5xl font-bold uppercase text-white drop-shadow-md">
+              Honest
               <br />
-              <span className="mb-4 text-5xl font-bold text-amber-200/90 drop-shadow-md md:text-7xl">
-                Honest
+              <span className="mb-4 text-5xl font-bold uppercase  text-amber-200/90 drop-shadow-md md:text-7xl">
+                Out Now 
+                <br />
               </span>
             </h1>
-            <CountdownTimer 
-              targetDate="2025-05-09T00:56:00-05:00"
-              className="mb-8"
-            />
             <div className="mt-8 flex flex-wrap gap-4">
+              <a
+                href="/music/honest"
+                className="rounded-full border border-amber-500/60 bg-amber-500/20 px-6 py-3 font-medium text-amber-100 transition-all duration-300 hover:border-amber-400/70 hover:bg-amber-500/30"
+              >
+                Listen Now
+              </a>
               <a
                 href="#music"
                 className="rounded-full border border-zinc-700/40 bg-zinc-900/50 px-6 py-3 font-medium text-white transition-all duration-300 hover:border-zinc-600/60 hover:bg-zinc-800/60"
@@ -155,6 +163,15 @@ export default function HeroSection(): React.ReactElement {
             <ChevronDown className="h-6 w-6 text-zinc-300" />
           </div>
         </motion.div>
+
+        <div className="absolute bottom-12 right-4 z-10 p-2 max-w-xs text-right hidden md:block">
+          <p 
+            className={`${eduQLDBeginner.className} text-sm text-white/70 leading-tight shadow-text`}
+            style={{ textShadow: '0px 1px 3px rgba(0,0,0,0.5)' }}
+          >
+            "I hope this record means as much to you as it does to me, thank you for the endless support - <Heart className="h-6 w-6 text-zinc-200 inline-block" />Noah"
+          </p>
+        </div>
       </section>
     </ErrorBoundary>
   );

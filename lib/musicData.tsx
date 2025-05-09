@@ -6,11 +6,11 @@ import {
   FaSpotify,
   FaYoutube,
 } from 'react-icons/fa';
-import { SiPandora } from 'react-icons/si';
+import { SiPandora } from 'react-icons/si'; 
 
 export interface Release {
   id: string;
-  title: string;
+  title: string;  
   year: string;
   description: string;
   imageURL: string;
@@ -25,13 +25,13 @@ export interface Platform {
 export interface ReleaseWithPlatforms extends Release {
   platforms: Platform[];
   linkText?: string;
-  type: 'upcoming' | 'previous';
+  type: 'out-now' | 'upcoming' | 'previous';
   releasedBy: string;
   releaseDate: string;
   linkURL?: string;
 }
 
-export const createPlatformLink = (name: string, url: string): Platform => {
+export const PlatformLink = (name: string, url: string): Platform => {
   const getIcon = (platformName: string): React.ReactNode => {
     switch (platformName) {
       case 'Spotify':
@@ -58,7 +58,29 @@ export const createPlatformLink = (name: string, url: string): Platform => {
   };
 };
 
+const honestAsPreviousRelease: ReleaseWithPlatforms = {
+  id: 'honest',
+  title: 'Honest',
+  year: '2025',
+  type: 'out-now',
+  description:
+    "\"Honest\" is Noah Lynch's personal reflection on embracing vulnerability during life's challenges. Written while anticipating fatherhood, the song encourages authenticity and reminds listeners that it's okay to not be okay. Noah hopes the track will foster understanding and connection through open communication.",
+  imageURL: '/honest-cover.jpeg',
+  releasedBy: 'Ready Records',
+  releaseDate: 'May 9, 2025',
+  platforms: [
+    PlatformLink('Spotify', 'https://open.spotify.com/artist/4IKFKRnwaMGZQoExatIlHH'),
+    PlatformLink('Apple Music', 'https://music.apple.com/us/artist/noah-lynch/1744359568'),
+    PlatformLink('Amazon Music', 'https://music.amazon.com/artists/B08SV61FDK/noah-lynch'),
+    PlatformLink('YouTube Music', 'https://music.youtube.com/channel/UCXDKAVZ1IBGpMaUW7biqAug'),
+    PlatformLink('Pandora', 'https://pandora.com/artist/noah-lynch/AR5kK5wq5fvrlj9'),
+    PlatformLink('Deezer', 'https://www.deezer.com/us/artist/268025222'),
+  ],
+  linkText: 'LISTEN NOW!',
+};
+
 export const previousReleases: ReleaseWithPlatforms[] = [
+  honestAsPreviousRelease,
   {
     id: 'good-things-take-time',
     title: 'Good things take time',
@@ -70,27 +92,27 @@ export const previousReleases: ReleaseWithPlatforms[] = [
     releasedBy: 'Ready Records',
     releaseDate: 'July 27, 2024',
     platforms: [
-      createPlatformLink(
+      PlatformLink(
         'Spotify',
         'https://open.spotify.com/track/2tFn7noYlbBqzECeUuDgLn',
       ),
-      createPlatformLink(
+      PlatformLink(
         'Apple Music',
         'https://music.apple.com/album/good-things-take-time/1756853346?i=1756853347',
       ),
-      createPlatformLink(
+      PlatformLink(
         'Amazon Music',
         'https://music.amazon.com/albums/B0D971YCZT',
       ),
-      createPlatformLink(
+      PlatformLink(
         'YouTube Music',
         'https://music.youtube.com/playlist?list=OLAK5uy_kBPfSe2-d9b9DNCDLrMFkMqQSvJB2LRSQ',
       ),
-      createPlatformLink(
+      PlatformLink(
         'Pandora',
         'https://pandora.com/artist/noah-lynch/good-things-take-time/ALhKVZ6x7dnkJPc',
       ),
-      createPlatformLink('Deezer', 'https://www.deezer.com/us/album/614383912'),
+      PlatformLink('Deezer', 'https://www.deezer.com/us/album/614383912'),
     ],
     linkText: 'LISTEN NOW!',
   },
@@ -99,57 +121,43 @@ export const previousReleases: ReleaseWithPlatforms[] = [
     title: 'For You',
     year: '2024',
     description:
-      'For You is a soulful, heartfelt ballad that captures the moment love changes everything. It’s a song about gratitude, peace, and unwavering devotion to someone who brings joy and strength through every season of life. With emotional lyrics and a timeless feel, For You is a tribute to the kind of love you never stop being thankful for.',
+      "For You is a soulful, heartfelt ballad that captures the moment love changes everything. It's a song about gratitude, peace, and unwavering devotion to someone who brings joy and strength through every season of life. With emotional lyrics and a timeless feel, For You is a tribute to the kind of love you never stop being thankful for.",
     imageURL: '/foryou.jpg',
     type: 'previous',
     releasedBy: 'Ready Records',
     releaseDate: 'June 1, 2024',
     platforms: [
-      createPlatformLink(
+      PlatformLink(
         'Spotify',
         'https://open.spotify.com/track/7eCRFPhvQglvAwxdTatzGB',
       ),
-      createPlatformLink(
+      PlatformLink(
         'Apple Music',
         'https://music.apple.com/album/for-you/1744360290?i=1744360291',
       ),
-      createPlatformLink(
+      PlatformLink(
         'Amazon Music',
         'https://music.amazon.com/albums/B0D33XXDR2',
       ),
-      createPlatformLink(
+      PlatformLink(
         'YouTube Music',
         'https://music.youtube.com/playlist?list=OLAK5uy_l8cmplc55OnsTminixgV_HdPR3XZS1wYA',
       ),
-      createPlatformLink(
+      PlatformLink(
         'Pandora',
         'https://pandora.com/artist/noah-lynch/for-you/for-you/TRj33rhPZpzmljV',
       ),
-      createPlatformLink('Deezer', 'https://www.deezer.com/us/album/581142311'),
+      PlatformLink('Deezer', 'https://www.deezer.com/us/album/581142311'),
     ],
     linkText: 'LISTEN NOW!',
   },
 ];
 
-export const upcomingRelease: ReleaseWithPlatforms = {
-  id: 'honest',
-  title: 'Honest',
-  year: '2025',
-  type: 'upcoming',
-  description:
-    "\"Honest\" is Noah Lynch's personal reflection on embracing vulnerability during life's challenges. Written while anticipating fatherhood, the song encourages authenticity and reminds listeners that it's okay to not be okay. Noah hopes the track will foster understanding and connection through open communication.",
-  imageURL: '/honest-cover.jpeg',
-  releasedBy: 'Ready Records',
-  releaseDate: 'May 9, 2025',
-  platforms: [],
-  linkURL: 'https://symphony.to/noah-lynch/honest',
-  linkText: 'PRE-SAVE NOW!',
-};
+export const upcomingRelease: ReleaseWithPlatforms | null = null;
 
-export const allReleases: ReleaseWithPlatforms[] = [
-  upcomingRelease,
-  ...previousReleases,
-];
+export const allReleases: ReleaseWithPlatforms[] = upcomingRelease
+  ? [upcomingRelease, ...previousReleases]
+  : [...previousReleases];
 
 export const getReleaseById = (
   id: string,

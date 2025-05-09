@@ -1,16 +1,13 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
-import { useEffect, useState, useRef } from 'react';
-import { Instagram, Menu, X } from 'lucide-react';
-import { FaInstagram } from 'react-icons/fa';
+import { useEffect, useMemo, useState } from 'react';
 
-const linkVariants = {
-  initial: { color: 'rgba(161, 161, 170, 1)' },
-  hover: { color: 'rgba(255, 255, 255, 1)' },
-};
+const baseLinkClasses =
+  '-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:transition-all after:duration-300 hover:after:w-full md:text-sm';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -22,7 +19,6 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    // Only prevent scrolling when menu is open, but don't change position
     if (mobileOpen) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -45,7 +41,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [scrolled]);
 
-  // Close menu on escape key
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && mobileOpen) {
@@ -55,6 +50,13 @@ export default function Navbar() {
     window.addEventListener('keydown', handleEsc);
     return () => window.removeEventListener('keydown', handleEsc);
   }, [mobileOpen]);
+
+  const linkVariants = useMemo(() => {
+    return {
+      initial: { color: scrolled ? 'rgba(161, 161, 170, 1)' : 'rgba(63, 63, 70, 1)' }, // zinc-400 when scrolled, zinc-700 when not
+      hover: { color: scrolled ? 'rgba(255, 255, 255, 1)' : 'rgba(24, 24, 27, 1)' }, // white when scrolled, zinc-900 when not
+    };
+  }, [scrolled]);
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -77,7 +79,10 @@ export default function Navbar() {
       <motion.div className="relative" initial="initial" whileHover="hover">
         <Link
           href="#biography"
-          className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full md:text-sm"
+          className={cn(
+            baseLinkClasses,
+            scrolled ? 'after:bg-white/40' : 'after:bg-zinc-700/40',
+          )}
           onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
             handleNavClick(e, 'biography');
             closeMenu();
@@ -91,7 +96,10 @@ export default function Navbar() {
       <motion.div className="relative" initial="initial" whileHover="hover">
         <Link
           href="#music"
-          className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full md:text-sm"
+          className={cn(
+            baseLinkClasses,
+            scrolled ? 'after:bg-white/40' : 'after:bg-zinc-700/40',
+          )}
           onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
             handleNavClick(e, 'music');
             closeMenu();
@@ -105,7 +113,10 @@ export default function Navbar() {
       <motion.div className="relative" initial="initial" whileHover="hover">
         <Link
           href="#tour"
-          className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full md:text-sm"
+          className={cn(
+            baseLinkClasses,
+            scrolled ? 'after:bg-white/40' : 'after:bg-zinc-700/40',
+          )}
           onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
             handleNavClick(e, 'tour');
             closeMenu();
@@ -119,7 +130,10 @@ export default function Navbar() {
       <motion.div className="relative" initial="initial" whileHover="hover">
         <Link
           href="/merch"
-          className="text-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white/40 after:transition-all after:duration-300 hover:after:w-full md:text-sm"
+          className={cn(
+            baseLinkClasses,
+            scrolled ? 'after:bg-white/40' : 'after:bg-zinc-700/40',
+          )}
           onClick={() => closeMenu()}
         >
           <motion.span variants={linkVariants} transition={{ duration: 0.3 }}>
@@ -140,7 +154,12 @@ export default function Navbar() {
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <div className="flex items-center space-x-4">
-            <h1 className="text-2xl font-bold tracking-wider text-white">
+            <h1
+              className={cn(
+                'text-2xl font-bold tracking-wider',
+                scrolled ? 'text-white' : 'text-zinc-800',
+              )}
+            >
               NOAH LYNCH
             </h1>
           </div>
@@ -150,7 +169,10 @@ export default function Navbar() {
           </nav>
 
           <button
-            className="relative z-[999] p-2 text-zinc-300 md:hidden"
+            className={cn(
+              'relative z-[999] p-2 md:hidden',
+              scrolled ? 'text-zinc-300' : 'text-zinc-700',
+            )}
             aria-label="Toggle Menu"
             onClick={() => setMobileOpen((prev) => !prev)}
           >

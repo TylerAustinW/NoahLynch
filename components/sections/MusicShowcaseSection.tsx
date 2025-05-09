@@ -3,8 +3,7 @@
 import { useInView } from '@/hooks/use-in-view';
 import {
   allReleases,
-  ReleaseWithPlatforms,
-  upcomingRelease,
+  ReleaseWithPlatforms
 } from '@/lib/musicData';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -36,12 +35,11 @@ const textVariants = {
 
 const ShowcaseCard = React.memo(
   ({ release }: { release: ReleaseWithPlatforms }) => {
-    const isUpcoming = release.type === 'upcoming';
-    const typeColor = isUpcoming ? 'text-amber-400' : 'text-cyan-400';
-    const typeBgColor = isUpcoming ? 'bg-amber-900/50' : 'bg-cyan-900/50';
-    const typeBorderColor = isUpcoming
-      ? 'border-amber-700/50'
-      : 'border-cyan-700/50';
+    const isOutNow = release.type === 'out-now';
+    const typeBgColor = isOutNow ? 'bg-amber-900/100' : 'bg-cyan-900/100';
+    const typeBorderColor = isOutNow 
+      ? 'border-amber-900/100'
+      : 'border-cyan-900/100';
 
     return (
       <Link href={`/music/${release.id}`} className="group block h-full w-full">
@@ -53,19 +51,19 @@ const ShowcaseCard = React.memo(
           transition={{ duration: 0.2, ease: 'easeOut' }}
         >
           <div className="relative aspect-[4/3] w-full overflow-hidden">
-            <Image
+              <Image
               src={release.imageURL}
               alt={`${release.title} - ${release.year}`}
               fill
               sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
               className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
               draggable={false}
-              priority={release.id === upcomingRelease.id}
-              loading={release.id === upcomingRelease.id ? 'eager' : 'lazy'}
+              priority={release.id === 'honest'}
+              loading={release.id === 'honest' ? 'eager' : 'lazy'}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
             <div
-              className={`absolute top-2 right-2 rounded-full px-2.5 py-1 text-xs font-semibold ${typeBgColor} ${typeColor} border ${typeBorderColor} shadow-md backdrop-blur-sm`}
+              className={`absolute top-2 right-2 rounded-full px-2.5 py-1 text-xs font-semibold ${typeBgColor} border ${typeBorderColor} shadow-md backdrop-blur-sm`}
             >
               {release.type.toUpperCase()}
             </div>
@@ -154,7 +152,16 @@ export default function MusicShowcaseSection(): React.ReactElement {
       id="music"
       className="relative overflow-hidden px-4 pt-12 pb-4 md:px-6 md:pt-6 md:pb-10"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[url('/texture.png')] bg-repeat opacity-10 md:opacity-10"></div>
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline 
+        className="absolute top-0 blur-xs left-0 h-full w-full object-cover opacity-40"
+      >
+        <source src="/noah.mp4" type="video/mp4" />
+      </video>
+      <div className="pointer-events-none absolute inset-0 bg-[url('/texture.png')] bg-repeat opacity-10 md:opacity-10 "></div>
 
       <div className="relative z-10 mx-auto max-w-7xl">
         <motion.h2
