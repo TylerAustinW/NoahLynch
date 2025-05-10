@@ -74,7 +74,7 @@ const honestAsPreviousRelease: ReleaseWithPlatforms = {
     PlatformLink('Amazon Music', 'https://music.amazon.com/albums/B0F67QFWRS'),
     PlatformLink('YouTube Music', 'https://music.youtube.com/playlist?list=OLAK5uy_n-dgJjbWh8Gvscv_R-2oNQTI7LYSZpwU4'),
     PlatformLink('Pandora', 'https://pandora.com/artist/noah-lynch/honest/ALmh7tV7nxgZtbV'),
-    PlatformLink('Deezer', 'https://music.youtube.com/playlist?list=OLAK5uy_n-dgJjbWh8Gvscv_R-2oNQTI7LYSZpwU4'),
+    PlatformLink('Deezer', 'https://www.deezer.com/us/album/747865561'),
   ],
   linkText: 'LISTEN NOW!',
 };

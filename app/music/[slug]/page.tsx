@@ -142,9 +142,7 @@ export default async function MusicReleasePage({
 
       <div className="relative z-10 px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
         <div className="mx-auto max-w-4xl">
-          {/* Section 1: Cover Art / Links (left) & Main Details (right) */}
           <div className="flex flex-col gap-8 md:flex-row md:gap-12">
-            {/* Column 1: Cover Art & Listen Now Links */}
             <div className="w-full flex-shrink-0 md:w-1/2 flex flex-col items-center">
               <div className="relative aspect-square w-full max-w-md overflow-hidden rounded-lg border border-zinc-800/60 shadow-xl">
                 <Image
@@ -164,7 +162,6 @@ export default async function MusicReleasePage({
               {ListenNowLinks}
             </div>
 
-            {/* Column 2: Release Info */}
             <div className="flex w-full flex-col md:w-1/2">
               <h1 className="mb-2 text-4xl font-bold md:text-5xl">
                 {release.title}
@@ -185,11 +182,9 @@ export default async function MusicReleasePage({
               <p className="mb-8 leading-relaxed text-zinc-300">
                 {release.description}
               </p>
-              {/* ListenNowLinks and BackToMusicLink were here, moved out */}
             </div>
           </div>
 
-          {/* Section 2: Special Thanks (Full Width) */}
           {slug === 'honest' && (
             <div className="my-8 p-6 border border-zinc-700/60 rounded-lg bg-black/30 shadow-lg backdrop-blur-sm">
               <h2 className="mb-6 text-3xl font-semibold text-amber-100 text-center">
@@ -214,7 +209,6 @@ export default async function MusicReleasePage({
             </div>  
           )}
 
-          {/* Section 3: Back to All Music (Full Width) */}
           {BackToMusicLink}
         </div>
       </div>
