@@ -78,25 +78,35 @@ export default function HeroSection(): React.ReactElement {
                 <br />
               </span>
             </h1>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <a
-                href="/music/honest"
-                className="rounded-full border border-amber-500/60 bg-amber-500/20 px-6 py-3 font-medium text-amber-100 transition-all duration-300 hover:border-amber-400/70 hover:bg-amber-500/30"
-              >
-                Listen Now
-              </a>
-              <a
-                href="#music"
-                className="rounded-full border border-zinc-700/40 bg-zinc-900/50 px-6 py-3 font-medium text-white transition-all duration-300 hover:border-zinc-600/60 hover:bg-zinc-800/60"
-              >
-                Explore Music
-              </a>
-              <a
-                href="/merch"
-                className="rounded-full border border-zinc-700/40 bg-zinc-900/50 px-6 py-3 font-medium text-white transition-all duration-300 hover:border-zinc-600/60 hover:bg-zinc-800/60"
-              >
-                Explore Merch
-              </a>
+            <div className="mt-8 flex flex-col gap-4">
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="/music/honest"
+                  className="rounded-full border border-amber-500/60 bg-amber-500/20 px-6 py-3 font-medium text-amber-100 transition-all duration-300 hover:border-amber-400/70 hover:bg-amber-500/30"
+                >
+                  Listen Now
+                </a>
+                <a
+                  href="mailto:NoahLynchContact@gmail.com"
+                  className="rounded-full border border-sky-500/60 bg-sky-500/20 px-6 py-3 font-medium text-sky-100 transition-all duration-300 hover:border-sky-400/70 hover:bg-sky-500/30"
+                >
+                  Contact
+                </a>
+              </div>
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="#music"
+                  className="rounded-full border border-zinc-700/40 bg-zinc-900/50 px-6 py-3 font-medium text-white transition-all duration-300 hover:border-zinc-600/60 hover:bg-zinc-800/60"
+                >
+                  Explore Music
+                </a>
+                <a
+                  href="/merch"
+                  className="rounded-full border border-zinc-700/40 bg-zinc-900/50 px-6 py-3 font-medium text-white transition-all duration-300 hover:border-zinc-600/60 hover:bg-zinc-800/60"
+                >
+                  Explore Merch
+                </a>
+              </div>
             </div>
             <div className="mt-6 flex gap-6 ">
               <a

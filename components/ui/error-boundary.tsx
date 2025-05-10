@@ -2,7 +2,7 @@
 
 import { Component, ErrorInfo, ReactNode } from 'react';
 
-interface ErrorBoundaryProps {
+interface ErrorBoundaryProps {        
   children: ReactNode;
   fallback?: ReactNode;
 }
