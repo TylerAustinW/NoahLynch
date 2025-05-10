@@ -1,8 +1,8 @@
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
+import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 import './globals.css';
-
 export const metadata: Metadata = {
   title: 'Noah Lynch | Musician & Singer-Songwriter',
   description: 'Mississippi-Born Musician, Singer-Songwriter',
@@ -28,6 +28,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="dark">
           {children}
           <Toaster />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
