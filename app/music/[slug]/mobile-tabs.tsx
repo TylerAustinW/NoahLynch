@@ -45,16 +45,16 @@ export default function MobileTabs({
         <div 
           className={`p-5 border border-zinc-700/60 rounded-lg bg-black/30 shadow-lg backdrop-blur-sm ${activeTab !== 'thanks' ? 'hidden' : ''}`}
         >
-          <h3 className="mb-4 text-xl font-semibold text-amber-100 text-center">
+          <h3 className="mb-4 text-xl font-semibold text-zinc-100 text-center">
             Special Thanks
           </h3>
           {specialThanksContent}
         </div>
         
         <div 
-          className={`p-5 border border-amber-900/30 rounded-lg bg-gradient-to-br from-amber-950/40 to-black/40 shadow-lg backdrop-blur-sm ${activeTab !== 'review' ? 'hidden' : ''}`}
+          className={`p-5 border border-zinc-700/60 rounded-lg bg-black/30 shadow-lg backdrop-blur-sm ${activeTab !== 'review' ? 'hidden' : ''}`}
         >
-          <h3 className="mb-4 text-xl font-semibold text-amber-100 text-center flex items-center justify-center">
+          <h3 className="mb-4 text-xl font-semibold text-zinc-100 text-center flex items-center justify-center">
             <Star className="h-4 w-4 mr-2 text-amber-300" fill="currentColor" />
             <span>Spotlight Review</span>
             <Star className="h-4 w-4 ml-2 text-amber-300" fill="currentColor" />

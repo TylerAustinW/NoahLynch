@@ -31,6 +31,12 @@ export interface ReleaseWithPlatforms extends Release {
   linkURL?: string;
 }
 
+export interface Review {
+  name: string;
+  content: string;
+  rating: number;
+}
+
 export const PlatformLink = (name: string, url: string): Platform => {
   const getIcon = (platformName: string): React.ReactNode => {
     switch (platformName) {
@@ -75,6 +81,7 @@ const honestAsPreviousRelease: ReleaseWithPlatforms = {
     PlatformLink('YouTube Music', 'https://music.youtube.com/playlist?list=OLAK5uy_n-dgJjbWh8Gvscv_R-2oNQTI7LYSZpwU4'),
     PlatformLink('Pandora', 'https://pandora.com/artist/noah-lynch/honest/ALmh7tV7nxgZtbV'),
     PlatformLink('Deezer', 'https://www.deezer.com/us/album/747865561'),
+    
   ],
   linkText: 'LISTEN NOW!',
 };
