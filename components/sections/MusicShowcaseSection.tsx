@@ -157,11 +157,11 @@ export default function MusicShowcaseSection(): React.ReactElement {
         loop
         muted
         playsInline 
-        className="absolute top-0 blur-xs left-0 h-full w-full object-cover opacity-40"
+        className="absolute top-0 blur-xs left-0 h-full w-full object-cover opacity-25 md:opacity-25 "
       >
         <source src="/noah.mp4" type="video/mp4" />
       </video>
-      <div className="pointer-events-none absolute inset-0 bg-[url('/texture.png')] bg-repeat opacity-10 md:opacity-10 "></div>
+      <div className="pointer-events-none absolute inset-0 bg-[url('/texture.png')] bg-repeat opacity-5 md:opacity-5 "></div>
 
       <div className="relative z-10 mx-auto max-w-7xl">
         <motion.h2

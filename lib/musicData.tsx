@@ -1,12 +1,10 @@
 import React from 'react';
 import {
-  FaAmazon,
-  FaApple,
   FaDeezer,
   FaSpotify,
-  FaYoutube,
 } from 'react-icons/fa';
-import { SiPandora } from 'react-icons/si';
+import { SiTidal } from 'react-icons/si';
+import { Music, Play } from 'lucide-react';
 
 export interface Release {
   id: string;
@@ -20,6 +18,8 @@ export interface Platform {
   name: string;
   url: string;
   icon: React.ReactNode;
+  color?: string;
+  bgColor?: string;
 }
 
 export interface ReleaseWithPlatforms extends Release {
@@ -38,29 +38,48 @@ export interface Review {
 }
 
 export const PlatformLink = (name: string, url: string): Platform => {
-  const getIcon = (platformName: string): React.ReactNode => {
-    switch (platformName) {
-      case 'Spotify':
-        return <FaSpotify className="h-6 w-6" />;
-      case 'Apple Music':
-        return <FaApple className="h-6 w-6" />;
-      case 'Amazon Music':
-        return <FaAmazon className="h-6 w-6" />;
-      case 'YouTube Music':
-        return <FaYoutube className="h-6 w-6" />;
-      case 'Deezer':
-        return <FaDeezer className="h-6 w-6" />;
-      case 'Pandora':
-        return <SiPandora className="h-6 w-6" />;
-      default:
-        return null;
-    }
-  };
+  let icon: React.ReactNode;
+  let color: string | undefined;
+  let bgColor: string | undefined;
+
+  switch (name) {
+    case 'Spotify':
+      icon = <FaSpotify className="h-5 w-5 sm:h-6 sm:w-6" />;
+      bgColor = '#1DB954';
+      color = '#FFFFFF';
+      break;
+    case 'Apple Music':
+      icon = <Music className="h-5 w-5 sm:h-6 sm:w-6" />;
+      bgColor = '#FF2D55';
+      color = '#FFFFFF';
+      break;
+    case 'YouTube Music':
+      icon = <Play className="h-5 w-5 sm:h-6 sm:w-6" />;
+      bgColor = '#FF0000';
+      color = '#FFFFFF';
+      break;
+    case 'Deezer':
+      icon = <FaDeezer className="h-5 w-5 sm:h-6 sm:w-6" />;
+      bgColor = '#191919';
+      color = '#FFFFFF';
+      break;
+    case 'Tidal':
+      icon = <SiTidal className="h-5 w-5 sm:h-6 sm:w-6" />;
+      bgColor = '#000000';
+      color = '#FFFFFF';
+      break;
+    default:
+      icon = null;
+      color = undefined;
+      bgColor = undefined;
+  }
 
   return {
     name,
     url,
-    icon: getIcon(name),
+    icon,
+    color,
+    bgColor,
   };
 };
 
@@ -75,13 +94,10 @@ const honestAsPreviousRelease: ReleaseWithPlatforms = {
   releasedBy: 'Ready Records',
   releaseDate: 'May 9, 2025',
   platforms: [
+    PlatformLink('YouTube Music', 'https://music.youtube.com/playlist?list=OLAK5uy_n-dgJjbWh8Gvscv_R-2oNQTI7LYSZpwU4'),
     PlatformLink('Spotify', 'https://open.spotify.com/album/5HJACu3aHQnYqLjfaIP6hT'),
     PlatformLink('Apple Music', 'https://music.apple.com/us/album/honest-single/1810499543'),
-    PlatformLink('Amazon Music', 'https://music.amazon.com/albums/B0F67QFWRS'),
-    PlatformLink('YouTube Music', 'https://music.youtube.com/playlist?list=OLAK5uy_n-dgJjbWh8Gvscv_R-2oNQTI7LYSZpwU4'),
-    PlatformLink('Pandora', 'https://pandora.com/artist/noah-lynch/honest/ALmh7tV7nxgZtbV'),
     PlatformLink('Deezer', 'https://www.deezer.com/us/album/747865561'),
-    
   ],
   linkText: 'LISTEN NOW!',
 };
@@ -99,26 +115,9 @@ export const previousReleases: ReleaseWithPlatforms[] = [
     releasedBy: 'Ready Records',
     releaseDate: 'July 27, 2024',
     platforms: [
-      PlatformLink(
-        'Spotify',
-        'https://open.spotify.com/track/2tFn7noYlbBqzECeUuDgLn',
-      ),
-      PlatformLink(
-        'Apple Music',
-        'https://music.apple.com/album/good-things-take-time/1756853346?i=1756853347',
-      ),
-      PlatformLink(
-        'Amazon Music',
-        'https://music.amazon.com/albums/B0D971YCZT',
-      ),
-      PlatformLink(
-        'YouTube Music',
-        'https://music.youtube.com/playlist?list=OLAK5uy_kBPfSe2-d9b9DNCDLrMFkMqQSvJB2LRSQ',
-      ),
-      PlatformLink(
-        'Pandora',
-        'https://pandora.com/artist/noah-lynch/good-things-take-time/ALhKVZ6x7dnkJPc',
-      ),
+      PlatformLink('YouTube Music', 'https://music.youtube.com/playlist?list=OLAK5uy_kBPfSe2-d9b9DNCDLrMFkMqQSvJB2LRSQ'),
+      PlatformLink('Spotify', 'https://open.spotify.com/track/2tFn7noYlbBqzECeUuDgLn'),
+      PlatformLink('Apple Music', 'https://music.apple.com/album/good-things-take-time/1756853346?i=1756853347'),
       PlatformLink('Deezer', 'https://www.deezer.com/us/album/614383912'),
     ],
     linkText: 'LISTEN NOW!',
@@ -134,26 +133,9 @@ export const previousReleases: ReleaseWithPlatforms[] = [
     releasedBy: 'Ready Records',
     releaseDate: 'June 1, 2024',
     platforms: [
-      PlatformLink(
-        'Spotify',
-        'https://open.spotify.com/track/7eCRFPhvQglvAwxdTatzGB',
-      ),
-      PlatformLink(
-        'Apple Music',
-        'https://music.apple.com/album/for-you/1744360290?i=1744360291',
-      ),
-      PlatformLink(
-        'Amazon Music',
-        'https://music.amazon.com/albums/B0D33XXDR2',
-      ),
-      PlatformLink(
-        'YouTube Music',
-        'https://music.youtube.com/playlist?list=OLAK5uy_l8cmplc55OnsTminixgV_HdPR3XZS1wYA',
-      ),
-      PlatformLink(
-        'Pandora',
-        'https://pandora.com/artist/noah-lynch/for-you/for-you/TRj33rhPZpzmljV',
-      ),
+      PlatformLink('YouTube Music', 'https://music.youtube.com/playlist?list=OLAK5uy_l8cmplc55OnsTminixgV_HdPR3XZS1wYA'),
+      PlatformLink('Spotify', 'https://open.spotify.com/track/7eCRFPhvQglvAwxdTatzGB'),
+      PlatformLink('Apple Music', 'https://music.apple.com/album/for-you/1744360290?i=1744360291'),
       PlatformLink('Deezer', 'https://www.deezer.com/us/album/581142311'),
     ],
     linkText: 'LISTEN NOW!',

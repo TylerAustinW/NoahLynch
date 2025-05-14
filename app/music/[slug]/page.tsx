@@ -86,26 +86,45 @@ export default async function MusicReleasePage({
     <>
       <h2 className="mb-2 md:mb-4 text-base md:text-xl font-semibold text-center md:text-left">Listen Now:</h2>
       <div className="grid grid-cols-3 gap-2 md:gap-4 justify-center md:justify-start">
-        {release.platforms.map((platform: Platform) => (
-          <Link
-            key={platform.name}
-            href={platform.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 rounded-lg sm:rounded-full border border-zinc-700/50 bg-zinc-800/70 px-2 py-1.5 sm:px-4 sm:py-2 text-zinc-300 transition-all hover:bg-zinc-700/90 hover:text-white"
-            aria-label={`Listen on ${platform.name}`}
-          >
-            <div className="text-amber-400/80">
-              {platform.icon}
-            </div>
-            <span className="text-xs sm:text-sm font-medium hidden sm:inline">
-              {platform.name}
-            </span>
-            <span className="text-[10px] sm:hidden">
-              {platform.name.split(' ')[0]}
-            </span>
-          </Link>
-        ))}
+        {release.platforms.map((platform: Platform) => {
+          const buttonStyle: React.CSSProperties = {};
+          const iconStyle: React.CSSProperties = {};
+
+          if (platform.bgColor) {
+            buttonStyle.backgroundColor = platform.bgColor;
+            iconStyle.color = platform.color || '#FFFFFF'; 
+          } else if (platform.color) {
+            iconStyle.color = platform.color;
+          }
+
+          return (
+            <Link
+              key={platform.name}
+              href={platform.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 rounded-lg border border-zinc-700/50 bg-zinc-800/70 px-2 py-1.5 sm:px-4 sm:py-2 text-zinc-300 transition-all hover:bg-zinc-700/90 hover:text-white group"
+              style={platform.bgColor ? buttonStyle : {}}
+              aria-label={`Listen on ${platform.name}`}
+            >
+              <div style={iconStyle} className="group-hover:opacity-80 transition-opacity">
+                {platform.icon}
+              </div>
+              <span 
+                className="text-xs sm:text-sm font-medium hidden sm:inline"
+                style={platform.bgColor ? { color: platform.color || '#FFFFFF' } : {}}
+              >
+                {platform.name}
+              </span>
+              <span 
+                className="text-[10px] sm:hidden"
+                style={platform.bgColor ? { color: platform.color || '#FFFFFF' } : {}}
+              >
+                {platform.name.split(' ')[0]}
+              </span>
+            </Link>
+          );
+        })}
       </div>
     </>
   );
@@ -146,7 +165,6 @@ export default async function MusicReleasePage({
     </div>
   );
   
-  // Define spotlight review data using the Review interface
   const spotlightReviewData: Review = {
     name: 'Josh Harding',
     content: `"In all my life, I have never felt so deeply connected to a song. Yeah, I've had songs that I play constantly to bring a tear every now and then, but within seconds you made me fall apart and breakdown."
@@ -185,7 +203,7 @@ export default async function MusicReleasePage({
   );
 
   const BackToMusicLink = (
-    <div className="mt-8 md:mt-12 text-center">
+    <div className="mb-6 md:mb-8 text-center">
       <Link
         href="/#music"
         className="text-sm text-zinc-400 transition-colors hover:text-amber-200 duration-300"
@@ -251,9 +269,9 @@ export default async function MusicReleasePage({
                     {release.releaseDate}
                   </p>
                 </div>
-                <p className="mb-6 text-sm md:text-base leading-relaxed text-zinc-300">
+                <div className="prose prose-sm prose-invert max-w-none text-zinc-300 leading-relaxed mb-6">
                   {release.description}
-                </p>
+                </div>
               </div>
             </div>
 
@@ -261,7 +279,10 @@ export default async function MusicReleasePage({
             {/* Render ListenNowLinks only if not upcoming OR if upcoming and link exists, avoid redundant checks inside */}
             {(!isUpcoming || (isUpcoming && release.linkURL) || (release.platforms && release.platforms.length > 0)) && (
               <div className="my-8 md:my-12 px-4 md:px-0">
-                {ListenNowLinks}
+                {BackToMusicLink}
+                <div className="mt-4">
+                  {ListenNowLinks}
+                </div>
               </div>
             )}
 
@@ -269,10 +290,7 @@ export default async function MusicReleasePage({
             {slug === 'honest' && (
               <>
                 {/* Mobile Tabbed Interface */}
-                <MobileTabs 
-                  specialThanksContent={SpecialThanksContent}
-                  spotlightReviewContent={SpotlightReviewContent}
-                />
+                <MobileTabs specialThanksContent={SpecialThanksContent} spotlightReviewContent={SpotlightReviewContent} />
                 
                 {/* Desktop Two-Column Layout - Added lg:items-start */}
                 <div className="hidden lg:grid lg:grid-cols-2 lg:gap-8 mb-10 lg:items-start">
@@ -296,8 +314,6 @@ export default async function MusicReleasePage({
                 </div>
               </>
             )}
-
-            {BackToMusicLink}
           </div>
         </div>
       </Suspense>

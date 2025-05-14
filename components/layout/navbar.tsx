@@ -51,12 +51,6 @@ export default function Navbar() {
     return () => window.removeEventListener('keydown', handleEsc);
   }, [mobileOpen]);
 
-  const linkVariants = useMemo(() => {
-    return {
-      initial: { color: scrolled ? 'rgba(161, 161, 170, 1)' : 'rgba(63, 63, 70, 1)' }, // zinc-400 when scrolled, zinc-700 when not
-      hover: { color: scrolled ? 'rgba(255, 255, 255, 1)' : 'rgba(24, 24, 27, 1)' }, // white when scrolled, zinc-900 when not
-    };
-  }, [scrolled]);
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -74,9 +68,15 @@ export default function Navbar() {
     setMobileOpen(false);
   };
 
+  // Define common text color classes based on scroll state, mobile menu state, and screen size
+  const dynamicTextClasses = cn(
+    (scrolled || mobileOpen) ? 'text-white' : 'text-zinc-800', // Mobile: white if scrolled or mobile menu open, zinc-800 otherwise
+    'md:text-white' // Desktop: always white (mobileOpen is false on md+)
+  );
+
   const navLinks = (
     <>
-      <motion.div className="relative" initial="initial" whileHover="hover">
+      <motion.div className="relative">
         <Link
           href="#biography"
           className={cn(
@@ -88,12 +88,12 @@ export default function Navbar() {
             closeMenu();
           }}
         >
-          <motion.span variants={linkVariants} transition={{ duration: 0.3 }}>
+          <motion.span className={dynamicTextClasses} transition={{ duration: 0.3, ease: "easeInOut" }}>
             ABOUT
           </motion.span>
         </Link>
       </motion.div>
-      <motion.div className="relative" initial="initial" whileHover="hover">
+      <motion.div className="relative">
         <Link
           href="#music"
           className={cn(
@@ -105,12 +105,12 @@ export default function Navbar() {
             closeMenu();
           }}
         >
-          <motion.span variants={linkVariants} transition={{ duration: 0.3 }}>
+          <motion.span className={dynamicTextClasses} transition={{ duration: 0.3, ease: "easeInOut" }}>
             MUSIC
           </motion.span>
         </Link>
       </motion.div>
-      <motion.div className="relative" initial="initial" whileHover="hover">
+      <motion.div className="relative">
         <Link
           href="#tour"
           className={cn(
@@ -122,12 +122,12 @@ export default function Navbar() {
             closeMenu();
           }}
         >
-          <motion.span variants={linkVariants} transition={{ duration: 0.3 }}>
+          <motion.span className={dynamicTextClasses} transition={{ duration: 0.3, ease: "easeInOut" }}>
             TOUR
           </motion.span>
         </Link>
       </motion.div>
-      <motion.div className="relative" initial="initial" whileHover="hover">
+      <motion.div className="relative">
         <Link
           href="/merch"
           className={cn(
@@ -136,7 +136,7 @@ export default function Navbar() {
           )}
           onClick={() => closeMenu()}
         >
-          <motion.span variants={linkVariants} transition={{ duration: 0.3 }}>
+          <motion.span className={dynamicTextClasses} transition={{ duration: 0.3, ease: "easeInOut" }}>
             MERCH
           </motion.span>
         </Link>
@@ -149,7 +149,8 @@ export default function Navbar() {
       <header
         className={cn(
           'fixed top-0 right-0 left-0 z-50 px-6 py-4 transition-all duration-300 md:px-12',
-          scrolled ? 'bg-black/50 backdrop-blur-sm' : 'bg-transparent',
+          'md:bg-black/50 md:backdrop-blur-sm', // Always active background on desktop
+          scrolled ? 'bg-black/50 backdrop-blur-sm' : 'bg-transparent' // Mobile scroll behavior
         )}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between">
@@ -157,7 +158,7 @@ export default function Navbar() {
             <h1
               className={cn(
                 'text-2xl font-bold tracking-wider',
-                scrolled ? 'text-white' : 'text-zinc-800',
+                dynamicTextClasses // Apply dynamic text colors to Noah Lynch title
               )}
             >
               NOAH LYNCH
@@ -185,7 +186,7 @@ export default function Navbar() {
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
-              className="fixed inset-0 z-[90] flex min-h-screen w-full items-center justify-center overflow-hidden bg-black/95 backdrop-blur-xl md:hidden"
+              className="fixed inset-0 z-[90] flex min-h-screen w-full items-center justify-center overflow-hidden bg-black/15 backdrop-blur-xl md:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
