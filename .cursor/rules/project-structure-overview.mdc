@@ -1,0 +1,47 @@
+# Project Structure and Key Components Overview
+
+This document outlines some of the key files and structures within the Noah Lynch Next.js project, focusing on areas recently modified or discussed.
+
+## Core Layout and Pages
+
+*   **Root Layout**: `[app/layout.tsx](mdc:app/layout.tsx)` sets up the HTML shell, global styles, theme provider, and analytics.
+*   **Main Page**: `[app/page.tsx](mdc:app/page.tsx)` is the entry point for the homepage, assembling various sections.
+*   **Navigation Bar**: Implemented in `[components/layout/navbar.tsx](mdc:components/layout/navbar.tsx)`. This component handles:
+    *   Desktop and mobile navigation.
+    *   Scroll-based style changes (background, text colors using `dynamicTextClasses`).
+    *   Mobile menu overlay (background opacity adjusted by user) and link styling, including the "Tap anywhere to close" message.
+
+## Content Sections (Homepage - `app/page.tsx`)
+
+*   **Hero Section**: `[components/sections/hero.tsx](mdc:components/sections/hero.tsx)` displays the main landing view, typically featuring the latest release like "Honest" and call-to-action buttons.
+*   **Music Showcase Section**: `[components/sections/MusicShowcaseSection.tsx](mdc:components/sections/MusicShowcaseSection.tsx)` displays music releases in a card format, with a carousel for mobile.
+    *   Cards link to individual music pages.
+*   **Tour Section**: `[components/sections/tour-section.tsx](mdc:components/sections/tour-section.tsx)` lists upcoming tour dates and related links.
+*   **Biography Section**: `[components/sections/biography-section.tsx](mdc:components/sections/biography-section.tsx)` provides information about Noah Lynch.
+
+## Music Details
+
+*   **Music Data**: All data related to music releases (titles, URLs, icons, colors for platforms) is managed in `[lib/musicData.tsx](mdc:lib/musicData.tsx)`.
+    *   The `PlatformLink` function generates platform-specific data.
+    *   The current platforms are YouTube Music, Spotify, Apple Music, Deezer (SoundCloud and Tidal were recently removed by the user).
+*   **Music Release Pages**: Dynamically generated via `[app/music/[slug]/page.tsx](mdc:app/music/[slug]/page.tsx)`.
+    *   Fetches data using `getReleaseById` from `lib/musicData.tsx`.
+    *   **Layout**: Features an integrated layout with cover art (sticky on desktop left) and song details/description/links on the right (desktop) or stacked on mobile.
+    *   "Listen Now" buttons are presented in a 2x2 grid.
+    *   "Back to All Music" link is positioned after the main content block.
+*   **Mobile Tabs Component (for "Honest" song)**: `[app/music/[slug]/mobile-tabs.tsx](mdc:app/music/[slug]/mobile-tabs.tsx)` provides a tabbed interface for "Special Thanks" and "Spotlight Review" on mobile views of the "Honest" song page.
+
+## Other Key Pages
+
+*   **Merchandise Page**: `[app/merch/page.tsx](mdc:app/merch/page.tsx)` embeds the Creator Spring store via an iframe.
+
+## Styling and Configuration
+
+*   **Global Styles**: `[app/globals.css](mdc:app/globals.css)` contains Tailwind CSS directives and base styles.
+*   **Tailwind CSS**: Used extensively for styling throughout the project.
+*   **Icons**: `lucide-react` and `react-icons` are used.
+*   **Animations**: `framer-motion` is used for page and component animations.
+*   **Theme Provider**: `[components/theme-provider.tsx](mdc:components/theme-provider.tsx)` wraps the application for Next-Themes.
+
+This overview should help in locating relevant files when discussing UI changes, data modifications, or new features.
+

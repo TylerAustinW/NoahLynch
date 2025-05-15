@@ -202,16 +202,16 @@ export default function Navbar() {
                 transition={{ delay: 0.1 }}
                 onClick={(e) => e.stopPropagation()}
               >
-                {navLinks}
-              </motion.div>
               <motion.div
-                className="pointer-events-none absolute bottom-8 left-0 right-0 p-4 text-center text-sm font-medium text-zinc-400"
+                  className="mb-8 p-4 text-center text-sm font-medium text-zinc-200"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.2, delay: 0.2 }}
               >
                 <p>Tap anywhere to close</p>
+                </motion.div>
+                {navLinks}
               </motion.div>
             </motion.div>
           )}
