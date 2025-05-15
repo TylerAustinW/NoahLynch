@@ -3,6 +3,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { Analytics } from '@vercel/analytics/next';
 import type { Metadata } from 'next';
 import './globals.css';
+import React from "react";
 export const metadata: Metadata = {
   title: 'Noah Lynch | Musician & Singer-Songwriter',
   description: 'Mississippi-Born Musician, Singer-Songwriter',

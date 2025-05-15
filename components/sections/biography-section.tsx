@@ -90,6 +90,8 @@ export default function BiographySection() {
                   width={600}
                   height={600}
                   className="h-auto w-full object-cover transition-transform duration-700 hover:scale-105"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 transition-opacity duration-300 hover:opacity-100"></div>
               </div>

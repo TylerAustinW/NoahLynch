@@ -25,6 +25,7 @@ export default function HeroSection(): React.ReactElement {
 
   if (imageError) {
     return (
+
       <section  
         ref={ref}
         className="relative flex min-h-screen items-center justify-center bg-black pt-16"
@@ -90,6 +91,7 @@ export default function HeroSection(): React.ReactElement {
                   href="mailto:NoahLynchContact@gmail.com"
                   className="rounded-full border border-sky-500/60 bg-sky-500/20 px-6 py-3 font-medium text-sky-100 transition-all duration-300 hover:border-sky-400/70 hover:bg-sky-500/30"
                 >
+
                   Contact
                 </a>
               </div>
