@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import ErrorBoundary from '@/components/ui/error-boundary';
-import { useInView } from '@/hooks/use-in-view';
-import { motion } from 'framer-motion';
-import { ChevronDown, Heart } from 'lucide-react';
-import { Patrick_Hand } from 'next/font/google';
-import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
-import { FaFacebookF, FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa6';
+import ErrorBoundary from "@/components/ui/error-boundary";
+import { useInView } from "@/hooks/use-in-view";
+import { motion } from "framer-motion";
+import { ChevronDown, Heart } from "lucide-react";
+import { Patrick_Hand } from "next/font/google";
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
+import { FaFacebookF, FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa6";
 
 const patrickHand = Patrick_Hand({
-  weight: '400',
-  subsets: ['latin'],
+  weight: "400",
+  subsets: ["latin"],
 });
 
 export default function HeroSection(): React.ReactElement {
@@ -25,8 +25,7 @@ export default function HeroSection(): React.ReactElement {
 
   if (imageError) {
     return (
-
-      <section  
+      <section
         ref={ref}
         className="relative flex min-h-screen items-center justify-center bg-black pt-16"
       >
@@ -39,7 +38,7 @@ export default function HeroSection(): React.ReactElement {
             </span>
           </h1>
         </div>
-      </section>  
+      </section>
     );
   }
 
@@ -55,11 +54,10 @@ export default function HeroSection(): React.ReactElement {
             alt="Noah Lynch - Honest"
             fill
             className="object-center"
-            priority
             style={{
-              objectPosition: 'center 30%',
-              transform: loaded ? 'scale(1.05)' : 'scale(1)',
-              transition: 'transform 30s ease-out',
+              objectPosition: "center 30%",
+              transform: loaded ? "scale(1.05)" : "scale(1)",
+              transition: "transform 30s ease-out",
             }}
             onError={() => setImageError(true)}
           />
@@ -68,14 +66,14 @@ export default function HeroSection(): React.ReactElement {
         <div className="relative z-10 container mx-auto px-6 md:px-12">
           <div
             className={`max-w-xl transition-all duration-1000 ${
-              loaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+              loaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
             }`}
           >
             <h1 className="mb-4 text-5xl font-bold uppercase text-white drop-shadow-md">
               Honest
               <br />
               <span className="mb-4 text-5xl font-bold uppercase  text-amber-200/90 drop-shadow-md md:text-7xl">
-                Out Now 
+                Out Now
                 <br />
               </span>
             </h1>
@@ -91,7 +89,6 @@ export default function HeroSection(): React.ReactElement {
                   href="mailto:NoahLynchContact@gmail.com"
                   className="rounded-full border border-sky-500/60 bg-sky-500/20 px-6 py-3 font-medium text-sky-100 transition-all duration-300 hover:border-sky-400/70 hover:bg-sky-500/30"
                 >
-
                   Contact
                 </a>
               </div>
@@ -151,38 +148,42 @@ export default function HeroSection(): React.ReactElement {
           </div>
         </div>
 
-        <motion.div 
+        <motion.div
           className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 sm:hidden"
           initial={{ opacity: 0 }}
-          animate={{ 
+          animate={{
             opacity: loaded ? 1 : 0,
-            y: [0, 10, 0]
+            y: [0, 10, 0],
           }}
           transition={{
             y: {
               repeat: Infinity,
               duration: 1.5,
-              ease: "easeInOut"
+              ease: "easeInOut",
             },
             opacity: {
               delay: 1.5,
-              duration: 0.8
-            }
+              duration: 0.8,
+            },
           }}
         >
           <div className="flex flex-col items-center">
-            <span className="mb-1 text-xs font-medium text-zinc-300">Scroll</span>
+            <span className="mb-1 text-xs font-medium text-zinc-300">
+              Scroll
+            </span>
             <ChevronDown className="h-6 w-6 text-zinc-300" />
           </div>
         </motion.div>
 
         <div className="absolute bottom-12 right-4 z-10 p-2 max-w-xs text-right hidden md:block">
-          <p 
+          <p
             className={`${patrickHand.className} text-md text-zinc-50/100 leading-tight `}
           >
-            "I hope this record means as much to you as it does to me, thank you for the endless support 
+            "I hope this record means as much to you as it does to me, thank you
+            for the endless support
             <br />
-            - <Heart className="h-6 w-6 text-zinc-200 inline-block" />Noah"
+            - <Heart className="h-6 w-6 text-zinc-200 inline-block" />
+            Noah"
           </p>
         </div>
       </section>
