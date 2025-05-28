@@ -56,6 +56,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@stagewise/toolbar-next": "0.2.0-alpha.5",
     "@tailwindcss/postcss": "^4.1.4",
     "@types/node": "^22.15.3",
     "@types/react": "^19.1.2",
