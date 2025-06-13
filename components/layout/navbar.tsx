@@ -4,10 +4,10 @@ import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const baseLinkClasses =
-  '-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:transition-all after:duration-300 hover:after:w-full md:text-sm';
+  '-sm tracking-wider after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full md:text-sm';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -51,7 +51,6 @@ export default function Navbar() {
     return () => window.removeEventListener('keydown', handleEsc);
   }, [mobileOpen]);
 
-
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     id: string,
@@ -68,10 +67,9 @@ export default function Navbar() {
     setMobileOpen(false);
   };
 
-  // Define common text color classes based on scroll state, mobile menu state, and screen size
   const dynamicTextClasses = cn(
-    (scrolled || mobileOpen) ? 'text-white' : 'text-zinc-800', // Mobile: white if scrolled or mobile menu open, zinc-800 otherwise
-    'md:text-white' // Desktop: always white (mobileOpen is false on md+)
+    (scrolled || mobileOpen) ? 'text-white' : 'text-zinc-800',
+    'md:text-white'
   );
 
   const navLinks = (
@@ -79,16 +77,13 @@ export default function Navbar() {
       <motion.div className="relative">
         <Link
           href="#biography"
-          className={cn(
-            baseLinkClasses,
-            scrolled ? 'after:bg-white/40' : 'after:bg-zinc-700/40',
-          )}
-          onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+          className={baseLinkClasses}
+          onClick={(e) => {
             handleNavClick(e, 'biography');
             closeMenu();
           }}
         >
-          <motion.span className={dynamicTextClasses} transition={{ duration: 0.3, ease: "easeInOut" }}>
+          <motion.span className={dynamicTextClasses} transition={{ duration: 0.3, ease: 'easeInOut' }}>
             ABOUT
           </motion.span>
         </Link>
@@ -96,16 +91,13 @@ export default function Navbar() {
       <motion.div className="relative">
         <Link
           href="#music"
-          className={cn(
-            baseLinkClasses,
-            scrolled ? 'after:bg-white/40' : 'after:bg-zinc-700/40',
-          )}
-          onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+          className={baseLinkClasses}
+          onClick={(e) => {
             handleNavClick(e, 'music');
             closeMenu();
           }}
         >
-          <motion.span className={dynamicTextClasses} transition={{ duration: 0.3, ease: "easeInOut" }}>
+          <motion.span className={dynamicTextClasses} transition={{ duration: 0.3, ease: 'easeInOut' }}>
             MUSIC
           </motion.span>
         </Link>
@@ -113,16 +105,13 @@ export default function Navbar() {
       <motion.div className="relative">
         <Link
           href="#tour"
-          className={cn(
-            baseLinkClasses,
-            scrolled ? 'after:bg-white/40' : 'after:bg-zinc-700/40',
-          )}
-          onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+          className={baseLinkClasses}
+          onClick={(e) => {
             handleNavClick(e, 'tour');
             closeMenu();
           }}
         >
-          <motion.span className={dynamicTextClasses} transition={{ duration: 0.3, ease: "easeInOut" }}>
+          <motion.span className={dynamicTextClasses} transition={{ duration: 0.3, ease: 'easeInOut' }}>
             TOUR
           </motion.span>
         </Link>
@@ -130,13 +119,10 @@ export default function Navbar() {
       <motion.div className="relative">
         <Link
           href="/merch"
-          className={cn(
-            baseLinkClasses,
-            scrolled ? 'after:bg-white/40' : 'after:bg-zinc-700/40',
-          )}
+          className={baseLinkClasses}
           onClick={() => closeMenu()}
         >
-          <motion.span className={dynamicTextClasses} transition={{ duration: 0.3, ease: "easeInOut" }}>
+          <motion.span className={dynamicTextClasses} transition={{ duration: 0.3, ease: 'easeInOut' }}>
             MERCH
           </motion.span>
         </Link>
@@ -149,8 +135,8 @@ export default function Navbar() {
       <header
         className={cn(
           'fixed top-0 right-0 left-0 z-50 px-6 py-4 transition-all duration-300 md:px-12',
-          'md:bg-black/50 md:backdrop-blur-sm', // Always active background on desktop
-          scrolled ? 'bg-black/50 backdrop-blur-sm' : 'bg-transparent' // Mobile scroll behavior
+          'md:bg-black/50 md:backdrop-blur-sm',
+          scrolled ? 'bg-black/50 backdrop-blur-sm' : 'bg-transparent'
         )}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between">
@@ -158,7 +144,7 @@ export default function Navbar() {
             <h1
               className={cn(
                 'text-2xl font-bold tracking-wider',
-                dynamicTextClasses // Apply dynamic text colors to Noah Lynch title
+                dynamicTextClasses
               )}
             >
               NOAH LYNCH
