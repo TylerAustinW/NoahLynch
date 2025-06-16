@@ -67,8 +67,8 @@ export default function Navbar() {
     setMobileOpen(false);
   };
 
-  // Links/text are black at the top, switch to white after scrolling or when mobile menu is open
-  const dynamicTextClasses = (scrolled || mobileOpen) ? 'text-white' : 'text-black';
+  // Always white for maximum contrast against varied backgrounds
+  const dynamicTextClasses = 'text-white';
 
   const navLinks = (
     <>
@@ -122,18 +122,12 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={cn(
-          'fixed top-0 right-0 left-0 z-50 px-6 py-4 transition-all duration-300 md:px-12',
-          scrolled ? 'bg-black/50 backdrop-blur-sm' : 'bg-transparent'
-        )}
+        className="fixed top-0 right-0 left-0 z-50 px-6 py-4 transition-all duration-300 md:px-12 backdrop-blur-sm"
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <div className="flex items-center space-x-4">
             <h1
-              className={cn(
-                'text-2xl font-bold tracking-wider',
-                dynamicTextClasses
-              )}
+              className={cn('text-2xl font-bold tracking-wider', dynamicTextClasses)}
             >
               NOAH LYNCH
             </h1>
@@ -144,10 +138,7 @@ export default function Navbar() {
           </nav>
 
           <button
-            className={cn(
-              'relative z-[999] p-2 md:hidden',
-              scrolled ? 'text-zinc-300' : 'text-zinc-700',
-            )}
+            className="relative z-[999] p-2 text-white md:hidden"
             aria-label="Toggle Menu"
             onClick={() => setMobileOpen((prev) => !prev)}
           >
