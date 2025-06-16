@@ -67,13 +67,12 @@ export default function Navbar() {
     setMobileOpen(false);
   };
 
-  const dynamicTextClasses = cn(
-    (scrolled || mobileOpen) ? 'text-white' : 'text-zinc-800',
-    'md:text-white'
-  );
+  // Links/text are black at the top, switch to white after scrolling or when mobile menu is open
+  const dynamicTextClasses = (scrolled || mobileOpen) ? 'text-white' : 'text-black';
 
   const navLinks = (
     <>
+      {/* ABOUT */}
       <motion.div className="relative">
         <Link
           href="#biography"
@@ -88,6 +87,8 @@ export default function Navbar() {
           </motion.span>
         </Link>
       </motion.div>
+
+      {/* MUSIC */}
       <motion.div className="relative">
         <Link
           href="#music"
@@ -102,20 +103,8 @@ export default function Navbar() {
           </motion.span>
         </Link>
       </motion.div>
-      <motion.div className="relative">
-        <Link
-          href="#tour"
-          className={baseLinkClasses}
-          onClick={(e) => {
-            handleNavClick(e, 'tour');
-            closeMenu();
-          }}
-        >
-          <motion.span className={dynamicTextClasses} transition={{ duration: 0.3, ease: 'easeInOut' }}>
-            TOUR
-          </motion.span>
-        </Link>
-      </motion.div>
+
+      {/* MERCH */}
       <motion.div className="relative">
         <Link
           href="/merch"
@@ -135,7 +124,6 @@ export default function Navbar() {
       <header
         className={cn(
           'fixed top-0 right-0 left-0 z-50 px-6 py-4 transition-all duration-300 md:px-12',
-          'md:bg-black/50 md:backdrop-blur-sm',
           scrolled ? 'bg-black/50 backdrop-blur-sm' : 'bg-transparent'
         )}
       >
