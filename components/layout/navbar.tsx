@@ -74,6 +74,7 @@ export default function Navbar() {
 
   const navLinks = (
     <>
+      {/* ABOUT */}
       <motion.div className="relative">
         <Link
           href="#biography"
@@ -88,6 +89,8 @@ export default function Navbar() {
           </motion.span>
         </Link>
       </motion.div>
+
+      {/* MUSIC */}
       <motion.div className="relative">
         <Link
           href="#music"
@@ -102,20 +105,8 @@ export default function Navbar() {
           </motion.span>
         </Link>
       </motion.div>
-      <motion.div className="relative">
-        <Link
-          href="#tour"
-          className={baseLinkClasses}
-          onClick={(e) => {
-            handleNavClick(e, 'tour');
-            closeMenu();
-          }}
-        >
-          <motion.span className={dynamicTextClasses} transition={{ duration: 0.3, ease: 'easeInOut' }}>
-            TOUR
-          </motion.span>
-        </Link>
-      </motion.div>
+
+      {/* MERCH */}
       <motion.div className="relative">
         <Link
           href="/merch"
