@@ -12,14 +12,25 @@ const baseLinkClasses =
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
+  // Mark component mounted
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
+  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
   }, [mobileOpen]);
+
+  // Detect scroll position to swap navbar text colours
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    onScroll();
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
@@ -34,8 +45,8 @@ export default function Navbar() {
     setMobileOpen(false);
   };
 
-  // Always white with subtle shadow for clarity against tinted glass
-  const dynamicTextClasses = 'text-white drop-shadow-lg';
+  // Black at the very top, swap to white once scrolled
+  const dynamicTextClasses = scrolled ? 'text-white drop-shadow-lg' : 'text-black';
 
   const navLinks = (
     <>
@@ -81,7 +92,7 @@ export default function Navbar() {
       {/* iOS-style liquid glass navbar */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/10 backdrop-blur-lg backdrop-saturate-150 border-b border-white/20 dark:bg-white/5">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-12">
-          <h1 className={cn('text-2xl font-bold tracking-wider', dynamicTextClasses)}>
+          <h1 className={cn('text-2xl font-bold tracking-wider transition-colors duration-300', dynamicTextClasses)}>
             NOAH LYNCH
           </h1>
 
@@ -90,7 +101,7 @@ export default function Navbar() {
           </nav>
 
           <button
-            className="relative z-[60] p-2 text-white md:hidden"
+            className={cn('relative z-[60] p-2 md:hidden transition-colors duration-300', scrolled ? 'text-white' : 'text-black')}
             aria-label="Toggle Menu"
             onClick={() => setMobileOpen((prev) => !prev)}
           >
