@@ -34,6 +34,7 @@ export default function Navbar() {
     setMobileOpen(false);
   };
 
+  // Always white with subtle shadow for clarity against tinted glass
   const dynamicTextClasses = 'text-white drop-shadow-lg';
 
   const navLinks = (
@@ -77,12 +78,9 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md">
-        {/* Gradient & texture overlay for a moody music vibe */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-zinc-950/90 via-zinc-950/60 to-transparent" />
-        <div className="pointer-events-none absolute inset-0 bg-[url('/texture.png')] opacity-5" />
-
-        <div className="relative mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-12">
+      {/* iOS-style liquid glass navbar */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/10 backdrop-blur-lg backdrop-saturate-150 border-b border-white/20 dark:bg-white/5">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-12">
           <h1 className={cn('text-2xl font-bold tracking-wider', dynamicTextClasses)}>
             NOAH LYNCH
           </h1>
