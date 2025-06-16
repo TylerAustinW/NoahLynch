@@ -27,8 +27,16 @@ body {
   @apply bg-black font-sans text-white;
 }
 
+/* Enable smooth scrolling and offset anchors for the fixed navbar */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 4rem; /* ~64px on mobile */
+}
+
+@media (min-width: 768px) {
+  html {
+    scroll-padding-top: 5rem; /* ~80px on medium+ screens */
+  }
 }
 
 @layer utilities {
