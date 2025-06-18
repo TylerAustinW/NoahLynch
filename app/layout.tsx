@@ -83,7 +83,7 @@ export const metadata: Metadata = {
     },
   },
 
-  // Additional structured data - fixed duplicate properties
+  // Additional structured data - updated with modern standards
   other: {
     // Discord embeds - using amber color from site design
     "theme-color": "#d97706",
@@ -92,8 +92,8 @@ export const metadata: Metadata = {
     "author": "Noah Lynch",
     "article:author": "Noah Lynch",
     
-    // Apple specific
-    "apple-mobile-web-app-capable": "yes",
+    // Modern mobile web app tags (updated from deprecated Apple-specific)
+    "mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
     "apple-mobile-web-app-title": "Noah Lynch",
 
@@ -121,9 +121,6 @@ export default function RootLayout({
         
         {/* Discord embed color */}
         <meta name="theme-color" content="#d97706" />
-        
-        {/* Preload critical resources */}
-        <link rel="preload" href="/noah-portrait.jpeg" as="image" />
         
         {/* Canonical URL */}
         <link rel="canonical" href={siteUrl} />
