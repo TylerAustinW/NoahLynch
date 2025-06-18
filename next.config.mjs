@@ -36,7 +36,7 @@ const nextConfig = {
             img-src 'self' blob: data: https://i.scdn.co https://img.youtube.com https://i.ytimg.com;
             font-src 'self';
             connect-src 'self' https://api.spotify.com https://vercel.live;
-            frame-src 'self' https://*.creator-spring.com https://www.youtube.com https://youtube.com;
+            frame-src 'self' https://*.creator-spring.com https://www.youtube.com https://youtube.com https://vercel.live https://vercel.com;
             object-src 'none';
             base-uri 'self';
             form-action 'self';
