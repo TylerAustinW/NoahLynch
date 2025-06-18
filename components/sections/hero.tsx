@@ -66,7 +66,7 @@ export default function HeroSection(): React.ReactElement {
             onError={() => setImageError(true)}
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/0 to-black/75" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80" />
         </div>
 
         {/* Main Content */}
@@ -78,11 +78,11 @@ export default function HeroSection(): React.ReactElement {
             className="max-w-3xl"
           >
             {/* Title Section */}
-            <div className="mb-8">
-              <h1 className="text-6xl md:text-8xl font-bold uppercase text-white drop-shadow-2xl mb-2">
+            <div className="mb-8 md:mb-10">
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold uppercase text-white drop-shadow-2xl mb-2">
                 Honest
               </h1>
-              <p className="text-3xl md:text-5xl font-bold uppercase text-amber-300 drop-shadow-lg">
+              <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold uppercase text-amber-300 drop-shadow-lg">
                 Out Now
               </p>
             </div>
@@ -92,18 +92,18 @@ export default function HeroSection(): React.ReactElement {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: loaded ? 1 : 0, y: loaded ? 0 : 10 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="flex flex-wrap gap-4 mb-6"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6"
             >
               <a
                 href="/music/honest"
-                className="inline-flex items-center px-8 py-4 text-lg font-semibold text-black bg-amber-400 hover:bg-amber-300 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold text-black bg-amber-400 hover:bg-amber-300 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg"
                 aria-label="Listen to the latest album Honest"
               >
                 Listen Now
               </a>
               <a
                 href="mailto:NoahLynchContact@gmail.com"
-                className="inline-flex items-center px-8 py-4 text-lg font-semibold text-white bg-white/20 hover:bg-white/30 backdrop-blur-sm border-2 border-white/30 rounded-full transition-all duration-300"
+                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold text-white bg-white/20 hover:bg-white/30 backdrop-blur-sm border-2 border-white/30 rounded-full transition-all duration-300"
                 aria-label="Contact Noah Lynch via email"
               >
                 Get in Touch
@@ -115,30 +115,30 @@ export default function HeroSection(): React.ReactElement {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: loaded ? 1 : 0, y: loaded ? 0 : 10 }}
               transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-              className="flex flex-wrap gap-3 mb-10"
+              className="flex gap-3 mb-8 md:mb-10"
             >
               <a
                 href="#music"
-                className="inline-flex items-center px-6 py-3 text-sm font-medium text-zinc-100 bg-zinc-900/60 hover:bg-zinc-800/70 backdrop-blur-sm border border-zinc-700/50 rounded-full transition-all duration-300"
+                className="inline-flex items-center px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-medium text-zinc-100 bg-zinc-900/60 hover:bg-zinc-800/70 backdrop-blur-sm border border-zinc-700/50 rounded-full transition-all duration-300"
                 aria-label="Explore Noah Lynch's music catalog"
               >
                 Explore Music
               </a>
               <a
                 href="/merch"
-                className="inline-flex items-center px-6 py-3 text-sm font-medium text-zinc-100 bg-zinc-900/60 hover:bg-zinc-800/70 backdrop-blur-sm border border-zinc-700/50 rounded-full transition-all duration-300"
+                className="inline-flex items-center px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-medium text-zinc-100 bg-zinc-900/60 hover:bg-zinc-800/70 backdrop-blur-sm border border-zinc-700/50 rounded-full transition-all duration-300"
                 aria-label="Browse merchandise"
               >
                 Shop Merch
               </a>
             </motion.div>
 
-            {/* Social Links and Tour Info - Aligned Horizontally */}
+            {/* Social Links and Tour Info - Better Mobile Layout */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: loaded ? 1 : 0, y: loaded ? 0 : 10 }}
               transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-              className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6"
+              className="flex flex-col gap-4 sm:gap-6 lg:flex-row lg:items-center lg:justify-between"
             >
               {/* Social Links */}
               <div className="flex items-center gap-5">
@@ -188,7 +188,7 @@ export default function HeroSection(): React.ReactElement {
 
         {/* Mobile scroll indicator */}
         <motion.div
-          className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 sm:hidden"
+          className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 md:hidden"
           initial={{ opacity: 0 }}
           animate={{
             opacity: loaded ? 0.7 : 0,
@@ -214,15 +214,15 @@ export default function HeroSection(): React.ReactElement {
           </div>
         </motion.div>
 
-        {/* Hand-written quote - Repositioned for better balance */}
+        {/* Hand-written quote - Better positioned and responsive */}
         <motion.div 
-          className="absolute bottom-16 right-8 z-10 p-4 max-w-xs text-right hidden lg:block"
+          className="absolute bottom-8 sm:bottom-12 lg:bottom-16 right-4 sm:right-8 z-10 p-4 max-w-[280px] sm:max-w-xs text-right hidden lg:block"
           initial={{ opacity: 0 }}
           animate={{ opacity: loaded ? 0.9 : 0 }}
           transition={{ duration: 1, delay: 0.5 }}
         >
           <p
-            className={`${patrickHand.className} text-lg text-zinc-100 leading-relaxed`}
+            className={`${patrickHand.className} text-base sm:text-lg text-zinc-100 leading-relaxed`}
           >
             "I hope this record means as much to you as it does to me, thank you
             for the endless support
