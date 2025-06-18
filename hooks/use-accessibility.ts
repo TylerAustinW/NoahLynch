@@ -9,7 +9,7 @@ import { useEffect, useState, useRef, RefObject } from 'react';
  * Hook for managing focus within a component
  */
 export function useFocusManagement(
-  containerRef: RefObject<HTMLElement>
+  containerRef: RefObject<HTMLElement | null>
 ): {
   focusFirst: () => void;
   focusLast: () => void;
