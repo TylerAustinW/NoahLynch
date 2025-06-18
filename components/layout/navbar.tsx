@@ -118,6 +118,17 @@ export default function Navbar() {
       </motion.div>
       <motion.div className="relative">
         <Link
+          href="/tour-dates"
+          className={baseLinkClasses}
+          onClick={() => closeMenu()}
+        >
+          <motion.span className={dynamicTextClasses} transition={{ duration: 0.3, ease: 'easeInOut' }}>
+            TOUR DATES
+          </motion.span>
+        </Link>
+      </motion.div>
+      <motion.div className="relative">
+        <Link
           href="/merch"
           className={baseLinkClasses}
           onClick={() => closeMenu()}
