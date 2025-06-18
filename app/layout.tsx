@@ -4,21 +4,35 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const siteUrl = "https://noahlynchmusic.com"; // Replace with actual domain
+const siteUrl = "https://www.noahlynch.com";
 const siteName = "Noah Lynch Music";
-const siteDescription = "Experience the raw talent and soulful music of Noah Lynch. Watch exclusive live studio sessions, explore his latest releases, and discover the artist behind the music.";
+const siteDescription = "Experience the raw talent and soulful music of Noah Lynch. Watch exclusive live studio sessions, explore his latest releases including 'Honest', and discover the Mississippi-born musician's authentic approach to songwriting.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: siteName,
-    template: `%s | ${siteName}`,
+    default: "Noah Lynch - Singer-Songwriter & Musician",
+    template: `%s | Noah Lynch`,
   },
   description: siteDescription,
-  keywords: ["Noah Lynch", "musician", "singer-songwriter", "live sessions", "acoustic music", "indie artist", "studio sessions"],
+  keywords: [
+    "Noah Lynch", 
+    "musician", 
+    "singer-songwriter", 
+    "Mississippi musician",
+    "blues", 
+    "neo-rock",
+    "acoustic music", 
+    "indie artist", 
+    "studio sessions",
+    "Honest album",
+    "Ready Records",
+    "John Mayer inspired",
+    "Stevie Ray Vaughan"
+  ],
   authors: [{ name: "Noah Lynch" }],
   creator: "Noah Lynch",
-  publisher: "Noah Lynch Music",
+  publisher: "Ready Records",
   
   // Open Graph for Facebook, LinkedIn, Discord, Slack
   openGraph: {
@@ -26,18 +40,18 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteUrl,
     siteName: siteName,
-    title: siteName,
+    title: "Noah Lynch - Singer-Songwriter & Musician",
     description: siteDescription,
     images: [
       {
-        url: "/noah-portrait.jpeg", // Using existing image as fallback
+        url: "/noah-portrait.jpeg",
         width: 1200,
         height: 630,
-        alt: "Noah Lynch - Singer-Songwriter and Musician",
+        alt: "Noah Lynch - Mississippi-born Singer-Songwriter and Musician",
         type: "image/jpeg",
       },
       {
-        url: "/noah-studio.jpeg", // Square-ish fallback
+        url: "/noah-studio.jpeg",
         width: 1080,
         height: 1080,
         alt: "Noah Lynch Music Studio Session",
@@ -46,12 +60,12 @@ export const metadata: Metadata = {
     ],
   },
 
-  // Twitter/X Cards
+  // Twitter/X Cards - Update with actual handles when found in source
   twitter: {
     card: "summary_large_image",
-    site: "@noahlynchmusic", // Replace with actual Twitter handle
-    creator: "@noahlynchmusic",
-    title: siteName,
+    site: "@noahlynchmusic", // Will update with actual handle from source
+    creator: "@noahlynchmusic", // Will update with actual handle from source
+    title: "Noah Lynch - Singer-Songwriter & Musician",
     description: siteDescription,
     images: ["/noah-portrait.jpeg"],
   },
@@ -69,32 +83,27 @@ export const metadata: Metadata = {
     },
   },
 
-  // Verification meta tags (add when available)
-  verification: {
-    // google: "your-google-verification-code",
-    // yandex: "your-yandex-verification-code",
-    // bing: "your-bing-verification-code",
-  },
-
   // Additional structured data
   other: {
-    // Discord embeds
-    "theme-color": "#d97706", // Amber color from design
+    // Discord embeds - using amber color from site design
+    "theme-color": "#d97706",
     
     // General social media
     "author": "Noah Lynch",
     "article:author": "Noah Lynch",
     "music:musician": "Noah Lynch",
+    "music:creator": "Noah Lynch",
     
     // Apple specific
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
-    "apple-mobile-web-app-title": siteName,
+    "apple-mobile-web-app-title": "Noah Lynch",
 
-    // Additional OpenGraph properties for music
+    // Additional OpenGraph properties for music artist
     "og:type": "website",
-    "music:creator": "Noah Lynch",
-    "music:album": "Studio Sessions",
+    "music:album": "Honest",
+    "music:release_date": "2025-05-09",
+    "music:musician": "Noah Lynch",
   },
 };
 
@@ -125,9 +134,7 @@ export default function RootLayout({
         {/* Favicon and app icons */}
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/noah-portrait.jpeg" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico" />
-
+        
         {/* Open Graph fallback meta tags for better compatibility */}
         <meta property="og:image:secure_url" content={`${siteUrl}/noah-portrait.jpeg`} />
         <meta property="og:image:type" content="image/jpeg" />
@@ -135,7 +142,12 @@ export default function RootLayout({
         <meta property="og:image:height" content="600" />
         
         {/* Twitter specific fallbacks */}
-        <meta name="twitter:image:alt" content="Noah Lynch - Singer-Songwriter" />
+        <meta name="twitter:image:alt" content="Noah Lynch - Mississippi-born Singer-Songwriter" />
+        
+        {/* Music-specific meta tags */}
+        <meta property="music:creator" content="Noah Lynch" />
+        <meta property="music:album" content="Honest" />
+        <meta property="music:release_date" content="2025-05-09" />
       </head>
       <body className={inter.className}>
         {children}
@@ -148,27 +160,41 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               name: "Noah Lynch",
-              alternateName: "Noah Lynch Music",
-              description: siteDescription,
+              alternateName: ["Noah Lynch Music", "Noah Lynch Artist"],
+              description: "Mississippi-born singer-songwriter blending blues and neo-rock, inspired by John Mayer and Stevie Ray Vaughan",
               url: siteUrl,
               image: `${siteUrl}/noah-portrait.jpeg`,
+              birthPlace: {
+                "@type": "Place",
+                name: "Mississippi, USA"
+              },
               sameAs: [
-                "https://youtube.com/@noahlynch",
-                "https://twitter.com/noahlynchmusic", // Replace with actual
-                "https://instagram.com/noahlynchmusic", // Replace with actual
-                "https://facebook.com/noahlynchmusic", // Replace with actual
+                "https://youtube.com/@noahlynch", // Confirmed from Studio Sessions
+                // Note: Add actual social media handles from website source
               ],
               jobTitle: "Singer-Songwriter",
               worksFor: {
                 "@type": "Organization",
-                name: "Independent Artist",
+                name: "Ready Records",
               },
-              genre: ["Indie", "Acoustic", "Singer-Songwriter"],
+              genre: ["Blues", "Neo-Rock", "Indie", "Acoustic"],
               instrument: ["Guitar", "Vocals"],
               mainEntityOfPage: {
                 "@type": "WebPage",
                 "@id": siteUrl,
               },
+              hasOfferCatalog: {
+                "@type": "OfferCatalog",
+                name: "Music Releases",
+                itemListElement: [
+                  {
+                    "@type": "MusicAlbum",
+                    name: "Honest",
+                    datePublished: "2025-05-09",
+                    recordLabel: "Ready Records"
+                  }
+                ]
+              }
             }),
           }}
         />
