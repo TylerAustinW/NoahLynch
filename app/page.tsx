@@ -3,7 +3,6 @@ import BiographySection from "@/components/sections/biography-section";
 import HeroSection from "@/components/sections/hero";
 import MusicShowcaseSection from "@/components/sections/MusicShowcaseSection";
 import StudioSessionsSection from "@/components/sections/studio-sessions-section";
-import UpcomingShowWrapper from "@/components/layout/upcoming-show-wrapper";
 
 export default function Home() {
   return (
@@ -15,7 +14,6 @@ export default function Home() {
         <StudioSessionsSection />
         <BiographySection />
       </main>
-      <UpcomingShowWrapper />
     </div>
   );
 }
