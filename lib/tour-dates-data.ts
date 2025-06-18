@@ -9,9 +9,35 @@ export interface TourDate {
   soldOut?: boolean;
   description?: string;
   featured?: boolean;
+  upcoming?: boolean;
 }
 
 export const tourDatesData: TourDate[] = [
+  // Upcoming shows
+  {
+    id: 11,
+    date: '2025-01-15',
+    venue: 'The Ryman Auditorium',
+    city: 'Nashville',
+    state: 'TN',
+    time: '8:00 PM',
+    description: 'Special acoustic performance at the "Mother Church of Country Music"',
+    featured: true,
+    upcoming: true,
+    ticketLink: 'https://ticketmaster.com'
+  },
+  {
+    id: 12,
+    date: '2025-02-10',
+    venue: 'The Chicago Theatre',
+    city: 'Chicago',
+    state: 'IL',
+    time: '7:30 PM',
+    description: 'Midwest tour kickoff with full band',
+    upcoming: true,
+    ticketLink: 'https://ticketmaster.com'
+  },
+  // Past shows
   {
     id: 1,
     date: '2024-10-15',
@@ -20,7 +46,8 @@ export const tourDatesData: TourDate[] = [
     state: 'MO',
     time: '8:00 PM',
     description: 'Acoustic set featuring songs from "Honest"',
-    featured: true
+    featured: true,
+    upcoming: false
   },
   {
     id: 2,
@@ -30,7 +57,8 @@ export const tourDatesData: TourDate[] = [
     state: 'MS',
     time: '9:00 PM',
     description: 'Hometown show with full band',
-    featured: true
+    featured: true,
+    upcoming: false
   },
   {
     id: 3,
@@ -39,7 +67,8 @@ export const tourDatesData: TourDate[] = [
     city: 'Nashville',
     state: 'TN',
     time: '7:30 PM',
-    description: 'Writers round with special guests'
+    description: 'Writers round with special guests',
+    upcoming: false
   },
   {
     id: 4,
@@ -49,7 +78,8 @@ export const tourDatesData: TourDate[] = [
     state: 'CO',
     time: '7:00 PM',
     description: 'Opening for national touring act',
-    featured: true
+    featured: true,
+    upcoming: false
   },
   {
     id: 5,
@@ -58,7 +88,8 @@ export const tourDatesData: TourDate[] = [
     city: 'Greenville',
     state: 'MS',
     time: '6:00 PM',
-    description: 'Festival performance on main stage'
+    description: 'Festival performance on main stage',
+    upcoming: false
   },
   {
     id: 6,
@@ -67,7 +98,8 @@ export const tourDatesData: TourDate[] = [
     city: 'San Francisco',
     state: 'CA',
     time: '8:00 PM',
-    description: 'West Coast tour finale'
+    description: 'West Coast tour finale',
+    upcoming: false
   },
   {
     id: 7,
@@ -76,7 +108,8 @@ export const tourDatesData: TourDate[] = [
     city: 'New Orleans',
     state: 'LA',
     time: '9:00 PM',
-    description: 'Late night blues session'
+    description: 'Late night blues session',
+    upcoming: false
   },
   {
     id: 8,
@@ -85,7 +118,8 @@ export const tourDatesData: TourDate[] = [
     city: 'Atlanta',
     state: 'GA',
     time: '8:00 PM',
-    description: 'Southern tour kickoff'
+    description: 'Southern tour kickoff',
+    upcoming: false
   },
   {
     id: 9,
@@ -94,7 +128,8 @@ export const tourDatesData: TourDate[] = [
     city: 'New York',
     state: 'NY',
     time: '8:30 PM',
-    description: 'East Coast tour stop'
+    description: 'East Coast tour stop',
+    upcoming: false
   },
   {
     id: 10,
@@ -103,6 +138,7 @@ export const tourDatesData: TourDate[] = [
     city: 'Los Angeles',
     state: 'CA',
     time: '9:00 PM',
-    description: 'Intimate acoustic performance'
+    description: 'Intimate acoustic performance',
+    upcoming: false
   }
 ];
