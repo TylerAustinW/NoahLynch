@@ -10,7 +10,6 @@ interface StudioSession {
   title: string;
   description: string;
   youtubeId: string;
-  thumbnail: string;
   duration: string;
 }
 
@@ -21,7 +20,6 @@ const studioSessions: StudioSession[] = [
     title: 'Noah Lynch - "For You" Live (Studio Sessions)',
     description: 'An intimate acoustic performance showcasing Noah\'s raw talent and emotional depth in this heartfelt studio session.',
     youtubeId: '0WHqv-pE3g8',
-    thumbnail: 'https://img.youtube.com/vi/0WHqv-pE3g8/maxresdefault.jpg',
     duration: '3:45'
   },
   {
@@ -29,7 +27,6 @@ const studioSessions: StudioSession[] = [
     title: 'Noah Lynch - "Good Things Take Time" Live (Studio Sessions)',
     description: 'Watch Noah perform this inspiring track with soulful vocals and acoustic guitar in an intimate studio setting.',
     youtubeId: 'uXSKQiTQoHo',
-    thumbnail: 'https://img.youtube.com/vi/uXSKQiTQoHo/maxresdefault.jpg',
     duration: '4:12'
   },
   {
@@ -37,10 +34,34 @@ const studioSessions: StudioSession[] = [
     title: 'Noah Lynch - "Honest" Live (Studio Sessions)',
     description: 'A powerful and vulnerable performance of "Honest" that captures the essence of Noah\'s songwriting and vocal delivery.',
     youtubeId: 'UGPzNbSPwZk',
-    thumbnail: 'https://img.youtube.com/vi/UGPzNbSPwZk/maxresdefault.jpg',
     duration: '3:28'
   }
 ];
+
+// YouTube thumbnail component with fallback handling
+const YouTubeThumbnail = ({ videoId, title }: { videoId: string; title: string }) => {
+  const [thumbnailSrc, setThumbnailSrc] = useState(`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`);
+  
+  const handleImageError = () => {
+    // Fallback to medium quality thumbnail if high quality fails
+    if (thumbnailSrc.includes('hqdefault')) {
+      setThumbnailSrc(`https://img.youtube.com/vi/${videoId}/mqdefault.jpg`);
+    } else if (thumbnailSrc.includes('mqdefault')) {
+      // Final fallback to default thumbnail
+      setThumbnailSrc(`https://img.youtube.com/vi/${videoId}/default.jpg`);
+    }
+  };
+
+  return (
+    <img
+      src={thumbnailSrc}
+      alt={title}
+      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+      loading="lazy"
+      onError={handleImageError}
+    />
+  );
+};
 
 const VideoCard = React.memo(({ session, onSelect }: { session: StudioSession; onSelect: (session: StudioSession) => void }) => {
   return (
@@ -51,12 +72,7 @@ const VideoCard = React.memo(({ session, onSelect }: { session: StudioSession; o
       onClick={() => onSelect(session)}
     >
       <div className="relative aspect-video w-full overflow-hidden bg-zinc-900">
-        <img
-          src={session.thumbnail}
-          alt={session.title}
-          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-          loading="lazy"
-        />
+        <YouTubeThumbnail videoId={session.youtubeId} title={session.title} />
         <div className="absolute inset-0 bg-black/20 transition-opacity group-hover:opacity-0" />
         <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
           <div className="rounded-full bg-amber-600 p-3 shadow-lg">
