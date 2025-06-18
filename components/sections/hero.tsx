@@ -1,6 +1,7 @@
 "use client";
 
 import ErrorBoundary from "@/components/ui/error-boundary";
+import TourInfoBadge from "@/components/ui/tour-info-badge";
 import { useInView } from "@/hooks/use-in-view";
 import { motion } from "framer-motion";
 import { ChevronDown, Heart } from "lucide-react";
@@ -118,44 +119,50 @@ export default function HeroSection(): React.ReactElement {
               </div>
             </div>
 
-            {/* Social Links */}
-            <div className="mt-6 flex gap-6 ">
-              <a
-                href="https://instagram.com/noahlynchmusic"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Follow Noah Lynch on Instagram"
-                className="text-zinc-400 transition-colors hover:text-pink-500"
-              >
-                <FaInstagram className="h-6 w-6" aria-hidden="true" />
-              </a>
-              <a
-                href="https://facebook.com/noahlynchmusic"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Follow Noah Lynch on Facebook"
-                className="text-zinc-400 transition-colors hover:text-blue-500"
-              >
-                <FaFacebookF className="h-6 w-6" aria-hidden="true" />
-              </a>
-              <a
-                href="https://tiktok.com/@noahlynchmusic"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Follow Noah Lynch on Tiktok"
-                className="text-zinc-400 transition-colors hover:text-red-500"
-              >
-                <FaTiktok className="h-6 w-6" aria-hidden="true" />
-              </a>
-              <a
-                href="https://youtube.com/@noahlynch"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Subscribe to Noah Lynch on YouTube"
-                className="text-zinc-400 transition-colors hover:text-red-500"
-              >
-                <FaYoutube className="h-6 w-6" aria-hidden="true" />
-              </a>
+            {/* Social Links and Tour Info */}
+            <div className="mt-6 flex flex-col gap-4">
+              {/* Social Links */}
+              <div className="flex gap-6">
+                <a
+                  href="https://instagram.com/noahlynchmusic"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Follow Noah Lynch on Instagram"
+                  className="text-zinc-400 transition-colors hover:text-pink-500"
+                >
+                  <FaInstagram className="h-6 w-6" aria-hidden="true" />
+                </a>
+                <a
+                  href="https://facebook.com/noahlynchmusic"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Follow Noah Lynch on Facebook"
+                  className="text-zinc-400 transition-colors hover:text-blue-500"
+                >
+                  <FaFacebookF className="h-6 w-6" aria-hidden="true" />
+                </a>
+                <a
+                  href="https://tiktok.com/@noahlynchmusic"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Follow Noah Lynch on Tiktok"
+                  className="text-zinc-400 transition-colors hover:text-red-500"
+                >
+                  <FaTiktok className="h-6 w-6" aria-hidden="true" />
+                </a>
+                <a
+                  href="https://youtube.com/@noahlynch"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Subscribe to Noah Lynch on YouTube"
+                  className="text-zinc-400 transition-colors hover:text-red-500"
+                >
+                  <FaYoutube className="h-6 w-6" aria-hidden="true" />
+                </a>
+              </div>
+              
+              {/* Tour Info Badge */}
+              <TourInfoBadge />
             </div>
           </div>
         </div>
