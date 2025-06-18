@@ -106,7 +106,7 @@ export default function EnhancedHero() {
   const [imageLoaded, setImageLoaded] = React.useState(false);
   const [imageError, setImageError] = React.useState(false);
   const [heroRef, isInView] = useAnimateOnInView({ threshold: 0.2 });
-  const [imageRef, shouldLoadImage] = useLazyLoad();
+  const [lazyLoadRef, shouldLoadImage] = useLazyLoad();
   
   const monitor = PerformanceMonitor.getInstance();
   const { announce } = useLiveRegion();
@@ -252,7 +252,10 @@ export default function EnhancedHero() {
       aria-label="Hero section featuring Noah Lynch's latest album"
     >
       {/* Background Image with Parallax */}
-      <div className="absolute inset-0 h-full w-full">
+      <div 
+        ref={lazyLoadRef}
+        className="absolute inset-0 h-full w-full"
+      >
         {shouldLoadImage && (
           <motion.div
             style={{
@@ -262,7 +265,6 @@ export default function EnhancedHero() {
             className="h-full w-full"
           >
             <Image
-              ref={imageRef}
               src="/honest-coverr.png"
               alt="Noah Lynch - Honest album cover"
               fill
