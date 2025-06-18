@@ -51,7 +51,6 @@ export default function HeroSection(): React.ReactElement {
         id="hero"
         className="relative flex min-h-screen items-center overflow-hidden pt-16 pb-0"
       >
-        {/* Background Image */}
         <div className="absolute inset-0 h-full w-full">
           <Image
             src="/honest-coverr.png"
@@ -66,88 +65,70 @@ export default function HeroSection(): React.ReactElement {
             onError={() => setImageError(true)}
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/0 to-black/75" />
         </div>
 
-        {/* Main Content */}
         <div className="relative z-10 container mx-auto px-6 md:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: loaded ? 1 : 0, y: loaded ? 0 : 20 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="max-w-3xl"
+          <div
+            className={`max-w-xl transition-all duration-1000 ${
+              loaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+            }`}
           >
-            {/* Title Section */}
-            <div className="mb-8 md:mb-10">
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold uppercase text-white drop-shadow-2xl mb-2">
-                Honest
-              </h1>
-              <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold uppercase text-amber-300 drop-shadow-lg">
+            <h1 className="mb-4 text-5xl font-bold uppercase text-white drop-shadow-md">
+              Honest
+              <br />
+              <span className="mb-4 text-5xl font-bold uppercase text-amber-200/90 drop-shadow-md md:text-7xl">
                 Out Now
-              </p>
+                <br />
+              </span>
+            </h1>
+
+            {/* Primary Call-to-Action Buttons */}
+            <div className="mt-4 flex flex-col gap-4">
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="/music/honest"
+                  className="rounded-full border border-amber-500/60 bg-amber-500/20 px-6 py-3 font-medium text-amber-100 transition-all duration-300 hover:border-amber-400/70 hover:bg-amber-500/30"
+                  aria-label="Listen to the latest album Honest"
+                >
+                  Listen Now
+                </a>
+                <a
+                  href="mailto:NoahLynchContact@gmail.com"
+                  className="rounded-full border border-sky-500/60 bg-sky-500/20 px-6 py-3 font-medium text-sky-100 transition-all duration-300 hover:border-sky-400/70 hover:bg-sky-500/30"
+                  aria-label="Contact Noah Lynch via email"
+                >
+                  Contact
+                </a>
+              </div>
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="#music"
+                  className="rounded-full border border-zinc-700/40 bg-zinc-900/50 px-6 py-3 font-medium text-white transition-all duration-300 hover:border-zinc-600/60 hover:bg-zinc-800/60"
+                  aria-label="Explore Noah Lynch's music catalog"
+                >
+                  Explore Music
+                </a>
+                <a
+                  href="/merch"
+                  className="rounded-full border border-zinc-700/40 bg-zinc-900/50 px-6 py-3 font-medium text-white transition-all duration-300 hover:border-zinc-600/60 hover:bg-zinc-800/60"
+                  aria-label="Browse merchandise"
+                >
+                  Explore Merch
+                </a>
+              </div>
             </div>
 
-            {/* Primary Actions */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: loaded ? 1 : 0, y: loaded ? 0 : 10 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6"
-            >
-              <a
-                href="/music/honest"
-                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold text-black bg-amber-400 hover:bg-amber-300 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg"
-                aria-label="Listen to the latest album Honest"
-              >
-                Listen Now
-              </a>
-              <a
-                href="mailto:NoahLynchContact@gmail.com"
-                className="inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold text-white bg-white/20 hover:bg-white/30 backdrop-blur-sm border-2 border-white/30 rounded-full transition-all duration-300"
-                aria-label="Contact Noah Lynch via email"
-              >
-                Get in Touch
-              </a>
-            </motion.div>
-
-            {/* Secondary Actions */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: loaded ? 1 : 0, y: loaded ? 0 : 10 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-              className="flex gap-3 mb-8 md:mb-10"
-            >
-              <a
-                href="#music"
-                className="inline-flex items-center px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-medium text-zinc-100 bg-zinc-900/60 hover:bg-zinc-800/70 backdrop-blur-sm border border-zinc-700/50 rounded-full transition-all duration-300"
-                aria-label="Explore Noah Lynch's music catalog"
-              >
-                Explore Music
-              </a>
-              <a
-                href="/merch"
-                className="inline-flex items-center px-5 sm:px-6 py-2.5 sm:py-3 text-sm font-medium text-zinc-100 bg-zinc-900/60 hover:bg-zinc-800/70 backdrop-blur-sm border border-zinc-700/50 rounded-full transition-all duration-300"
-                aria-label="Browse merchandise"
-              >
-                Shop Merch
-              </a>
-            </motion.div>
-
-            {/* Social Links and Tour Info - Better Mobile Layout */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: loaded ? 1 : 0, y: loaded ? 0 : 10 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-              className="flex flex-col gap-4 sm:gap-6 lg:flex-row lg:items-center lg:justify-between"
-            >
+            {/* Social Links and Tour Info */}
+            <div className="mt-6 flex flex-col gap-4">
               {/* Social Links */}
-              <div className="flex items-center gap-5">
+              <div className="flex gap-6">
                 <a
                   href="https://instagram.com/noahlynchmusic"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Follow Noah Lynch on Instagram"
-                  className="text-zinc-400 hover:text-pink-500 transition-all duration-300 transform hover:scale-110"
+                  className="text-zinc-400 transition-colors hover:text-pink-500"
                 >
                   <FaInstagram className="h-6 w-6" aria-hidden="true" />
                 </a>
@@ -156,7 +137,7 @@ export default function HeroSection(): React.ReactElement {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Follow Noah Lynch on Facebook"
-                  className="text-zinc-400 hover:text-blue-500 transition-all duration-300 transform hover:scale-110"
+                  className="text-zinc-400 transition-colors hover:text-blue-500"
                 >
                   <FaFacebookF className="h-6 w-6" aria-hidden="true" />
                 </a>
@@ -165,7 +146,7 @@ export default function HeroSection(): React.ReactElement {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Follow Noah Lynch on Tiktok"
-                  className="text-zinc-400 hover:text-pink-400 transition-all duration-300 transform hover:scale-110"
+                  className="text-zinc-400 transition-colors hover:text-red-500"
                 >
                   <FaTiktok className="h-6 w-6" aria-hidden="true" />
                 </a>
@@ -174,7 +155,7 @@ export default function HeroSection(): React.ReactElement {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Subscribe to Noah Lynch on YouTube"
-                  className="text-zinc-400 hover:text-red-500 transition-all duration-300 transform hover:scale-110"
+                  className="text-zinc-400 transition-colors hover:text-red-500"
                 >
                   <FaYoutube className="h-6 w-6" aria-hidden="true" />
                 </a>
@@ -182,16 +163,16 @@ export default function HeroSection(): React.ReactElement {
               
               {/* Tour Info Badge */}
               <TourInfoBadge />
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
 
         {/* Mobile scroll indicator */}
         <motion.div
-          className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 md:hidden"
+          className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 sm:hidden"
           initial={{ opacity: 0 }}
           animate={{
-            opacity: loaded ? 0.7 : 0,
+            opacity: loaded ? 1 : 0,
             y: [0, 10, 0],
           }}
           transition={{
@@ -210,32 +191,25 @@ export default function HeroSection(): React.ReactElement {
             <span className="mb-1 text-xs font-medium text-zinc-300">
               Scroll
             </span>
-            <ChevronDown className="h-5 w-5 text-zinc-300" aria-hidden="true" />
+            <ChevronDown className="h-6 w-6 text-zinc-300" aria-hidden="true" />
           </div>
         </motion.div>
 
-        {/* Hand-written quote - Better positioned and responsive */}
-        <motion.div 
-          className="absolute bottom-8 sm:bottom-12 lg:bottom-16 right-4 sm:right-8 z-10 p-4 max-w-[280px] sm:max-w-xs text-right hidden lg:block"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: loaded ? 0.9 : 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-        >
+        {/* Hand-written quote */}
+        <div className="absolute bottom-12 right-4 z-10 p-2 max-w-xs text-right hidden md:block">
           <p
-            className={`${patrickHand.className} text-base sm:text-lg text-zinc-100 leading-relaxed`}
+            className={`${patrickHand.className} text-md text-zinc-50/100 leading-tight `}
           >
             "I hope this record means as much to you as it does to me, thank you
             for the endless support
-            <br />
-            <span className="inline-flex items-center gap-1 mt-2">
-              - Noah
-              <Heart
-                className="h-5 w-5 text-zinc-100"
-                aria-hidden="true"
-              />
-            </span>
+            <br />-{" "}
+            <Heart
+              className="h-6 w-6 text-zinc-200 inline-block"
+              aria-hidden="true"
+            />
+            Noah"
           </p>
-        </motion.div>
+        </div>
       </section>
     </ErrorBoundary>
   );
