@@ -11,22 +11,22 @@ export interface UseIntersectionObserverOptions extends IntersectionObserverInit
   measurePerformance?: boolean;
 }
 
-export interface UseIntersectionObserverReturn {
+export interface UseIntersectionObserverReturn<T extends HTMLElement> {
   isIntersecting: boolean;
   entry: IntersectionObserverEntry | null;
-  ref: RefObject<HTMLElement>;
+  ref: RefObject<T>;
 }
 
-export function useIntersectionObserver({
+export function useIntersectionObserver<T extends HTMLElement = HTMLElement>({
   threshold = 0.1,
   root = null,
   rootMargin = '0%',
   freezeOnceVisible = false,
   measurePerformance = false,
-}: UseIntersectionObserverOptions = {}): UseIntersectionObserverReturn {
+}: UseIntersectionObserverOptions = {}): UseIntersectionObserverReturn<T> {
   const [entry, setEntry] = useState<IntersectionObserverEntry | null>(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
-  const elementRef = useRef<HTMLElement>(null);
+  const elementRef = useRef<T>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const monitor = measurePerformance ? PerformanceMonitor.getInstance() : null;
 
@@ -91,8 +91,10 @@ export function useIntersectionObserver({
 /**
  * Simplified hook for basic visibility detection
  */
-export function useInView(options: UseIntersectionObserverOptions = {}) {
-  const { isIntersecting, ref } = useIntersectionObserver({
+export function useInView<T extends HTMLElement = HTMLElement>(
+  options: UseIntersectionObserverOptions = {}
+) {
+  const { isIntersecting, ref } = useIntersectionObserver<T>({
     threshold: 0.1,
     freezeOnceVisible: true,
     ...options,
@@ -104,10 +106,10 @@ export function useInView(options: UseIntersectionObserverOptions = {}) {
 /**
  * Hook for lazy loading with intersection observer
  */
-export function useLazyLoad(
+export function useLazyLoad<T extends HTMLElement = HTMLElement>(
   options: UseIntersectionObserverOptions = {}
-): [RefObject<HTMLElement>, boolean] {
-  const { isIntersecting, ref } = useIntersectionObserver({
+): [RefObject<T>, boolean] {
+  const { isIntersecting, ref } = useIntersectionObserver<T>({
     threshold: 0.1,
     rootMargin: '100px',
     freezeOnceVisible: true,
@@ -121,10 +123,10 @@ export function useLazyLoad(
 /**
  * Hook for triggering animations when element comes into view
  */
-export function useAnimateOnInView(
+export function useAnimateOnInView<T extends HTMLElement = HTMLElement>(
   options: UseIntersectionObserverOptions = {}
-): [RefObject<HTMLElement>, boolean] {
-  const { isIntersecting, ref } = useIntersectionObserver({
+): [RefObject<T>, boolean] {
+  const { isIntersecting, ref } = useIntersectionObserver<T>({
     threshold: 0.2,
     rootMargin: '50px',
     freezeOnceVisible: true,
