@@ -277,13 +277,13 @@ export default function EnhancedRootLayout({ children }: RootLayoutProps) {
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
         
-        {/* Preload critical resources */}
+        {/* Preload critical resources with fetchpriority */}
         <link 
           rel="preload" 
           href="/honest-coverr.png" 
           as="image" 
           type="image/png"
-          importance="high"
+          fetchPriority="high"
         />
         
         {/* DNS prefetch for external resources */}
