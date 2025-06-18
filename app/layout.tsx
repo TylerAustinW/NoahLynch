@@ -30,17 +30,17 @@ export const metadata: Metadata = {
     description: siteDescription,
     images: [
       {
-        url: "/og-image.jpg", // 1200x630 recommended
+        url: "/noah-portrait.jpeg", // Using existing image as fallback
         width: 1200,
         height: 630,
         alt: "Noah Lynch - Singer-Songwriter and Musician",
         type: "image/jpeg",
       },
       {
-        url: "/og-image-square.jpg", // 1080x1080 for Instagram/square formats
+        url: "/noah-studio.jpeg", // Square-ish fallback
         width: 1080,
         height: 1080,
-        alt: "Noah Lynch Music",
+        alt: "Noah Lynch Music Studio Session",
         type: "image/jpeg",
       },
     ],
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     creator: "@noahlynchmusic",
     title: siteName,
     description: siteDescription,
-    images: ["/og-image.jpg"],
+    images: ["/noah-portrait.jpeg"],
   },
 
   // Additional meta for better SEO and social sharing
@@ -81,9 +81,6 @@ export const metadata: Metadata = {
     // Discord embeds
     "theme-color": "#d97706", // Amber color from design
     
-    // Slack unfurling
-    "slack-app-id": "", // Add if you have a Slack app
-    
     // General social media
     "author": "Noah Lynch",
     "article:author": "Noah Lynch",
@@ -93,6 +90,11 @@ export const metadata: Metadata = {
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
     "apple-mobile-web-app-title": siteName,
+
+    // Additional OpenGraph properties for music
+    "og:type": "website",
+    "music:creator": "Noah Lynch",
+    "music:album": "Studio Sessions",
   },
 };
 
@@ -107,7 +109,6 @@ export default function RootLayout({
         {/* Additional meta tags for enhanced social sharing */}
         <meta name="format-detection" content="telephone=no" />
         <meta name="msapplication-TileColor" content="#000000" />
-        <meta name="msapplication-config" content="/browserconfig.xml" />
         
         {/* LinkedIn specific (uses OpenGraph) */}
         <meta property="og:type" content="website" />
@@ -123,10 +124,18 @@ export default function RootLayout({
         
         {/* Favicon and app icons */}
         <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/noah-portrait.jpeg" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico" />
+
+        {/* Open Graph fallback meta tags for better compatibility */}
+        <meta property="og:image:secure_url" content={`${siteUrl}/noah-portrait.jpeg`} />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:width" content="800" />
+        <meta property="og:image:height" content="600" />
+        
+        {/* Twitter specific fallbacks */}
+        <meta name="twitter:image:alt" content="Noah Lynch - Singer-Songwriter" />
       </head>
       <body className={inter.className}>
         {children}
@@ -156,6 +165,10 @@ export default function RootLayout({
               },
               genre: ["Indie", "Acoustic", "Singer-Songwriter"],
               instrument: ["Guitar", "Vocals"],
+              mainEntityOfPage: {
+                "@type": "WebPage",
+                "@id": siteUrl,
+              },
             }),
           }}
         />
