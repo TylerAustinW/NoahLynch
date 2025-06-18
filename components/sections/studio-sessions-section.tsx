@@ -2,7 +2,7 @@
 
 import { useInView } from '@/hooks/use-in-view';
 import { motion } from 'framer-motion';
-import { Play, Clock, Eye } from 'lucide-react';
+import { Play } from 'lucide-react';
 import React, { useState } from 'react';
 
 interface StudioSession {
@@ -12,8 +12,6 @@ interface StudioSession {
   youtubeId: string;
   thumbnail: string;
   duration: string;
-  views: string;
-  date: string;
 }
 
 // Real Noah Lynch YouTube Studio Sessions
@@ -24,9 +22,7 @@ const studioSessions: StudioSession[] = [
     description: 'An intimate acoustic performance showcasing Noah\'s raw talent and emotional depth in this heartfelt studio session.',
     youtubeId: '0WHqv-pE3g8',
     thumbnail: 'https://img.youtube.com/vi/0WHqv-pE3g8/maxresdefault.jpg',
-    duration: '3:45',
-    views: '2.1K',
-    date: '2024-01-20'
+    duration: '3:45'
   },
   {
     id: '2',
@@ -34,9 +30,7 @@ const studioSessions: StudioSession[] = [
     description: 'Watch Noah perform this inspiring track with soulful vocals and acoustic guitar in an intimate studio setting.',
     youtubeId: 'uXSKQiTQoHo',
     thumbnail: 'https://img.youtube.com/vi/uXSKQiTQoHo/maxresdefault.jpg',
-    duration: '4:12',
-    views: '1.8K',
-    date: '2024-01-15'
+    duration: '4:12'
   },
   {
     id: '3',
@@ -44,9 +38,7 @@ const studioSessions: StudioSession[] = [
     description: 'A powerful and vulnerable performance of "Honest" that captures the essence of Noah\'s songwriting and vocal delivery.',
     youtubeId: 'UGPzNbSPwZk',
     thumbnail: 'https://img.youtube.com/vi/UGPzNbSPwZk/maxresdefault.jpg',
-    duration: '3:28',
-    views: '3.2K',
-    date: '2024-01-10'
+    duration: '3:28'
   }
 ];
 
@@ -80,19 +72,9 @@ const VideoCard = React.memo(({ session, onSelect }: { session: StudioSession; o
         <h3 className="mb-2 line-clamp-2 text-sm font-semibold text-white transition-colors group-hover:text-amber-400">
           {session.title}
         </h3>
-        <p className="mb-3 line-clamp-2 text-xs text-zinc-400">
+        <p className="line-clamp-3 text-xs text-zinc-400">
           {session.description}
         </p>
-        <div className="flex items-center gap-4 text-xs text-zinc-500">
-          <div className="flex items-center gap-1">
-            <Eye className="h-3 w-3" />
-            <span>{session.views} views</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <Clock className="h-3 w-3" />
-            <span>{new Date(session.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
-          </div>
-        </div>
       </div>
     </motion.div>
   );
