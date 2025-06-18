@@ -30,18 +30,26 @@ Based on [social media optimization best practices](https://opengraph.xyz) and [
 
 ## 🔧 Current Implementation
 
+### Site Information (from https://www.noahlynch.com/)
+- **Domain**: `https://www.noahlynch.com`
+- **Artist**: Noah Lynch (Mississippi-born singer-songwriter)
+- **Latest Album**: "Honest" (Released May 9, 2025)
+- **Record Label**: Ready Records
+- **Style**: Blues, Neo-Rock, influenced by John Mayer & Stevie Ray Vaughan
+- **YouTube**: Confirmed @noahlynch channel
+
 ### OpenGraph Tags (Facebook, LinkedIn, Discord, Slack)
 ```html
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="en_US" />
-<meta property="og:url" content="https://noahlynchmusic.com" />
+<meta property="og:url" content="https://www.noahlynch.com" />
 <meta property="og:site_name" content="Noah Lynch Music" />
-<meta property="og:title" content="Noah Lynch Music" />
+<meta property="og:title" content="Noah Lynch - Singer-Songwriter & Musician" />
 <meta property="og:description" content="Experience the raw talent and soulful music of Noah Lynch..." />
-<meta property="og:image" content="https://noahlynchmusic.com/og-image.jpg" />
+<meta property="og:image" content="https://www.noahlynch.com/noah-portrait.jpeg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Noah Lynch - Singer-Songwriter and Musician" />
+<meta property="og:image:alt" content="Noah Lynch - Mississippi-born Singer-Songwriter" />
 ```
 
 ### Twitter Cards (X Platform)
@@ -49,9 +57,9 @@ Based on [social media optimization best practices](https://opengraph.xyz) and [
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@noahlynchmusic" />
 <meta name="twitter:creator" content="@noahlynchmusic" />
-<meta name="twitter:title" content="Noah Lynch Music" />
+<meta name="twitter:title" content="Noah Lynch - Singer-Songwriter & Musician" />
 <meta name="twitter:description" content="Experience the raw talent..." />
-<meta name="twitter:image" content="https://noahlynchmusic.com/og-image.jpg" />
+<meta name="twitter:image" content="https://www.noahlynch.com/noah-portrait.jpeg" />
 ```
 
 ### Discord Enhancement
@@ -59,60 +67,66 @@ Based on [social media optimization best practices](https://opengraph.xyz) and [
 <meta name="theme-color" content="#d97706" />
 ```
 
+### Music-Specific Meta Tags
+```html
+<meta property="music:creator" content="Noah Lynch" />
+<meta property="music:album" content="Honest" />
+<meta property="music:release_date" content="2025-05-09" />
+```
+
 ## 📝 Required Actions
 
-### 1. Create OpenGraph Images
-You need to create these image files:
+### 1. Extract Social Media Handles
+Check the source code of [https://www.noahlynch.com/](https://www.noahlynch.com/) for actual social media handles and update:
 
-#### `/public/og-image.jpg` (1200x630px)
-Suggested content:
-- Noah's photo or album artwork
-- Site title "Noah Lynch Music"
-- Tagline: "Singer-Songwriter • Live Studio Sessions"
-- Brand colors (amber/black theme)
-
-#### `/public/og-image-square.jpg` (1080x1080px)
-Square version for Instagram stories and certain platforms.
-
-### 2. Update Social Media Handles
-In `app/layout.tsx`, replace placeholder handles:
 ```typescript
 twitter: {
-  site: "@noahlynchmusic", // Replace with actual handle
-  creator: "@noahlynchmusic",
+  site: "@actual_twitter_handle", // Replace placeholder
+  creator: "@actual_twitter_handle",
 },
 ```
 
 Update JSON-LD structured data social links:
 ```typescript
 sameAs: [
-  "https://youtube.com/@noahlynch", // ✓ Already correct
-  "https://twitter.com/noahlynchmusic", // Update with real handle
-  "https://instagram.com/noahlynchmusic", // Update with real handle
-  "https://facebook.com/noahlynchmusic", // Update with real handle
+  "https://youtube.com/@noahlynch", // ✓ Confirmed
+  "https://twitter.com/actual_handle", // Extract from source
+  "https://instagram.com/actual_handle", // Extract from source
+  "https://facebook.com/actual_handle", // Extract from source
 ],
 ```
 
-### 3. Update Domain
-Replace `https://noahlynchmusic.com` with the actual domain in:
-- `siteUrl` constant
-- `metadataBase` URL
+### 2. Create Professional OpenGraph Images
+#### `/public/og-image.jpg` (1200x630px)
+Suggested content based on Noah's brand:
+- Noah's portrait or "Honest" album artwork
+- Site title "Noah Lynch"
+- Tagline: "Mississippi Singer-Songwriter • Ready Records"
+- Brand colors (amber/black theme from site)
+
+#### `/public/og-image-square.jpg` (1080x1080px)
+Square version for Instagram stories and certain platforms.
+
+### 3. Current Fallback Images
+The implementation currently uses existing images:
+- Primary: `/noah-portrait.jpeg`
+- Secondary: `/noah-studio.jpeg`
 
 ## 🧪 Testing Your OpenGraph Setup
 
 ### Facebook Sharing Debugger
 1. Visit: https://developers.facebook.com/tools/debug/
-2. Enter your URL
-3. Click "Debug" to see how Facebook will display your link
+2. Enter: `https://www.noahlynch.com`
+3. Click "Debug" to see how Facebook displays the link
 
 ### Twitter Card Validator
 1. Visit: https://cards-dev.twitter.com/validator
-2. Enter your URL
-3. Preview how Twitter will display your card
+2. Enter: `https://www.noahlynch.com`
+3. Preview how Twitter displays the card
 
 ### LinkedIn Post Inspector
 1. Visit: https://www.linkedin.com/post-inspector/
-2. Enter your URL
+2. Enter: `https://www.noahlynch.com`
 3. See LinkedIn's preview
 
 ### General Preview Tools
@@ -121,26 +135,27 @@ Replace `https://noahlynchmusic.com` with the actual domain in:
 
 ## 🎨 Image Design Tips
 
-### OpenGraph Image Best Practices:
-1. **Bold, readable text** - looks good at small sizes
-2. **High contrast** - ensure text is visible
-3. **Consistent branding** - use Noah's brand colors
-4. **Safe area** - keep important content in center 80%
-5. **Mobile-friendly** - readable on small screens
+### OpenGraph Image Best Practices for Noah:
+1. **Feature "Honest" album artwork** - his latest release
+2. **Mississippi roots** - incorporate his Southern heritage
+3. **Ready Records branding** - his record label
+4. **Blues/Neo-Rock aesthetic** - match his musical style
+5. **Professional musician image** - guitar, studio setting
 
-### Suggested Tools:
-- **Canva** - Templates for social media
-- **Figma** - Professional design tool
-- **Photoshop** - Advanced editing
-- **GIMP** - Free alternative
+### Suggested Content Elements:
+- Noah's portrait with guitar
+- "Honest" album cover
+- "Mississippi Singer-Songwriter" tagline
+- Ready Records logo
+- Website URL: www.noahlynch.com
 
 ## 📊 Expected Results
 
-When properly implemented, sharing Noah's site will show:
-- **Professional preview cards** on all platforms
-- **Consistent branding** across social media
-- **Higher click-through rates** from social shares
-- **Better engagement** with rich media previews
-- **Enhanced SEO** with structured data
+When Venus and others share Noah's site:
+- **Professional music artist presentation** across all platforms
+- **"Honest" album promotion** with proper music metadata
+- **Ready Records brand visibility** in structured data
+- **Mississippi artist identity** highlighted in descriptions
+- **Enhanced music discovery** through proper schema markup
 
-This setup ensures Venus and others see a polished, professional representation of Noah's brand when sharing his music across any social platform.
+This setup ensures maximum impact when Noah's music is shared, driving engagement and professional presentation across all social media platforms.
