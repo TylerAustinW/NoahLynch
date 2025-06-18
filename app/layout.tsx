@@ -83,7 +83,7 @@ export const metadata: Metadata = {
     },
   },
 
-  // Additional structured data
+  // Additional structured data - fixed duplicate properties
   other: {
     // Discord embeds - using amber color from site design
     "theme-color": "#d97706",
@@ -91,19 +91,16 @@ export const metadata: Metadata = {
     // General social media
     "author": "Noah Lynch",
     "article:author": "Noah Lynch",
-    "music:musician": "Noah Lynch",
-    "music:creator": "Noah Lynch",
     
     // Apple specific
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
     "apple-mobile-web-app-title": "Noah Lynch",
 
-    // Additional OpenGraph properties for music artist
-    "og:type": "website",
+    // Music-specific properties
+    "music:musician": "Noah Lynch",
     "music:album": "Honest",
     "music:release_date": "2025-05-09",
-    "music:musician": "Noah Lynch",
   },
 };
 
