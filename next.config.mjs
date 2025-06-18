@@ -11,6 +11,16 @@ const nextConfig = {
         hostname: "i.scdn.co",
         pathname: "**",
       },
+      {
+        protocol: "https",
+        hostname: "img.youtube.com",
+        pathname: "**",
+      },
+      {
+        protocol: "https",
+        hostname: "i.ytimg.com",
+        pathname: "**",
+      },
     ],
   },
   headers: async () => [
@@ -21,12 +31,12 @@ const nextConfig = {
           key: "Content-Security-Policy",
           value: `
             default-src 'self';
-            script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.vercel.com;
+            script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.vercel.com https://vercel.live;
             style-src 'self' 'unsafe-inline';
-            img-src 'self' blob: data: https://i.scdn.co;
+            img-src 'self' blob: data: https://i.scdn.co https://img.youtube.com https://i.ytimg.com;
             font-src 'self';
-            connect-src 'self' https://api.spotify.com;
-            frame-src 'self' https://*.creator-spring.com;
+            connect-src 'self' https://api.spotify.com https://vercel.live;
+            frame-src 'self' https://*.creator-spring.com https://www.youtube.com https://youtube.com https://vercel.live https://vercel.com;
             object-src 'none';
             base-uri 'self';
             form-action 'self';
@@ -55,7 +65,7 @@ const nextConfig = {
         },
         {
           key: "Permissions-Policy",
-          value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+          value: "camera=(), microphone=(), geolocation=()",
         },
       ],
     },

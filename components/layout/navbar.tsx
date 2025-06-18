@@ -104,15 +104,15 @@ export default function Navbar() {
       </motion.div>
       <motion.div className="relative">
         <Link
-          href="#tour"
+          href="#studio-sessions"
           className={baseLinkClasses}
           onClick={(e) => {
-            handleNavClick(e, 'tour');
+            handleNavClick(e, 'studio-sessions');
             closeMenu();
           }}
         >
           <motion.span className={dynamicTextClasses} transition={{ duration: 0.3, ease: 'easeInOut' }}>
-            TOUR
+            SESSIONS
           </motion.span>
         </Link>
       </motion.div>
