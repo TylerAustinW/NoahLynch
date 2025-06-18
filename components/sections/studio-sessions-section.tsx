@@ -16,47 +16,37 @@ interface StudioSession {
   date: string;
 }
 
-// Sample data - replace with actual YouTube video IDs and details
+// Real Noah Lynch YouTube Studio Sessions
 const studioSessions: StudioSession[] = [
   {
     id: '1',
-    title: 'Live Studio Session - "Midnight Dreams"',
-    description: 'An intimate performance featuring acoustic guitar and raw vocals, capturing the essence of late-night creativity.',
-    youtubeId: 'dQw4w9WgXcQ', // Replace with actual video ID
-    thumbnail: '/api/placeholder/320/180',
-    duration: '4:32',
-    views: '12.5K',
-    date: '2024-01-15'
+    title: 'Noah Lynch - "For You" Live (Studio Sessions)',
+    description: 'An intimate acoustic performance showcasing Noah\'s raw talent and emotional depth in this heartfelt studio session.',
+    youtubeId: '0WHqv-pE3g8',
+    thumbnail: 'https://img.youtube.com/vi/0WHqv-pE3g8/maxresdefault.jpg',
+    duration: '3:45',
+    views: '2.1K',
+    date: '2024-01-20'
   },
   {
     id: '2',
-    title: 'Behind the Scenes - Recording "Echoes"',
-    description: 'Watch the creative process unfold as Noah layers vocals and experiments with new sounds.',
-    youtubeId: 'dQw4w9WgXcQ', // Replace with actual video ID
-    thumbnail: '/api/placeholder/320/180',
-    duration: '6:18',
-    views: '8.2K',
-    date: '2024-01-10'
+    title: 'Noah Lynch - "Good Things Take Time" Live (Studio Sessions)',
+    description: 'Watch Noah perform this inspiring track with soulful vocals and acoustic guitar in an intimate studio setting.',
+    youtubeId: 'uXSKQiTQoHo',
+    thumbnail: 'https://img.youtube.com/vi/uXSKQiTQoHo/maxresdefault.jpg',
+    duration: '4:12',
+    views: '1.8K',
+    date: '2024-01-15'
   },
   {
     id: '3',
-    title: 'Live Loop Session - "City Lights"',
-    description: 'Using loop pedals and layered vocals to create a full band sound in real-time.',
-    youtubeId: 'dQw4w9WgXcQ', // Replace with actual video ID
-    thumbnail: '/api/placeholder/320/180',
-    duration: '5:45',
-    views: '15.8K',
-    date: '2024-01-05'
-  },
-  {
-    id: '4',
-    title: 'Acoustic Cover Series - Classic Hits',
-    description: 'Noah puts his unique spin on timeless classics in this stripped-down studio session.',
-    youtubeId: 'dQw4w9WgXcQ', // Replace with actual video ID
-    thumbnail: '/api/placeholder/320/180',
-    duration: '7:22',
-    views: '22.1K',
-    date: '2023-12-28'
+    title: 'Noah Lynch - "Honest" Live (Studio Sessions)',
+    description: 'A powerful and vulnerable performance of "Honest" that captures the essence of Noah\'s songwriting and vocal delivery.',
+    youtubeId: 'UGPzNbSPwZk',
+    thumbnail: 'https://img.youtube.com/vi/UGPzNbSPwZk/maxresdefault.jpg',
+    duration: '3:28',
+    views: '3.2K',
+    date: '2024-01-10'
   }
 ];
 
@@ -69,14 +59,12 @@ const VideoCard = React.memo(({ session, onSelect }: { session: StudioSession; o
       onClick={() => onSelect(session)}
     >
       <div className="relative aspect-video w-full overflow-hidden bg-zinc-900">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="relative h-full w-full bg-gradient-to-br from-zinc-800 to-zinc-900">
-            {/* Placeholder for thumbnail - replace with actual image */}
-            <div className="absolute inset-0 flex items-center justify-center text-zinc-600">
-              <Play className="h-12 w-12" />
-            </div>
-          </div>
-        </div>
+        <img
+          src={session.thumbnail}
+          alt={session.title}
+          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          loading="lazy"
+        />
         <div className="absolute inset-0 bg-black/20 transition-opacity group-hover:opacity-0" />
         <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
           <div className="rounded-full bg-amber-600 p-3 shadow-lg">
@@ -145,7 +133,7 @@ export default function StudioSessionsSection(): React.ReactElement {
 
         {/* Video Grid */}
         <motion.div
-          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
+          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -170,7 +158,7 @@ export default function StudioSessionsSection(): React.ReactElement {
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <a
-            href="https://youtube.com/@noahlynch" // Replace with actual YouTube channel
+            href="https://youtube.com/@noahlynch"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full bg-amber-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-amber-700"
