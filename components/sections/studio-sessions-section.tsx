@@ -55,7 +55,7 @@ const YouTubeThumbnail = ({ videoId, title }: { videoId: string; title: string }
   return (
     <img
       src={thumbnailSrc}
-      alt={title}
+      alt={`Video thumbnail for ${title}`}
       className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
       loading="lazy"
       onError={handleImageError}
@@ -65,21 +65,23 @@ const YouTubeThumbnail = ({ videoId, title }: { videoId: string; title: string }
 
 const VideoCard = React.memo(({ session, onSelect }: { session: StudioSession; onSelect: (session: StudioSession) => void }) => {
   return (
-    <motion.div
-      className="group relative cursor-pointer overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950/50 backdrop-blur-sm transition-all hover:border-amber-900/50"
+    <motion.button
+      className="group relative w-full cursor-pointer overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950/50 backdrop-blur-sm text-left transition-all hover:border-amber-900/50 focus:border-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-600/20"
       whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.2 }}
       onClick={() => onSelect(session)}
+      aria-label={`Play video: ${session.title}`}
+      type="button"
     >
       <div className="relative aspect-video w-full overflow-hidden bg-zinc-900">
         <YouTubeThumbnail videoId={session.youtubeId} title={session.title} />
         <div className="absolute inset-0 bg-black/20 transition-opacity group-hover:opacity-0" />
         <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
-          <div className="rounded-full bg-amber-600 p-3 shadow-lg">
+          <div className="rounded-full bg-amber-600 p-3 shadow-lg" aria-hidden="true">
             <Play className="h-6 w-6 text-white" fill="white" />
           </div>
         </div>
-        <div className="absolute bottom-2 right-2 rounded bg-black/80 px-2 py-1 text-xs text-white">
+        <div className="absolute bottom-2 right-2 rounded bg-black/80 px-2 py-1 text-xs text-white" aria-label={`Duration: ${session.duration}`}>
           {session.duration}
         </div>
       </div>
@@ -92,7 +94,7 @@ const VideoCard = React.memo(({ session, onSelect }: { session: StudioSession; o
           {session.description}
         </p>
       </div>
-    </motion.div>
+    </motion.button>
   );
 });
 VideoCard.displayName = 'VideoCard';
@@ -106,10 +108,11 @@ export default function StudioSessionsSection(): React.ReactElement {
       ref={ref}
       id="studio-sessions"
       className="relative overflow-hidden bg-gradient-to-b from-black via-zinc-950 to-black px-4 py-16 md:px-6 md:py-20"
+      aria-labelledby="studio-sessions-heading"
     >
       {/* Background effects */}
-      <div className="absolute inset-0 bg-[url('/texture.png')] bg-repeat opacity-5"></div>
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 bg-[url('/texture.png')] bg-repeat opacity-5" aria-hidden="true"></div>
+      <div className="absolute inset-0" aria-hidden="true">
         <div className="absolute top-1/2 left-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-900/10 blur-3xl"></div>
       </div>
 
@@ -120,7 +123,7 @@ export default function StudioSessionsSection(): React.ReactElement {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="mb-4 text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+          <h2 id="studio-sessions-heading" className="mb-4 text-3xl font-bold text-white md:text-4xl lg:text-5xl">
             Live Studio Sessions
           </h2>
           <p className="mx-auto max-w-2xl text-base text-zinc-400 md:text-lg">
@@ -135,6 +138,8 @@ export default function StudioSessionsSection(): React.ReactElement {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
+          role="group"
+          aria-label="Studio session videos"
         >
           {studioSessions.map((session, index) => (
             <motion.div
@@ -159,9 +164,10 @@ export default function StudioSessionsSection(): React.ReactElement {
             href="https://youtube.com/@noahlynch"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-amber-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-amber-700"
+            className="inline-flex items-center gap-2 rounded-full bg-amber-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-600/20"
+            aria-label="Visit Noah Lynch's YouTube channel to watch more studio sessions"
           >
-            <Play className="h-4 w-4" />
+            <Play className="h-4 w-4" aria-hidden="true" />
             Watch More on YouTube
           </a>
         </motion.div>
@@ -175,6 +181,9 @@ export default function StudioSessionsSection(): React.ReactElement {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={() => setSelectedVideo(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="video-modal-title"
         >
           <motion.div
             className="relative w-full max-w-4xl"
@@ -195,11 +204,16 @@ export default function StudioSessionsSection(): React.ReactElement {
               ></iframe>
             </div>
             <button
-              className="absolute -top-10 right-0 text-white hover:text-amber-400"
+              className="absolute -top-10 right-0 text-white hover:text-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-600/20 rounded"
               onClick={() => setSelectedVideo(null)}
+              aria-label="Close video player"
+              type="button"
             >
               Close
             </button>
+            <h3 id="video-modal-title" className="sr-only">
+              {selectedVideo.title}
+            </h3>
           </motion.div>
         </motion.div>
       )}
