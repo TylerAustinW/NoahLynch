@@ -60,11 +60,11 @@ export const metadata: Metadata = {
     ],
   },
 
-  // Twitter/X Cards - Update with actual handles when found in source
+  // Twitter/X Cards with actual handles
   twitter: {
     card: "summary_large_image",
-    site: "@noahlynchmusic", // Will update with actual handle from source
-    creator: "@noahlynchmusic", // Will update with actual handle from source
+    site: "@NoahLynch17",
+    creator: "@NoahLynch17",
     title: "Noah Lynch - Singer-Songwriter & Musician",
     description: siteDescription,
     images: ["/noah-portrait.jpeg"],
@@ -169,8 +169,9 @@ export default function RootLayout({
                 name: "Mississippi, USA"
               },
               sameAs: [
-                "https://youtube.com/@noahlynch", // Confirmed from Studio Sessions
-                // Note: Add actual social media handles from website source
+                "https://youtube.com/@noahlynch",
+                "https://twitter.com/NoahLynch17",
+                "https://instagram.com/NoahLynchMusic",
               ],
               jobTitle: "Singer-Songwriter",
               worksFor: {
