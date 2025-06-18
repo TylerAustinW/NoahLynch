@@ -105,8 +105,8 @@ const secondaryButtons: CallToActionButton[] = [
 export default function EnhancedHero() {
   const [imageLoaded, setImageLoaded] = React.useState(false);
   const [imageError, setImageError] = React.useState(false);
-  const [heroRef, isInView] = useAnimateOnInView({ threshold: 0.2 });
-  const [lazyLoadRef, shouldLoadImage] = useLazyLoad();
+  const [heroRef, isInView] = useAnimateOnInView<HTMLElement>({ threshold: 0.2 });
+  const [lazyLoadRef, shouldLoadImage] = useLazyLoad<HTMLDivElement>();
   
   const monitor = PerformanceMonitor.getInstance();
   const { announce } = useLiveRegion();
