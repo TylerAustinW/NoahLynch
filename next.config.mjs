@@ -31,11 +31,11 @@ const nextConfig = {
           key: "Content-Security-Policy",
           value: `
             default-src 'self';
-            script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.vercel.com;
+            script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.vercel.com https://vercel.live;
             style-src 'self' 'unsafe-inline';
             img-src 'self' blob: data: https://i.scdn.co https://img.youtube.com https://i.ytimg.com;
             font-src 'self';
-            connect-src 'self' https://api.spotify.com;
+            connect-src 'self' https://api.spotify.com https://vercel.live;
             frame-src 'self' https://*.creator-spring.com https://www.youtube.com https://youtube.com;
             object-src 'none';
             base-uri 'self';
