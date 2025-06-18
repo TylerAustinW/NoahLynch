@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { Calendar, MapPin, Clock, Ticket, Sparkles } from 'lucide-react';
 import { tourDatesData } from '@/lib/tour-dates-data';
-import UpcomingShowNotification from '@/components/ui/upcoming-show-notification';
 
 export default function TourDates() {
   const formatDate = (dateString: string) => {
@@ -26,7 +25,6 @@ export default function TourDates() {
   // Separate upcoming and past shows
   const upcomingShows = tourDatesData.filter(show => show.upcoming === true);
   const pastShows = tourDatesData.filter(show => show.upcoming !== true);
-  const nextShow = upcomingShows[0]; // Get the first upcoming show
 
   return (
     <section className="min-h-screen bg-gradient-to-b from-black via-zinc-900 to-black py-16 px-6 md:px-12">
@@ -46,18 +44,6 @@ export default function TourDates() {
               : "Take a look at where Noah Lynch has performed across the country."}
           </p>
         </motion.div>
-
-        {/* Hero section for next upcoming show */}
-        {nextShow && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="mb-16"
-          >
-            <UpcomingShowNotification show={nextShow} variant="card" />
-          </motion.div>
-        )}
 
         {/* Upcoming Shows Section */}
         {upcomingShows.length > 0 && (
