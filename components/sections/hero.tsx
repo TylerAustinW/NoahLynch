@@ -2,7 +2,7 @@
 
 import ErrorBoundary from "@/components/ui/error-boundary";
 import { useInView } from "@/hooks/use-in-view";
-import { tourDatesData, TourDate } from "@/lib/tour-dates-data";
+import { tourDatesData } from "@/lib/tour-dates-data";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Heart, Calendar, X, MapPin, Clock } from "lucide-react";
 import { Patrick_Hand } from "next/font/google";

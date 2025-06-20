@@ -145,6 +145,11 @@ export default function StudioSessionsSection(): React.ReactElement {
       const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
       setCanScrollLeft(scrollLeft > 0);
       setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+      
+      // Update current index for mobile indicators
+      const cardWidth = 320; // Card width + gap
+      const newIndex = Math.round(scrollLeft / cardWidth);
+      setCurrentIndex(Math.min(newIndex, studioSessions.length - 1));
     }
   };
 
