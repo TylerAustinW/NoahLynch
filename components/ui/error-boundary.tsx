@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { Component, ErrorInfo, ReactNode } from 'react';
+import { Component, ErrorInfo, ReactNode } from "react";
 
-interface ErrorBoundaryProps {        
+interface ErrorBoundaryProps {
   children: ReactNode;
   fallback?: ReactNode;
 }
@@ -29,7 +29,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
-    console.error('Error caught by ErrorBoundary:', error, errorInfo);
+    console.error("Error caught by ErrorBoundary:", error, errorInfo);
   }
 
   render(): ReactNode {
@@ -42,7 +42,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
             </h2>
             <p className="text-muted-foreground mb-4 text-sm">
               {this.state.error?.message ||
-                'An error occurred while rendering this component'}
+                "An error occurred while rendering this component"}
             </p>
             <button
               onClick={() => this.setState({ hasError: false, error: null })}

@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import SocialSidebar from "@/components/layout/social-sidebar";
+import ScrollToTop from "@/components/layout/scroll-to-top";
 
 const inter = Inter({ subsets: ["latin"] });
 
 const siteUrl = "https://www.noahlynch.com";
 const siteName = "Noah Lynch Music";
-const siteDescription = "Experience the raw talent and soulful music of Noah Lynch. Watch exclusive live studio sessions, explore his latest releases including 'Honest', and discover the Mississippi-born musician's authentic approach to songwriting.";
+const siteDescription =
+  "Experience the raw talent and soulful music of Noah Lynch. Watch exclusive live studio sessions, explore his latest releases including 'Honest', and discover the Mississippi-born musician's authentic approach to songwriting.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -16,25 +19,24 @@ export const metadata: Metadata = {
   },
   description: siteDescription,
   keywords: [
-    "Noah Lynch", 
-    "musician", 
-    "singer-songwriter", 
+    "Noah Lynch",
+    "musician",
+    "singer-songwriter",
     "Mississippi musician",
-    "blues", 
+    "blues",
     "neo-rock",
-    "acoustic music", 
-    "indie artist", 
+    "acoustic music",
+    "indie artist",
     "studio sessions",
     "Honest album",
     "Ready Records",
     "John Mayer inspired",
-    "Stevie Ray Vaughan"
+    "Stevie Ray Vaughan",
   ],
   authors: [{ name: "Noah Lynch" }],
   creator: "Noah Lynch",
   publisher: "Ready Records",
-  
-  // Open Graph for Facebook, LinkedIn, Discord, Slack
+
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -60,7 +62,6 @@ export const metadata: Metadata = {
     ],
   },
 
-  // Twitter/X Cards with actual handles
   twitter: {
     card: "summary_large_image",
     site: "@NoahLynch17",
@@ -70,7 +71,6 @@ export const metadata: Metadata = {
     images: ["/noah-portrait.jpeg"],
   },
 
-  // Additional meta for better SEO and social sharing
   robots: {
     index: true,
     follow: true,
@@ -83,21 +83,16 @@ export const metadata: Metadata = {
     },
   },
 
-  // Additional structured data - updated with modern standards
   other: {
-    // Discord embeds - using amber color from site design
     "theme-color": "#d97706",
-    
-    // General social media
-    "author": "Noah Lynch",
+
+    author: "Noah Lynch",
     "article:author": "Noah Lynch",
-    
-    // Modern mobile web app tags (updated from deprecated Apple-specific)
+
     "mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
     "apple-mobile-web-app-title": "Noah Lynch",
 
-    // Music-specific properties
     "music:musician": "Noah Lynch",
     "music:album": "Honest",
     "music:release_date": "2025-05-09",
@@ -112,41 +107,46 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Additional meta tags for enhanced social sharing */}
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
         <meta name="format-detection" content="telephone=no" />
         <meta name="msapplication-TileColor" content="#000000" />
-        
-        {/* LinkedIn specific (uses OpenGraph) */}
+
         <meta property="og:type" content="website" />
-        
-        {/* Discord embed color */}
+
         <meta name="theme-color" content="#d97706" />
-        
-        {/* Canonical URL */}
+
         <link rel="canonical" href={siteUrl} />
-        
-        {/* Favicon and app icons */}
+
         <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/noah-portrait.jpeg" />
-        
-        {/* Open Graph fallback meta tags for better compatibility */}
-        <meta property="og:image:secure_url" content={`${siteUrl}/noah-portrait.jpeg`} />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/noah-portrait.jpeg"
+        />
+
+        <meta
+          property="og:image:secure_url"
+          content={`${siteUrl}/noah-portrait.jpeg`}
+        />
         <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:image:width" content="800" />
         <meta property="og:image:height" content="600" />
-        
-        {/* Twitter specific fallbacks */}
-        <meta name="twitter:image:alt" content="Noah Lynch - Mississippi-born Singer-Songwriter" />
-        
-        {/* Music-specific meta tags */}
+
+        <meta
+          name="twitter:image:alt"
+          content="Noah Lynch - Mississippi-born Singer-Songwriter"
+        />
+
         <meta property="music:creator" content="Noah Lynch" />
         <meta property="music:album" content="Honest" />
         <meta property="music:release_date" content="2025-05-09" />
       </head>
       <body className={inter.className}>
+        <SocialSidebar />
+        <ScrollToTop />
         {children}
-        
-        {/* JSON-LD structured data for enhanced search results */}
+
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -155,12 +155,13 @@ export default function RootLayout({
               "@type": "Person",
               name: "Noah Lynch",
               alternateName: ["Noah Lynch Music", "Noah Lynch Artist"],
-              description: "Mississippi-born singer-songwriter blending blues and neo-rock, inspired by John Mayer and Stevie Ray Vaughan",
+              description:
+                "Mississippi-born singer-songwriter blending blues and neo-rock, inspired by John Mayer and Stevie Ray Vaughan",
               url: siteUrl,
               image: `${siteUrl}/noah-portrait.jpeg`,
               birthPlace: {
                 "@type": "Place",
-                name: "Mississippi, USA"
+                name: "Mississippi, USA",
               },
               sameAs: [
                 "https://youtube.com/@noahlynch",
@@ -186,10 +187,10 @@ export default function RootLayout({
                     "@type": "MusicAlbum",
                     name: "Honest",
                     datePublished: "2025-05-09",
-                    recordLabel: "Ready Records"
-                  }
-                ]
-              }
+                    recordLabel: "Ready Records",
+                  },
+                ],
+              },
             }),
           }}
         />

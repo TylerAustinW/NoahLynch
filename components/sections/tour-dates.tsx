@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { Calendar, MapPin, Clock, Ticket, Sparkles } from 'lucide-react';
-import { tourDatesData } from '@/lib/tour-dates-data';
+import { motion } from "framer-motion";
+import { Calendar, MapPin, Clock, Ticket, Sparkles } from "lucide-react";
+import { tourDatesData } from "@/lib/tour-dates-data";
 
 export default function TourDates() {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
-      month: 'long',
-      day: 'numeric',
-      year: 'numeric'
+    return date.toLocaleDateString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
     });
   };
 
@@ -27,7 +27,7 @@ export default function TourDates() {
   const pastShows = tourDatesData.filter(show => show.upcoming !== true);
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-black via-zinc-900 to-black py-16 px-6 md:px-12">
+    <section className="min-h-screen bg-zinc-950 py-16 px-6 md:px-12">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -39,7 +39,7 @@ export default function TourDates() {
             TOUR DATES
           </h1>
           <p className="text-lg text-zinc-400 max-w-2xl mx-auto">
-            {upcomingShows.length > 0 
+            {upcomingShows.length > 0
               ? "Don't miss Noah Lynch live. Check out upcoming shows and past performances."
               : "Take a look at where Noah Lynch has performed across the country."}
           </p>
@@ -80,13 +80,13 @@ export default function TourDates() {
                             </span>
                           </div>
                         </div>
-                        
+
                         {tour.description && (
                           <p className="text-zinc-400 text-sm md:text-base mb-2">
                             {tour.description}
                           </p>
                         )}
-                        
+
                         <div className="flex flex-wrap items-center gap-4 text-sm text-zinc-400">
                           <div className="flex items-center gap-1">
                             <Calendar className="w-4 h-4" />
@@ -99,13 +99,13 @@ export default function TourDates() {
                             </div>
                           )}
                           <span className="text-amber-500 font-medium">
-                            {getDaysUntilShow(tour.date) > 0 
+                            {getDaysUntilShow(tour.date) > 0
                               ? `In ${getDaysUntilShow(tour.date)} days`
-                              : 'Today!'}
+                              : "Today!"}
                           </span>
                         </div>
                       </div>
-                      
+
                       <div className="flex items-center gap-2">
                         {tour.soldOut ? (
                           <span className="text-red-500 text-sm font-medium bg-red-900/20 px-4 py-2 rounded-full">
@@ -129,7 +129,7 @@ export default function TourDates() {
                       </div>
                     </div>
                   </div>
-                  
+
                   {/* Decorative gradient on hover */}
                   <div className="absolute inset-0 bg-gradient-to-r from-amber-500/0 to-amber-500/0 group-hover:from-amber-500/10 group-hover:to-transparent transition-all duration-500 pointer-events-none" />
                 </motion.div>
@@ -142,10 +142,13 @@ export default function TourDates() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: upcomingShows.length > 0 ? 0.5 : 0.2, duration: 0.6 }}
+          transition={{
+            delay: upcomingShows.length > 0 ? 0.5 : 0.2,
+            duration: 0.6,
+          }}
         >
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
-            {upcomingShows.length > 0 ? 'Past Shows' : 'Previous Tour Dates'}
+            {upcomingShows.length > 0 ? "Past Shows" : "Previous Tour Dates"}
           </h2>
           <div className="space-y-4">
             {pastShows.map((tour, index) => (
@@ -170,13 +173,13 @@ export default function TourDates() {
                           </span>
                         </div>
                       </div>
-                      
+
                       {tour.description && (
                         <p className="text-zinc-400 text-sm md:text-base mb-2">
                           {tour.description}
                         </p>
                       )}
-                      
+
                       <div className="flex flex-wrap items-center gap-4 text-sm text-zinc-500">
                         <div className="flex items-center gap-1">
                           <Calendar className="w-4 h-4" />
@@ -190,7 +193,7 @@ export default function TourDates() {
                         )}
                       </div>
                     </div>
-                    
+
                     <div className="flex items-center">
                       <span className="text-zinc-600 text-sm font-medium bg-zinc-800/50 px-4 py-2 rounded-full">
                         Past Event
@@ -198,7 +201,7 @@ export default function TourDates() {
                     </div>
                   </div>
                 </div>
-                
+
                 {/* Decorative gradient on hover */}
                 <div className="absolute inset-0 bg-gradient-to-r from-amber-500/0 to-amber-500/0 group-hover:from-amber-500/5 group-hover:to-transparent transition-all duration-500 pointer-events-none" />
               </motion.div>

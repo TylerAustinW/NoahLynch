@@ -86,7 +86,7 @@ export default function TourSection(): React.ReactElement {
     <section
       id="tour"
       ref={ref}
-      className="relative overflow-hidden px-6 pt-2 pb-8 md:px-8 md:pt-6 md:pb-16"
+      className="relative overflow-hidden bg-zinc-950 px-6 pt-2 pb-8 md:px-8 md:pt-6 md:pb-16"
     >
       <div className="pointer-events-none absolute inset-0 bg-[url('/texture.png')] bg-repeat opacity-10 md:opacity-10"></div>
 
@@ -105,7 +105,7 @@ export default function TourSection(): React.ReactElement {
           </h2>
         </div>
         <div className="mb-8">
-          {tourDates.map((tour) => (
+          {tourDates.map(tour => (
             <motion.div
               key={tour.id}
               variants={tourItemVariants}

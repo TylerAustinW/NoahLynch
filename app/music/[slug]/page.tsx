@@ -83,10 +83,10 @@ export default async function MusicReleasePage({
 
   const PlatformButtons = (
     <>
-      <h2 className="mb-2 md:mb-4 text-base md:text-xl font-semibold text-center md:text-left">
+      <h3 className="mb-4 text-xl font-semibold text-center md:text-left text-white">
         Listen Now:
-      </h2>
-      <div className="grid grid-cols-3 gap-2 md:gap-4 justify-center md:justify-start">
+      </h3>
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 justify-center md:justify-start">
         {release.platforms.map((platform: Platform) => {
           const buttonStyle: React.CSSProperties = {};
           const iconStyle: React.CSSProperties = {};
@@ -104,7 +104,7 @@ export default async function MusicReleasePage({
               href={platform.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 rounded-lg border border-zinc-700/50 bg-zinc-800/70 px-2 py-1.5 sm:px-4 sm:py-2 text-zinc-300 transition-all hover:bg-zinc-700/90 hover:text-white group"
+              className="flex flex-col sm:flex-row items-center justify-center gap-2 rounded-full border border-zinc-700/50 bg-zinc-800/70 px-4 py-3 text-zinc-300 transition-all duration-300 hover:bg-zinc-700/90 hover:text-white hover:border-amber-500/50 group min-h-[48px]"
               style={platform.bgColor ? buttonStyle : {}}
               aria-label={`Listen on ${platform.name}`}
             >
@@ -115,20 +115,12 @@ export default async function MusicReleasePage({
                 {platform.icon}
               </div>
               <span
-                className="text-xs sm:text-sm font-medium hidden sm:inline"
+                className="text-sm font-medium"
                 style={
                   platform.bgColor ? { color: platform.color || "#FFFFFF" } : {}
                 }
               >
                 {platform.name}
-              </span>
-              <span
-                className="text-[10px] sm:hidden"
-                style={
-                  platform.bgColor ? { color: platform.color || "#FFFFFF" } : {}
-                }
-              >
-                {platform.name.split(" ")[0]}
               </span>
             </Link>
           );
@@ -138,27 +130,27 @@ export default async function MusicReleasePage({
   );
 
   const ListenNowLinks = (
-    <div className="w-full border-t border-zinc-700/60 pt-4 md:pt-6">
+    <div className="w-full border-t border-zinc-700/40 pt-6 md:pt-8">
       {isUpcoming && release.linkURL ? (
         <Link
           href={release.linkURL}
           target="_blank"
           rel="noopener noreferrer"
-          className="block w-full rounded-full bg-amber-600 px-6 py-3 text-center font-bold text-black transition-all duration-300 hover:bg-amber-500"
+          className="block w-full rounded-full bg-amber-600 px-7 py-3 text-center font-semibold text-black transition-all duration-300 hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-400/50 min-h-[48px] flex items-center justify-center"
         >
           {release.linkText || "Coming Soon"}
         </Link>
       ) : release.platforms && release.platforms.length > 0 ? (
         PlatformButtons
       ) : (
-        <p className="text-center text-zinc-500">Details coming soon.</p>
+        <p className="text-center text-zinc-400">Details coming soon.</p>
       )}
     </div>
   );
 
   const SpecialThanksContent = (
     <div
-      className={`${patrickHand.className} text-center md:text-lg lg:text-xl leading-relaxed text-amber-100/90`}
+      className={`${patrickHand.className} text-center text-lg lg:text-xl leading-relaxed text-amber-100/90`}
     >
       <p className="text-center font-medium">
         Bringing "Honest" to life has been one of the most meaningful creative
@@ -178,7 +170,7 @@ export default async function MusicReleasePage({
         in me are the foundation of everything I do. Thank you for being my
         home, my muse, and my greatest encouragement.
       </p>
-      <p className="mt-4 text-center">
+      <p className="mt-6 text-center">
         With all my gratitude,
         <br />-{" "}
         <strong>
@@ -199,32 +191,32 @@ export default async function MusicReleasePage({
 
   const SpotlightReviewContent = (
     <div className="relative flex flex-col flex-grow">
-      <div className="absolute -left-4 top-0 opacity-30">
+      <div className="absolute -left-2 top-0 opacity-20">
         <Quote
-          className="h-16 w-16 text-zinc-600/30 rotate-180"
+          className="h-12 w-12 text-zinc-600/30 rotate-180"
           fill="currentColor"
         />
       </div>
 
       <div
-        className={`${patrickHand.className} text-base md:text-lg lg:text-xl tracking-wide leading-relaxed text-amber-100/90 z-10 relative whitespace-pre-wrap`}
+        className={`${patrickHand.className} text-base lg:text-lg tracking-wide leading-relaxed text-amber-100/90 z-10 relative whitespace-pre-wrap pl-4`}
       >
         {spotlightReviewData.content}
       </div>
 
-      <div className="absolute -right-4 bottom-0 opacity-30">
-        <Quote className="h-16 w-16 text-amber-400/30" fill="currentColor" />
+      <div className="absolute -right-2 bottom-4 opacity-20">
+        <Quote className="h-12 w-12 text-amber-400/30" fill="currentColor" />
       </div>
 
-      <div className="mt-auto pt-4 text-right">
-        <p className="text-amber-200 font-semibold text-sm">
+      <div className="mt-auto pt-6 text-right">
+        <p className="text-amber-200 font-semibold">
           {spotlightReviewData.name}
         </p>
-        <div className="flex justify-end">
+        <div className="flex justify-end mt-1">
           {Array.from({ length: spotlightReviewData.rating }).map((_, i) => (
             <Star
               key={i}
-              className="h-3 w-3 md:h-4 md:w-4 text-amber-400"
+              className="h-4 w-4 text-amber-400"
               fill="currentColor"
             />
           ))}
@@ -234,96 +226,125 @@ export default async function MusicReleasePage({
   );
 
   const BackToMusicLink = (
-    <div className="mb-6 md:mb-8 text-center">
+    <div className="mb-8 text-center">
       <Link
         href="/#music"
-        className="text-sm text-zinc-400 transition-colors hover:text-amber-200 duration-300"
+        className="inline-flex items-center gap-2 text-zinc-400 transition-colors hover:text-amber-200 duration-300 font-medium"
       >
-        <ArrowLeft className="h-4 w-4 inline-block mr-1 relative -top-px" />{" "}
+        <ArrowLeft className="h-4 w-4" />
         Back to All Music
       </Link>
     </div>
   );
 
   return (
-    <div className="relative min-h-screen text-white">
-      <div className="absolute inset-0 z-0 overflow-hidden">
+    <div className="relative min-h-screen bg-zinc-950 text-white">
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
         <Image
           src={release.imageURL}
           alt={`${release.title} Background`}
           fill
           sizes="100vw"
-          className="object-cover blur-md brightness-50"
+          className="object-cover opacity-20 blur-sm"
         />
-        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="absolute inset-0 bg-zinc-950/80"></div>
+      </div>
+
+      {/* Texture Overlay */}
+      <div className="pointer-events-none absolute inset-0 bg-[url('/texture.png')] bg-repeat opacity-5" />
+
+      {/* Ambient Light Effects */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -top-1/3 -right-1/4 h-96 w-96 rounded-full bg-amber-500/8 blur-3xl" />
+        <div className="absolute -bottom-1/3 -left-1/4 h-96 w-96 rounded-full bg-orange-500/8 blur-3xl" />
       </div>
 
       <Suspense
         fallback={
-          <div className="h-screen w-full flex items-center justify-center">
-            Loading...
+          <div className="h-screen w-full flex items-center justify-center relative z-10">
+            <div className="text-zinc-400">Loading...</div>
           </div>
         }
       >
-        <div className="relative z-10 px-3 py-12 sm:px-6 lg:px-8 lg:py-20">
-          <div className="mx-auto max-w-5xl">
-            {/* === Restructured Top Section === */}
-            <div className="flex flex-col items-center md:flex-row md:items-start md:gap-10 mb-12">
-              {/* Album Cover - Centered on mobile, left on desktop */}
-              <div className="w-full max-w-sm md:w-2/5 lg:w-1/3 flex-shrink-0 mb-6 md:mb-0">
-                <div className="relative aspect-square w-full overflow-hidden rounded-lg border border-zinc-800/60 shadow-xl">
-                  <Image
-                    src={release.imageURL}
-                    alt={`${release.title} Cover Art`}
-                    fill
-                    priority
-                    sizes="(max-width: 768px) 90vw, (max-width: 1024px) 40vw, 350px"
-                    className="object-cover"
-                  />
-                  <div
-                    className={`absolute top-3 right-3 rounded-full px-3 py-1 text-xs font-semibold ${typeBgColor} ${typeColor} border ${typeBorderColor} backdrop-blur-sm`}
-                  >
-                    {release.type.toUpperCase()}
+        <div className="relative z-10 px-4 py-16 sm:py-20 md:px-6 md:py-24 lg:py-28">
+          <div className="mx-auto max-w-7xl">
+            {BackToMusicLink}
+
+            {/* Header Section */}
+            <div className="mb-12 text-center">
+              <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
+                {release.title}
+              </h1>
+              <p className={`${patrickHand.className} text-xl text-amber-200/80 md:text-2xl`}>
+                "Every song tells a story"
+              </p>
+            </div>
+
+            {/* Main Content Section */}
+            <div className="grid gap-8 lg:grid-cols-2 lg:gap-16 xl:gap-20 mb-12">
+              
+              {/* Left Side - Album Cover & Details */}
+              <div className="space-y-6">
+                <div className="relative mx-auto max-w-md overflow-hidden rounded-2xl border border-zinc-700/50 shadow-2xl">
+                  <div className="relative aspect-square">
+                    <Image
+                      src={release.imageURL}
+                      alt={`${release.title} Cover Art`}
+                      fill
+                      priority
+                      sizes="(max-width: 768px) 90vw, (max-width: 1024px) 50vw, 400px"
+                      className="object-cover"
+                    />
+                    <div
+                      className={`absolute top-4 right-4 rounded-full px-3 py-1.5 text-xs font-semibold ${typeBgColor} ${typeColor} border ${typeBorderColor} backdrop-blur-sm`}
+                    >
+                      {release.type.toUpperCase()}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Release Info */}
+                <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/30 backdrop-blur-sm p-6">
+                  <div className="space-y-3 text-center lg:text-left">
+                    <p className="text-lg text-zinc-300">
+                      Single • {release.year}
+                    </p>
+                    <div className="space-y-2 text-sm text-zinc-400">
+                      <p>
+                        <span className="text-zinc-500">Released by:</span>{" "}
+                        <span className="text-zinc-300">{release.releasedBy}</span>
+                      </p>
+                      <p>
+                        <span className="text-zinc-500">Release date:</span>{" "}
+                        <span className="text-zinc-300">{release.releaseDate}</span>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Song Details - Centered text on mobile, left on desktop */}
-              <div className="flex w-full flex-col text-center md:text-left md:w-3/5 lg:w-2/3">
-                <h1 className="mb-2 text-3xl font-bold md:text-4xl lg:text-5xl">
-                  {release.title}
-                </h1>
-                <p className="mb-3 text-base text-zinc-400">
-                  Single • {release.year}
-                </p>
-                <div className="mb-4 space-y-1 text-xs md:text-sm text-zinc-300">
-                  <p>
-                    <span className="text-zinc-500">Released by:</span>{" "}
-                    {release.releasedBy}
-                  </p>
-                  <p>
-                    <span className="text-zinc-500">Release date:</span>{" "}
-                    {release.releaseDate}
-                  </p>
+              {/* Right Side - Description & Listen Links */}
+              <div className="space-y-6">
+                <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/30 backdrop-blur-sm p-6">
+                  <h2 className="mb-4 text-2xl font-bold text-white">About This Release</h2>
+                  <div className="prose prose-lg prose-invert max-w-none text-zinc-300 leading-relaxed">
+                    {release.description}
+                  </div>
                 </div>
-                <div className="prose prose-sm prose-invert max-w-none text-zinc-300 leading-relaxed mb-6">
-                  {release.description}
-                </div>
+
+                {/* Listen Now Section */}
+                {(!isUpcoming ||
+                  (isUpcoming && release.linkURL) ||
+                  (release.platforms && release.platforms.length > 0)) && (
+                  <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/30 backdrop-blur-sm p-6">
+                    {ListenNowLinks}
+                  </div>
+                )}
               </div>
             </div>
 
-            {/* === Moved Listen Now Section === */}
-            {/* Render ListenNowLinks only if not upcoming OR if upcoming and link exists, avoid redundant checks inside */}
-            {(!isUpcoming ||
-              (isUpcoming && release.linkURL) ||
-              (release.platforms && release.platforms.length > 0)) && (
-              <div className="my-8 md:my-12 px-4 md:px-0">
-                {BackToMusicLink}
-                <div className="mt-4">{ListenNowLinks}</div>
-              </div>
-            )}
-
-            {/* === Conditional sections for Honest song only === */}
+            {/* Conditional sections for Honest song only */}
             {slug === "honest" && (
               <>
                 {/* Mobile Tabbed Interface */}
@@ -332,26 +353,26 @@ export default async function MusicReleasePage({
                   spotlightReviewContent={SpotlightReviewContent}
                 />
 
-                {/* Desktop Two-Column Layout - Added lg:items-start */}
-                <div className="hidden lg:grid lg:grid-cols-2 lg:gap-8 mb-10 lg:items-start">
+                {/* Desktop Two-Column Layout */}
+                <div className="hidden lg:grid lg:grid-cols-2 lg:gap-8">
                   {/* Special Thanks Section */}
-                  <div className="p-6 border border-zinc-700/60 rounded-lg bg-black/30 shadow-lg backdrop-blur-sm flex flex-col">
-                    <h2 className="mb-6 text-2xl font-semibold text-amber-100 text-center">
+                  <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/30 backdrop-blur-sm p-8 flex flex-col">
+                    <h2 className="mb-6 text-3xl font-bold text-amber-200 text-center">
                       Special Thanks
                     </h2>
                     {SpecialThanksContent}
                   </div>
 
                   {/* Spotlight Review Section */}
-                  <div className="p-6 border border-zinc-700/60 rounded-lg bg-black/30 shadow-lg backdrop-blur-sm flex flex-col">
-                    <h2 className="mb-6 text-2xl font-semibold text-amber-100 text-center flex items-center justify-center">
+                  <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/30 backdrop-blur-sm p-8 flex flex-col">
+                    <h2 className="mb-6 text-3xl font-bold text-amber-200 text-center flex items-center justify-center">
                       <Star
-                        className="h-5 w-5 mr-2 text-amber-300"
+                        className="h-6 w-6 mr-2 text-amber-400"
                         fill="currentColor"
                       />
                       <span>Spotlight Review</span>
                       <Star
-                        className="h-5 w-5 ml-2 text-amber-300"
+                        className="h-6 w-6 ml-2 text-amber-400"
                         fill="currentColor"
                       />
                     </h2>

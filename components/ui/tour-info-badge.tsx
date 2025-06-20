@@ -1,20 +1,22 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { Calendar, MapPin } from 'lucide-react';
-import Link from 'next/link';
-import { tourDatesData } from '@/lib/tour-dates-data';
-import { motion } from 'framer-motion';
+import { useState, useEffect } from "react";
+import { Calendar, MapPin } from "lucide-react";
+import Link from "next/link";
+import { tourDatesData } from "@/lib/tour-dates-data";
+import { motion } from "framer-motion";
 
 export default function TourInfoBadge() {
-  const [nextShow, setNextShow] = useState<typeof tourDatesData[0] | null>(null);
+  const [nextShow, setNextShow] = useState<(typeof tourDatesData)[0] | null>(
+    null
+  );
 
   useEffect(() => {
     // Find the next upcoming show
     const upcomingShows = tourDatesData
       .filter(show => show.upcoming === true)
       .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-    
+
     if (upcomingShows.length > 0) {
       setNextShow(upcomingShows[0]);
     }
@@ -22,9 +24,9 @@ export default function TourInfoBadge() {
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric'
+    return date.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
     });
   };
 
@@ -56,7 +58,7 @@ export default function TourInfoBadge() {
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
           <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
         </span>
-        
+
         <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-sm">
           <span className="text-amber-100/90 font-medium">Next Show:</span>
           <div className="flex items-center gap-2 text-amber-200/70">
@@ -64,12 +66,14 @@ export default function TourInfoBadge() {
             <span className="text-zinc-400">•</span>
             <span className="flex items-center gap-1">
               <MapPin className="w-3 h-3" />
-              <span className="hidden sm:inline">{nextShow.city}, {nextShow.state}</span>
+              <span className="hidden sm:inline">
+                {nextShow.city}, {nextShow.state}
+              </span>
               <span className="sm:hidden">{nextShow.city}</span>
             </span>
           </div>
         </div>
-        
+
         {/* Hover effect */}
         <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-500/0 to-amber-500/0 group-hover:from-amber-500/10 group-hover:to-transparent transition-all duration-300" />
       </Link>
