@@ -13,6 +13,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  // New state for scroll direction and navbar visibility
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
     setIsMounted(true);
@@ -32,14 +35,35 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 10;
+      const currentScrollY = window.scrollY;
+      
+      // Update scrolled state for background changes
+      const isScrolled = currentScrollY > 10;
       if (isScrolled !== scrolled) {
         setScrolled(isScrolled);
       }
+
+      // Gusto Advance: Handle navbar visibility based on scroll direction
+      if (currentScrollY < 10) {
+        // Always show navbar at the top of the page
+        setIsVisible(true);
+      } else if (currentScrollY < lastScrollY) {
+        // Scrolling up - show navbar
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down and past threshold - hide navbar
+        // Only hide if not at the very top and mobile menu is closed
+        if (!mobileOpen) {
+          setIsVisible(false);
+        }
+      }
+
+      setLastScrollY(currentScrollY);
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [scrolled]);
+  }, [scrolled, lastScrollY, mobileOpen]);
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
@@ -49,6 +73,13 @@ export default function Navbar() {
     };
     window.addEventListener('keydown', handleEsc);
     return () => window.removeEventListener('keydown', handleEsc);
+  }, [mobileOpen]);
+
+  // Ensure navbar is visible when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      setIsVisible(true);
+    }
   }, [mobileOpen]);
 
   const handleNavClick = (
@@ -132,12 +163,20 @@ export default function Navbar() {
 
   return (
     <>
-      <header
+      <motion.header
         className={cn(
           'fixed top-0 right-0 left-0 z-50 px-6 py-4 transition-all duration-300 md:px-12',
           'md:bg-black/50 md:backdrop-blur-sm',
           scrolled ? 'bg-black/50 backdrop-blur-sm' : 'bg-transparent'
         )}
+        initial={{ y: 0 }}
+        animate={{ 
+          y: isVisible ? 0 : -100,
+          transition: { 
+            duration: 0.3, 
+            ease: 'easeInOut' 
+          }
+        }}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <div className="flex items-center space-x-4">
@@ -166,7 +205,7 @@ export default function Navbar() {
             {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
-      </header>
+      </motion.header>
 
       {isMounted && (
         <AnimatePresence>
