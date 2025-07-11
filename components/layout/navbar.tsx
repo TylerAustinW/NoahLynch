@@ -48,7 +48,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       // Update scrolled state for background changes
       const isScrolled = currentScrollY > 10;
       if (isScrolled !== scrolled) {
@@ -73,8 +73,8 @@ export default function Navbar() {
       setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [scrolled, lastScrollY, mobileOpen]);
 
   useEffect(() => {
@@ -140,6 +140,7 @@ export default function Navbar() {
     { href: "#biography", label: "ABOUT", id: "biography" },
     { href: "#music", label: "MUSIC", id: "music" },
     { href: "#studio-sessions", label: "SESSIONS", id: "studio-sessions" },
+    { href: "/tour-dates", label: "TOUR", id: null },
     { href: "/merch", label: "MERCH", id: null },
   ];
 
@@ -149,18 +150,18 @@ export default function Navbar() {
         className={cn(
           "fixed top-0 right-0 left-0 z-50 py-3 sm:py-4 transition-all duration-300",
           // Mobile: matte black with subtle transparency, Desktop: original styling
-          "bg-black/85 backdrop-blur-sm md:bg-black/50 md:backdrop-blur-sm",
+          "bg-black/50 backdrop-blur-sm md:bg-black/50 md:backdrop-blur-sm",
           scrolled
             ? "opacity-0 pointer-events-none -translate-y-full"
             : "opacity-100 pointer-events-auto translate-y-0"
         )}
         initial={{ y: 0 }}
-        animate={{ 
+        animate={{
           y: isVisible ? 0 : -100,
-          transition: { 
-            duration: 0.3, 
-            ease: 'easeInOut' 
-          }
+          transition: {
+            duration: 0.3,
+            ease: "easeInOut",
+          },
         }}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 md:px-12">
@@ -226,7 +227,7 @@ export default function Navbar() {
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
             onClick={() => setMobileOpen(prev => !prev)}
-            whileTap={prefersReducedMotion ? {} : { scale: 0.90 }}
+            whileTap={prefersReducedMotion ? {} : { scale: 0.9 }}
           >
             <AnimatePresence mode="wait">
               {mobileOpen ? (

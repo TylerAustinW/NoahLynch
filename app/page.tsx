@@ -10,20 +10,20 @@ export default function Home() {
       <Navbar />
       <main>
         <HeroSection />
-        
+
         {/* Subtle Separator */}
         <div className="h-px bg-gradient-to-r from-transparent via-amber-500/20 to-transparent" />
-        
+
         <MusicShowcaseSection />
-        
+
         {/* Subtle Separator */}
         <div className="h-px bg-gradient-to-r from-transparent via-purple-500/20 to-transparent" />
-        
+
         <StudioSessionsSection />
-        
+
         {/* Subtle Separator */}
         <div className="h-px bg-gradient-to-r from-transparent via-amber-500/20 to-transparent" />
-        
+
         <BiographySection />
       </main>
     </div>

@@ -276,14 +276,15 @@ export default async function MusicReleasePage({
               <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
                 {release.title}
               </h1>
-              <p className={`${patrickHand.className} text-xl text-amber-200/80 md:text-2xl`}>
+              <p
+                className={`${patrickHand.className} text-xl text-amber-200/80 md:text-2xl`}
+              >
                 "Every song tells a story"
               </p>
             </div>
 
             {/* Main Content Section */}
             <div className="grid gap-8 lg:grid-cols-2 lg:gap-16 xl:gap-20 mb-12">
-              
               {/* Left Side - Album Cover & Details */}
               <div className="space-y-6">
                 <div className="relative mx-auto max-w-md overflow-hidden rounded-2xl border border-zinc-700/50 shadow-2xl">
@@ -313,11 +314,15 @@ export default async function MusicReleasePage({
                     <div className="space-y-2 text-sm text-zinc-400">
                       <p>
                         <span className="text-zinc-500">Released by:</span>{" "}
-                        <span className="text-zinc-300">{release.releasedBy}</span>
+                        <span className="text-zinc-300">
+                          {release.releasedBy}
+                        </span>
                       </p>
                       <p>
                         <span className="text-zinc-500">Release date:</span>{" "}
-                        <span className="text-zinc-300">{release.releaseDate}</span>
+                        <span className="text-zinc-300">
+                          {release.releaseDate}
+                        </span>
                       </p>
                     </div>
                   </div>
@@ -327,7 +332,9 @@ export default async function MusicReleasePage({
               {/* Right Side - Description & Listen Links */}
               <div className="space-y-6">
                 <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/30 backdrop-blur-sm p-6">
-                  <h2 className="mb-4 text-2xl font-bold text-white">About This Release</h2>
+                  <h2 className="mb-4 text-2xl font-bold text-white">
+                    About This Release
+                  </h2>
                   <div className="prose prose-lg prose-invert max-w-none text-zinc-300 leading-relaxed">
                     {release.description}
                   </div>

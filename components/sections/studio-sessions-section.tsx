@@ -19,7 +19,7 @@ const studioSessions: StudioSession[] = [
     title: 'Noah Lynch - "For You" Live (Studio Sessions)',
     description:
       "An intimate acoustic performance showcasing Noah's raw talent and emotional depth in this heartfelt studio session.",
-    youtubeId: "0WHqv-pE3g8", 
+    youtubeId: "0WHqv-pE3g8",
   },
   {
     id: "2",
@@ -115,7 +115,6 @@ const VideoCard = React.memo(
               <Play className="h-6 w-6 text-white" fill="white" />
             </div>
           </div>
-
         </div>
 
         <div className="p-3 sm:p-4">
@@ -134,7 +133,9 @@ VideoCard.displayName = "VideoCard";
 
 export default function StudioSessionsSection(): React.ReactElement {
   const { ref, inView } = useInView({ threshold: 0.1, once: true });
-  const [selectedVideo, setSelectedVideo] = useState<StudioSession | null>(null);
+  const [selectedVideo, setSelectedVideo] = useState<StudioSession | null>(
+    null
+  );
   const [currentIndex, setCurrentIndex] = useState(0);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -142,10 +143,11 @@ export default function StudioSessionsSection(): React.ReactElement {
 
   const updateScrollButtons = () => {
     if (scrollContainerRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+      const { scrollLeft, scrollWidth, clientWidth } =
+        scrollContainerRef.current;
       setCanScrollLeft(scrollLeft > 0);
       setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
-      
+
       // Update current index for mobile indicators
       const cardWidth = 320; // Card width + gap
       const newIndex = Math.round(scrollLeft / cardWidth);
@@ -157,22 +159,23 @@ export default function StudioSessionsSection(): React.ReactElement {
     updateScrollButtons();
     const container = scrollContainerRef.current;
     if (container) {
-      container.addEventListener('scroll', updateScrollButtons);
-      return () => container.removeEventListener('scroll', updateScrollButtons);
+      container.addEventListener("scroll", updateScrollButtons);
+      return () => container.removeEventListener("scroll", updateScrollButtons);
     }
   }, []);
 
-  const scrollTo = (direction: 'left' | 'right') => {
+  const scrollTo = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current;
       const scrollAmount = 320; // Card width + gap
-      const targetScroll = direction === 'left' 
-        ? container.scrollLeft - scrollAmount
-        : container.scrollLeft + scrollAmount;
-      
+      const targetScroll =
+        direction === "left"
+          ? container.scrollLeft - scrollAmount
+          : container.scrollLeft + scrollAmount;
+
       container.scrollTo({
         left: targetScroll,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   };
@@ -222,7 +225,7 @@ export default function StudioSessionsSection(): React.ReactElement {
           {/* Desktop Navigation Arrows */}
           <div className="absolute -left-4 top-1/2 z-10 hidden -translate-y-1/2 md:block">
             <button
-              onClick={() => scrollTo('left')}
+              onClick={() => scrollTo("left")}
               disabled={!canScrollLeft}
               className={`rounded-full bg-zinc-800/80 p-3 text-white backdrop-blur-sm transition-all hover:bg-zinc-700/80 focus:outline-none focus:ring-2 focus:ring-amber-400/50 disabled:opacity-50 disabled:cursor-not-allowed`}
               aria-label="Previous videos"
@@ -230,10 +233,10 @@ export default function StudioSessionsSection(): React.ReactElement {
               <ChevronLeft className="h-6 w-6" />
             </button>
           </div>
-          
+
           <div className="absolute -right-4 top-1/2 z-10 hidden -translate-y-1/2 md:block">
             <button
-              onClick={() => scrollTo('right')}
+              onClick={() => scrollTo("right")}
               disabled={!canScrollRight}
               className={`rounded-full bg-zinc-800/80 p-3 text-white backdrop-blur-sm transition-all hover:bg-zinc-700/80 focus:outline-none focus:ring-2 focus:ring-amber-400/50 disabled:opacity-50 disabled:cursor-not-allowed`}
               aria-label="Next videos"
@@ -246,7 +249,7 @@ export default function StudioSessionsSection(): React.ReactElement {
           <div
             ref={scrollContainerRef}
             className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth pb-4"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
             role="group"
             aria-label="Studio session videos"
           >
@@ -269,9 +272,9 @@ export default function StudioSessionsSection(): React.ReactElement {
               <div
                 key={index}
                 className={`h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex 
-                    ? 'w-8 bg-amber-500' 
-                    : 'w-2 bg-zinc-600'
+                  index === currentIndex
+                    ? "w-8 bg-amber-500"
+                    : "w-2 bg-zinc-600"
                 }`}
               />
             ))}

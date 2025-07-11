@@ -5,7 +5,7 @@ import { useInView } from "@/hooks/use-in-view";
 import { tourDatesData } from "@/lib/tour-dates-data";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Heart, Calendar, X, MapPin, Clock } from "lucide-react";
-import { Patrick_Hand } from "next/font/google";
+import { Patrick_Hand, Playfair_Display } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -16,22 +16,21 @@ const patrickHand = Patrick_Hand({
   subsets: ["latin"],
 });
 
+const playfairDisplay = Playfair_Display({
+  weight: ["400", "500", "600"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
 // Show Information - Update this object to change show status
 // Set hasUpcomingShow to true and fill in details when a show is scheduled
 const showInfo = {
-  hasUpcomingShow: false,
-  date: undefined as string | undefined,
-  time: undefined as string | undefined,
-  venue: undefined as string | undefined,
-  location: undefined as string | undefined,
-  ticketUrl: undefined as string | undefined,
-  // Example for upcoming show:
-  // hasUpcomingShow: true,
-  // date: "June 14, 2025",
-  // time: "7:00 PM CDT",
-  // venue: "Magnolia Barbecue Company",
-  // location: "Brookhaven, MS",
-  // ticketUrl: "https://example.com/tickets"
+  hasUpcomingShow: true,
+  date: "August 16, 2025",
+  time: "7:00 PM - 10:00 PM CDT",
+  venue: "The Roof at 1311",
+  location: "Vicksburg, MS",
+  ticketUrl: "/tour-dates", // Link to full tour dates page
 };
 
 export default function HeroSection(): React.ReactElement {
@@ -61,21 +60,21 @@ export default function HeroSection(): React.ReactElement {
   // Handle modal close with escape key
   useEffect(() => {
     const handleEscapeKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && showPreviousShows) {
+      if (e.key === "Escape" && showPreviousShows) {
         setShowPreviousShows(false);
       }
     };
 
     if (showPreviousShows) {
-      document.addEventListener('keydown', handleEscapeKey);
-      document.body.style.overflow = 'hidden';
+      document.addEventListener("keydown", handleEscapeKey);
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
 
     return () => {
-      document.removeEventListener('keydown', handleEscapeKey);
-      document.body.style.overflow = '';
+      document.removeEventListener("keydown", handleEscapeKey);
+      document.body.style.overflow = "";
     };
   }, [showPreviousShows]);
 
@@ -86,7 +85,9 @@ export default function HeroSection(): React.ReactElement {
         className="relative flex min-h-screen items-center justify-center bg-black pt-16"
       >
         <div className="text-center">
-          <h1 className={`mb-4 text-5xl font-bold md:text-7xl ${patrickHand.className}`}>
+          <h1
+            className={`mb-4 text-5xl font-bold md:text-7xl ${patrickHand.className}`}
+          >
             Noah Lynch
             <br />
             <span className="mb-4 text-5xl font-bold text-amber-100 md:text-7xl">
@@ -117,12 +118,12 @@ export default function HeroSection(): React.ReactElement {
 
   const formatDate = (dateString: string) => {
     // Parse date components to avoid timezone issues
-    const [year, month, day] = dateString.split('-').map(Number);
+    const [year, month, day] = dateString.split("-").map(Number);
     const date = new Date(year, month - 1, day); // month is 0-indexed
-    return date.toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
   };
 
@@ -157,15 +158,26 @@ export default function HeroSection(): React.ReactElement {
             }`}
           >
             <div className="mb-6">
-              <h1 className={`text-5xl font-bold text-white drop-shadow-md ${patrickHand.className}`}>
-                Honest
+              <h1
+                className={`text-6xl md:text-7xl font-medium ${playfairDisplay.className} tracking-wide`}
+                style={{
+                  background: "url(/texture.png), black",
+                  backgroundSize: "150px 150px, cover",
+                  backgroundRepeat: "repeat, no-repeat",
+                  backgroundBlendMode: "multiply",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  textShadow: "2px 2px 4px rgba(0,0,0,0.1)",
+                }}
+              >
+                HONEST
                 <br />
-                <span className="mb-4 text-5xl font-bold text-amber-200/90 drop-shadow-md md:text-7xl">
+                <span className="text-4xl md:text-5xl font-normal tracking-wider">
                   Out Now
-                  <br />
                 </span>
               </h1>
-              
+
               {/* Show Status - Mobile: below title, Desktop: inline */}
               <div className="mt-3 sm:mt-2">
                 {showInfo.hasUpcomingShow ? (
@@ -313,11 +325,13 @@ export default function HeroSection(): React.ReactElement {
                 initial={{ opacity: 0, scale: 0.9, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                onClick={(e) => e.stopPropagation()}
+                onClick={e => e.stopPropagation()}
               >
                 {/* Header */}
                 <div className="sticky top-0 bg-zinc-900/95 backdrop-blur-sm border-b border-zinc-700/50 px-6 py-4 flex items-center justify-between">
-                  <h2 className={`text-xl sm:text-2xl font-bold text-amber-200 ${patrickHand.className}`}>
+                  <h2
+                    className={`text-xl sm:text-2xl font-bold text-amber-200 ${patrickHand.className}`}
+                  >
                     Previous Shows
                   </h2>
                   <button
@@ -330,42 +344,108 @@ export default function HeroSection(): React.ReactElement {
                 </div>
 
                 {/* Content */}
-                <div className="overflow-y-auto max-h-[60vh] px-6 py-4">
-                  <div className="space-y-4">
-                    {previousShows.map((show) => (
-                      <div
-                        key={show.id}
-                        className="group rounded-xl bg-zinc-800/50 border border-zinc-700/30 p-4 transition-all duration-300 hover:bg-zinc-800/70 hover:border-zinc-600/50"
-                      >
-                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                          <div className="flex-1">
+                <div className="px-6 py-4">
+                  {/* Mobile Swipeable Carousel */}
+                  <div className="block sm:hidden">
+                    <motion.div
+                      className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide"
+                      style={{
+                        WebkitOverflowScrolling: "touch",
+                        scrollbarWidth: "none",
+                        msOverflowStyle: "none",
+                      }}
+                    >
+                      {previousShows.map((show, index) => (
+                        <motion.div
+                          key={show.id}
+                          className="snap-center shrink-0 w-[85vw] max-w-sm"
+                          initial={{ opacity: 0, x: 50 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.1 }}
+                        >
+                          <div className="h-full rounded-xl bg-zinc-800/50 border border-zinc-700/30 p-4">
                             <h3 className="font-semibold text-zinc-100 text-lg">
                               {show.venue}
                             </h3>
                             <div className="flex items-center gap-2 text-zinc-300 text-sm mt-1">
                               <MapPin className="h-4 w-4" />
-                              <span>{show.city}, {show.state}</span>
+                              <span>
+                                {show.city}, {show.state}
+                              </span>
                             </div>
                             {show.description && (
-                              <p className="text-zinc-400 text-sm mt-2">
+                              <p className="text-zinc-400 text-sm mt-3 line-clamp-3">
                                 {show.description}
                               </p>
                             )}
-                          </div>
-                          <div className="flex flex-col sm:items-end gap-1">
-                            <div className="text-amber-200 font-medium">
-                              {formatDate(show.date)}
-                            </div>
-                            {show.time && (
-                              <div className="flex items-center gap-1 text-zinc-400 text-sm">
-                                <Clock className="h-3 w-3" />
-                                <span>{show.time}</span>
+                            <div className="mt-4 space-y-1">
+                              <div className="text-amber-200 font-medium">
+                                {formatDate(show.date)}
                               </div>
-                            )}
+                              {show.time && (
+                                <div className="flex items-center gap-1 text-zinc-400 text-sm">
+                                  <Clock className="h-3 w-3" />
+                                  <span>{show.time}</span>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </motion.div>
+                    <div className="flex justify-center gap-1 mt-4">
+                      {previousShows.map((_, index) => (
+                        <div
+                          key={index}
+                          className="h-1.5 w-1.5 rounded-full bg-zinc-600"
+                        />
+                      ))}
+                    </div>
+                    <p className="text-center text-zinc-400 text-xs mt-3">
+                      Swipe to see more shows
+                    </p>
+                  </div>
+
+                  {/* Desktop Stacked View */}
+                  <div className="hidden sm:block overflow-y-auto max-h-[60vh]">
+                    <div className="space-y-4">
+                      {previousShows.map(show => (
+                        <div
+                          key={show.id}
+                          className="group rounded-xl bg-zinc-800/50 border border-zinc-700/30 p-4 transition-all duration-300 hover:bg-zinc-800/70 hover:border-zinc-600/50"
+                        >
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                            <div className="flex-1">
+                              <h3 className="font-semibold text-zinc-100 text-lg">
+                                {show.venue}
+                              </h3>
+                              <div className="flex items-center gap-2 text-zinc-300 text-sm mt-1">
+                                <MapPin className="h-4 w-4" />
+                                <span>
+                                  {show.city}, {show.state}
+                                </span>
+                              </div>
+                              {show.description && (
+                                <p className="text-zinc-400 text-sm mt-2">
+                                  {show.description}
+                                </p>
+                              )}
+                            </div>
+                            <div className="flex flex-col sm:items-end gap-1">
+                              <div className="text-amber-200 font-medium">
+                                {formatDate(show.date)}
+                              </div>
+                              {show.time && (
+                                <div className="flex items-center gap-1 text-zinc-400 text-sm">
+                                  <Clock className="h-3 w-3" />
+                                  <span>{show.time}</span>
+                                </div>
+                              )}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 </div>
 

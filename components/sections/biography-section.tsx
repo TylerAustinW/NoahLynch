@@ -18,15 +18,17 @@ const photoSlides = [
     src: "/noah-portrait.jpeg",
     alt: "Noah Lynch - The Artist",
     caption: "The Artist",
-    description: "Capturing the essence of Noah's artistic vision and musical passion"
+    description:
+      "Capturing the essence of Noah's artistic vision and musical passion",
   },
   {
     id: "studio",
-    src: "/noah-studio.jpeg", 
+    src: "/noah-studio.jpeg",
     alt: "Noah Lynch - In the Studio",
     caption: "In His Element",
-    description: "Behind the scenes in the creative process where the magic happens"
-  }
+    description:
+      "Behind the scenes in the creative process where the magic happens",
+  },
 ];
 
 export default function BiographySection() {
@@ -37,7 +39,7 @@ export default function BiographySection() {
   // Auto-advance slides
   useEffect(() => {
     if (!isAutoPlaying || !inView) return;
-    
+
     const interval = setInterval(() => {
       setCurrentSlide(prev => (prev + 1) % photoSlides.length);
     }, 5000);
@@ -56,7 +58,9 @@ export default function BiographySection() {
   };
 
   const prevSlide = () => {
-    setCurrentSlide(prev => (prev - 1 + photoSlides.length) % photoSlides.length);
+    setCurrentSlide(
+      prev => (prev - 1 + photoSlides.length) % photoSlides.length
+    );
     setIsAutoPlaying(false);
   };
 
@@ -84,14 +88,15 @@ export default function BiographySection() {
           <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
             The Story
           </h2>
-          <p className={`${patrickHand.className} text-xl text-amber-200/80 md:text-2xl`}>
+          <p
+            className={`${patrickHand.className} text-xl text-amber-200/80 md:text-2xl`}
+          >
             "Music isn't just what I do, it's who I am"
           </p>
         </motion.div>
 
         {/* Main Content */}
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20">
-          
           {/* Left Side - Biography Text */}
           <motion.div
             className="space-y-6"
@@ -101,26 +106,29 @@ export default function BiographySection() {
           >
             <div className="space-y-6 text-lg leading-relaxed text-zinc-300 md:text-xl">
               <p>
-                Introducing <span className="font-semibold text-amber-200">Noah Lynch</span>, 
-                a Mississippi-born musician whose journey with music began at the age of 6 
-                when he first picked up a guitar. From those early days, Noah's passion 
-                for music has only grown stronger, fueling his desire to share his artistry 
-                with the world.
+                Introducing{" "}
+                <span className="font-semibold text-amber-200">Noah Lynch</span>
+                , a Mississippi-born musician whose journey with music began at
+                the age of 6 when he first picked up a guitar. From those early
+                days, Noah's passion for music has only grown stronger, fueling
+                his desire to share his artistry with the world.
               </p>
 
               <p>
-                Drawing inspiration from legends like <span className="text-amber-200">John Mayer</span> and 
-                <span className="text-amber-200"> Stevie Ray Vaughan</span>, Noah's music blends 
-                the soulful melodies of blues with the infectious energy of neo-rock. His sound 
-                is a reflection of his upbringing in a small town nestled in Mississippi, where 
-                music isn't the typical claim to fame.
+                Drawing inspiration from legends like{" "}
+                <span className="text-amber-200">John Mayer</span> and
+                <span className="text-amber-200"> Stevie Ray Vaughan</span>,
+                Noah's music blends the soulful melodies of blues with the
+                infectious energy of neo-rock. His sound is a reflection of his
+                upbringing in a small town nestled in Mississippi, where music
+                isn't the typical claim to fame.
               </p>
 
               <p>
-                Noah's upbringing was marked by the serenade of his guitar strings and the 
-                melodies that echoed through his soul. His authentic approach to songwriting 
-                captures the essence of human emotion, creating connections with listeners 
-                around the world.
+                Noah's upbringing was marked by the serenade of his guitar
+                strings and the melodies that echoed through his soul. His
+                authentic approach to songwriting captures the essence of human
+                emotion, creating connections with listeners around the world.
               </p>
             </div>
 
@@ -174,7 +182,12 @@ export default function BiographySection() {
                     initial={{ opacity: 0, x: 100 }}
                     animate={{
                       opacity: index === currentSlide ? 1 : 0,
-                      x: index === currentSlide ? 0 : index > currentSlide ? 100 : -100
+                      x:
+                        index === currentSlide
+                          ? 0
+                          : index > currentSlide
+                            ? 100
+                            : -100,
                     }}
                     transition={{ duration: 0.5, ease: "easeInOut" }}
                   >
@@ -187,10 +200,12 @@ export default function BiographySection() {
                       priority={index === 0}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                    
+
                     {/* Caption */}
                     <div className="absolute bottom-4 left-4 right-4">
-                      <p className={`${patrickHand.className} mb-1 text-xl text-white/90 drop-shadow-lg`}>
+                      <p
+                        className={`${patrickHand.className} mb-1 text-xl text-white/90 drop-shadow-lg`}
+                      >
                         {slide.caption}
                       </p>
                       <p className="text-sm text-zinc-300/80 drop-shadow">
@@ -227,9 +242,9 @@ export default function BiographySection() {
                   key={index}
                   onClick={() => goToSlide(index)}
                   className={`h-2 rounded-full transition-all duration-300 ${
-                    index === currentSlide 
-                      ? 'w-8 bg-amber-500' 
-                      : 'w-2 bg-zinc-600 hover:bg-zinc-500'
+                    index === currentSlide
+                      ? "w-8 bg-amber-500"
+                      : "w-2 bg-zinc-600 hover:bg-zinc-500"
                   }`}
                   aria-label={`View photo ${index + 1}`}
                 />
@@ -243,7 +258,9 @@ export default function BiographySection() {
               animate={inView ? { opacity: 1, scale: 1, rotate: 2 } : {}}
               transition={{ duration: 0.6, delay: 0.8 }}
             >
-              <p className={`${patrickHand.className} text-sm text-amber-200/90`}>
+              <p
+                className={`${patrickHand.className} text-sm text-amber-200/90`}
+              >
                 "Every song is a piece of my soul, shared with the world"
               </p>
             </motion.div>

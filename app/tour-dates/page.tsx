@@ -3,13 +3,13 @@ import TourDates from "@/components/sections/tour-dates";
 import Navbar from "@/components/layout/navbar";
 
 export const metadata: Metadata = {
-  title: "Tour Dates",
+  title: "Tour Dates - Noah Lynch",
   description:
-    "See where Noah Lynch has performed. View past tour dates and venues from across the country.",
+    "View Noah Lynch's upcoming shows and past performances. Don't miss the next live performance - check tour dates and get tickets.",
   openGraph: {
     title: "Noah Lynch - Tour Dates",
     description:
-      "See where Noah Lynch has performed. View past tour dates and venues from across the country.",
+      "View Noah Lynch's upcoming shows and past performances. Don't miss the next live performance - check tour dates and get tickets.",
   },
 };
 
@@ -17,9 +17,7 @@ export default function TourDatesPage() {
   return (
     <main className="min-h-screen bg-black">
       <Navbar />
-      <div className="pt-20">
-        <TourDates />
-      </div>
+      <TourDates />
     </main>
   );
 }
