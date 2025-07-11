@@ -9,9 +9,12 @@ import {
   Sparkles,
   Music,
   Users,
+  ArrowLeft,
+  Home,
 } from "lucide-react";
 import { tourDatesData } from "@/lib/tour-dates-data";
 import Image from "next/image";
+import Link from "next/link";
 import { Playfair_Display } from "next/font/google";
 import { useState } from "react";
 
@@ -74,6 +77,25 @@ export default function TourDates() {
       {/* Content */}
       <div className="relative z-10 pt-24 pb-16 px-6 md:px-12">
         <div className="mx-auto max-w-7xl">
+          {/* Back to Home Navigation */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mb-8"
+          >
+            <Link
+              href="/"
+              className="inline-flex items-center gap-3 text-gold-400 hover:text-gold-300 transition-all duration-300 group"
+            >
+              <div className="flex items-center gap-2 bg-black/40 backdrop-blur-sm border border-gold-400/30 rounded-full px-4 py-2 hover:border-gold-400/60 hover:bg-black/60 transition-all duration-300">
+                <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-300" />
+                <Home className="w-5 h-5" />
+                <span className="font-medium text-sm">Back to Home</span>
+              </div>
+            </Link>
+          </motion.div>
+
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
