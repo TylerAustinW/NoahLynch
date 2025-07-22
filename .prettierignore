@@ -1,0 +1,55 @@
+# Dependencies
+node_modules
+.pnpm
+
+# Build outputs
+.next
+build
+dist
+out
+
+# Cache directories
+.cache
+.vscode/settings.json
+
+# Lock files
+*.lock
+pnpm-lock.yaml
+package-lock.json
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Environment files
+.env*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Binary assets (images, icons)
+public/*.{jpg,jpeg,png,gif,svg,ico,mp4,webp}
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.svg
+*.ico
+*.mp4
+*.webp
+
+# Generated files
+tsconfig.tsbuildinfo
+next-env.d.ts
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Documentation that shouldn't be formatted
+CHANGELOG.md
+LICENSE

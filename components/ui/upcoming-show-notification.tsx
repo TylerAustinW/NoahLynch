@@ -1,20 +1,20 @@
-"use client";
+'use client';
 
-import { motion, AnimatePresence } from "framer-motion";
-import { Calendar, MapPin, Clock, X, Ticket } from "lucide-react";
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { TourDate } from "@/lib/tour-dates-data";
+import { motion, AnimatePresence } from 'framer-motion';
+import { Calendar, MapPin, Clock, X, Ticket } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { formatDate, getDaysUntilShow, type TourDate } from '@/lib/tour-dates-data';
 
 interface UpcomingShowNotificationProps {
   show: TourDate;
-  variant?: "floating" | "banner" | "card";
+  variant?: 'floating' | 'banner' | 'card';
   onClose?: () => void;
 }
 
 export default function UpcomingShowNotification({
   show,
-  variant = "floating",
+  variant = 'floating',
   onClose,
 }: UpcomingShowNotificationProps) {
   const [isVisible, setIsVisible] = useState(true);
@@ -22,7 +22,7 @@ export default function UpcomingShowNotification({
 
   useEffect(() => {
     // Check localStorage to see if user has closed this notification
-    const closedNotifications = localStorage.getItem("closedShowNotifications");
+    const closedNotifications = localStorage.getItem('closedShowNotifications');
     if (closedNotifications) {
       const closed = JSON.parse(closedNotifications);
       if (closed.includes(show.id)) {
@@ -36,36 +36,19 @@ export default function UpcomingShowNotification({
     setHasInteracted(true);
 
     // Save to localStorage
-    const closedNotifications = localStorage.getItem("closedShowNotifications");
+    const closedNotifications = localStorage.getItem('closedShowNotifications');
     const closed = closedNotifications ? JSON.parse(closedNotifications) : [];
     if (!closed.includes(show.id)) {
       closed.push(show.id);
-      localStorage.setItem("closedShowNotifications", JSON.stringify(closed));
+      localStorage.setItem('closedShowNotifications', JSON.stringify(closed));
     }
 
     onClose?.();
   };
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-    });
-  };
-
-  const getDaysUntilShow = (dateString: string) => {
-    const showDate = new Date(dateString);
-    const today = new Date();
-    const diffTime = showDate.getTime() - today.getTime();
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays;
-  };
-
   const daysUntil = getDaysUntilShow(show.date);
 
-  if (variant === "banner") {
+  if (variant === 'banner') {
     return (
       <AnimatePresence>
         {isVisible && (
@@ -73,7 +56,7 @@ export default function UpcomingShowNotification({
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -100, opacity: 0 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             className="fixed top-0 left-0 right-0 z-[60] bg-gradient-to-r from-amber-600 to-amber-700 text-white shadow-lg"
           >
             <div className="relative px-4 py-3 md:px-6">
@@ -82,9 +65,7 @@ export default function UpcomingShowNotification({
                   <div className="flex items-center gap-2">
                     <Ticket className="w-5 h-5" />
                     <span className="font-bold text-sm sm:text-base">
-                      {daysUntil > 0
-                        ? `Next Show in ${daysUntil} days!`
-                        : "Show Today!"}
+                      {daysUntil > 0 ? `Next Show in ${daysUntil} days!` : 'Show Today!'}
                     </span>
                   </div>
                   <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm">
@@ -118,7 +99,7 @@ export default function UpcomingShowNotification({
     );
   }
 
-  if (variant === "card") {
+  if (variant === 'card') {
     return (
       <AnimatePresence>
         {isVisible && (
@@ -126,7 +107,7 @@ export default function UpcomingShowNotification({
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             className="bg-gradient-to-br from-amber-600 to-amber-700 rounded-lg p-6 text-white shadow-xl"
           >
             <div className="flex justify-between items-start mb-4">
@@ -163,9 +144,7 @@ export default function UpcomingShowNotification({
               )}
             </div>
 
-            {show.description && (
-              <p className="text-sm opacity-90 mb-4">{show.description}</p>
-            )}
+            {show.description && <p className="text-sm opacity-90 mb-4">{show.description}</p>}
 
             <div className="flex gap-2">
               {show.ticketLink && (
@@ -199,13 +178,13 @@ export default function UpcomingShowNotification({
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 100 }}
-          transition={{ type: "spring", damping: 25, stiffness: 300 }}
+          transition={{ type: 'spring', damping: 25, stiffness: 300 }}
           className="fixed bottom-4 right-4 left-4 sm:left-auto sm:right-6 z-50 max-w-full sm:max-w-sm"
         >
           <motion.div
             className="bg-gradient-to-br from-amber-600 to-amber-700 rounded-lg shadow-2xl p-4 sm:p-5 text-white"
             whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 400 }}
+            transition={{ type: 'spring', stiffness: 400 }}
           >
             <div className="flex justify-between items-start mb-3">
               <div className="flex items-center gap-2">

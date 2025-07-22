@@ -1,23 +1,25 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { ChevronUp } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { ChevronUp } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setPrefersReducedMotion(mediaQuery.matches);
 
     const handleChange = (e: MediaQueryListEvent) => {
       setPrefersReducedMotion(e.matches);
     };
 
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
   useEffect(() => {
@@ -25,16 +27,21 @@ export default function ScrollToTop() {
       setIsVisible(window.scrollY > window.innerHeight * 0.5);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
+
+  // Hide on EPK page since it has its own mobile actions
+  if (pathname === '/epk') {
+    return null;
+  }
 
   return (
     <AnimatePresence>
@@ -58,7 +65,7 @@ export default function ScrollToTop() {
             scale: prefersReducedMotion ? 1 : 0.8,
             y: prefersReducedMotion ? 0 : 20,
           }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
           whileHover={prefersReducedMotion ? {} : { scale: 1.1 }}
           whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
         >

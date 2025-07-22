@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 const baseLinkClasses =
-  "relative group inline-block py-3 px-4 text-sm font-medium tracking-wide transition-all duration-300 hover:text-amber-400";
+  'relative group inline-block py-3 px-4 text-sm font-medium tracking-wide transition-all duration-300 hover:text-amber-400';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-  // New state for scroll direction and navbar visibility
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
@@ -21,27 +21,26 @@ export default function Navbar() {
   useEffect(() => {
     setIsMounted(true);
 
-    // Check for reduced motion preference
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setPrefersReducedMotion(mediaQuery.matches);
 
     const handleChange = (e: MediaQueryListEvent) => {
       setPrefersReducedMotion(e.matches);
     };
 
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
   useEffect(() => {
     if (mobileOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = "";
+      document.body.style.overflow = '';
     }
 
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = '';
     };
   }, [mobileOpen]);
 
@@ -49,22 +48,16 @@ export default function Navbar() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Update scrolled state for background changes
       const isScrolled = currentScrollY > 10;
       if (isScrolled !== scrolled) {
         setScrolled(isScrolled);
       }
 
-      // Gusto Advance: Handle navbar visibility based on scroll direction
       if (currentScrollY < 10) {
-        // Always show navbar at the top of the page
         setIsVisible(true);
       } else if (currentScrollY < lastScrollY) {
-        // Scrolling up - show navbar
         setIsVisible(true);
       } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down and past threshold - hide navbar
-        // Only hide if not at the very top and mobile menu is closed
         if (!mobileOpen) {
           setIsVisible(false);
         }
@@ -73,36 +66,32 @@ export default function Navbar() {
       setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [scrolled, lastScrollY, mobileOpen]);
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && mobileOpen) {
+      if (e.key === 'Escape' && mobileOpen) {
         setMobileOpen(false);
       }
     };
-    window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
   }, [mobileOpen]);
 
-  // Ensure navbar is visible when mobile menu is open
   useEffect(() => {
     if (mobileOpen) {
       setIsVisible(true);
     }
   }, [mobileOpen]);
 
-  const handleNavClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    id: string
-  ) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
     const navElement = document.getElementById(id);
     if (navElement) {
-      navElement.scrollIntoView({ behavior: "smooth" });
-      window.history.pushState(null, "", `/#${id}`);
+      navElement.scrollIntoView({ behavior: 'smooth' });
+      window.history.pushState(null, '', `/#${id}`);
     }
   };
 
@@ -111,8 +100,8 @@ export default function Navbar() {
   };
 
   const dynamicTextClasses = cn(
-    scrolled ? "text-white" : "text-white",
-    "transition-colors duration-300"
+    scrolled ? 'text-white' : 'text-white',
+    'transition-colors duration-300'
   );
 
   const animationVariants = {
@@ -137,35 +126,33 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { href: "#biography", label: "ABOUT", id: "biography" },
-    { href: "#music", label: "MUSIC", id: "music" },
-    { href: "#studio-sessions", label: "SESSIONS", id: "studio-sessions" },
-    { href: "/tour-dates", label: "TOUR", id: null },
-    { href: "/merch", label: "MERCH", id: null },
+    { href: '#biography', label: 'ABOUT', id: 'biography' },
+    { href: '#music', label: 'MUSIC', id: 'music' },
+    { href: '#studio-sessions', label: 'SESSIONS', id: 'studio-sessions' },
+    { href: '/tour-dates', label: 'TOUR', id: null },
+    { href: '/merch', label: 'MERCH', id: null },
   ];
 
   return (
     <>
       <motion.header
         className={cn(
-          "fixed top-0 right-0 left-0 z-50 py-3 sm:py-4 transition-all duration-300",
-          // Mobile: matte black with subtle transparency, Desktop: original styling
-          "bg-black/50 backdrop-blur-sm md:bg-black/50 md:backdrop-blur-sm",
+          'fixed top-0 right-0 left-0 z-50 py-3 sm:py-4 transition-all duration-300',
+          'bg-black/30 backdrop-blur-sm md:bg-black/30 md:backdrop-blur-sm',
           scrolled
-            ? "opacity-0 pointer-events-none -translate-y-full"
-            : "opacity-100 pointer-events-auto translate-y-0"
+            ? 'opacity-0 pointer-events-none -translate-y-full'
+            : 'opacity-100 pointer-events-auto translate-y-0'
         )}
         initial={{ y: 0 }}
         animate={{
           y: isVisible ? 0 : -100,
           transition: {
             duration: 0.3,
-            ease: "easeInOut",
+            ease: 'easeInOut',
           },
         }}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 md:px-12">
-          {/* Logo/Brand */}
           <motion.div
             className="flex items-center"
             whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
@@ -174,8 +161,8 @@ export default function Navbar() {
             <Link href="/" className="group">
               <h1
                 className={cn(
-                  "text-xl sm:text-2xl md:text-3xl font-bold tracking-wider bg-gradient-to-r from-white via-amber-100 to-amber-200 bg-clip-text text-transparent transition-all duration-300 group-hover:from-amber-200 group-hover:via-amber-300 group-hover:to-amber-400",
-                  scrolled && "drop-shadow-sm"
+                  'text-xl sm:text-2xl md:text-3xl font-bold tracking-wider text-white transition-all duration-300 group-hover:text-amber-400',
+                  scrolled && 'drop-shadow-sm'
                 )}
               >
                 NOAH LYNCH
@@ -183,7 +170,6 @@ export default function Navbar() {
             </Link>
           </motion.div>
 
-          {/* Desktop Navigation */}
           <nav className="hidden items-center space-x-2 md:flex">
             {navLinks.map((link, index) => (
               <motion.div
@@ -197,7 +183,7 @@ export default function Navbar() {
                   className={cn(baseLinkClasses, dynamicTextClasses)}
                   onClick={
                     link.id
-                      ? e => {
+                      ? (e) => {
                           handleNavClick(e, link.id);
                           closeMenu();
                         }
@@ -205,30 +191,28 @@ export default function Navbar() {
                   }
                 >
                   <span className="relative z-10">{link.label}</span>
-                  {/* Hover background */}
                   <div className="absolute inset-0 rounded-lg bg-amber-500/10 opacity-0 transition-all duration-300 group-hover:opacity-100" />
-                  {/* Underline effect */}
                   <div className="absolute bottom-1 left-4 right-4 h-0.5 bg-gradient-to-r from-amber-400 to-amber-600 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
                 </Link>
               </motion.div>
             ))}
           </nav>
 
-          {/* Mobile Menu Button */}
-          <motion.button
-            className={cn(
-              "relative z-[999] flex h-9 w-9 items-center justify-center rounded-lg border transition-all duration-300 md:hidden",
-              // Updated styling for matte black theme
-              "border-zinc-600/50 bg-black/80 backdrop-blur-sm",
-              "hover:border-amber-500/50 hover:bg-amber-500/10 active:scale-95",
-              mobileOpen && "border-amber-500/70 bg-amber-500/20"
-            )}
-            aria-label="Toggle navigation menu"
-            aria-expanded={mobileOpen}
-            aria-controls="mobile-menu"
-            onClick={() => setMobileOpen(prev => !prev)}
-            whileTap={prefersReducedMotion ? {} : { scale: 0.9 }}
-          >
+          <motion.div whileTap={prefersReducedMotion ? {} : { scale: 0.9 }}>
+            <Button
+              variant="ghost"
+              size="icon"
+              className={cn(
+                'relative z-[999] border md:hidden',
+                'border-zinc-600/50 bg-black/80 backdrop-blur-sm',
+                'hover:border-amber-500/50 hover:bg-amber-500/10',
+                mobileOpen && 'border-amber-500/70 bg-amber-500/20'
+              )}
+              aria-label="Toggle navigation menu"
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-menu"
+              onClick={() => setMobileOpen((prev) => !prev)}
+            >
             <AnimatePresence mode="wait">
               {mobileOpen ? (
                 <motion.div
@@ -258,11 +242,11 @@ export default function Navbar() {
                 </motion.div>
               )}
             </AnimatePresence>
-          </motion.button>
+            </Button>
+          </motion.div>
         </div>
       </motion.header>
 
-      {/* Mobile Menu */}
       {isMounted && (
         <AnimatePresence>
           {mobileOpen && (
@@ -274,18 +258,14 @@ export default function Navbar() {
               transition={animationVariants.overlay.transition}
               onClick={closeMenu}
             >
-              <nav
-                id="mobile-menu"
-                role="navigation"
-                aria-label="Mobile navigation"
-              >
+              <nav id="mobile-menu" role="navigation" aria-label="Mobile navigation">
                 <motion.div
                   className="flex flex-col items-center justify-center gap-6 sm:gap-8"
                   initial={animationVariants.menu.initial}
                   animate={animationVariants.menu.animate}
                   exit={animationVariants.menu.exit}
                   transition={animationVariants.menu.transition}
-                  onClick={e => e.stopPropagation()}
+                  onClick={(e) => e.stopPropagation()}
                 >
                   {navLinks.map((link, index) => (
                     <motion.div
@@ -300,7 +280,7 @@ export default function Navbar() {
                         className="relative block text-2xl sm:text-3xl font-bold tracking-wider text-white transition-all duration-300 hover:text-amber-400 active:text-amber-300"
                         onClick={
                           link.id
-                            ? e => {
+                            ? (e) => {
                                 handleNavClick(e, link.id);
                                 closeMenu();
                               }
@@ -308,7 +288,6 @@ export default function Navbar() {
                         }
                       >
                         <span className="relative z-10">{link.label}</span>
-                        {/* Mobile hover effect */}
                         <div className="absolute inset-0 -inset-x-4 -inset-y-2 rounded-xl bg-gradient-to-r from-amber-500/0 via-amber-500/10 to-amber-500/0 opacity-0 transition-all duration-300 group-hover:opacity-100 group-active:opacity-100" />
                       </Link>
                     </motion.div>

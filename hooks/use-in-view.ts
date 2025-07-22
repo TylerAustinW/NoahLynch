@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useState, useEffect, useRef, type RefObject } from "react";
+import { useState, useEffect, useRef, type RefObject } from 'react';
 
 type UseInViewOptions = {
   threshold?: number;
@@ -15,7 +15,7 @@ type UseInViewReturn = {
 
 export function useInView({
   threshold = 0,
-  rootMargin = "0px",
+  rootMargin = '0px',
   once = false,
 }: UseInViewOptions = {}): UseInViewReturn {
   const [inView, setInView] = useState(false);
@@ -24,7 +24,6 @@ export function useInView({
 
   useEffect(() => {
     if (!ref.current) return;
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         const isIntersecting = entry.isIntersecting;

@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useInView } from "@/hooks/use-in-view";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { Play, ChevronLeft, ChevronRight } from "lucide-react";
-import React, { useState, useEffect, useRef } from "react";
+import { useInView } from '@/hooks/use-in-view';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { Play, ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
 
 interface StudioSession {
   id: string;
@@ -15,46 +15,40 @@ interface StudioSession {
 
 const studioSessions: StudioSession[] = [
   {
-    id: "1",
+    id: '1',
     title: 'Noah Lynch - "For You" Live (Studio Sessions)',
     description:
       "An intimate acoustic performance showcasing Noah's raw talent and emotional depth in this heartfelt studio session.",
-    youtubeId: "0WHqv-pE3g8",
+    youtubeId: '0WHqv-pE3g8',
   },
   {
-    id: "2",
+    id: '2',
     title: 'Noah Lynch - "Good Things Take Time" Live (Studio Sessions)',
     description:
-      "Watch Noah perform this inspiring track with soulful vocals and acoustic guitar in an intimate studio setting.",
-    youtubeId: "uXSKQiTQoHo",
+      'Watch Noah perform this inspiring track with soulful vocals and acoustic guitar in an intimate studio setting.',
+    youtubeId: 'uXSKQiTQoHo',
   },
   {
-    id: "3",
+    id: '3',
     title: 'Noah Lynch - "Honest" Live (Studio Sessions)',
     description:
       'A powerful and vulnerable performance of "Honest" that captures the essence of Noah\'s songwriting and vocal delivery.',
-    youtubeId: "UGPzNbSPwZk",
+    youtubeId: 'UGPzNbSPwZk',
   },
 ];
 
-const YouTubeThumbnail = ({
-  videoId,
-  title,
-}: {
-  videoId: string;
-  title: string;
-}) => {
+const YouTubeThumbnail = ({ videoId, title }: { videoId: string; title: string }) => {
   const [thumbnailSrc, setThumbnailSrc] = useState(
     `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
   );
   const [hasError, setHasError] = useState(false);
 
   const handleImageError = () => {
-    if (thumbnailSrc.includes("maxresdefault")) {
+    if (thumbnailSrc.includes('maxresdefault')) {
       setThumbnailSrc(`https://img.youtube.com/vi/${videoId}/sddefault.jpg`);
-    } else if (thumbnailSrc.includes("sddefault")) {
+    } else if (thumbnailSrc.includes('sddefault')) {
       setThumbnailSrc(`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`);
-    } else if (thumbnailSrc.includes("hqdefault")) {
+    } else if (thumbnailSrc.includes('hqdefault')) {
       setThumbnailSrc(`https://img.youtube.com/vi/${videoId}/mqdefault.jpg`);
     } else {
       setHasError(true);
@@ -108,10 +102,7 @@ const VideoCard = React.memo(
           <YouTubeThumbnail videoId={session.youtubeId} title={session.title} />
           <div className="absolute inset-0 bg-black/20 transition-opacity group-hover:opacity-0" />
           <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
-            <div
-              className="rounded-full bg-amber-600 p-3 shadow-lg"
-              aria-hidden="true"
-            >
+            <div className="rounded-full bg-amber-600 p-3 shadow-lg" aria-hidden="true">
               <Play className="h-6 w-6 text-white" fill="white" />
             </div>
           </div>
@@ -121,21 +112,17 @@ const VideoCard = React.memo(
           <h3 className="mb-2 line-clamp-2 text-sm font-semibold text-white transition-colors group-hover:text-amber-400 sm:text-base">
             {session.title}
           </h3>
-          <p className="line-clamp-3 text-xs text-zinc-400 sm:text-sm">
-            {session.description}
-          </p>
+          <p className="line-clamp-3 text-xs text-zinc-400 sm:text-sm">{session.description}</p>
         </div>
       </motion.button>
     );
   }
 );
-VideoCard.displayName = "VideoCard";
+VideoCard.displayName = 'VideoCard';
 
 export default function StudioSessionsSection(): React.ReactElement {
   const { ref, inView } = useInView({ threshold: 0.1, once: true });
-  const [selectedVideo, setSelectedVideo] = useState<StudioSession | null>(
-    null
-  );
+  const [selectedVideo, setSelectedVideo] = useState<StudioSession | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -143,8 +130,7 @@ export default function StudioSessionsSection(): React.ReactElement {
 
   const updateScrollButtons = () => {
     if (scrollContainerRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } =
-        scrollContainerRef.current;
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
       setCanScrollLeft(scrollLeft > 0);
       setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
 
@@ -159,23 +145,24 @@ export default function StudioSessionsSection(): React.ReactElement {
     updateScrollButtons();
     const container = scrollContainerRef.current;
     if (container) {
-      container.addEventListener("scroll", updateScrollButtons);
-      return () => container.removeEventListener("scroll", updateScrollButtons);
+      container.addEventListener('scroll', updateScrollButtons);
+      return () => container.removeEventListener('scroll', updateScrollButtons);
     }
+    return undefined;
   }, []);
 
-  const scrollTo = (direction: "left" | "right") => {
+  const scrollTo = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current;
       const scrollAmount = 320; // Card width + gap
       const targetScroll =
-        direction === "left"
+        direction === 'left'
           ? container.scrollLeft - scrollAmount
           : container.scrollLeft + scrollAmount;
 
       container.scrollTo({
         left: targetScroll,
-        behavior: "smooth",
+        behavior: 'smooth',
       });
     }
   };
@@ -184,7 +171,7 @@ export default function StudioSessionsSection(): React.ReactElement {
     <section
       ref={ref}
       id="studio-sessions"
-      className="relative overflow-hidden bg-zinc-900 px-4 py-16 sm:py-20 md:px-6 md:py-24 lg:py-28"
+      className="relative overflow-hidden bg-zinc-950 px-4 py-16 sm:py-20 md:px-6 md:py-24 lg:py-28"
       aria-labelledby="studio-sessions-heading"
     >
       <div
@@ -192,7 +179,7 @@ export default function StudioSessionsSection(): React.ReactElement {
         aria-hidden="true"
       ></div>
       <div className="absolute inset-0" aria-hidden="true">
-        <div className="absolute top-1/2 left-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-zinc-800/8 blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-500/10 blur-3xl"></div>
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl">
@@ -208,10 +195,9 @@ export default function StudioSessionsSection(): React.ReactElement {
           >
             Live Studio Sessions
           </h2>
-          <p className="mx-auto max-w-2xl text-sm text-zinc-400 sm:text-base md:text-lg">
-            Experience the raw energy and creativity of Noah's live studio
-            performances. Watch exclusive behind-the-scenes content and intimate
-            acoustic sessions.
+          <p className="mx-auto max-w-2xl text-sm text-zinc-300 sm:text-base md:text-lg">
+            Experience the raw energy and creativity of Noah's live studio performances. Watch
+            exclusive behind-the-scenes content and intimate acoustic sessions.
           </p>
         </motion.div>
 
@@ -225,7 +211,7 @@ export default function StudioSessionsSection(): React.ReactElement {
           {/* Desktop Navigation Arrows */}
           <div className="absolute -left-4 top-1/2 z-10 hidden -translate-y-1/2 md:block">
             <button
-              onClick={() => scrollTo("left")}
+              onClick={() => scrollTo('left')}
               disabled={!canScrollLeft}
               className={`rounded-full bg-zinc-800/80 p-3 text-white backdrop-blur-sm transition-all hover:bg-zinc-700/80 focus:outline-none focus:ring-2 focus:ring-amber-400/50 disabled:opacity-50 disabled:cursor-not-allowed`}
               aria-label="Previous videos"
@@ -236,7 +222,7 @@ export default function StudioSessionsSection(): React.ReactElement {
 
           <div className="absolute -right-4 top-1/2 z-10 hidden -translate-y-1/2 md:block">
             <button
-              onClick={() => scrollTo("right")}
+              onClick={() => scrollTo('right')}
               disabled={!canScrollRight}
               className={`rounded-full bg-zinc-800/80 p-3 text-white backdrop-blur-sm transition-all hover:bg-zinc-700/80 focus:outline-none focus:ring-2 focus:ring-amber-400/50 disabled:opacity-50 disabled:cursor-not-allowed`}
               aria-label="Next videos"
@@ -249,7 +235,7 @@ export default function StudioSessionsSection(): React.ReactElement {
           <div
             ref={scrollContainerRef}
             className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth pb-4"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             role="group"
             aria-label="Studio session videos"
           >
@@ -272,9 +258,7 @@ export default function StudioSessionsSection(): React.ReactElement {
               <div
                 key={index}
                 className={`h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex
-                    ? "w-8 bg-amber-500"
-                    : "w-2 bg-zinc-600"
+                  index === currentIndex ? 'w-8 bg-amber-500' : 'w-2 bg-zinc-600'
                 }`}
               />
             ))}
@@ -291,7 +275,7 @@ export default function StudioSessionsSection(): React.ReactElement {
             href="https://youtube.com/@noahlynch"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-amber-600 px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-600/20 min-h-[48px]"
+            className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-600/20 min-h-[48px]"
             aria-label="Visit Noah Lynch's YouTube channel to watch more studio sessions"
           >
             <Play className="h-4 w-4" aria-hidden="true" />
@@ -316,7 +300,7 @@ export default function StudioSessionsSection(): React.ReactElement {
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
-            onClick={e => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
           >
             <div className="aspect-video w-full overflow-hidden rounded-lg bg-black">
               <iframe

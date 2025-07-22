@@ -1,22 +1,22 @@
 import {
   allReleases,
   getReleaseById,
-  Platform,
-  ReleaseWithPlatforms,
-  Review,
-} from "@/lib/musicData";
-import { ArrowLeft, Heart, Quote, Star } from "lucide-react";
-import { Metadata } from "next";
-import { Patrick_Hand } from "next/font/google";
-import Image from "next/image";
-import Link from "next/link";
-import { notFound } from "next/navigation";
-import { Suspense } from "react";
-import MobileTabs from "./mobile-tabs";
+  type Platform,
+  type ReleaseWithPlatforms,
+  type Review,
+} from '@/lib/musicData';
+import { ArrowLeft, Heart, Quote, Star } from 'lucide-react';
+import type { Metadata } from 'next';
+import { Patrick_Hand } from 'next/font/google';
+import Image from 'next/image';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { Suspense } from 'react';
+import MobileTabs from './mobile-tabs';
 
 const patrickHand = Patrick_Hand({
-  weight: ["400"],
-  subsets: ["latin"],
+  weight: ['400'],
+  subsets: ['latin'],
 });
 
 interface PageProps {
@@ -30,16 +30,14 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
   const release = getReleaseById(slug);
 
   if (!release) {
     return {
-      title: "Release Not Found",
+      title: 'Release Not Found',
     };
   }
 
@@ -61,11 +59,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function MusicReleasePage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function MusicReleasePage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
   const release = getReleaseById(slug);
@@ -74,12 +68,10 @@ export default async function MusicReleasePage({
     notFound();
   }
 
-  const isUpcoming = release.type === "upcoming";
-  const typeColor = isUpcoming ? "text-amber-400" : "text-cyan-400";
-  const typeBgColor = isUpcoming ? "bg-amber-900/50" : "bg-cyan-900/50";
-  const typeBorderColor = isUpcoming
-    ? "border-amber-700/50"
-    : "border-cyan-700/50";
+  const isUpcoming = release.type === 'upcoming';
+  const typeColor = isUpcoming ? 'text-amber-400' : 'text-cyan-400';
+  const typeBgColor = isUpcoming ? 'bg-amber-900/50' : 'bg-cyan-900/50';
+  const typeBorderColor = isUpcoming ? 'border-amber-700/50' : 'border-cyan-700/50';
 
   const PlatformButtons = (
     <>
@@ -93,7 +85,7 @@ export default async function MusicReleasePage({
 
           if (platform.bgColor) {
             buttonStyle.backgroundColor = platform.bgColor;
-            iconStyle.color = platform.color || "#FFFFFF";
+            iconStyle.color = platform.color || '#FFFFFF';
           } else if (platform.color) {
             iconStyle.color = platform.color;
           }
@@ -108,17 +100,12 @@ export default async function MusicReleasePage({
               style={platform.bgColor ? buttonStyle : {}}
               aria-label={`Listen on ${platform.name}`}
             >
-              <div
-                style={iconStyle}
-                className="group-hover:opacity-80 transition-opacity"
-              >
+              <div style={iconStyle} className="group-hover:opacity-80 transition-opacity">
                 {platform.icon}
               </div>
               <span
                 className="text-sm font-medium"
-                style={
-                  platform.bgColor ? { color: platform.color || "#FFFFFF" } : {}
-                }
+                style={platform.bgColor ? { color: platform.color || '#FFFFFF' } : {}}
               >
                 {platform.name}
               </span>
@@ -136,9 +123,9 @@ export default async function MusicReleasePage({
           href={release.linkURL}
           target="_blank"
           rel="noopener noreferrer"
-          className="block w-full rounded-full bg-amber-600 px-7 py-3 text-center font-semibold text-black transition-all duration-300 hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-400/50 min-h-[48px] flex items-center justify-center"
+          className=" w-full rounded-full bg-amber-600 px-7 py-3 text-center font-semibold text-black transition-all duration-300 hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-400/50 min-h-[48px] flex items-center justify-center"
         >
-          {release.linkText || "Coming Soon"}
+          {release.linkText || 'Coming Soon'}
         </Link>
       ) : release.platforms && release.platforms.length > 0 ? (
         PlatformButtons
@@ -153,36 +140,32 @@ export default async function MusicReleasePage({
       className={`${patrickHand.className} text-center text-lg lg:text-xl leading-relaxed text-amber-100/90`}
     >
       <p className="text-center font-medium">
-        Bringing "Honest" to life has been one of the most meaningful creative
-        experiences of my life, and I couldn't have done it without the support,
-        talent, and heart of some truly incredible people. To{" "}
-        <strong>Levi Ready</strong>, <strong>Isaac Moreno</strong>,{" "}
-        <strong>Tyler Bridge</strong>, <strong>Jamie Wroten</strong>,{" "}
-        <strong>Tyler Williams</strong>, <strong>Christopher Chittom</strong>,{" "}
-        <strong>Evan Busbin</strong>, <strong>Hagen Brister</strong>, and{" "}
+        Bringing "Honest" to life has been one of the most meaningful creative experiences of my
+        life, and I couldn't have done it without the support, talent, and heart of some truly
+        incredible people. To <strong>Levi Ready</strong>, <strong>Isaac Moreno</strong>,{' '}
+        <strong>Tyler Bridge</strong>, <strong>Jamie Wroten</strong>,{' '}
+        <strong>Tyler Williams</strong>, <strong>Christopher Chittom</strong>,{' '}
+        <strong>Evan Busbin</strong>, <strong>Hagen Brister</strong>, and{' '}
         <strong>Sherry Thibodeaux</strong>
-        —thank you for your time, energy, and the unique ways each of you
-        contributed to this song.
+        —thank you for your time, energy, and the unique ways each of you contributed to this song.
         <br />
         <br />
-        And last but never least, to my amazing wife{" "}
-        <strong>Hunter Lynch</strong> your love, strength, and unwavering belief
-        in me are the foundation of everything I do. Thank you for being my
-        home, my muse, and my greatest encouragement.
+        And last but never least, to my amazing wife <strong>Hunter Lynch</strong> your love,
+        strength, and unwavering belief in me are the foundation of everything I do. Thank you for
+        being my home, my muse, and my greatest encouragement.
       </p>
       <p className="mt-6 text-center">
         With all my gratitude,
-        <br />-{" "}
+        <br />-{' '}
         <strong>
-          Noah Lynch{" "}
-          <Heart className="h-4 w-4 text-red-400 inline-block ml-1 relative -top-px" />
+          Noah Lynch <Heart className="h-4 w-4 text-red-400 inline-block ml-1 relative -top-px" />
         </strong>
       </p>
     </div>
   );
 
   const spotlightReviewData: Review = {
-    name: "Josh Harding",
+    name: 'Josh Harding',
     content: `"In all my life, I have never felt so deeply connected to a song. Yeah, I've had songs that I play constantly to bring a tear every now and then, but within seconds you made me fall apart and breakdown."
 
     Your voice, energy, and passion for "Honest" saved me from having a complete mental breakdown. You, Sir, are a true talent in music and will go incredibly far..."`,
@@ -192,10 +175,7 @@ export default async function MusicReleasePage({
   const SpotlightReviewContent = (
     <div className="relative flex flex-col flex-grow">
       <div className="absolute -left-2 top-0 opacity-20">
-        <Quote
-          className="h-12 w-12 text-zinc-600/30 rotate-180"
-          fill="currentColor"
-        />
+        <Quote className="h-12 w-12 text-zinc-600/30 rotate-180" fill="currentColor" />
       </div>
 
       <div
@@ -209,16 +189,10 @@ export default async function MusicReleasePage({
       </div>
 
       <div className="mt-auto pt-6 text-right">
-        <p className="text-amber-200 font-semibold">
-          {spotlightReviewData.name}
-        </p>
+        <p className="text-amber-200 font-semibold">{spotlightReviewData.name}</p>
         <div className="flex justify-end mt-1">
           {Array.from({ length: spotlightReviewData.rating }).map((_, i) => (
-            <Star
-              key={i}
-              className="h-4 w-4 text-amber-400"
-              fill="currentColor"
-            />
+            <Star key={i} className="h-4 w-4 text-amber-400" fill="currentColor" />
           ))}
         </div>
       </div>
@@ -276,9 +250,7 @@ export default async function MusicReleasePage({
               <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
                 {release.title}
               </h1>
-              <p
-                className={`${patrickHand.className} text-xl text-amber-200/80 md:text-2xl`}
-              >
+              <p className={`${patrickHand.className} text-xl text-amber-200/80 md:text-2xl`}>
                 "Every song tells a story"
               </p>
             </div>
@@ -308,21 +280,15 @@ export default async function MusicReleasePage({
                 {/* Release Info */}
                 <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/30 backdrop-blur-sm p-6">
                   <div className="space-y-3 text-center lg:text-left">
-                    <p className="text-lg text-zinc-300">
-                      Single • {release.year}
-                    </p>
+                    <p className="text-lg text-zinc-300">Single • {release.year}</p>
                     <div className="space-y-2 text-sm text-zinc-400">
                       <p>
-                        <span className="text-zinc-500">Released by:</span>{" "}
-                        <span className="text-zinc-300">
-                          {release.releasedBy}
-                        </span>
+                        <span className="text-zinc-500">Released by:</span>{' '}
+                        <span className="text-zinc-300">{release.releasedBy}</span>
                       </p>
                       <p>
-                        <span className="text-zinc-500">Release date:</span>{" "}
-                        <span className="text-zinc-300">
-                          {release.releaseDate}
-                        </span>
+                        <span className="text-zinc-500">Release date:</span>{' '}
+                        <span className="text-zinc-300">{release.releaseDate}</span>
                       </p>
                     </div>
                   </div>
@@ -332,9 +298,7 @@ export default async function MusicReleasePage({
               {/* Right Side - Description & Listen Links */}
               <div className="space-y-6">
                 <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/30 backdrop-blur-sm p-6">
-                  <h2 className="mb-4 text-2xl font-bold text-white">
-                    About This Release
-                  </h2>
+                  <h2 className="mb-4 text-2xl font-bold text-white">About This Release</h2>
                   <div className="prose prose-lg prose-invert max-w-none text-zinc-300 leading-relaxed">
                     {release.description}
                   </div>
@@ -352,7 +316,7 @@ export default async function MusicReleasePage({
             </div>
 
             {/* Conditional sections for Honest song only */}
-            {slug === "honest" && (
+            {slug === 'honest' && (
               <>
                 {/* Mobile Tabbed Interface */}
                 <MobileTabs
@@ -373,15 +337,9 @@ export default async function MusicReleasePage({
                   {/* Spotlight Review Section */}
                   <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/30 backdrop-blur-sm p-8 flex flex-col">
                     <h2 className="mb-6 text-3xl font-bold text-amber-200 text-center flex items-center justify-center">
-                      <Star
-                        className="h-6 w-6 mr-2 text-amber-400"
-                        fill="currentColor"
-                      />
+                      <Star className="h-6 w-6 mr-2 text-amber-400" fill="currentColor" />
                       <span>Spotlight Review</span>
-                      <Star
-                        className="h-6 w-6 ml-2 text-amber-400"
-                        fill="currentColor"
-                      />
+                      <Star className="h-6 w-6 ml-2 text-amber-400" fill="currentColor" />
                     </h2>
                     {SpotlightReviewContent}
                   </div>

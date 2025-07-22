@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 import {
   Calendar,
   MapPin,
@@ -11,52 +11,27 @@ import {
   Users,
   ArrowLeft,
   Home,
-} from "lucide-react";
-import { tourDatesData } from "@/lib/tour-dates-data";
-import Image from "next/image";
-import Link from "next/link";
-import { Playfair_Display } from "next/font/google";
-import { useState } from "react";
+} from 'lucide-react';
+import { tourDatesData, formatDate, getDaysUntilShow } from '@/lib/tour-dates-data';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Playfair_Display } from 'next/font/google';
+import { useState } from 'react';
 
 const playfairDisplay = Playfair_Display({
-  weight: ["400", "500", "600", "700"],
-  subsets: ["latin"],
-  display: "swap",
+  weight: ['400', '500', '600', '700'],
+  subsets: ['latin'],
+  display: 'swap',
 });
 
 export default function TourDates() {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
-  const formatDate = (dateString: string) => {
-    // Parse date components to avoid timezone issues
-    const [year, month, day] = dateString.split("-").map(Number);
-    const date = new Date(year, month - 1, day);
-    return date.toLocaleDateString("en-US", {
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    });
-  };
-
-  const getDaysUntilShow = (dateString: string) => {
-    // Parse date components to avoid timezone issues
-    const [year, month, day] = dateString.split("-").map(Number);
-    const showDate = new Date(year, month - 1, day);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    showDate.setHours(0, 0, 0, 0);
-    const diffTime = showDate.getTime() - today.getTime();
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays;
-  };
-
-  // Separate upcoming and past shows
-  const upcomingShows = tourDatesData.filter(show => show.upcoming === true);
-  const pastShows = tourDatesData.filter(show => show.upcoming !== true);
+  const upcomingShows = tourDatesData.filter((show) => show.upcoming === true);
+  const pastShows = tourDatesData.filter((show) => show.upcoming !== true);
 
   return (
     <div className="relative min-h-screen">
-      {/* Background Image with Blur */}
       <div className="fixed inset-0 z-0">
         <Image
           src="/honest-coverr.png"
@@ -64,20 +39,16 @@ export default function TourDates() {
           fill
           className="object-cover"
           style={{
-            objectPosition: "center 30%",
+            objectPosition: 'center 30%',
           }}
           priority
         />
-        {/* Blur overlay */}
         <div className="absolute inset-0 backdrop-blur-md bg-black/60" />
-        {/* Gradient overlay for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/80" />
       </div>
 
-      {/* Content */}
       <div className="relative z-10 pt-24 pb-16 px-6 md:px-12">
         <div className="mx-auto max-w-7xl">
-          {/* Back to Home Navigation */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -96,7 +67,6 @@ export default function TourDates() {
             </Link>
           </motion.div>
 
-          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -110,12 +80,11 @@ export default function TourDates() {
             </h1>
             <p className="text-xl text-zinc-200 max-w-3xl mx-auto leading-relaxed">
               {upcomingShows.length > 0
-                ? "Join Noah Lynch for an unforgettable live experience. Upcoming shows and past performances listed below."
-                : "Explore where Noah Lynch has performed. New tour dates coming soon!"}
+                ? 'Join Noah Lynch for an unforgettable live experience. Upcoming shows and past performances listed below.'
+                : 'Explore where Noah Lynch has performed. New tour dates coming soon!'}
             </p>
           </motion.div>
 
-          {/* Upcoming Shows Section */}
           {upcomingShows.length > 0 && (
             <motion.div
               initial={{ opacity: 0 }}
@@ -145,7 +114,6 @@ export default function TourDates() {
                       onMouseLeave={() => setHoveredCard(null)}
                       className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-gold-500/20 via-gold-500/10 to-transparent backdrop-blur-lg border border-gold-400/50 hover:border-gold-400 transition-all duration-500 hover:shadow-2xl hover:shadow-gold-500/20"
                     >
-                      {/* Featured badge */}
                       {tour.featured && (
                         <div className="absolute top-4 right-4 bg-gold-500 text-black px-3 py-1 rounded-full text-sm font-bold">
                           FEATURED
@@ -176,9 +144,7 @@ export default function TourDates() {
                             <div className="flex flex-wrap items-center gap-6 text-base">
                               <div className="flex items-center gap-2 text-gold-300">
                                 <Calendar className="w-5 h-5" />
-                                <span className="font-medium">
-                                  {formatDate(tour.date)}
-                                </span>
+                                <span className="font-medium">{formatDate(tour.date)}</span>
                               </div>
                               {tour.time && (
                                 <div className="flex items-center gap-2 text-zinc-300">
@@ -192,8 +158,8 @@ export default function TourDates() {
                                   {daysUntil > 0
                                     ? `${daysUntil} days away`
                                     : daysUntil === 0
-                                      ? "TODAY!"
-                                      : "Event passed"}
+                                      ? 'TODAY!'
+                                      : 'Event passed'}
                                 </span>
                               </div>
                             </div>
@@ -223,19 +189,15 @@ export default function TourDates() {
                         </div>
                       </div>
 
-                      {/* Animated gradient on hover */}
                       <motion.div
                         className="absolute inset-0 bg-gradient-to-r from-gold-500/0 via-gold-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                         animate={{
-                          x:
-                            hoveredCard === tour.id
-                              ? ["0%", "100%", "0%"]
-                              : "0%",
+                          x: hoveredCard === tour.id ? ['0%', '100%', '0%'] : '0%',
                         }}
                         transition={{
                           duration: 3,
                           repeat: hoveredCard === tour.id ? Infinity : 0,
-                          ease: "linear",
+                          ease: 'linear',
                         }}
                       />
                     </motion.div>
@@ -245,7 +207,6 @@ export default function TourDates() {
             </motion.div>
           )}
 
-          {/* Past Shows Section */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -263,14 +224,13 @@ export default function TourDates() {
               </h2>
             </div>
 
-            {/* Mobile Swipeable View */}
             <div className="block md:hidden">
               <motion.div
                 className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4"
                 style={{
-                  WebkitOverflowScrolling: "touch",
-                  scrollbarWidth: "none",
-                  msOverflowStyle: "none",
+                  WebkitOverflowScrolling: 'touch',
+                  scrollbarWidth: 'none',
+                  msOverflowStyle: 'none',
                 }}
               >
                 {pastShows.map((tour, index) => (
@@ -282,9 +242,7 @@ export default function TourDates() {
                     transition={{ delay: index * 0.1 }}
                   >
                     <div className="h-full rounded-xl bg-white/5 backdrop-blur-md border border-zinc-700/50 p-5">
-                      <h3 className="text-xl font-bold text-zinc-100 mb-2">
-                        {tour.venue}
-                      </h3>
+                      <h3 className="text-xl font-bold text-zinc-100 mb-2">{tour.venue}</h3>
                       <div className="flex items-center gap-2 text-zinc-400 text-sm mb-3">
                         <MapPin className="w-4 h-4" />
                         <span>
@@ -321,13 +279,9 @@ export default function TourDates() {
                 ))}
               </motion.div>
 
-              {/* Dot Indicators */}
               <div className="flex justify-center gap-1.5 mt-4">
                 {pastShows.map((_, index) => (
-                  <div
-                    key={index}
-                    className="h-1.5 w-1.5 rounded-full bg-zinc-600"
-                  />
+                  <div key={index} className="h-1.5 w-1.5 rounded-full bg-zinc-600" />
                 ))}
               </div>
 
@@ -336,7 +290,6 @@ export default function TourDates() {
               </p>
             </div>
 
-            {/* Desktop Grid View */}
             <div className="hidden md:grid gap-4">
               {pastShows.map((tour, index) => (
                 <motion.div
@@ -362,9 +315,7 @@ export default function TourDates() {
                         </div>
 
                         {tour.description && (
-                          <p className="text-zinc-400 mb-3">
-                            {tour.description}
-                          </p>
+                          <p className="text-zinc-400 mb-3">{tour.description}</p>
                         )}
 
                         <div className="flex flex-wrap items-center gap-5 text-sm">
@@ -393,7 +344,6 @@ export default function TourDates() {
             </div>
           </motion.div>
 
-          {/* Call to action */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
