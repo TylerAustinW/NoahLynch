@@ -22,7 +22,7 @@ export default function EPKPage() {
         <div className="absolute -bottom-1/3 -left-1/4 h-96 w-96 rounded-full bg-purple-500/8 blur-3xl" />
         <div className="absolute top-1/2 left-1/2 h-64 w-64 rounded-full bg-purple-500/6 blur-3xl" />
       </div>
-      
+
       {/* Back to Home Button - Desktop Only */}
       <div className="fixed top-6 left-6 z-20 hidden md:block">
         <Link
@@ -33,7 +33,7 @@ export default function EPKPage() {
           Back to Home
         </Link>
       </div>
-      
+
       <div className="relative z-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-16 md:py-24">
           <div className="text-center">
@@ -227,7 +227,7 @@ export default function EPKPage() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                     </div>
-                    
+
                     {/* Caption Overlay */}
                     <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
                       <div className="text-white">
@@ -332,7 +332,7 @@ export default function EPKPage() {
           </div>
         </div>
       </div>
-      
+
       {/* Mobile Actions */}
       <EPKMobileActions />
     </div>
