@@ -20,11 +20,6 @@ export default function EPKPage() {
   return (
     <div className="min-h-screen bg-black text-white print:bg-white print:text-black">
       <div className="fixed inset-0 bg-[url('/texture.png')] bg-repeat opacity-5" />
-      <div className="fixed inset-0 overflow-hidden">
-        <div className="absolute -top-1/3 -right-1/4 h-96 w-96 rounded-full bg-amber-500/8 blur-3xl" />
-        <div className="absolute -bottom-1/3 -left-1/4 h-96 w-96 rounded-full bg-purple-500/8 blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 h-64 w-64 rounded-full bg-purple-500/6 blur-3xl" />
-      </div>
 
       <div className="fixed top-6 left-6 z-20 hidden md:block">
         <Link
@@ -37,13 +32,13 @@ export default function EPKPage() {
       </div>
 
       <div className="relative z-10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-16 md:py-24">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-20 md:py-28">
           <div className="text-center">
-            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white mb-4 sm:mb-8 tracking-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white mb-6 sm:mb-10 tracking-tight">
               {artist.name}
             </h1>
 
-            <div className="space-y-4 sm:space-y-6 max-w-2xl mx-auto">
+            <div className="space-y-6 sm:space-y-8 max-w-2xl mx-auto">
               <p
                 className={`${patrickHand.className} text-lg sm:text-xl md:text-2xl text-amber-200/90 font-light leading-relaxed px-2`}
               >
@@ -61,8 +56,8 @@ export default function EPKPage() {
                 </div>
               </div>
 
-              <div className="pt-3 sm:pt-4 border-t border-amber-500/30">
-                <div className="flex flex-col items-center justify-center gap-3 sm:gap-4 text-sm">
+              <div className="pt-4 sm:pt-6 border-t border-amber-500/30">
+                <div className="flex flex-col items-center justify-center gap-4 sm:gap-6 text-sm">
                   <a
                     href={`mailto:${contact.booking}`}
                     className="flex items-center gap-2 text-amber-200 hover:text-amber-100 transition-colors font-medium group text-center"
@@ -117,15 +112,16 @@ export default function EPKPage() {
 
       <div className="h-px bg-gradient-to-r from-transparent via-amber-500/20 to-transparent" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-12 md:py-16 print:px-4 print:py-8">
-        <div className="grid gap-6 sm:gap-12 lg:grid-cols-5 lg:gap-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-16 md:py-20 print:px-4 print:py-8">
+        <div className="grid gap-8 sm:gap-16 lg:grid-cols-5 lg:gap-20">
           <div className="lg:col-span-2">
             <div className="sticky top-8">
-              <div className="aspect-[3/4] sm:aspect-[4/5] overflow-hidden rounded-xl sm:rounded-2xl border border-zinc-700/50 shadow-2xl print:border print:border-gray-300">
+              <div className="relative aspect-[3/4] sm:aspect-[4/5] overflow-hidden rounded-xl sm:rounded-2xl border border-zinc-700/50 shadow-2xl print:border print:border-gray-300">
                 <Image
                   src="/noah-studio.jpeg"
                   alt="Noah Lynch - Professional Studio Photo"
                   fill
+                  sizes="(max-width: 1024px) 100vw, 40vw"
                   className="object-cover object-top"
                   priority
                 />
@@ -140,10 +136,10 @@ export default function EPKPage() {
             </div>
           </div>
 
-          <div className="lg:col-span-3 space-y-4 sm:space-y-8">
-            <div className="p-4 sm:p-6 md:p-8 bg-zinc-900/50 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-zinc-700/50 print:bg-white print:border-gray-300">
-              <div className="mb-4 sm:mb-6">
-                <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2 print:text-xl print:text-black">
+          <div className="lg:col-span-3 space-y-6 sm:space-y-10">
+            <div className="p-6 sm:p-8 md:p-10 bg-zinc-900/50 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-zinc-700/50 print:bg-white print:border-gray-300">
+              <div className="mb-6 sm:mb-8">
+                <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4 print:text-xl print:text-black">
                   The Story
                 </h2>
                 <p className={`${patrickHand.className} text-base sm:text-lg text-amber-200/80`}>
@@ -155,9 +151,9 @@ export default function EPKPage() {
             </div>
 
             {featuredVideo && (
-              <div className="p-4 sm:p-6 md:p-8 bg-zinc-800/20 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-zinc-700/30 print:bg-white print:border-gray-300">
-                <div className="mb-4 sm:mb-6 text-center">
-                  <h2 className="text-xl sm:text-2xl font-bold text-white mb-2 print:text-xl print:text-black">
+              <div className="p-6 sm:p-8 md:p-10 bg-zinc-800/20 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-zinc-700/30 print:bg-white print:border-gray-300">
+                <div className="mb-6 sm:mb-8 text-center">
+                  <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4 print:text-xl print:text-black">
                     {featuredVideo.title}
                   </h2>
                   {featuredVideo.video.description && (
@@ -180,17 +176,17 @@ export default function EPKPage() {
               </div>
             )}
 
-            <div className="p-4 sm:p-6 md:p-8 bg-zinc-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-zinc-700/30 print:bg-white print:border-gray-300">
-              <div className="mb-4 sm:mb-6">
-                <h2 className="text-xl sm:text-2xl font-bold text-white mb-2 print:text-xl print:text-black">
+            <div className="p-6 sm:p-8 md:p-10 bg-zinc-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-zinc-700/30 print:bg-white print:border-gray-300">
+              <div className="mb-6 sm:mb-8">
+                <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4 print:text-xl print:text-black">
                   Live Performance
                 </h2>
                 <p className="text-amber-200 font-medium text-base sm:text-lg">{liveShow.format}</p>
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
+              <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
                 <div>
-                  <h4 className="font-medium text-amber-200 mb-3 print:text-black">Setup</h4>
+                  <h4 className="font-medium text-amber-200 mb-4 print:text-black">Setup</h4>
                   <ul className="text-zinc-300 space-y-2 text-sm print:text-black">
                     {liveShow.setup.map((item, index) => (
                       <li key={index} className="flex items-center gap-2">
@@ -201,7 +197,7 @@ export default function EPKPage() {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-medium text-amber-200 mb-3 print:text-black">Venues</h4>
+                  <h4 className="font-medium text-amber-200 mb-4 print:text-black">Venues</h4>
                   <ul className="text-zinc-300 space-y-2 text-sm print:text-black">
                     {liveShow.venueTypes.map((type, index) => (
                       <li key={index} className="flex items-center gap-2">
@@ -212,7 +208,7 @@ export default function EPKPage() {
                   </ul>
                 </div>
               </div>
-              <div className="p-4 bg-zinc-900/50 rounded-xl border border-zinc-700/50 print:bg-gray-50">
+              <div className="p-5 sm:p-6 bg-zinc-900/50 rounded-xl border border-zinc-700/50 print:bg-gray-50">
                 <p className="text-zinc-300 text-sm print:text-black">{liveShow.repertoire}</p>
                 {liveShow.paSystem && (
                   <p className="text-amber-200/80 text-sm mt-2 print:text-black">
@@ -222,28 +218,54 @@ export default function EPKPage() {
               </div>
             </div>
 
-            <div className="p-4 sm:p-6 md:p-8 bg-zinc-800/20 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-zinc-700/30 print:bg-white print:border-gray-300">
-              <div className="mb-4 sm:mb-6 text-center">
+            <div className="p-6 sm:p-8 md:p-10 bg-zinc-800/20 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-zinc-700/30 print:bg-white print:border-gray-300">
+              <div className="mb-6 sm:mb-8 text-center">
                 <h2 className="text-xl sm:text-2xl font-bold text-white mb-2 print:text-xl print:text-black">
                   {gallery.title}
                 </h2>
               </div>
 
-              <div className="space-y-4 sm:space-y-6">
+              <div className="space-y-6 sm:space-y-8">
                 {gallery.photos.map((photo, index) => (
                   <div key={index} className="relative group">
-                    <div className="aspect-[16/10] sm:aspect-[20/9] overflow-hidden rounded-lg border border-zinc-600/50 shadow-lg">
+                    <div className="relative aspect-[16/10] sm:aspect-[20/9] overflow-hidden rounded-lg border border-zinc-600/50 shadow-lg">
                       <Image
                         src={photo.src}
                         alt={photo.alt}
                         fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 60vw"
+                        className="object-cover object-center scale-110 transition-transform duration-500 group-hover:scale-115"
                         priority={index === 0}
                       />
+                      
+                      {/* Name tags overlay - show on hover */}
+                      {photo.people && (
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          {photo.people.map((person, personIndex) => (
+                            <div
+                              key={personIndex}
+                              className="absolute"
+                              style={{ left: `${person.x}%`, top: `${person.y}%` }}
+                            >
+                              <div className="relative">
+                                {/* Pointer dot */}
+                                <div className="w-3 h-3 bg-amber-400 rounded-full border-2 border-white shadow-lg transform -translate-x-1/2 -translate-y-1/2 animate-pulse" />
+                                {/* Name tag */}
+                                <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 bg-zinc-900/95 text-white px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap backdrop-blur-sm border border-amber-500/30 shadow-xl">
+                                  {person.name}
+                                  {/* Arrow pointing down */}
+                                  <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-zinc-900/95" />
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                     </div>
 
-                    <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
+                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
                       <div className="text-white">
                         {photo.venue && (
                           <p className="text-amber-200 font-medium text-sm sm:text-base mb-1">
@@ -260,14 +282,14 @@ export default function EPKPage() {
               </div>
             </div>
 
-            <div className="grid gap-4 sm:gap-6 lg:gap-8 lg:grid-cols-2">
-              <div className="p-4 sm:p-6 bg-zinc-800/20 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-zinc-700/30 print:bg-white print:border-gray-300">
-                <div className="mb-4 sm:mb-6">
-                  <h3 className="text-lg sm:text-xl font-bold text-white mb-2 print:text-base print:text-black">
+            <div className="grid gap-6 sm:gap-8 lg:gap-10 lg:grid-cols-2">
+              <div className="p-6 sm:p-8 bg-zinc-800/20 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-zinc-700/30 print:bg-white print:border-gray-300">
+                <div className="mb-6 sm:mb-8">
+                  <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4 print:text-base print:text-black">
                     Career Highlights
                   </h3>
                 </div>
-                <div className="space-y-3 sm:space-y-4">
+                <div className="space-y-4 sm:space-y-5">
                   {notableShows.map((show, index) => (
                     <div
                       key={index}
@@ -284,17 +306,17 @@ export default function EPKPage() {
                 </div>
               </div>
 
-              <div className="p-4 sm:p-6 bg-zinc-800/20 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-zinc-700/30 print:bg-white print:border-gray-300">
-                <div className="mb-4 sm:mb-6">
-                  <h3 className="text-lg sm:text-xl font-bold text-white mb-2 print:text-base print:text-black">
+              <div className="p-6 sm:p-8 bg-zinc-800/20 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-zinc-700/30 print:bg-white print:border-gray-300">
+                <div className="mb-6 sm:mb-8">
+                  <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4 print:text-base print:text-black">
                     Latest Releases
                   </h3>
                 </div>
-                <div className="space-y-3 sm:space-y-4">
+                <div className="space-y-4 sm:space-y-5">
                   {releases.map((release, index) => (
                     <div
                       key={index}
-                      className="flex items-start gap-3 p-2 sm:p-3 bg-zinc-900/50 rounded-lg border border-zinc-700/50 print:bg-gray-50"
+                      className="flex items-start gap-4 p-3 sm:p-4 bg-zinc-900/50 rounded-lg border border-zinc-700/50 print:bg-gray-50"
                     >
                       {release.coverArt ? (
                         <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg overflow-hidden flex-shrink-0 border border-zinc-600/50">
@@ -326,11 +348,11 @@ export default function EPKPage() {
                   ))}
                 </div>
 
-                <div className="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-zinc-700/50 print:border-gray-300">
-                  <p className="text-zinc-300 text-xs sm:text-sm font-medium mb-2 sm:mb-3 print:text-black text-center">
+                <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-zinc-700/50 print:border-gray-300">
+                  <p className="text-zinc-300 text-xs sm:text-sm font-medium mb-3 sm:mb-4 print:text-black text-center">
                     Available on all major platforms
                   </p>
-                  <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
+                  <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
                     {['Spotify', 'Apple Music', 'YouTube Music', 'Amazon Music'].map((platform) => (
                       <span
                         key={platform}
