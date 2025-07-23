@@ -1,6 +1,5 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
@@ -9,10 +8,8 @@ import { useEffect, useState } from 'react';
 const baseLinkClasses =
   'relative group inline-flex items-center justify-center py-3 px-4 text-sm font-medium tracking-wide transition-all duration-300 hover:text-amber-400 h-[60px] leading-none';
 
-// Refined hamburger menu with subtle musical rhythm
 const MenuIcon = ({ className }: { className?: string }) => (
   <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    {/* Three lines with musical rhythm spacing and varying lengths */}
     <rect x="4" y="7" width="16" height="1.5" rx="0.75" fill="currentColor" opacity="0.9" />
     <rect x="4" y="11.25" width="14" height="1.5" rx="0.75" fill="currentColor" opacity="0.8" />
     <rect x="4" y="15.5" width="12" height="1.5" rx="0.75" fill="currentColor" opacity="0.7" />
@@ -21,7 +18,6 @@ const MenuIcon = ({ className }: { className?: string }) => (
 
 const CloseIcon = ({ className }: { className?: string }) => (
   <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    {/* Refined X with musical flow */}
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -204,7 +200,11 @@ export default function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    className={cn(baseLinkClasses, dynamicTextClasses, "flex items-center justify-center")}
+                    className={cn(
+                      baseLinkClasses,
+                      dynamicTextClasses,
+                      'flex items-center justify-center'
+                    )}
                     onClick={
                       link.id
                         ? (e) => {
@@ -222,20 +222,18 @@ export default function Navbar() {
               ))}
             </nav>
 
-          <motion.div whileTap={prefersReducedMotion ? {} : { scale: 0.9 }}>
-            <Button
-              variant="ghost"
-              size="icon"
+            <button
+              type="button"
               className={cn(
-                'relative z-[999] border md:hidden',
-                'border-zinc-600/50 bg-black/80 backdrop-blur-sm',
+                'relative z-50 h-10 w-10 border rounded-lg md:hidden flex items-center justify-center',
+                'border-zinc-600/50 bg-black/80 backdrop-blur-sm transition-colors',
                 'hover:border-amber-500/50 hover:bg-amber-500/10',
                 mobileOpen && 'border-amber-500/70 bg-amber-500/20'
               )}
               aria-label="Toggle navigation menu"
               aria-expanded={mobileOpen}
               aria-controls="mobile-menu"
-              onClick={() => setMobileOpen((prev) => !prev)}
+              onClick={() => setMobileOpen(!mobileOpen)}
             >
               <AnimatePresence mode="wait">
                 {mobileOpen ? (
@@ -266,8 +264,7 @@ export default function Navbar() {
                   </motion.div>
                 )}
               </AnimatePresence>
-            </Button>
-          </motion.div>
+            </button>
           </div>
         </div>
       </motion.header>
