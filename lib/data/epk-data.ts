@@ -43,6 +43,11 @@ export interface EPKData {
       alt: string;
       caption: string;
       venue?: string;
+      people?: {
+        name: string;
+        x: number; // % from left
+        y: number; // % from top
+      }[];
     }[];
   };
   press: {
@@ -134,6 +139,11 @@ export const epkData: EPKData = {
         alt: 'Noah Lynch performing at Magnolia Blues BBQ with packed crowd',
         caption: 'Packed house, 90+ draw',
         venue: 'Magnolia Blues BBQ',
+        people: [
+          { name: 'Noah', x: 25, y: 20 },
+          { name: 'Blake', x: 50, y: 15 },
+          { name: 'Jamie', x: 75, y: 25 },
+        ],
       },
     ],
   },
