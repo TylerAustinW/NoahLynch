@@ -19,7 +19,20 @@ export const TOUR_DATES_DATA: TourDate[] = [
   },
 ];
 
-export const UPCOMING_TOUR_DATES_DATA: TourDate[] = [];
+export const UPCOMING_TOUR_DATES_DATA: TourDate[] = [
+  {
+    id: 3,
+    date: '2025-08-16',
+    venue: 'The Roof at 1311',
+    city: 'Vicksburg',
+    state: 'MS',
+    time: '7:00 PM CDT',
+    ticketLink: 'https://www.bandsintown.com/e/107129318-noah-lynch-at-the-roof-at-1311?came_from=267&utm_medium=web&utm_source=artist_page&utm_campaign=ticket_rsvp',
+    upcoming: true,
+    featured: true,
+    description: 'Free entry! Join Noah Lynch for a live performance at The Roof on the 3rd floor.',
+  },
+];
 
 export function getAllTourDates(): TourDate[] {
   return [...UPCOMING_TOUR_DATES_DATA, ...TOUR_DATES_DATA];

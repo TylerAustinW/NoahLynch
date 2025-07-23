@@ -115,7 +115,7 @@ export default function TourDates() {
                       className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-gold-500/20 via-gold-500/10 to-transparent backdrop-blur-lg border border-gold-400/50 hover:border-gold-400 transition-all duration-500 hover:shadow-2xl hover:shadow-gold-500/20"
                     >
                       {tour.featured && (
-                        <div className="absolute top-4 right-4 bg-gold-500 text-black px-3 py-1 rounded-full text-sm font-bold">
+                        <div className="absolute top-4 right-4 bg- text-black px-3 py-1 rounded-full text-sm font-bold">
                           FEATURED
                         </div>
                       )}

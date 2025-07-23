@@ -20,7 +20,7 @@ export interface EPKData {
     };
   };
   liveShow: {
-    format: string; 
+    format: string;
     setup: string[];
     repertoire: string;
     venueTypes: string[];
@@ -80,8 +80,8 @@ export const epkData: EPKData = {
   featuredVideo: {
     title: 'Featured Performance',
     video: {
-      videoId: 'Yp4nSrtlNmI',
-      title: 'Noah Lynch - "You and Me" (Live Acoustic Performance)',
+      videoId: 'EPYGIRsGPpw',
+      title: 'Noah Lynch - "Collide" (Live Cover)',
       description: 'Live Performance at Magnolia Blues BBQ in Mississippi.',
       type: 'performance',
     },
