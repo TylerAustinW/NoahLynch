@@ -19,7 +19,16 @@ export default function EPKPage() {
 
   return (
     <div className="min-h-screen bg-black text-white print:bg-white print:text-black">
-      <div className="fixed inset-0 bg-[url('/texture.png')] bg-repeat opacity-5" />
+      {/* Subtle radial gradient background like Noah's example */}
+      <div className="fixed inset-0" style={{
+        background: 'radial-gradient(circle at 50% 40%, rgba(245, 158, 11, 0.12) 0%, rgba(139, 69, 19, 0.06) 40%, transparent 70%)'
+      }} />
+      
+      {/* Linear gradient for additional depth */}
+      <div className="fixed inset-0 bg-gradient-to-br from-amber-900/15 via-black to-zinc-900/30" />
+      
+      {/* Enhanced texture overlay */}
+      <div className="fixed inset-0 bg-[url('/texture.png')] bg-repeat opacity-[0.07]" />
 
       <div className="fixed top-6 left-6 z-20 hidden md:block">
         <Link
@@ -110,9 +119,7 @@ export default function EPKPage() {
         </div>
       </div>
 
-      <div className="h-px bg-gradient-to-r from-transparent via-amber-500/20 to-transparent" />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-16 md:py-20 print:px-4 print:py-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8 md:py-12 print:px-4 print:py-8">
         <div className="grid gap-8 sm:gap-16 lg:grid-cols-5 lg:gap-20">
           <div className="lg:col-span-2">
             <div className="sticky top-8">
