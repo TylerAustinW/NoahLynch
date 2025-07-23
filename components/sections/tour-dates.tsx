@@ -37,17 +37,17 @@ export default function TourDates() {
           }}
           priority
         />
-        <div className="absolute inset-0 backdrop-blur-sm bg-black/50" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70" />
+        <div className="absolute inset-0 backdrop-blur-[2px] bg-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/35 to-black/55" />
       </div>
 
-      <div className="relative z-10 pt-20 sm:pt-24 pb-12 sm:pb-16 px-4 sm:px-6 md:px-8">
+      <div className="relative z-[51] pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 px-4 sm:px-6 md:px-8">
         <div className="mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-6 sm:mb-8"
+            className="mb-6 sm:mb-8 hidden md:block"
           >
             <Link
               href="/"
@@ -105,7 +105,7 @@ export default function TourDates() {
                       className="group relative overflow-hidden rounded-lg sm:rounded-xl bg-black/40 backdrop-blur-md border border-amber-500/40 hover:border-amber-400 transition-all duration-300 hover:shadow-xl shadow-md hover:shadow-amber-500/20"
                     >
                       {tour.featured && (
-                        <div className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-gradient-to-r from-amber-400 to-amber-500 text-black px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold shadow-md shadow-amber-500/50 border border-amber-300">
+                        <div className="absolute top-2 right-2 sm:top-3 sm:right-3 bg-gradient-to-r from-amber-400 to-amber-500 text-black px-2 sm:px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold shadow-md shadow-amber-500/20">
                           UPCOMING SHOW
                         </div>
                       )}

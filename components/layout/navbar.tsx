@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 const baseLinkClasses =
-  'relative group inline-block py-3 px-4 text-sm font-medium tracking-wide transition-all duration-300 hover:text-amber-400';
+  'relative group inline-flex items-center justify-center py-3 px-4 text-sm font-medium tracking-wide transition-all duration-300 hover:text-amber-400 h-[60px] leading-none';
 
 // Refined hamburger menu with subtle musical rhythm
 const MenuIcon = ({ className }: { className?: string }) => (
@@ -174,16 +174,16 @@ export default function Navbar() {
           },
         }}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 md:px-12">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 md:px-12 min-h-[60px]">
           <motion.div
-            className="flex items-center"
+            className="flex items-center h-full"
             whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
             transition={{ duration: 0.2 }}
           >
-            <Link href="/" className="group">
+            <Link href="/" className="group flex items-center h-full">
               <h1
                 className={cn(
-                  'text-xl sm:text-2xl md:text-3xl font-bold tracking-wider text-white transition-all duration-300 group-hover:text-amber-400',
+                  'text-xl sm:text-2xl md:text-3xl font-bold tracking-wider text-white transition-all duration-300 group-hover:text-amber-400 leading-none',
                   scrolled && 'drop-shadow-sm'
                 )}
               >
@@ -192,33 +192,35 @@ export default function Navbar() {
             </Link>
           </motion.div>
 
-          <nav className="hidden items-center space-x-2 md:flex">
-            {navLinks.map((link, index) => (
-              <motion.div
-                key={link.label}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * index, duration: 0.4 }}
-              >
-                <Link
-                  href={link.href}
-                  className={cn(baseLinkClasses, dynamicTextClasses)}
-                  onClick={
-                    link.id
-                      ? (e) => {
-                          handleNavClick(e, link.id);
-                          closeMenu();
-                        }
-                      : () => closeMenu()
-                  }
+          <div className="flex items-center h-full">
+            <nav className="hidden items-center space-x-2 md:flex h-full">
+              {navLinks.map((link, index) => (
+                <motion.div
+                  key={link.label}
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 * index, duration: 0.4 }}
+                  className="flex items-center h-full"
                 >
-                  <span className="relative z-10">{link.label}</span>
-                  <div className="absolute inset-0 rounded-lg bg-amber-500/10 opacity-0 transition-all duration-300 group-hover:opacity-100" />
-                  <div className="absolute bottom-1 left-4 right-4 h-0.5 bg-gradient-to-r from-amber-400 to-amber-600 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
-                </Link>
-              </motion.div>
-            ))}
-          </nav>
+                  <Link
+                    href={link.href}
+                    className={cn(baseLinkClasses, dynamicTextClasses, "flex items-center justify-center")}
+                    onClick={
+                      link.id
+                        ? (e) => {
+                            handleNavClick(e, link.id);
+                            closeMenu();
+                          }
+                        : () => closeMenu()
+                    }
+                  >
+                    <span className="relative z-10">{link.label}</span>
+                    <div className="absolute inset-0 rounded-lg bg-amber-500/10 opacity-0 transition-all duration-300 group-hover:opacity-100" />
+                    <div className="absolute bottom-1 left-4 right-4 h-0.5 bg-gradient-to-r from-amber-400 to-amber-600 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+                  </Link>
+                </motion.div>
+              ))}
+            </nav>
 
           <motion.div whileTap={prefersReducedMotion ? {} : { scale: 0.9 }}>
             <Button
@@ -266,6 +268,7 @@ export default function Navbar() {
               </AnimatePresence>
             </Button>
           </motion.div>
+          </div>
         </div>
       </motion.header>
 
@@ -299,7 +302,7 @@ export default function Navbar() {
                     >
                       <Link
                         href={link.href}
-                        className="relative block text-2xl sm:text-3xl font-bold tracking-wider text-white transition-all duration-300 hover:text-amber-400 active:text-amber-300"
+                        className="relative flex items-center justify-center text-2xl sm:text-3xl font-bold tracking-wider text-white transition-all duration-300 hover:text-amber-400 active:text-amber-300 py-4"
                         onClick={
                           link.id
                             ? (e) => {
