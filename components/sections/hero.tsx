@@ -177,9 +177,6 @@ export default function HeroSection(): React.ReactElement {
                     Contact
                   </Link>
                 </Button>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Link
                   href="#music"
                   className="rounded-full bg-zinc-800/70 px-4 py-2 text-sm font-medium text-white border border-zinc-600 transition-all duration-300 hover:bg-zinc-700/80 hover:border-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-400 min-h-[36px] flex items-center justify-center sm:px-4 sm:py-2 sm:text-sm sm:min-h-[36px]"

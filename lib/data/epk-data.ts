@@ -81,7 +81,7 @@ export const epkData: EPKData = {
     title: 'Featured Performance',
     video: {
       videoId: 'Yp4nSrtlNmI',
-      title: 'Noah Lynch - "For You" (Live Acoustic Performance)',
+      title: 'Noah Lynch - "You and Me" (Live Acoustic Performance)',
       description: 'Live Performance at Magnolia Blues BBQ in Mississippi.',
       type: 'performance',
     },
