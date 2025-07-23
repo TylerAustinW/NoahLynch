@@ -4,7 +4,6 @@ export interface EPKData {
     tagline: string;
     location: string;
     genre: string;
-    influences: string;
   };
   bio: {
     short: string;
@@ -50,16 +49,8 @@ export interface EPKData {
       }[];
     }[];
   };
-  press: {
-    quotes: {
-      text: string;
-      source: string;
-    }[];
-    highlights: string[];
-  };
   contact: {
     booking: string;
-    website: string;
     social: {
       instagram: string;
       facebook: string;
@@ -75,7 +66,6 @@ export const epkData: EPKData = {
     tagline: 'Singer–Songwriter | Guitarist | Storyteller',
     location: 'Meadville, MS',
     genre: 'Acoustic Soul – Soft Rock – Alt-Pop',
-    influences: 'RIYL: John Mayer, Jack Johnson, Shawn Mendes',
   },
   bio: {
     short:
@@ -147,24 +137,8 @@ export const epkData: EPKData = {
       },
     ],
   },
-  press: {
-    quotes: [
-      {
-        text: "Noah played a full 3-hour set and had the place moving. Definitely someone we'll be booking again.",
-        source: 'Venue Owner, Magnolia Blues BBQ',
-      },
-      {
-        text: "A voice that's laid-back but cuts deep. If John Mayer grew up in the Deep South, he might sound like Noah Lynch.",
-        source: 'Local Listener Review',
-      },
-    ],
-    highlights: [
-      'International airplay on CraG Radio UK – "For You" and "Good Things Take Time" featured',
-    ],
-  },
   contact: {
     booking: 'noahlynchcontact@gmail.com',
-    website: 'www.noahlynch.com',
     social: {
       instagram: 'https://instagram.com/noahlynchmusic',
       facebook: 'https://facebook.com/noahlynchmusic',

@@ -237,7 +237,7 @@ export default function EPKPage() {
                         className="object-cover object-center scale-110 transition-transform duration-500 group-hover:scale-115"
                         priority={index === 0}
                       />
-                      
+
                       {/* Name tags overlay - show on hover */}
                       {photo.people && (
                         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -261,7 +261,7 @@ export default function EPKPage() {
                           ))}
                         </div>
                       )}
-                      
+
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                     </div>
 

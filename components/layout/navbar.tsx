@@ -11,12 +11,7 @@ const baseLinkClasses =
 
 // Refined hamburger menu with subtle musical rhythm
 const MenuIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-  >
+  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
     {/* Three lines with musical rhythm spacing and varying lengths */}
     <rect x="4" y="7" width="16" height="1.5" rx="0.75" fill="currentColor" opacity="0.9" />
     <rect x="4" y="11.25" width="14" height="1.5" rx="0.75" fill="currentColor" opacity="0.8" />
@@ -25,18 +20,13 @@ const MenuIcon = ({ className }: { className?: string }) => (
 );
 
 const CloseIcon = ({ className }: { className?: string }) => (
-  <svg
-    className={className}
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-  >
+  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
     {/* Refined X with musical flow */}
-    <path 
-      strokeLinecap="round" 
-      strokeLinejoin="round" 
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
       strokeWidth={2}
-      d="M7 7l10 10M17 7l-10 10" 
+      d="M7 7l10 10M17 7l-10 10"
       opacity="0.9"
     />
   </svg>

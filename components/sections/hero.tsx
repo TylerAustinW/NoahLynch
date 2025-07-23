@@ -149,7 +149,7 @@ export default function HeroSection(): React.ReactElement {
               <div className="w-full max-w-fit">
                 {SHOW_INFO.hasUpcomingShow ? (
                   <div className="relative">
-                    <Link 
+                    <Link
                       href={SHOW_INFO.ticketUrl}
                       className="group block"
                       aria-label="View tour dates and get tickets for the upcoming show"
@@ -157,21 +157,37 @@ export default function HeroSection(): React.ReactElement {
                     >
                       <div className="group/button flex flex-wrap items-center gap-2 rounded-full bg-amber-500/20 px-3 py-2 sm:px-4 text-sm sm:text-lg font-semibold text-amber-200 border border-amber-500/50 shadow-sm w-full sm:w-auto justify-center sm:justify-start hover:bg-amber-500/30 hover:border-amber-400/70 hover:shadow-md hover:scale-[1.02] transition-all duration-300 cursor-pointer active:scale-[0.98]">
                         <Calendar className="inline-block w-4 h-4 sm:w-5 sm:h-5 text-amber-400 group-hover/button:text-amber-300 transition-colors duration-300" />
-                        <span className="text-xs sm:text-sm md:text-base group-hover/button:text-amber-100 transition-colors duration-300">Next Show:</span>
-                        <span className="font-bold text-white text-sm sm:text-base group-hover/button:text-white transition-colors duration-300">{formatDate(SHOW_INFO.date)}</span>
-                        <span className="text-xs sm:text-sm md:text-base group-hover/button:text-amber-100 transition-colors duration-300">• {SHOW_INFO.venue}</span>
-                        
+                        <span className="text-xs sm:text-sm md:text-base group-hover/button:text-amber-100 transition-colors duration-300">
+                          Next Show:
+                        </span>
+                        <span className="font-bold text-white text-sm sm:text-base group-hover/button:text-white transition-colors duration-300">
+                          {formatDate(SHOW_INFO.date)}
+                        </span>
+                        <span className="text-xs sm:text-sm md:text-base group-hover/button:text-amber-100 transition-colors duration-300">
+                          • {SHOW_INFO.venue}
+                        </span>
+
                         {/* Integrated Click Indicator */}
                         <div className="ml-1 opacity-60 group-hover/button:opacity-100 transition-opacity duration-300">
-                          <svg className="w-3 h-3 sm:w-4 sm:h-4 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          <svg
+                            className="w-3 h-3 sm:w-4 sm:h-4 text-amber-300"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5l7 7-7 7"
+                            />
                           </svg>
                         </div>
                       </div>
                     </Link>
-                    
+
                     {/* Smart Hover Tooltip */}
-                    <div 
+                    <div
                       id="next-show-tooltip"
                       role="tooltip"
                       className="absolute left-full top-1/2 -translate-y-1/2 ml-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-30"
@@ -179,16 +195,14 @@ export default function HeroSection(): React.ReactElement {
                       {/* Tooltip Content */}
                       <div className="bg-zinc-900/95 backdrop-blur-sm text-zinc-100 text-xs font-medium px-3 py-2 rounded-lg border border-zinc-700/50 shadow-lg whitespace-nowrap">
                         Click for details & FREE entry!
-                        
                         {/* Pointer Arrow */}
                         <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-zinc-900/95"></div>
                       </div>
-                      
+
                       {/* Mobile/Responsive Alternative - Show below on small screens */}
                       <div className="sm:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2">
                         <div className="bg-zinc-900/95 backdrop-blur-sm text-zinc-100 text-xs font-medium px-3 py-2 rounded-lg border border-zinc-700/50 shadow-lg whitespace-nowrap">
                           Click for details & FREE entry!
-                          
                           {/* Pointer Arrow - Top */}
                           <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-4 border-transparent border-b-zinc-900/95"></div>
                         </div>
@@ -197,7 +211,9 @@ export default function HeroSection(): React.ReactElement {
                   </div>
                 ) : (
                   <div className="flex flex-wrap items-center gap-2 rounded-full bg-zinc-800/60 px-3 py-2 sm:px-4 text-sm sm:text-lg font-semibold text-zinc-200 border border-zinc-700/50 shadow-sm w-full sm:w-auto justify-center sm:justify-start">
-                    <span className="text-xs sm:text-sm md:text-base">No upcoming shows scheduled</span>
+                    <span className="text-xs sm:text-sm md:text-base">
+                      No upcoming shows scheduled
+                    </span>
                   </div>
                 )}
               </div>

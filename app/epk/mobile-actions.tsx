@@ -26,10 +26,10 @@ export default function EPKMobileActions() {
     const handleScroll = () => {
       const scrolled = window.scrollY;
       const viewportHeight = window.innerHeight;
-      
+
       // Show button after scrolling down a bit
       setIsVisible(scrolled > 200);
-      
+
       // Show scroll-to-top option after scrolling more than half viewport
       setShowScrollToTop(scrolled > viewportHeight * 0.5);
     };
