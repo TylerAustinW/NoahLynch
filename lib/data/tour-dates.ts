@@ -27,10 +27,11 @@ export const UPCOMING_TOUR_DATES_DATA: TourDate[] = [
     city: 'Vicksburg',
     state: 'MS',
     time: '7:00 PM CDT',
-    ticketLink: 'https://www.bandsintown.com/e/107129318-noah-lynch-at-the-roof-at-1311?came_from=267&utm_medium=web&utm_source=artist_page&utm_campaign=ticket_rsvp',
+    ticketLink:
+      'https://www.bandsintown.com/e/107129318-noah-lynch-at-the-roof-at-1311?came_from=267&utm_medium=web&utm_source=artist_page&utm_campaign=ticket_rsvp',
     upcoming: true,
     featured: true,
-    description: 'Free entry! Join Noah Lynch for a live performance at The Roof on the 3rd floor.',
+    description: 'Join Noah Lynch for a live performance at The Roof on the 3rd floor.',
   },
 ];
 
@@ -50,23 +51,14 @@ export function getUpcomingTourDates(): TourDate[] {
   return UPCOMING_TOUR_DATES_DATA;
 }
 
-/**
- * Get past tour dates
- */
 export function getPastTourDates(): TourDate[] {
   return TOUR_DATES_DATA.filter((date) => !date.upcoming);
 }
 
-/**
- * Get featured tour dates
- */
 export function getFeaturedTourDates(): TourDate[] {
   return getAllTourDates().filter((date) => date.featured);
 }
 
-/**
- * Check if there are any upcoming tour dates
- */
 export function hasUpcomingTourDates(): boolean {
   return UPCOMING_TOUR_DATES_DATA.length > 0;
 }
