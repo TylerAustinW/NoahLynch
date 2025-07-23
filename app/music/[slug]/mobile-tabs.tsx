@@ -16,7 +16,6 @@ export default function MobileTabs({
 
   return (
     <div className="lg:hidden mb-12">
-      {/* Tab Navigation */}
       <div className="flex border-b border-zinc-700/50">
         <button
           className={`w-1/2 py-4 px-4 text-center focus:outline-none relative group transition-all duration-300 ${
@@ -46,7 +45,6 @@ export default function MobileTabs({
         </button>
       </div>
 
-      {/* Tab Content */}
       <div className="mt-6">
         <div
           className={`rounded-2xl border border-zinc-700/50 bg-zinc-900/30 backdrop-blur-sm p-6 transition-all duration-300 ${

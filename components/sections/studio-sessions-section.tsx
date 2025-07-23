@@ -39,20 +39,24 @@ const studioSessions: StudioSession[] = [
 
 const YouTubeThumbnail = ({ videoId, title }: { videoId: string; title: string }) => {
   const [thumbnailSrc, setThumbnailSrc] = useState(
-    `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
+    `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
   );
   const [hasError, setHasError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleImageError = () => {
-    if (thumbnailSrc.includes('maxresdefault')) {
-      setThumbnailSrc(`https://img.youtube.com/vi/${videoId}/sddefault.jpg`);
-    } else if (thumbnailSrc.includes('sddefault')) {
-      setThumbnailSrc(`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`);
-    } else if (thumbnailSrc.includes('hqdefault')) {
+    if (thumbnailSrc.includes('hqdefault')) {
       setThumbnailSrc(`https://img.youtube.com/vi/${videoId}/mqdefault.jpg`);
+    } else if (thumbnailSrc.includes('mqdefault')) {
+      setThumbnailSrc(`https://img.youtube.com/vi/${videoId}/default.jpg`);
     } else {
       setHasError(true);
+      setIsLoading(false);
     }
+  };
+
+  const handleImageLoad = () => {
+    setIsLoading(false);
   };
 
   if (hasError) {
@@ -67,17 +71,27 @@ const YouTubeThumbnail = ({ videoId, title }: { videoId: string; title: string }
   }
 
   return (
-    <Image
-      src={thumbnailSrc}
-      width={1920}
-      height={1080}
-      alt={`Video thumbnail for ${title}`}
-      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-      loading="lazy"
-      onError={handleImageError}
-      priority={false}
-      quality={90}
-    />
+    <div className="relative h-full w-full">
+      {isLoading && (
+        <div className="absolute inset-0 h-full w-full bg-zinc-800 flex items-center justify-center">
+          <div className="animate-pulse">
+            <Play className="h-8 w-8 text-zinc-500" />
+          </div>
+        </div>
+      )}
+      <Image
+        src={thumbnailSrc}
+        width={1920}
+        height={1080}
+        alt={`Video thumbnail for ${title}`}
+        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+        loading="lazy"
+        onError={handleImageError}
+        onLoad={handleImageLoad}
+        priority={false}
+        quality={90}
+      />
+    </div>
   );
 };
 

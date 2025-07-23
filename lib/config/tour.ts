@@ -1,21 +1,15 @@
-import type { TourDate, TourDateWithStatus, ShowNotificationConfig } from '../types/tour';
-import { getDaysUntilShow, isUpcoming, isPast, isToday } from '../utils/date';
+import type { TourDate, TourDateWithStatus, ShowNotificationConfig } from '@/lib/types/tour';
+import { getDaysUntilShow, isUpcoming, isPast, isToday } from '@/lib/utils/date';
 
-/**
- * Show status configuration - toggle hasUpcomingShow to update display
- */
 export const SHOW_INFO: ShowNotificationConfig = {
   hasUpcomingShow: true,
   date: 'August 16, 2025',
   time: '7:00 PM - 10:00 PM CDT',
   venue: 'The Roof at 1311',
   location: 'Vicksburg, MS',
-  ticketUrl: '/tour-dates', // Link to full tour dates page
+  ticketUrl: '/tour-dates',
 };
 
-/**
- * Enhance tour date with calculated status information
- */
 export function enhanceTourDate(tourDate: TourDate): TourDateWithStatus {
   const daysUntilShow = getDaysUntilShow(tourDate.date);
 
@@ -28,16 +22,10 @@ export function enhanceTourDate(tourDate: TourDate): TourDateWithStatus {
   };
 }
 
-/**
- * Enhance multiple tour dates with status information
- */
 export function enhanceTourDates(tourDates: TourDate[]): TourDateWithStatus[] {
   return tourDates.map(enhanceTourDate);
 }
 
-/**
- * Get the next upcoming tour date
- */
 export function getNextTourDate(tourDates: TourDate[]): TourDateWithStatus | null {
   const upcomingDates = tourDates
     .filter((date) => isUpcoming(date.date))
@@ -46,9 +34,6 @@ export function getNextTourDate(tourDates: TourDate[]): TourDateWithStatus | nul
   return upcomingDates.length > 0 ? enhanceTourDate(upcomingDates[0]) : null;
 }
 
-/**
- * Filter tour dates by status
- */
 export function filterTourDatesByStatus(
   tourDates: TourDate[],
   status: 'upcoming' | 'past' | 'today'
@@ -67,9 +52,6 @@ export function filterTourDatesByStatus(
   });
 }
 
-/**
- * Sort tour dates chronologically
- */
 export function sortTourDates(tourDates: TourDate[], order: 'asc' | 'desc' = 'asc'): TourDate[] {
   return [...tourDates].sort((a, b) => {
     const dateA = new Date(a.date).getTime();

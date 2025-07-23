@@ -1,10 +1,11 @@
 'use client';
 
 import { useInView } from '@/hooks/use-in-view';
+import { useIsMobile } from '@/hooks/use-mobile';
 import { motion } from 'framer-motion';
 import { Patrick_Hand } from 'next/font/google';
 import Image from 'next/image';
-import { Music, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Music, ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 const patrickHand = Patrick_Hand({
@@ -12,9 +13,6 @@ const patrickHand = Patrick_Hand({
   subsets: ['latin'],
 });
 
-/**
- * Photo carousel configuration for biography section
- */
 const photoSlides = [
   {
     id: 'portrait',
@@ -32,16 +30,13 @@ const photoSlides = [
   },
 ];
 
-/**
- * Biography section with artist story and photo carousel
- * @returns {JSX.Element} Biography section component
- */
 export default function BiographySection() {
   const { ref, inView } = useInView({ threshold: 0.1, once: true });
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const isMobile = useIsMobile();
 
-  /** Auto-advance carousel slides every 5 seconds */
   useEffect(() => {
     if (!isAutoPlaying || !inView) return;
 
@@ -52,22 +47,16 @@ export default function BiographySection() {
     return () => clearInterval(interval);
   }, [isAutoPlaying, inView]);
 
-  /**
-   * Navigate to specific slide and disable auto-play
-   * @param {number} index - Slide index
-   */
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
     setIsAutoPlaying(false);
   };
 
-  /** Navigate to next slide */
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % photoSlides.length);
     setIsAutoPlaying(false);
   };
 
-  /** Navigate to previous slide */
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + photoSlides.length) % photoSlides.length);
     setIsAutoPlaying(false);
@@ -79,14 +68,12 @@ export default function BiographySection() {
       ref={ref}
       className="relative overflow-hidden bg-zinc-950 px-4 py-16 sm:py-20 md:px-6 md:py-24 lg:py-28"
     >
-      {/* Background Elements */}
       <div className="pointer-events-none absolute inset-0 bg-[url('/texture.png')] bg-repeat opacity-5" />
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-1/3 -right-1/4 h-96 w-96 rounded-full bg-amber-500/10 blur-3xl" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl">
-        {/* Section Header */}
         <motion.div
           className="mb-12 text-center md:mb-16"
           initial={{ opacity: 0, y: -20 }}
@@ -99,9 +86,7 @@ export default function BiographySection() {
           </p>
         </motion.div>
 
-        {/* Main Content */}
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20">
-          {/* Left Side - Biography Text */}
           <motion.div
             className="space-y-6"
             initial={{ opacity: 0, x: -30 }}
@@ -125,14 +110,44 @@ export default function BiographySection() {
                 isn't the typical claim to fame.
               </p>
 
-              <p>
-                Noah's upbringing was marked by the serenade of his guitar strings and the melodies
-                that echoed through his soul. His authentic approach to songwriting captures the
-                essence of human emotion, creating connections with listeners around the world.
-              </p>
+              <motion.div
+                initial={false}
+                animate={{
+                  height: isMobile && !isExpanded ? 0 : 'auto',
+                  opacity: isMobile && !isExpanded ? 0 : 1,
+                }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                style={{ overflow: 'hidden' }}
+              >
+                <p>
+                  Noah's upbringing was marked by the serenade of his guitar strings and the
+                  melodies that echoed through his soul. His authentic approach to songwriting
+                  captures the essence of human emotion, creating connections with listeners around
+                  the world.
+                </p>
+              </motion.div>
+
+              {isMobile && (
+                <motion.button
+                  onClick={() => setIsExpanded(!isExpanded)}
+                  className="group inline-flex items-center gap-2 text-amber-200 transition-colors hover:text-amber-100 focus:outline-none focus:ring-2 focus:ring-amber-400/50 rounded-lg px-2 py-1"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                >
+                  <span className="text-base font-medium">
+                    {isExpanded ? 'Read Less' : 'Read More'}
+                  </span>
+                  <motion.div
+                    animate={{ rotate: isExpanded ? 180 : 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <ChevronDown className="h-4 w-4" />
+                  </motion.div>
+                </motion.button>
+              )}
             </div>
 
-            {/* Call to Action */}
             <motion.div
               className="pt-6"
               initial={{ opacity: 0, y: 20 }}
@@ -165,14 +180,12 @@ export default function BiographySection() {
             </motion.div>
           </motion.div>
 
-          {/* Right Side - Photo Carousel */}
           <motion.div
             className="relative"
             initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            {/* Carousel Container */}
             <div className="relative overflow-hidden rounded-2xl border border-zinc-700/50 shadow-2xl">
               <div className="relative aspect-[4/5] md:aspect-[3/4]">
                 {photoSlides.map((slide, index) => (
@@ -196,7 +209,6 @@ export default function BiographySection() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
-                    {/* Caption */}
                     <div className="absolute bottom-4 left-4 right-4">
                       <p
                         className={`${patrickHand.className} mb-1 text-xl text-white/90 drop-shadow-lg`}
@@ -209,7 +221,6 @@ export default function BiographySection() {
                 ))}
               </div>
 
-              {/* Navigation Arrows - Desktop */}
               <div className="absolute inset-y-0 left-0 right-0 hidden items-center justify-between px-4 md:flex">
                 <button
                   onClick={prevSlide}
@@ -228,7 +239,6 @@ export default function BiographySection() {
               </div>
             </div>
 
-            {/* Slide Indicators */}
             <div className="mt-4 flex justify-center gap-2">
               {photoSlides.map((_, index) => (
                 <button
@@ -244,7 +254,6 @@ export default function BiographySection() {
               ))}
             </div>
 
-            {/* Floating Quote */}
             <motion.div
               className="absolute -top-6 -right-4 z-10 hidden max-w-xs rounded-xl bg-zinc-900/90 p-4 backdrop-blur border border-amber-500/30 lg:block"
               initial={{ opacity: 0, scale: 0.8, rotate: 3 }}

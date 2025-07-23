@@ -17,7 +17,6 @@ const patrickHand = Patrick_Hand({
   subsets: ['latin'],
 });
 
-
 /**
  * Hero landing section with dynamic show status and social links
  * @returns {React.ReactElement} Hero section with background image and CTAs
@@ -146,18 +145,18 @@ export default function HeroSection(): React.ReactElement {
               loaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
             }`}
           >
-            <div className="mb-6">
-              <div className="mt-4">
+            <div className="relative z-20 mb-4 sm:mb-6">
+              <div className="w-full max-w-fit">
                 {SHOW_INFO.hasUpcomingShow ? (
-                  <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/20 px-4 py-2 text-lg font-semibold text-amber-200 border border-amber-500/50 shadow-sm">
-                    <Calendar className="inline-block w-5 h-5 mr-2 text-amber-400" />
-                    <span>Next Show:</span>
-                    <span className="font-bold text-white">{formatDate(SHOW_INFO.date)}</span>
-                    <span className="hidden sm:inline">• {SHOW_INFO.venue}</span>
+                  <div className="flex flex-wrap items-center gap-2 rounded-full bg-amber-500/20 px-3 py-2 sm:px-4 text-sm sm:text-lg font-semibold text-amber-200 border border-amber-500/50 shadow-sm w-full sm:w-auto justify-center sm:justify-start">
+                    <Calendar className="inline-block w-4 h-4 sm:w-5 sm:h-5 text-amber-400" />
+                    <span className="text-xs sm:text-sm md:text-base">Next Show:</span>
+                    <span className="font-bold text-white text-sm sm:text-base">{formatDate(SHOW_INFO.date)}</span>
+                    <span className="text-xs sm:text-sm md:text-base">• {SHOW_INFO.venue}</span>
                   </div>
                 ) : (
-                  <div className="inline-flex items-center gap-2 rounded-full bg-zinc-800/60 px-4 py-2 text-lg font-semibold text-zinc-200 border border-zinc-700/50 shadow-sm">
-                    <span>No upcoming shows scheduled</span>
+                  <div className="flex flex-wrap items-center gap-2 rounded-full bg-zinc-800/60 px-3 py-2 sm:px-4 text-sm sm:text-lg font-semibold text-zinc-200 border border-zinc-700/50 shadow-sm w-full sm:w-auto justify-center sm:justify-start">
+                    <span className="text-xs sm:text-sm md:text-base">No upcoming shows scheduled</span>
                   </div>
                 )}
               </div>
@@ -165,15 +164,12 @@ export default function HeroSection(): React.ReactElement {
 
             <div className="space-y-5">
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <Button asChild variant="primary" size="lg">
-                  <Link
-                    href="/music/honest"
-                    aria-label="Listen to the latest album Honest"
-                  >
+                <Button asChild variant="primary" size="default">
+                  <Link href="/music/honest" aria-label="Listen to the latest album Honest">
                     Listen Now
                   </Link>
                 </Button>
-                <Button asChild variant="secondary" size="lg">
+                <Button asChild variant="secondary" size="default">
                   <Link
                     href="mailto:NoahLynchContact@gmail.com"
                     aria-label="Contact Noah Lynch via email"
@@ -186,17 +182,10 @@ export default function HeroSection(): React.ReactElement {
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <Link
                   href="#music"
-                  className="rounded-full bg-zinc-800/70 px-4 py-2 text-base font-medium text-white border border-zinc-600 transition-all duration-300 hover:bg-zinc-700/80 hover:border-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-400 min-h-[40px] flex items-center justify-center sm:bg-zinc-800 sm:px-6 sm:py-3 sm:text-lg sm:min-h-[48px]"
+                  className="rounded-full bg-zinc-800/70 px-4 py-2 text-sm font-medium text-white border border-zinc-600 transition-all duration-300 hover:bg-zinc-700/80 hover:border-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-400 min-h-[36px] flex items-center justify-center sm:px-4 sm:py-2 sm:text-sm sm:min-h-[36px]"
                   aria-label="Explore Noah Lynch's music catalog"
                 >
                   Explore Music
-                </Link>
-                <Link
-                  href="/merch"
-                  className="rounded-full bg-zinc-800/70 px-4 py-2 text-base font-medium text-white border border-zinc-600 transition-all duration-300 hover:bg-zinc-700/80 hover:border-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-400 min-h-[40px] flex items-center justify-center sm:bg-zinc-800 sm:px-6 sm:py-3 sm:text-lg sm:min-h-[48px]"
-                  aria-label="Browse merchandise"
-                >
-                  Explore Merch
                 </Link>
               </div>
 

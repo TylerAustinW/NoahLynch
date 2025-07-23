@@ -1,4 +1,4 @@
-import type { TourDate } from '../types/tour';
+import type { TourDate } from '@/lib/types/tour';
 
 export const TOUR_DATES_DATA: TourDate[] = [
   {
@@ -21,30 +21,18 @@ export const TOUR_DATES_DATA: TourDate[] = [
 
 export const UPCOMING_TOUR_DATES_DATA: TourDate[] = [];
 
-/**
- * Get all tour dates
- */
 export function getAllTourDates(): TourDate[] {
   return [...UPCOMING_TOUR_DATES_DATA, ...TOUR_DATES_DATA];
 }
 
-/**
- * Get tour dates by upcoming status
- */
 export function getTourDatesByUpcoming(upcoming: boolean): TourDate[] {
   return getAllTourDates().filter((date) => date.upcoming === upcoming);
 }
 
-/**
- * Get tour date by ID
- */
 export function getTourDateById(id: number): TourDate | undefined {
   return getAllTourDates().find((date) => date.id === id);
 }
 
-/**
- * Get upcoming tour dates
- */
 export function getUpcomingTourDates(): TourDate[] {
   return UPCOMING_TOUR_DATES_DATA;
 }

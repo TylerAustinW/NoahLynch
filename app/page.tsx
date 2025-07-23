@@ -4,9 +4,6 @@ import HeroSection from '@/components/sections/hero';
 import MusicShowcaseSection from '@/components/sections/music-showcase-section';
 import StudioSessionsSection from '@/components/sections/studio-sessions-section';
 
-/**
- * Homepage for Noah Lynch's music portfolio
- */
 export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white">

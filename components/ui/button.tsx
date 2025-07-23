@@ -15,14 +15,7 @@ const Spinner = ({ size = 'default' }: { size?: 'sm' | 'default' | 'lg' }) => (
     fill="none"
     viewBox="0 0 24 24"
   >
-    <circle
-      className="opacity-25"
-      cx="12"
-      cy="12"
-      r="10"
-      stroke="currentColor"
-      strokeWidth="4"
-    />
+    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
     <path
       className="opacity-75"
       fill="currentColor"
@@ -32,67 +25,56 @@ const Spinner = ({ size = 'default' }: { size?: 'sm' | 'default' | 'lg' }) => (
 );
 
 const buttonVariants = cva(
-  "relative inline-flex items-center justify-center whitespace-nowrap font-medium transition-all duration-200 ease-out disabled:pointer-events-none outline-none select-none",
+  'relative inline-flex items-center justify-center whitespace-nowrap font-medium transition-all duration-200 ease-out disabled:pointer-events-none outline-none select-none',
   {
     variants: {
       variant: {
-        // Premium primary button with sophisticated hover/focus states
         primary: [
-          "rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-lg shadow-amber-500/25",
-          "hover:from-amber-400 hover:to-amber-500 hover:shadow-xl hover:shadow-amber-500/30 hover:-translate-y-0.5",
-          "focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950",
-          "active:translate-y-0 active:shadow-lg disabled:opacity-60 disabled:shadow-none disabled:transform-none"
+          'rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-lg shadow-amber-500/25',
+          'hover:from-amber-400 hover:to-amber-500 hover:shadow-xl hover:shadow-amber-500/30 hover:-translate-y-0.5',
+          'focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950',
+          'active:translate-y-0 active:shadow-lg disabled:opacity-60 disabled:shadow-none disabled:transform-none',
         ],
-        
-        // Elegant secondary with refined backdrop blur
         secondary: [
-          "rounded-full border border-white/10 bg-white/5 text-white backdrop-blur-xl shadow-lg",
-          "hover:bg-white/10 hover:border-white/20 hover:shadow-xl hover:-translate-y-0.5",
-          "focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950",
-          "active:translate-y-0 active:bg-white/15 disabled:opacity-50 disabled:transform-none"
+          'rounded-full border border-white/10 bg-white/5 text-white backdrop-blur-xl shadow-lg',
+          'hover:bg-white/10 hover:border-white/20 hover:shadow-xl hover:-translate-y-0.5',
+          'focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950',
+          'active:translate-y-0 active:bg-white/15 disabled:opacity-50 disabled:transform-none',
         ],
-
-        // Subtle ghost with modern micro-interactions
         ghost: [
-          "rounded-lg text-zinc-300",
-          "hover:bg-white/5 hover:text-white hover:backdrop-blur-sm",
-          "focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:ring-offset-1",
-          "active:bg-white/10 disabled:opacity-50"
+          'rounded-lg text-zinc-300',
+          'hover:bg-white/5 hover:text-white hover:backdrop-blur-sm',
+          'focus-visible:ring-2 focus-visible:ring-white/20 focus-visible:ring-offset-1',
+          'active:bg-white/10 disabled:opacity-50',
         ],
-
-        // Clean outline with refined borders
         outline: [
-          "rounded-lg border border-zinc-700/60 bg-transparent text-zinc-300 shadow-sm",
-          "hover:border-zinc-600 hover:bg-zinc-800/30 hover:text-white hover:shadow-md",
-          "focus-visible:ring-2 focus-visible:ring-zinc-400/40 focus-visible:ring-offset-1",
-          "active:bg-zinc-800/50 disabled:opacity-50"
+          'rounded-lg border border-zinc-700/60 bg-transparent text-zinc-300 shadow-sm',
+          'hover:border-zinc-600 hover:bg-zinc-800/30 hover:text-white hover:shadow-md',
+          'focus-visible:ring-2 focus-visible:ring-zinc-400/40 focus-visible:ring-offset-1',
+          'active:bg-zinc-800/50 disabled:opacity-50',
         ],
-
-        // Minimal text link
         link: [
-          "text-amber-400 underline-offset-4 decoration-transparent transition-all",
-          "hover:text-amber-300 hover:decoration-amber-300/50 hover:underline",
-          "focus-visible:decoration-amber-300 focus-visible:underline focus-visible:outline-none",
-          "active:text-amber-500 disabled:opacity-50"
+          'text-amber-400 underline-offset-4 decoration-transparent transition-all',
+          'hover:text-amber-300 hover:decoration-amber-300/50 hover:underline',
+          'focus-visible:decoration-amber-300 focus-visible:underline focus-visible:outline-none',
+          'active:text-amber-500 disabled:opacity-50',
         ],
-
-        // Destructive with sophisticated error states
         destructive: [
-          "rounded-lg bg-red-600 text-white shadow-lg shadow-red-600/20",
-          "hover:bg-red-500 hover:shadow-xl hover:shadow-red-500/30 hover:-translate-y-0.5",
-          "focus-visible:ring-2 focus-visible:ring-red-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950",
-          "active:translate-y-0 active:bg-red-700 disabled:opacity-60 disabled:transform-none"
+          'rounded-lg bg-red-600 text-white shadow-lg shadow-red-600/20',
+          'hover:bg-red-500 hover:shadow-xl hover:shadow-red-500/30 hover:-translate-y-0.5',
+          'focus-visible:ring-2 focus-visible:ring-red-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950',
+          'active:translate-y-0 active:bg-red-700 disabled:opacity-60 disabled:transform-none',
         ],
       },
-      
+
       size: {
-        sm: "h-8 px-3 text-xs gap-1.5",
-        default: "h-10 px-6 text-sm gap-2",
-        lg: "h-12 px-8 text-base gap-2.5",
-        xl: "h-14 px-10 text-lg gap-3",
-        icon: "h-10 w-10 p-0",
-        'icon-sm': "h-8 w-8 p-0 text-xs",
-        'icon-lg': "h-12 w-12 p-0 text-base",
+        sm: 'h-8 px-3 text-xs gap-1.5',
+        default: 'h-10 px-6 text-sm gap-2',
+        lg: 'h-12 px-8 text-base gap-2.5',
+        xl: 'h-14 px-10 text-lg gap-3',
+        icon: 'h-10 w-10 p-0',
+        'icon-sm': 'h-8 w-8 p-0 text-xs',
+        'icon-lg': 'h-12 w-12 p-0 text-base',
       },
     },
     defaultVariants: {
@@ -102,9 +84,7 @@ const buttonVariants = cva(
   }
 );
 
-interface ButtonProps
-  extends React.ComponentProps<'button'>,
-    VariantProps<typeof buttonVariants> {
+interface ButtonProps extends React.ComponentProps<'button'>, VariantProps<typeof buttonVariants> {
   asChild?: boolean;
   loading?: boolean;
   leftIcon?: React.ReactNode;
@@ -129,11 +109,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const Comp = asChild ? Slot : 'button';
     const isDisabled = disabled || loading;
-    
-    // Determine spinner size based on button size
-    const spinnerSize = size === 'sm' || size === 'icon-sm' ? 'sm' : 
-                      size === 'lg' || size === 'xl' || size === 'icon-lg' ? 'lg' : 
-                      'default';
+
+    const spinnerSize =
+      size === 'sm' || size === 'icon-sm'
+        ? 'sm'
+        : size === 'lg' || size === 'xl' || size === 'icon-lg'
+          ? 'lg'
+          : 'default';
 
     if (asChild) {
       return (
@@ -156,15 +138,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {loading && <Spinner size={spinnerSize} />}
-        {!loading && leftIcon && (
-          <span className="flex-shrink-0">{leftIcon}</span>
-        )}
-        {children && (
-          <span className={cn(loading && "opacity-70")}>{children}</span>
-        )}
-        {!loading && rightIcon && (
-          <span className="flex-shrink-0">{rightIcon}</span>
-        )}
+        {!loading && leftIcon && <span className="flex-shrink-0">{leftIcon}</span>}
+        {children && <span className={cn(loading && 'opacity-70')}>{children}</span>}
+        {!loading && rightIcon && <span className="flex-shrink-0">{rightIcon}</span>}
       </Comp>
     );
   }

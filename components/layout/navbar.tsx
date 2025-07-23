@@ -3,12 +3,38 @@
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 const baseLinkClasses =
   'relative group inline-block py-3 px-4 text-sm font-medium tracking-wide transition-all duration-300 hover:text-amber-400';
+
+// Custom minimalistic icons that match the aesthetic
+const MenuIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={1.5}
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 9h16.5" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 15h16.5" />
+  </svg>
+);
+
+const CloseIcon = ({ className }: { className?: string }) => (
+  <svg
+    className={className}
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={1.5}
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6" />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M6 6l12 12" />
+  </svg>
+);
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -131,7 +157,6 @@ export default function Navbar() {
     { href: '#studio-sessions', label: 'SESSIONS', id: 'studio-sessions' },
     { href: '/tour-dates', label: 'TOUR', id: null },
     { href: '/epk', label: 'EPK', id: null },
-    { href: '/merch', label: 'MERCH', id: null },
   ];
 
   return (
@@ -214,35 +239,35 @@ export default function Navbar() {
               aria-controls="mobile-menu"
               onClick={() => setMobileOpen((prev) => !prev)}
             >
-            <AnimatePresence mode="wait">
-              {mobileOpen ? (
-                <motion.div
-                  key="close"
-                  initial={{
-                    rotate: prefersReducedMotion ? 0 : -90,
-                    opacity: 0,
-                  }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: prefersReducedMotion ? 0 : 90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <X className="h-4 w-4 text-amber-400" />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="menu"
-                  initial={{
-                    rotate: prefersReducedMotion ? 0 : 90,
-                    opacity: 0,
-                  }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: prefersReducedMotion ? 0 : -90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Menu className="h-4 w-4 text-white" />
-                </motion.div>
-              )}
-            </AnimatePresence>
+              <AnimatePresence mode="wait">
+                {mobileOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{
+                      rotate: prefersReducedMotion ? 0 : -90,
+                      opacity: 0,
+                    }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: prefersReducedMotion ? 0 : 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <CloseIcon className="h-4 w-4 text-amber-400" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{
+                      rotate: prefersReducedMotion ? 0 : 90,
+                      opacity: 0,
+                    }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: prefersReducedMotion ? 0 : -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <MenuIcon className="h-4 w-4 text-white" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </Button>
           </motion.div>
         </div>
@@ -252,7 +277,7 @@ export default function Navbar() {
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
-              className="fixed inset-0 z-[90] flex min-h-screen w-full items-center justify-center overflow-hidden bg-black/98 backdrop-blur-2xl md:hidden"
+              className="fixed inset-0 z-[90] flex min-h-screen w-full items-center justify-center overflow-hidden bg-black/50 backdrop-blur-2xl md:hidden"
               initial={animationVariants.overlay.initial}
               animate={animationVariants.overlay.animate}
               exit={animationVariants.overlay.exit}

@@ -1,7 +1,7 @@
 import { FaDeezer, FaSpotify } from 'react-icons/fa';
 import { SiTidal } from 'react-icons/si';
 import { Music, Play } from 'lucide-react';
-import type { PlatformName, PlatformConfig, PlatformRegistry, Platform } from '../types/music';
+import type { PlatformName, PlatformConfig, PlatformRegistry, Platform } from '@/lib/types/music';
 
 const PLATFORM_REGISTRY: PlatformRegistry = {
   spotify: {

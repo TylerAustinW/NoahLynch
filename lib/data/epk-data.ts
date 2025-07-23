@@ -10,8 +10,17 @@ export interface EPKData {
     short: string;
     long: string;
   };
+  featuredVideo?: {
+    title: string;
+    video: {
+      videoId: string;
+      title: string;
+      description?: string;
+      type: 'performance' | 'music-video' | 'acoustic' | 'interview';
+    };
+  };
   liveShow: {
-    format: string;
+    format: string; 
     setup: string[];
     repertoire: string;
     venueTypes: string[];
@@ -29,7 +38,6 @@ export interface EPKData {
   }[];
   gallery: {
     title: string;
-    subtitle?: string;
     photos: {
       src: string;
       alt: string;
@@ -68,6 +76,15 @@ export const epkData: EPKData = {
     short:
       'Noah Lynch is a Mississippi-born singer-songwriter blending acoustic soul, soft rock, and alt-pop into emotionally rich, story-driven music. Known for his heartfelt guitar playing and honest lyrics, Noah delivers performances that feel both intimate and universal. His songs speak to the real — love, heartbreak, growth — all anchored in smooth grooves and Southern sincerity.',
     long: 'Noah Lynch is a solo artist from Meadville, Mississippi, crafting a sound rooted in acoustic soul, soft rock, and alternative pop. With over a decade of experience behind the guitar, Noah delivers stripped-back performances that spotlight the heart of each song. His lyrics speak to real-life moments — heartbreak, healing, and hope — with a calm confidence that draws listeners in. From backyard shows to packed venues, Noah has built a loyal following across Mississippi and beyond. His music has been featured on CraG Radio UK, where tracks like "For You" and "Good Things Take Time" found international ears. Whether he\'s playing a small-town stage or recording his next single, Noah\'s focus is always the same: connect through the song. With a growing catalog and an unmistakable sound, Noah Lynch is quickly becoming a voice of his generation — one story, one song at a time.',
+  },
+  featuredVideo: {
+    title: 'Featured Performance',
+    video: {
+      videoId: 'Yp4nSrtlNmI',
+      title: 'Noah Lynch - "For You" (Live Acoustic Performance)',
+      description: 'Live Performance at Magnolia Blues BBQ in Mississippi.',
+      type: 'performance',
+    },
   },
   liveShow: {
     format: 'Solo Acoustic Performance',
@@ -111,7 +128,6 @@ export const epkData: EPKData = {
   ],
   gallery: {
     title: 'Live Performance Gallery',
-    subtitle: 'Capturing the energy and connection of live shows',
     photos: [
       {
         src: '/magnoila-blues.jpg',

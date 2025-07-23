@@ -1,4 +1,4 @@
-import type { ReleaseData } from '../types/music';
+import type { ReleaseData } from '@/lib/types/music';
 
 export const RELEASES_DATA: ReleaseData[] = [
   {

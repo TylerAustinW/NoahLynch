@@ -5,6 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Patrick_Hand } from 'next/font/google';
 import EPKMobileActions from './mobile-actions';
+import YouTubeEmbed from '@/components/ui/youtube-embed';
+import ExpandableBio from '@/components/ui/expandable-bio';
 
 const patrickHand = Patrick_Hand({
   weight: '400',
@@ -12,7 +14,8 @@ const patrickHand = Patrick_Hand({
 });
 
 export default function EPKPage() {
-  const { artist, bio, liveShow, notableShows, releases, gallery, contact } = epkData;
+  const { artist, bio, featuredVideo, liveShow, notableShows, releases, gallery, contact } =
+    epkData;
 
   return (
     <div className="min-h-screen bg-black text-white print:bg-white print:text-black">
@@ -23,7 +26,6 @@ export default function EPKPage() {
         <div className="absolute top-1/2 left-1/2 h-64 w-64 rounded-full bg-purple-500/6 blur-3xl" />
       </div>
 
-      {/* Back to Home Button - Desktop Only */}
       <div className="fixed top-6 left-6 z-20 hidden md:block">
         <Link
           href="/"
@@ -149,15 +151,34 @@ export default function EPKPage() {
                 </p>
               </div>
 
-              <div className="space-y-3 sm:space-y-4">
-                <p className="text-zinc-300 text-base sm:text-lg leading-relaxed print:text-sm print:text-black">
-                  {bio.short}
-                </p>
-                <p className="text-zinc-300 text-base sm:text-lg leading-relaxed print:text-sm print:text-black">
-                  {bio.long}
-                </p>
-              </div>
+              <ExpandableBio content={bio.long} />
             </div>
+
+            {featuredVideo && (
+              <div className="p-4 sm:p-6 md:p-8 bg-zinc-800/20 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-zinc-700/30 print:bg-white print:border-gray-300">
+                <div className="mb-4 sm:mb-6 text-center">
+                  <h2 className="text-xl sm:text-2xl font-bold text-white mb-2 print:text-xl print:text-black">
+                    {featuredVideo.title}
+                  </h2>
+                  {featuredVideo.video.description && (
+                    <p
+                      className={`${patrickHand.className} text-base sm:text-lg text-amber-200/80`}
+                    >
+                      "{featuredVideo.video.description}"
+                    </p>
+                  )}
+                </div>
+
+                <YouTubeEmbed
+                  videoId={featuredVideo.video.videoId}
+                  title={featuredVideo.video.title}
+                  {...(featuredVideo.video.description && {
+                    description: featuredVideo.video.description,
+                  })}
+                  className="max-w-4xl mx-auto"
+                />
+              </div>
+            )}
 
             <div className="p-4 sm:p-6 md:p-8 bg-zinc-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-zinc-700/30 print:bg-white print:border-gray-300">
               <div className="mb-4 sm:mb-6">
@@ -201,17 +222,11 @@ export default function EPKPage() {
               </div>
             </div>
 
-            {/* Performance Gallery */}
             <div className="p-4 sm:p-6 md:p-8 bg-zinc-800/20 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-zinc-700/30 print:bg-white print:border-gray-300">
               <div className="mb-4 sm:mb-6 text-center">
                 <h2 className="text-xl sm:text-2xl font-bold text-white mb-2 print:text-xl print:text-black">
                   {gallery.title}
                 </h2>
-                {gallery.subtitle && (
-                  <p className={`${patrickHand.className} text-base sm:text-lg text-amber-200/80`}>
-                    "{gallery.subtitle}"
-                  </p>
-                )}
               </div>
 
               <div className="space-y-4 sm:space-y-6">
@@ -228,7 +243,6 @@ export default function EPKPage() {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                     </div>
 
-                    {/* Caption Overlay */}
                     <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
                       <div className="text-white">
                         {photo.venue && (
@@ -333,7 +347,6 @@ export default function EPKPage() {
         </div>
       </div>
 
-      {/* Mobile Actions */}
       <EPKMobileActions />
     </div>
   );
