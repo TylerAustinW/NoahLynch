@@ -7,19 +7,17 @@ import { ExternalLink, Play, ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState, useRef } from 'react';
+import { Button } from '@/components/ui/button';
 
-/**
- * Featured music release card with large hero display
- */
 const FeaturedCard = React.memo(({ release }: { release: ReleaseWithPlatforms }) => {
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setPrefersReducedMotion(mediaQuery.matches);
+    setReducedMotion(mediaQuery.matches);
 
     const handleChange = (e: MediaQueryListEvent) => {
-      setPrefersReducedMotion(e.matches);
+      setReducedMotion(e.matches);
     };
 
     mediaQuery.addEventListener('change', handleChange);
@@ -29,7 +27,7 @@ const FeaturedCard = React.memo(({ release }: { release: ReleaseWithPlatforms })
   return (
     <motion.div
       className="group relative overflow-hidden rounded-xl border border-zinc-700/40 bg-zinc-900/30 backdrop-blur-sm md:rounded-2xl"
-      whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
+      whileHover={reducedMotion ? {} : { scale: 1.02 }}
       transition={{ duration: 0.3, ease: 'easeOut' }}
     >
       <div className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-[16/9] md:aspect-[16/10]">
@@ -75,24 +73,21 @@ const FeaturedCard = React.memo(({ release }: { release: ReleaseWithPlatforms })
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.6 }}
           >
-            <Link
-              href={`/music/${release.id}`}
-              className="group/btn flex items-center justify-center gap-2 rounded-full bg-amber-500 px-7 py-3 font-semibold text-white transition-all duration-300 hover:bg-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-black min-h-[48px]"
-            >
-              <Play
-                className="h-5 w-5 transition-transform group-hover/btn:scale-110"
-                fill="currentColor"
-              />
-              Listen Now
-            </Link>
-
-            <Link
-              href={`/music/${release.id}`}
-              className="flex items-center justify-center gap-2 rounded-full border border-zinc-600/60 bg-zinc-900/60 px-7 py-3 font-medium text-white backdrop-blur-sm transition-all duration-300 hover:border-zinc-500/80 hover:bg-zinc-800/80 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 focus:ring-offset-black min-h-[48px]"
-            >
-              <ExternalLink className="h-4 w-4" />
-              View Details
-            </Link>
+            <Button asChild variant="primary">
+              <Link href={`/music/${release.id}`} aria-label={`Listen to ${release.title}`}>
+                <Play
+                  className="h-5 w-5 transition-transform group-hover/btn:scale-110"
+                  fill="currentColor"
+                />
+                Listen Now
+              </Link>
+            </Button>
+            <Button asChild variant="secondary">
+              <Link href={`/music/${release.id}`} aria-label={`View details for ${release.title}`}>
+                <ExternalLink className="h-4 w-4" />
+                View Details
+              </Link>
+            </Button>
           </motion.div>
         </div>
       </div>
@@ -101,11 +96,6 @@ const FeaturedCard = React.memo(({ release }: { release: ReleaseWithPlatforms })
 });
 FeaturedCard.displayName = 'FeaturedCard';
 
-/**
- * Standard music release card for carousel display
- * @param {{ release: ReleaseWithPlatforms }} props - Component props
- * @returns {JSX.Element} Regular release card component
- */
 const RegularCard = React.memo(({ release }: { release: ReleaseWithPlatforms }) => {
   return (
     <Link href={`/music/${release.id}`} className="group block h-full w-80 flex-shrink-0">
@@ -145,24 +135,18 @@ const RegularCard = React.memo(({ release }: { release: ReleaseWithPlatforms }) 
 });
 RegularCard.displayName = 'RegularCard';
 
-/**
- * Music showcase section displaying featured release and carousel
- * @returns {React.ReactElement} Complete music showcase section
- */
 export default function MusicShowcaseSection(): React.ReactElement {
   const { ref, inView } = useInView({ threshold: 0.1, once: true });
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  /** Featured release defaults to 'Honest' or first available */
-  const featuredRelease = allReleases.find((release) => release.id === 'honest') || allReleases[0];
-  const otherReleases = allReleases.filter((release) => release.id !== featuredRelease.id);
+  const featured = allReleases.find((release) => release.id === 'honest') || allReleases[0];
+  const releases = allReleases.filter((release) => release.id !== featured.id);
 
-  /** Updates scroll navigation button states */
   const updateScrollButtons = () => {
-    if (scrollContainerRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+    if (containerRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;
       setCanScrollLeft(scrollLeft > 0);
       setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
     }
@@ -170,7 +154,7 @@ export default function MusicShowcaseSection(): React.ReactElement {
 
   useEffect(() => {
     updateScrollButtons();
-    const container = scrollContainerRef.current;
+    const container = containerRef.current;
     if (container) {
       container.addEventListener('scroll', updateScrollButtons);
       return () => container.removeEventListener('scroll', updateScrollButtons);
@@ -178,13 +162,9 @@ export default function MusicShowcaseSection(): React.ReactElement {
     return undefined;
   }, []);
 
-  /**
-   * Scrolls carousel in specified direction
-   * @param {"left" | "right"} direction - Scroll direction
-   */
   const scrollTo = (direction: 'left' | 'right') => {
-    if (scrollContainerRef.current) {
-      const container = scrollContainerRef.current;
+    if (containerRef.current) {
+      const container = containerRef.current;
       const scrollAmount = 320;
       const targetScroll =
         direction === 'left'
@@ -211,9 +191,9 @@ export default function MusicShowcaseSection(): React.ReactElement {
         playsInline
         className="absolute inset-0 h-full w-full object-cover opacity-15"
       >
-        <source src="/noah.mp4" type="video/mp4" />
+        <source src="/noah-lynch-hero-video.mp4" type="video/mp4" />
       </video>
-      <div className="pointer-events-none absolute inset-0 bg-[url('/texture.png')] bg-repeat opacity-5" />
+      <div className="pointer-events-none absolute inset-0 bg-[url('/grain-texture-overlay.png')] bg-repeat opacity-[0.03]" />
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-1/3 -right-1/4 h-96 w-96 rounded-full bg-amber-500/10 blur-3xl" />
       </div>
@@ -239,10 +219,10 @@ export default function MusicShowcaseSection(): React.ReactElement {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <FeaturedCard release={featuredRelease} />
+          <FeaturedCard release={featured} />
         </motion.div>
 
-        {otherReleases.length > 0 && (
+        {releases.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -276,11 +256,11 @@ export default function MusicShowcaseSection(): React.ReactElement {
               </div>
 
               <div
-                ref={scrollContainerRef}
+                ref={containerRef}
                 className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth pb-4"
                 style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
               >
-                {otherReleases.map((release, index) => (
+                {releases.map((release, index) => (
                   <motion.div
                     key={release.id}
                     className="snap-start"
@@ -294,7 +274,7 @@ export default function MusicShowcaseSection(): React.ReactElement {
               </div>
 
               <div className="mt-4 flex justify-center gap-2 md:hidden">
-                {otherReleases.map((_, index) => (
+                {releases.map((_, index) => (
                   <div
                     key={index}
                     className={`h-2 rounded-full transition-all duration-300 ${

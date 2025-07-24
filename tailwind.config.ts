@@ -21,7 +21,7 @@ const config = {
     },
     extend: {
       backgroundImage: {
-        'grain-overlay': "url('/texture.png')",
+        'grain-overlay': "url('/grain-texture-overlay.png')",
       },
       colors: {
         border: 'hsl(var(--border))',

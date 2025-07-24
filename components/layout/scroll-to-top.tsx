@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [reducedMotion, setPrefersReducedMotion] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -52,8 +52,8 @@ export default function ScrollToTop() {
           aria-label="Scroll to top"
           initial={{
             opacity: 0,
-            scale: prefersReducedMotion ? 1 : 0.8,
-            y: prefersReducedMotion ? 0 : 20,
+            scale: reducedMotion ? 1 : 0.8,
+            y: reducedMotion ? 0 : 20,
           }}
           animate={{
             opacity: 1,
@@ -62,12 +62,12 @@ export default function ScrollToTop() {
           }}
           exit={{
             opacity: 0,
-            scale: prefersReducedMotion ? 1 : 0.8,
-            y: prefersReducedMotion ? 0 : 20,
+            scale: reducedMotion ? 1 : 0.8,
+            y: reducedMotion ? 0 : 20,
           }}
           transition={{ duration: 0.3, ease: 'easeOut' }}
-          whileHover={prefersReducedMotion ? {} : { scale: 1.1 }}
-          whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
+          whileHover={reducedMotion ? {} : { scale: 1.1 }}
+          whileTap={reducedMotion ? {} : { scale: 0.95 }}
         >
           <ChevronUp className="h-6 w-6" />
         </motion.button>

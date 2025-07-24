@@ -226,7 +226,7 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
       </div>
 
       {/* Texture Overlay */}
-      <div className="pointer-events-none absolute inset-0 bg-[url('/texture.png')] bg-repeat opacity-5" />
+      <div className="pointer-events-none absolute inset-0 bg-[url('/grain-texture-overlay.png')] bg-repeat opacity-[0.03]" />
 
       {/* Ambient Light Effects */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">

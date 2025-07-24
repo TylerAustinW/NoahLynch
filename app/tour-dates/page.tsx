@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function TourDatesPage() {
   return (
-    <main className="min-h-screen bg-black">
+    <main className="min-h-screen bg-zinc-950">
       <Navbar />
       <TourDates />
     </main>

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Play, ChevronLeft, ChevronRight } from 'lucide-react';
 import React, { useState, useEffect, useRef } from 'react';
+import { Button } from '@/components/ui/button';
 
 interface StudioSession {
   id: string;
@@ -189,7 +190,7 @@ export default function StudioSessionsSection(): React.ReactElement {
       aria-labelledby="studio-sessions-heading"
     >
       <div
-        className="absolute inset-0 bg-[url('/texture.png')] bg-repeat opacity-5"
+        className="absolute inset-0 bg-[url('/grain-texture-overlay.png')] bg-repeat opacity-[0.03]"
         aria-hidden="true"
       ></div>
       <div className="absolute inset-0" aria-hidden="true">
@@ -224,25 +225,27 @@ export default function StudioSessionsSection(): React.ReactElement {
         >
           {/* Desktop Navigation Arrows */}
           <div className="absolute -left-4 top-1/2 z-10 hidden -translate-y-1/2 md:block">
-            <button
+            <Button
+              variant="ghost"
               onClick={() => scrollTo('left')}
               disabled={!canScrollLeft}
-              className={`rounded-full bg-zinc-800/80 p-3 text-white backdrop-blur-sm transition-all hover:bg-zinc-700/80 focus:outline-none focus:ring-2 focus:ring-amber-400/50 disabled:opacity-50 disabled:cursor-not-allowed`}
               aria-label="Previous videos"
+              type="button"
             >
               <ChevronLeft className="h-6 w-6" />
-            </button>
+            </Button>
           </div>
 
           <div className="absolute -right-4 top-1/2 z-10 hidden -translate-y-1/2 md:block">
-            <button
+            <Button
+              variant="ghost"
               onClick={() => scrollTo('right')}
               disabled={!canScrollRight}
-              className={`rounded-full bg-zinc-800/80 p-3 text-white backdrop-blur-sm transition-all hover:bg-zinc-700/80 focus:outline-none focus:ring-2 focus:ring-amber-400/50 disabled:opacity-50 disabled:cursor-not-allowed`}
               aria-label="Next videos"
+              type="button"
             >
               <ChevronRight className="h-6 w-6" />
-            </button>
+            </Button>
           </div>
 
           {/* Scrollable Container */}
@@ -285,16 +288,17 @@ export default function StudioSessionsSection(): React.ReactElement {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <a
-            href="https://youtube.com/@noahlynch"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-600/20 min-h-[48px]"
-            aria-label="Visit Noah Lynch's YouTube channel to watch more studio sessions"
-          >
-            <Play className="h-4 w-4" aria-hidden="true" />
-            Watch More on YouTube
-          </a>
+          <Button asChild variant="primary">
+            <a
+              href="https://youtube.com/@noahlynch"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit Noah Lynch's YouTube channel to watch more studio sessions"
+            >
+              <Play className="h-4 w-4" aria-hidden="true" />
+              Watch More on YouTube
+            </a>
+          </Button>
         </motion.div>
       </div>
 
@@ -327,14 +331,14 @@ export default function StudioSessionsSection(): React.ReactElement {
                 allowFullScreen
               ></iframe>
             </div>
-            <button
-              className="absolute -top-10 right-0 text-white hover:text-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-600/20 rounded"
+            <Button
+              variant="ghost"
               onClick={() => setSelectedVideo(null)}
               aria-label="Close video player"
               type="button"
             >
               Close
-            </button>
+            </Button>
             <h3 id="video-modal-title" className="sr-only">
               {selectedVideo.title}
             </h3>

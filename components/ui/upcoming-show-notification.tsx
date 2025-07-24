@@ -6,19 +6,15 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { formatDate, getDaysUntilShow, type TourDate } from '@/lib/tour-dates-data';
 
-interface UpcomingShowNotificationProps {
+interface Props {
   show: TourDate;
   variant?: 'floating' | 'banner' | 'card';
   onClose?: () => void;
 }
 
-export default function UpcomingShowNotification({
-  show,
-  variant = 'floating',
-  onClose,
-}: UpcomingShowNotificationProps) {
+export default function UpcomingShowNotification({ show, variant = 'floating', onClose }: Props) {
   const [isVisible, setIsVisible] = useState(true);
-  const [hasInteracted, setHasInteracted] = useState(false);
+  const [interacted, setInteracted] = useState(false);
 
   useEffect(() => {
     // Check localStorage to see if user has closed this notification
@@ -33,7 +29,7 @@ export default function UpcomingShowNotification({
 
   const handleClose = () => {
     setIsVisible(false);
-    setHasInteracted(true);
+    setInteracted(true);
 
     // Save to localStorage
     const closedNotifications = localStorage.getItem('closedShowNotifications');
@@ -59,16 +55,16 @@ export default function UpcomingShowNotification({
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             className="fixed top-0 left-0 right-0 z-[60] bg-gradient-to-r from-amber-600 to-amber-700 text-white shadow-lg"
           >
-            <div className="relative px-4 py-3 md:px-6">
-              <div className="mx-auto max-w-7xl flex items-center justify-between gap-4">
+            <div className="relative px-3 py-2 sm:px-4 sm:py-3 md:px-6">
+              <div className="mx-auto max-w-7xl flex items-center justify-between gap-2 sm:gap-4">
                 <div className="flex-1 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                  <div className="flex items-center gap-2">
-                    <Ticket className="w-5 h-5" />
-                    <span className="font-bold text-sm sm:text-base">
+                  <div className="flex items-center gap-1 sm:gap-2">
+                    <Ticket className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <span className="font-bold text-xs sm:text-sm md:text-base">
                       {daysUntil > 0 ? `Next Show in ${daysUntil} days!` : 'Show Today!'}
                     </span>
                   </div>
-                  <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm">
+                  <div className="flex flex-wrap items-center gap-1 sm:gap-2 md:gap-4 text-xs">
                     <span className="font-semibold">{show.venue}</span>
                     <span className="opacity-90">
                       {show.city}, {show.state}
@@ -76,16 +72,16 @@ export default function UpcomingShowNotification({
                     <span className="opacity-90">{formatDate(show.date)}</span>
                   </div>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1 sm:gap-2">
                   <Link
                     href="/tour-dates"
-                    className="hidden sm:inline-flex items-center gap-1 bg-white text-amber-700 px-3 py-1.5 rounded-md text-sm font-medium hover:bg-amber-50 transition-colors"
+                    className="hidden sm:inline-flex items-center gap-1 bg-white text-amber-700 px-2 py-1 sm:px-3 sm:py-1.5 rounded text-xs sm:text-sm font-medium hover:bg-amber-50 transition-colors"
                   >
                     View Details
                   </Link>
                   <button
                     onClick={handleClose}
-                    className="p-1 hover:bg-amber-800/50 rounded-md transition-colors"
+                    className="p-0.5 sm:p-1 hover:bg-amber-800/50 rounded transition-colors"
                     aria-label="Close notification"
                   >
                     <X className="w-4 h-4" />
@@ -108,10 +104,10 @@ export default function UpcomingShowNotification({
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="bg-gradient-to-br from-amber-600 to-amber-700 rounded-lg p-6 text-white shadow-xl"
+            className="bg-gradient-to-br from-amber-600 to-amber-700 rounded-md sm:rounded-lg p-4 sm:p-6 text-white shadow-xl"
           >
-            <div className="flex justify-between items-start mb-4">
-              <h3 className="text-xl font-bold">Next Show</h3>
+            <div className="flex justify-between items-start mb-3 sm:mb-4">
+              <h3 className="text-lg sm:text-xl font-bold">Next Show</h3>
               {onClose && (
                 <button
                   onClick={handleClose}
@@ -123,9 +119,9 @@ export default function UpcomingShowNotification({
               )}
             </div>
 
-            <h4 className="text-2xl font-bold mb-2">{show.venue}</h4>
+            <h4 className="text-xl sm:text-2xl font-bold mb-2">{show.venue}</h4>
 
-            <div className="space-y-2 mb-4">
+            <div className="space-y-2 mb-3 sm:mb-4">
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4" />
                 <span>
@@ -144,22 +140,22 @@ export default function UpcomingShowNotification({
               )}
             </div>
 
-            {show.description && <p className="text-sm opacity-90 mb-4">{show.description}</p>}
+            {show.description && <p className="text-xs sm:text-sm opacity-90 mb-3 sm:mb-4">{show.description}</p>}
 
-            <div className="flex gap-2">
+            <div className="flex gap-1 sm:gap-2">
               {show.ticketLink && (
                 <a
                   href={show.ticketLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 bg-white text-amber-700 px-4 py-2 rounded-md text-center font-medium hover:bg-amber-50 transition-colors"
+                  className="flex-1 bg-white text-amber-700 px-3 py-1.5 sm:px-4 sm:py-2 rounded text-center text-sm sm:text-base font-medium hover:bg-amber-50 transition-colors"
                 >
                   Get Tickets
                 </a>
               )}
               <Link
                 href="/tour-dates"
-                className="flex-1 bg-amber-800 text-white px-4 py-2 rounded-md text-center font-medium hover:bg-amber-900 transition-colors"
+                className="flex-1 bg-amber-800 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded text-center text-sm sm:text-base font-medium hover:bg-amber-900 transition-colors"
               >
                 All Dates
               </Link>
@@ -173,23 +169,23 @@ export default function UpcomingShowNotification({
   // Default floating variant
   return (
     <AnimatePresence>
-      {isVisible && !hasInteracted && (
+      {isVisible && !interacted && (
         <motion.div
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 100 }}
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-          className="fixed bottom-4 right-4 left-4 sm:left-auto sm:right-6 z-50 max-w-full sm:max-w-sm"
+          className="fixed bottom-3 right-3 left-3 sm:bottom-4 sm:right-4 sm:left-auto z-50 max-w-full sm:max-w-sm"
         >
           <motion.div
-            className="bg-gradient-to-br from-amber-600 to-amber-700 rounded-lg shadow-2xl p-4 sm:p-5 text-white"
+            className="bg-gradient-to-br from-amber-600 to-amber-700 rounded-md sm:rounded-lg shadow-2xl p-3 sm:p-4 md:p-5 text-white"
             whileHover={{ scale: 1.02 }}
             transition={{ type: 'spring', stiffness: 400 }}
           >
-            <div className="flex justify-between items-start mb-3">
-              <div className="flex items-center gap-2">
-                <Ticket className="w-5 h-5" />
-                <span className="font-bold text-sm">Upcoming Show!</span>
+            <div className="flex justify-between items-start mb-2 sm:mb-3">
+              <div className="flex items-center gap-1 sm:gap-2">
+                <Ticket className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span className="font-bold text-xs sm:text-sm">Upcoming Show!</span>
               </div>
               <button
                 onClick={handleClose}
@@ -200,9 +196,9 @@ export default function UpcomingShowNotification({
               </button>
             </div>
 
-            <h4 className="text-lg font-bold mb-2">{show.venue}</h4>
+            <h4 className="text-base sm:text-lg font-bold mb-2">{show.venue}</h4>
 
-            <div className="space-y-1 text-sm mb-3">
+            <div className="space-y-1 text-xs sm:text-sm mb-2 sm:mb-3">
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 opacity-80" />
                 <span>
@@ -216,20 +212,20 @@ export default function UpcomingShowNotification({
               </div>
             </div>
 
-            <div className="flex gap-2 text-sm">
+            <div className="flex gap-1 sm:gap-2 text-xs sm:text-sm">
               {show.ticketLink && (
                 <a
                   href={show.ticketLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 bg-white text-amber-700 px-3 py-2 rounded-md text-center font-medium hover:bg-amber-50 transition-colors"
+                  className="flex-1 bg-white text-amber-700 px-2 py-1.5 sm:px-3 sm:py-2 rounded text-center text-xs sm:text-sm font-medium hover:bg-amber-50 transition-colors"
                 >
                   Get Tickets
                 </a>
               )}
               <Link
                 href="/tour-dates"
-                className="flex-1 bg-amber-800 text-white px-3 py-2 rounded-md text-center font-medium hover:bg-amber-900 transition-colors"
+                className="flex-1 bg-amber-800 text-white px-2 py-1.5 sm:px-3 sm:py-2 rounded text-center text-xs sm:text-sm font-medium hover:bg-amber-900 transition-colors"
               >
                 View All
               </Link>

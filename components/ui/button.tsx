@@ -30,16 +30,16 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary: [
-          'rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-lg shadow-amber-500/25',
-          'hover:from-amber-400 hover:to-amber-500 hover:shadow-xl hover:shadow-amber-500/30 hover:-translate-y-0.5',
-          'focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950',
-          'active:translate-y-0 active:shadow-lg disabled:opacity-60 disabled:shadow-none disabled:transform-none',
+          'rounded-full border border-white/30 bg-transparent text-white backdrop-blur-sm font-medium',
+          'hover:bg-white/10 hover:border-white/50 hover:backdrop-blur-md transition-all duration-300',
+          'focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent',
+          'active:bg-white/20 disabled:opacity-50 disabled:transform-none',
         ],
         secondary: [
-          'rounded-full border border-white/10 bg-white/5 text-white backdrop-blur-xl shadow-lg',
-          'hover:bg-white/10 hover:border-white/20 hover:shadow-xl hover:-translate-y-0.5',
-          'focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950',
-          'active:translate-y-0 active:bg-white/15 disabled:opacity-50 disabled:transform-none',
+          'rounded-full border border-white/20 bg-white/5 text-white backdrop-blur-md font-medium',
+          'hover:bg-white/15 hover:border-white/40 transition-all duration-300',
+          'focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent',
+          'active:bg-white/20 disabled:opacity-50 disabled:transform-none',
         ],
         ghost: [
           'rounded-lg text-zinc-300',
@@ -58,6 +58,12 @@ const buttonVariants = cva(
           'hover:text-amber-300 hover:decoration-amber-300/50 hover:underline',
           'focus-visible:decoration-amber-300 focus-visible:underline focus-visible:outline-none',
           'active:text-amber-500 disabled:opacity-50',
+        ],
+        accent: [
+          'rounded-full bg-gradient-to-r from-slate-600 to-slate-500 text-white shadow-lg shadow-black/25 border border-slate-500/50',
+          'hover:from-slate-500 hover:to-slate-400 hover:shadow-xl hover:shadow-black/30 hover:-translate-y-0.5 hover:border-slate-400/60',
+          'focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent',
+          'active:translate-y-0 active:shadow-lg disabled:opacity-60 disabled:shadow-none disabled:transform-none',
         ],
         destructive: [
           'rounded-lg bg-red-600 text-white shadow-lg shadow-red-600/20',

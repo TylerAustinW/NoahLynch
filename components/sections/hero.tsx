@@ -25,10 +25,10 @@ export default function HeroSection(): React.ReactElement {
   const { ref } = useInView({ threshold: 0.1 });
   const [loaded, setLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const [showPreviousShows, setShowPreviousShows] = useState(false);
+  const [reducedMotion, setPrefersReducedMotion] = useState(false);
+  const [showPastShows, setShowPreviousShows] = useState(false);
 
-  const previousShows = pastTourDates;
+  const pastShows = pastTourDates;
 
   useEffect(() => {
     setLoaded(true);
@@ -47,12 +47,12 @@ export default function HeroSection(): React.ReactElement {
   /** Escape key handler for modal */
   useEffect(() => {
     const handleEscapeKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && showPreviousShows) {
+      if (e.key === 'Escape' && showPastShows) {
         setShowPreviousShows(false);
       }
     };
 
-    if (showPreviousShows) {
+    if (showPastShows) {
       document.addEventListener('keydown', handleEscapeKey);
       document.body.style.overflow = 'hidden';
     } else {
@@ -63,7 +63,7 @@ export default function HeroSection(): React.ReactElement {
       document.removeEventListener('keydown', handleEscapeKey);
       document.body.style.overflow = '';
     };
-  }, [showPreviousShows]);
+  }, [showPastShows]);
 
   if (imageError) {
     return (
@@ -84,17 +84,17 @@ export default function HeroSection(): React.ReactElement {
 
   const animationVariants = {
     scroll: {
-      y: prefersReducedMotion ? [0] : [0, 10, 0],
+      y: reducedMotion ? [0] : [0, 10, 0],
       transition: {
         repeat: Infinity,
-        duration: prefersReducedMotion ? 0 : 1.5,
+        duration: reducedMotion ? 0 : 1.5,
         ease: 'easeInOut',
       },
     },
     fadeIn: {
       opacity: {
-        delay: prefersReducedMotion ? 0 : 1.5,
-        duration: prefersReducedMotion ? 0 : 0.8,
+        delay: reducedMotion ? 0 : 1.5,
+        duration: reducedMotion ? 0 : 0.8,
       },
     },
   };
@@ -123,11 +123,26 @@ export default function HeroSection(): React.ReactElement {
         className="relative flex min-h-screen items-center overflow-hidden pt-16 pb-0 bg-zinc-950"
       >
         <div className="absolute inset-0 h-full w-full">
+          {/* Mobile Background Image */}
           <Image
-            src="/noah-studio.jpeg"
+            src="/Mobile-Background.jpg"
+            alt="Noah Lynch Mobile Background"
+            fill
+            className="object-cover md:hidden"
+            style={{
+              objectPosition: 'center center',
+              transform: loaded ? 'scale(1.02)' : 'scale(1)',
+              transition: 'transform 30s ease-out',
+            }}
+            onError={() => setImageError(true)}
+            priority
+          />
+          {/* Desktop Background Image */}
+          <Image
+            src="/noah-lynch-studio-session.jpeg"
             alt="Noah Lynch in Studio"
             fill
-            className="object-cover"
+            className="object-cover hidden md:block"
             style={{
               objectPosition: 'center top',
               transform: loaded ? 'scale(1.02)' : 'scale(1)',
@@ -137,6 +152,8 @@ export default function HeroSection(): React.ReactElement {
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/50" />
+          {/* Responsive grain texture overlay - reduced for mobile */}
+          <div className="pointer-events-none absolute inset-0 bg-[url('/grain-texture-overlay.png')] bg-repeat opacity-[0.01] md:opacity-[0.03]" />
         </div>
 
         <div className="relative z-10 container mx-auto px-4 md:px-6">
@@ -155,22 +172,22 @@ export default function HeroSection(): React.ReactElement {
                       aria-label="View tour dates and get tickets for the upcoming show"
                       aria-describedby="next-show-tooltip"
                     >
-                      <div className="group/button flex flex-wrap items-center gap-2 rounded-full bg-amber-500/20 px-3 py-2 sm:px-4 text-sm sm:text-lg font-semibold text-amber-200 border border-amber-500/50 shadow-sm w-full sm:w-auto justify-center sm:justify-start hover:bg-amber-500/30 hover:border-amber-400/70 hover:shadow-md hover:scale-[1.02] transition-all duration-300 cursor-pointer active:scale-[0.98]">
-                        <Calendar className="inline-block w-4 h-4 sm:w-5 sm:h-5 text-amber-400 group-hover/button:text-amber-300 transition-colors duration-300" />
-                        <span className="text-xs sm:text-sm md:text-base group-hover/button:text-amber-100 transition-colors duration-300">
+                      <div className="group/button flex flex-wrap items-center gap-2 rounded-full border border-white/25 bg-white/10 backdrop-blur-md px-3 py-2 sm:px-4 text-sm sm:text-base font-medium text-white w-full sm:w-auto justify-center sm:justify-start hover:bg-white/20 hover:border-white/40 transition-all duration-300 cursor-pointer">
+                        <Calendar className="inline-block w-4 h-4 sm:w-5 sm:h-5 text-white/80 group-hover/button:text-white transition-colors duration-300" />
+                        <span className="text-xs sm:text-sm md:text-base text-white/90 group-hover/button:text-white transition-colors duration-300">
                           Next Show:
                         </span>
                         <span className="font-bold text-white text-sm sm:text-base group-hover/button:text-white transition-colors duration-300">
                           {formatDate(SHOW_INFO.date)}
                         </span>
-                        <span className="text-xs sm:text-sm md:text-base group-hover/button:text-amber-100 transition-colors duration-300">
+                        <span className="text-xs sm:text-sm md:text-base text-white/90 group-hover/button:text-white transition-colors duration-300">
                           • {SHOW_INFO.venue}
                         </span>
 
                         {/* Integrated Click Indicator */}
                         <div className="ml-1 opacity-60 group-hover/button:opacity-100 transition-opacity duration-300">
                           <svg
-                            className="w-3 h-3 sm:w-4 sm:h-4 text-amber-300"
+                            className="w-3 h-3 sm:w-4 sm:h-4 text-white/70 group-hover/button:text-white"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -210,7 +227,7 @@ export default function HeroSection(): React.ReactElement {
                     </div>
                   </div>
                 ) : (
-                  <div className="flex flex-wrap items-center gap-2 rounded-full bg-zinc-800/60 px-3 py-2 sm:px-4 text-sm sm:text-lg font-semibold text-zinc-200 border border-zinc-700/50 shadow-sm w-full sm:w-auto justify-center sm:justify-start">
+                  <div className="flex flex-wrap items-center gap-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-md px-3 py-2 sm:px-4 text-sm sm:text-base font-medium text-white/80 w-full sm:w-auto justify-center sm:justify-start">
                     <span className="text-xs sm:text-sm md:text-base">
                       No upcoming shows scheduled
                     </span>
@@ -236,7 +253,7 @@ export default function HeroSection(): React.ReactElement {
                 </Button>
                 <Link
                   href="#music"
-                  className="rounded-full bg-zinc-800/70 px-4 py-2 text-sm font-medium text-white border border-zinc-600 transition-all duration-300 hover:bg-zinc-700/80 hover:border-zinc-400 focus:outline-none focus:ring-2 focus:ring-zinc-400 min-h-[36px] flex items-center justify-center sm:px-4 sm:py-2 sm:text-sm sm:min-h-[36px]"
+                  className="rounded-full border border-white/20 bg-white/5 backdrop-blur-md px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:bg-white/15 hover:border-white/35 focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-transparent min-h-[36px] flex items-center justify-center sm:px-4 sm:py-2 sm:text-sm sm:min-h-[36px]"
                   aria-label="Explore Noah Lynch's music catalog"
                 >
                   Explore Music
@@ -302,7 +319,7 @@ export default function HeroSection(): React.ReactElement {
         </motion.div>
 
         <AnimatePresence>
-          {showPreviousShows && (
+          {showPastShows && (
             <motion.div
               className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm"
               initial={{ opacity: 0 }}
@@ -343,7 +360,7 @@ export default function HeroSection(): React.ReactElement {
                         msOverflowStyle: 'none',
                       }}
                     >
-                      {previousShows.map((show, index) => (
+                      {pastShows.map((show, index) => (
                         <motion.div
                           key={show.id}
                           className="snap-center shrink-0 w-[85vw] max-w-sm"
@@ -380,7 +397,7 @@ export default function HeroSection(): React.ReactElement {
                       ))}
                     </motion.div>
                     <div className="flex justify-center gap-1 mt-4">
-                      {previousShows.map((_, index) => (
+                      {pastShows.map((_, index) => (
                         <div key={index} className="h-1.5 w-1.5 rounded-full bg-zinc-600" />
                       ))}
                     </div>
@@ -391,7 +408,7 @@ export default function HeroSection(): React.ReactElement {
 
                   <div className="hidden sm:block overflow-y-auto max-h-[60vh]">
                     <div className="space-y-4">
-                      {previousShows.map((show) => (
+                      {pastShows.map((show) => (
                         <div
                           key={show.id}
                           className="group rounded-xl bg-zinc-800/50 border border-zinc-700/30 p-4 transition-all duration-300 hover:bg-zinc-800/70 hover:border-zinc-600/50"

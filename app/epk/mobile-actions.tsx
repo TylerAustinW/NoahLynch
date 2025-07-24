@@ -7,8 +7,8 @@ import Link from 'next/link';
 
 export default function EPKMobileActions() {
   const [isVisible, setIsVisible] = useState(false);
-  const [showScrollToTop, setShowScrollToTop] = useState(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [showScroll, setShowScrollToTop] = useState(false);
+  const [reducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -51,15 +51,15 @@ export default function EPKMobileActions() {
         <div className="fixed bottom-6 right-6 z-50 md:hidden">
           <div className="flex flex-col gap-3">
             {/* Scroll to Top Button */}
-            {showScrollToTop && (
+            {showScroll && (
               <motion.button
                 className="flex h-12 w-12 items-center justify-center rounded-full bg-zinc-900/90 backdrop-blur-sm border border-zinc-700/50 text-zinc-300 transition-all duration-300 hover:border-amber-500/50 hover:bg-amber-500/10 hover:text-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 shadow-lg"
                 onClick={scrollToTop}
                 aria-label="Scroll to top of page"
                 initial={{
                   opacity: 0,
-                  scale: prefersReducedMotion ? 1 : 0.8,
-                  y: prefersReducedMotion ? 0 : 20,
+                  scale: reducedMotion ? 1 : 0.8,
+                  y: reducedMotion ? 0 : 20,
                 }}
                 animate={{
                   opacity: 1,
@@ -68,12 +68,12 @@ export default function EPKMobileActions() {
                 }}
                 exit={{
                   opacity: 0,
-                  scale: prefersReducedMotion ? 1 : 0.8,
-                  y: prefersReducedMotion ? 0 : 20,
+                  scale: reducedMotion ? 1 : 0.8,
+                  y: reducedMotion ? 0 : 20,
                 }}
                 transition={{ duration: 0.3, ease: 'easeOut' }}
-                whileHover={prefersReducedMotion ? {} : { scale: 1.05 }}
-                whileTap={prefersReducedMotion ? {} : { scale: 0.95 }}
+                whileHover={reducedMotion ? {} : { scale: 1.05 }}
+                whileTap={reducedMotion ? {} : { scale: 0.95 }}
               >
                 <div className="flex flex-col items-center">
                   <ChevronUp className="h-5 w-5" />
@@ -86,8 +86,8 @@ export default function EPKMobileActions() {
             <motion.div
               initial={{
                 opacity: 0,
-                scale: prefersReducedMotion ? 1 : 0.8,
-                y: prefersReducedMotion ? 0 : 20,
+                scale: reducedMotion ? 1 : 0.8,
+                y: reducedMotion ? 0 : 20,
               }}
               animate={{
                 opacity: 1,
@@ -96,8 +96,8 @@ export default function EPKMobileActions() {
               }}
               exit={{
                 opacity: 0,
-                scale: prefersReducedMotion ? 1 : 0.8,
-                y: prefersReducedMotion ? 0 : 20,
+                scale: reducedMotion ? 1 : 0.8,
+                y: reducedMotion ? 0 : 20,
               }}
               transition={{ duration: 0.3, ease: 'easeOut', delay: 0.1 }}
             >

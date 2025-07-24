@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-const baseLinkClasses =
+const baseLinkClass =
   'relative group inline-flex items-center justify-center py-3 px-4 text-sm font-medium tracking-wide transition-all duration-300 hover:text-amber-400 h-[60px] leading-none';
 
 const MenuIcon = ({ className }: { className?: string }) => (
@@ -34,16 +34,16 @@ export default function Navbar() {
   const [isMounted, setIsMounted] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
 
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setPrefersReducedMotion(mediaQuery.matches);
+    setReducedMotion(mediaQuery.matches);
 
     const handleChange = (e: MediaQueryListEvent) => {
-      setPrefersReducedMotion(e.matches);
+      setReducedMotion(e.matches);
     };
 
     mediaQuery.addEventListener('change', handleChange);
@@ -117,29 +117,26 @@ export default function Navbar() {
     setMobileOpen(false);
   };
 
-  const dynamicTextClasses = cn(
-    scrolled ? 'text-white' : 'text-white',
-    'transition-colors duration-300'
-  );
+  const textColor = cn(scrolled ? 'text-white' : 'text-white', 'transition-colors duration-300');
 
-  const animationVariants = {
+  const variants = {
     overlay: {
       initial: { opacity: 0 },
       animate: { opacity: 1 },
       exit: { opacity: 0 },
-      transition: { duration: prefersReducedMotion ? 0 : 0.3 },
+      transition: { duration: reducedMotion ? 0 : 0.3 },
     },
     menu: {
-      initial: { opacity: 0, scale: prefersReducedMotion ? 1 : 0.95 },
+      initial: { opacity: 0, scale: reducedMotion ? 1 : 0.95 },
       animate: { opacity: 1, scale: 1 },
-      exit: { opacity: 0, scale: prefersReducedMotion ? 1 : 0.95 },
-      transition: { delay: prefersReducedMotion ? 0 : 0.1, duration: 0.3 },
+      exit: { opacity: 0, scale: reducedMotion ? 1 : 0.95 },
+      transition: { delay: reducedMotion ? 0 : 0.1, duration: 0.3 },
     },
     footer: {
       initial: { opacity: 0 },
       animate: { opacity: 1 },
       exit: { opacity: 0 },
-      transition: { duration: prefersReducedMotion ? 0 : 0.2, delay: 0.2 },
+      transition: { duration: reducedMotion ? 0 : 0.2, delay: 0.2 },
     },
   };
 
@@ -156,7 +153,7 @@ export default function Navbar() {
       <motion.header
         className={cn(
           'fixed top-0 right-0 left-0 z-50 py-3 sm:py-4 transition-all duration-300',
-          'bg-black/30 backdrop-blur-sm md:bg-black/30 md:backdrop-blur-sm',
+          'bg-zinc-950/80 backdrop-blur-sm md:bg-zinc-950/80 md:backdrop-blur-sm',
           scrolled
             ? 'opacity-0 pointer-events-none -translate-y-full'
             : 'opacity-100 pointer-events-auto translate-y-0'
@@ -173,7 +170,7 @@ export default function Navbar() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 md:px-12 min-h-[60px]">
           <motion.div
             className="flex items-center h-full"
-            whileHover={prefersReducedMotion ? {} : { scale: 1.02 }}
+            whileHover={reducedMotion ? {} : { scale: 1.02 }}
             transition={{ duration: 0.2 }}
           >
             <Link href="/" className="group flex items-center h-full">
@@ -200,11 +197,7 @@ export default function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    className={cn(
-                      baseLinkClasses,
-                      dynamicTextClasses,
-                      'flex items-center justify-center'
-                    )}
+                    className={cn(baseLinkClass, textColor, 'flex items-center justify-center')}
                     onClick={
                       link.id
                         ? (e) => {
@@ -240,11 +233,11 @@ export default function Navbar() {
                   <motion.div
                     key="close"
                     initial={{
-                      rotate: prefersReducedMotion ? 0 : -90,
+                      rotate: reducedMotion ? 0 : -90,
                       opacity: 0,
                     }}
                     animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: prefersReducedMotion ? 0 : 90, opacity: 0 }}
+                    exit={{ rotate: reducedMotion ? 0 : 90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
                     <CloseIcon className="h-4 w-4 text-amber-400" />
@@ -253,11 +246,11 @@ export default function Navbar() {
                   <motion.div
                     key="menu"
                     initial={{
-                      rotate: prefersReducedMotion ? 0 : 90,
+                      rotate: reducedMotion ? 0 : 90,
                       opacity: 0,
                     }}
                     animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: prefersReducedMotion ? 0 : -90, opacity: 0 }}
+                    exit={{ rotate: reducedMotion ? 0 : -90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
                     <MenuIcon className="h-4 w-4 text-white" />
@@ -274,19 +267,19 @@ export default function Navbar() {
           {mobileOpen && (
             <motion.div
               className="fixed inset-0 z-[90] flex min-h-screen w-full items-center justify-center overflow-hidden bg-black/50 backdrop-blur-2xl md:hidden"
-              initial={animationVariants.overlay.initial}
-              animate={animationVariants.overlay.animate}
-              exit={animationVariants.overlay.exit}
-              transition={animationVariants.overlay.transition}
+              initial={variants.overlay.initial}
+              animate={variants.overlay.animate}
+              exit={variants.overlay.exit}
+              transition={variants.overlay.transition}
               onClick={closeMenu}
             >
               <nav id="mobile-menu" role="navigation" aria-label="Mobile navigation">
                 <motion.div
                   className="flex flex-col items-center justify-center gap-6 sm:gap-8"
-                  initial={animationVariants.menu.initial}
-                  animate={animationVariants.menu.animate}
-                  exit={animationVariants.menu.exit}
-                  transition={animationVariants.menu.transition}
+                  initial={variants.menu.initial}
+                  animate={variants.menu.animate}
+                  exit={variants.menu.exit}
+                  transition={variants.menu.transition}
                   onClick={(e) => e.stopPropagation()}
                 >
                   {navLinks.map((link, index) => (
@@ -319,10 +312,10 @@ export default function Navbar() {
 
               <motion.div
                 className="pointer-events-none absolute bottom-6 left-0 right-0 p-4 text-center"
-                initial={animationVariants.footer.initial}
-                animate={animationVariants.footer.animate}
-                exit={animationVariants.footer.exit}
-                transition={animationVariants.footer.transition}
+                initial={variants.footer.initial}
+                animate={variants.footer.animate}
+                exit={variants.footer.exit}
+                transition={variants.footer.transition}
               >
                 <p className="text-xs sm:text-sm font-medium text-zinc-500">
                   Tap anywhere to close

@@ -44,8 +44,8 @@ export interface EPKData {
       venue?: string;
       people?: {
         name: string;
-        x: number; // % from left
-        y: number; // % from top
+        x: number;
+        y: number;
       }[];
     }[];
   };
@@ -112,20 +112,20 @@ export const epkData: EPKData = {
       title: 'For You',
       date: 'June 2024',
       highlights: 'Featured on CraG Radio UK',
-      coverArt: '/foryou.jpg',
+      coverArt: '/single-for-you-cover.jpg',
     },
     {
       title: 'Good Things Take Time',
       date: '2024',
       highlights: 'Featured on CraG Radio UK',
-      coverArt: '/gttt.jpg',
+      coverArt: '/single-good-things-take-time-cover.jpg',
     },
   ],
   gallery: {
     title: 'Live Performance Gallery',
     photos: [
       {
-        src: '/magnoila-blues.jpg',
+        src: '/noah-lynch-magnolia-blues-session.jpg',
         alt: 'Noah Lynch performing at Magnolia Blues BBQ with packed crowd',
         caption: 'Packed house, 90+ draw',
         venue: 'Magnolia Blues BBQ',

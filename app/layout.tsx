@@ -48,14 +48,14 @@ export const metadata: Metadata = {
     description: siteDescription,
     images: [
       {
-        url: '/noah-portrait.jpeg',
+        url: '/noah-lynch-portrait-guitar.jpeg',
         width: 1200,
         height: 630,
         alt: 'Noah Lynch - Mississippi-born Singer-Songwriter and Musician',
         type: 'image/jpeg',
       },
       {
-        url: '/noah-studio.jpeg',
+        url: '/noah-lynch-studio-session.jpeg',
         width: 1080,
         height: 1080,
         alt: 'Noah Lynch Music Studio Session',
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     creator: '@NoahLynch17',
     title: 'Noah Lynch - Singer-Songwriter & Musician',
     description: siteDescription,
-    images: ['/noah-portrait.jpeg'],
+    images: ['/noah-lynch-portrait-guitar.jpeg'],
   },
 
   robots: {
@@ -116,10 +116,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <link rel="canonical" href={siteUrl} />
 
-        <link rel="icon" href="/noah-portrait.jpeg" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/noah-portrait.jpeg" />
+        <link rel="icon" href="/noah-lynch-portrait-guitar.jpeg" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/noah-lynch-portrait-guitar.jpeg" />
 
-        <meta property="og:image:secure_url" content={`${siteUrl}/noah-portrait.jpeg`} />
+        <meta property="og:image:secure_url" content={`${siteUrl}/noah-lynch-portrait-guitar.jpeg`} />
         <meta property="og:image:type" content="image/jpeg" />
         <meta property="og:image:width" content="800" />
         <meta property="og:image:height" content="600" />
@@ -146,7 +146,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               description:
                 'Mississippi-born singer-songwriter blending blues and neo-rock, inspired by John Mayer and Stevie Ray Vaughan',
               url: siteUrl,
-              image: `${siteUrl}/noah-portrait.jpeg`,
+              image: `${siteUrl}/noah-lynch-portrait-guitar.jpeg`,
               birthPlace: {
                 '@type': 'Place',
                 name: 'Mississippi, USA',

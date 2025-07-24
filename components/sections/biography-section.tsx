@@ -16,14 +16,14 @@ const patrickHand = Patrick_Hand({
 const photoSlides = [
   {
     id: 'portrait',
-    src: '/noah-portrait.jpeg',
+    src: '/noah-lynch-portrait-guitar.jpeg',
     alt: 'Noah Lynch - The Artist',
     caption: 'The Artist',
     description: "Capturing the essence of Noah's artistic vision and musical passion",
   },
   {
     id: 'studio',
-    src: '/noah-studio.jpeg',
+    src: '/noah-lynch-studio-session.jpeg',
     alt: 'Noah Lynch - In the Studio',
     caption: 'In His Element',
     description: 'Behind the scenes in the creative process where the magic happens',
@@ -68,7 +68,7 @@ export default function BiographySection() {
       ref={ref}
       className="relative overflow-hidden bg-zinc-950 px-4 py-16 sm:py-20 md:px-6 md:py-24 lg:py-28"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[url('/texture.png')] bg-repeat opacity-5" />
+      <div className="pointer-events-none absolute inset-0 bg-[url('/grain-texture-overlay.png')] bg-repeat opacity-[0.03]" />
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-1/3 -right-1/4 h-96 w-96 rounded-full bg-amber-500/10 blur-3xl" />
       </div>

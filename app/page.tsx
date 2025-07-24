@@ -6,7 +6,7 @@ import StudioSessionsSection from '@/components/sections/studio-sessions-section
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-zinc-950 text-white">
       <Navbar />
       <main>
         <HeroSection />

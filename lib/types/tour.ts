@@ -2,6 +2,7 @@ export interface TourDate {
   id: number;
   date: string;
   venue: string;
+  shortName?: string; // Shorter venue name for mobile display
   city: string;
   state: string;
   time?: string;
