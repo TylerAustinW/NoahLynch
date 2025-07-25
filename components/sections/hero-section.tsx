@@ -3,8 +3,10 @@
 import { Button } from '@/components/ui/button';
 import ErrorBoundary from '@/components/ui/error-boundary';
 import { useInView } from '@/hooks/use-in-view';
+import { useFocusTrap } from '@/hooks/use-focus-trap';
 import { getPastTourDates } from '@/lib/data/tour/tour-dates';
 import { SHOW_INFO } from '@/lib/config/tour';
+import { formatDate } from '@/lib/utils/date';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Calendar, X, MapPin, Clock } from 'lucide-react';
 import { Patrick_Hand } from 'next/font/google';
@@ -30,6 +32,11 @@ export default function HeroSection(): React.ReactElement {
   const [showPastShows, setShowPreviousShows] = useState(false);
 
   const pastShows = getPastTourDates();
+  const modalRef = useFocusTrap({
+    isActive: showPastShows,
+    restoreFocus: true,
+    autoFocus: true,
+  });
 
   useEffect(() => {
     setLoaded(true);
@@ -98,22 +105,6 @@ export default function HeroSection(): React.ReactElement {
         duration: reducedMotion ? 0 : 0.8,
       },
     },
-  };
-
-  /**
-   * Formats date string to avoid timezone issues
-   * @param {string} dateString - Date in YYYY-MM-DD format
-   * @returns {string} Formatted date string
-   */
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
-    return isNaN(date.getTime())
-      ? dateString // fallback to raw string if parsing fails
-      : date.toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-        });
   };
 
   return (
@@ -320,6 +311,7 @@ export default function HeroSection(): React.ReactElement {
               onClick={() => setShowPreviousShows(false)}
             >
               <motion.div
+                ref={modalRef}
                 className="relative w-full max-w-2xl max-h-[80vh] mx-4 bg-zinc-900/95 backdrop-blur-sm rounded-2xl border border-zinc-700/50 overflow-hidden"
                 initial={{ opacity: 0, scale: 0.9, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}

@@ -5,11 +5,15 @@ import { Component, type ErrorInfo, type ReactNode } from 'react';
 interface ErrorBoundaryProps {
   children: ReactNode;
   fallback?: ReactNode;
+  onError?: (error: Error, errorInfo: ErrorInfo) => void;
+  resetOnPropsChange?: boolean;
+  resetKeys?: Array<string | number>;
 }
 
 interface ErrorBoundaryState {
   hasError: boolean;
   error: Error | null;
+  prevResetKeys: Array<string | number>;
 }
 
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
@@ -18,18 +22,53 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     this.state = {
       hasError: false,
       error: null,
+      prevResetKeys: props.resetKeys || [],
     };
   }
 
-  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
+  static getDerivedStateFromError(error: Error): Partial<ErrorBoundaryState> {
     return {
       hasError: true,
       error,
     };
   }
 
+  static getDerivedStateFromProps(
+    props: ErrorBoundaryProps,
+    state: ErrorBoundaryState
+  ): Partial<ErrorBoundaryState> | null {
+    const { resetKeys } = props;
+    const { prevResetKeys, hasError } = state;
+
+    // Reset error boundary when resetKeys change
+    if (hasError && resetKeys && prevResetKeys) {
+      const hasResetKeyChanged = resetKeys.some((resetKey, idx) => prevResetKeys[idx] !== resetKey);
+
+      if (hasResetKeyChanged) {
+        return {
+          hasError: false,
+          error: null,
+          prevResetKeys: resetKeys,
+        };
+      }
+    }
+
+    return { prevResetKeys: resetKeys || [] };
+  }
+
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     console.error('Error caught by ErrorBoundary:', error, errorInfo);
+
+    // Call custom error handler if provided
+    this.props.onError?.(error, errorInfo);
+
+    // In development, provide more detailed error information
+    if (process.env.NODE_ENV === 'development') {
+      console.warn('Error Boundary Details');
+      console.error('Component Stack:', errorInfo.componentStack);
+      console.error('Error Stack:', error.stack);
+      console.warn('--------------------------------');
+    }
   }
 
   render(): ReactNode {
@@ -41,12 +80,20 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
             <p className="text-muted-foreground mb-4 text-sm">
               {this.state.error?.message || 'An error occurred while rendering this component'}
             </p>
-            <button
-              onClick={() => this.setState({ hasError: false, error: null })}
-              className="bg-primary text-primary-foreground rounded-md px-4 py-2 text-sm"
-            >
-              Try again
-            </button>
+            <div className="flex gap-2">
+              <button
+                onClick={() => this.setState({ hasError: false, error: null })}
+                className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-md px-4 py-2 text-sm transition-colors"
+              >
+                Try again
+              </button>
+              <button
+                onClick={() => window.location.reload()}
+                className="bg-secondary text-secondary-foreground hover:bg-secondary/90 rounded-md px-4 py-2 text-sm transition-colors"
+              >
+                Reload page
+              </button>
+            </div>
           </div>
         )
       );
