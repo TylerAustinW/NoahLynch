@@ -3,7 +3,7 @@ import { getDaysUntilShow, isUpcoming, isPast, isToday } from '@/lib/utils/date'
 
 export const SHOW_INFO: ShowNotificationConfig = {
   hasUpcomingShow: true,
-  date: 'August 16, 2025',
+  date: '2025-08-16',
   time: '7:00 PM CDT',
   venue: 'The Roof at 1311',
   location: 'Vicksburg, MS',

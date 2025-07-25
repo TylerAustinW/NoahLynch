@@ -113,12 +113,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="format-detection" content="telephone=no" />
         <meta name="theme-color" content="#d97706" />
         <link rel="canonical" href={siteUrl} />
-        {/* TODO: Replace with proper favicon files - use favicon.ico, favicon-16x16.png, favicon-32x32.png */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
-        <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className={inter.className}>
         <SocialSidebar />
