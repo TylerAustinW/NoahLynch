@@ -91,7 +91,7 @@ export default function TourDatesMinimal() {
                         disabled
                         className="inline-block w-full text-center px-6 py-3 text-sm font-medium uppercase tracking-wider border border-zinc-600 text-zinc-600 cursor-not-allowed"
                       >
-                        Coming Soon
+                        Past Show
                       </button>
                     )}
                   </div>
@@ -130,7 +130,7 @@ export default function TourDatesMinimal() {
                         disabled
                         className="inline-block px-6 py-2 text-xs md:text-sm font-medium uppercase tracking-wider border border-zinc-600 text-zinc-600 cursor-not-allowed"
                       >
-                        Coming Soon
+                        Past Show
                       </button>
                     )}
                   </div>
@@ -204,7 +204,7 @@ export default function TourDatesMinimal() {
                             disabled
                             className="inline-block px-6 py-2 text-xs md:text-sm font-medium uppercase tracking-wider border border-zinc-600 text-zinc-600 cursor-not-allowed"
                           >
-                            Coming Soon
+                            Past Show
                           </button>
                         )}
                       </div>
