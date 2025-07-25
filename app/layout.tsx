@@ -127,19 +127,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               '@type': 'Person',
               name: 'Noah Lynch',
               alternateName: ['Noah Lynch Music', 'Noah Lynch Artist'],
-              description:
-                'Mississippi-born singer-songwriter blending blues and neo-rock, inspired by John Mayer and Stevie Ray Vaughan',
+              description: 'Mississippi-born singer-songwriter blending blues and neo-rock, inspired by John Mayer and Stevie Ray Vaughan',
               url: siteUrl,
               image: `${siteUrl}/noah-lynch-portrait-guitar.jpeg`,
               birthPlace: {
                 '@type': 'Place',
                 name: 'Mississippi, USA',
               },
-              sameAs: [
-                'https://youtube.com/@noahlynch',
-                'https://twitter.com/NoahLynch17',
-                'https://instagram.com/NoahLynchMusic',
-              ],
+              sameAs: ['https://youtube.com/@noahlynch', 'https://twitter.com/NoahLynch17', 'https://instagram.com/NoahLynchMusic'],
               jobTitle: 'Singer-Songwriter',
               worksFor: {
                 '@type': 'Organization',

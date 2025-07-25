@@ -6,11 +6,7 @@ interface UseFocusTrapOptions {
   autoFocus?: boolean;
 }
 
-export function useFocusTrap({
-  isActive,
-  restoreFocus = true,
-  autoFocus = true,
-}: UseFocusTrapOptions) {
+export function useFocusTrap({ isActive, restoreFocus = true, autoFocus = true }: UseFocusTrapOptions) {
   const containerRef = useRef<HTMLDivElement>(null);
   const previousActiveElement = useRef<Element | null>(null);
   const firstFocusableElement = useRef<HTMLElement | null>(null);
@@ -35,16 +31,9 @@ export function useFocusTrap({
       '[contenteditable="true"]',
     ].join(', ');
 
-    const focusableElements = Array.from(
-      container.querySelectorAll<HTMLElement>(focusableElementsSelector)
-    ).filter((element) => {
+    const focusableElements = Array.from(container.querySelectorAll<HTMLElement>(focusableElementsSelector)).filter((element) => {
       // Filter out elements that are not visible or have negative tabindex
-      return (
-        element.offsetWidth > 0 &&
-        element.offsetHeight > 0 &&
-        !element.hidden &&
-        element.tabIndex !== -1
-      );
+      return element.offsetWidth > 0 && element.offsetHeight > 0 && !element.hidden && element.tabIndex !== -1;
     });
 
     firstFocusableElement.current = focusableElements[0] || null;

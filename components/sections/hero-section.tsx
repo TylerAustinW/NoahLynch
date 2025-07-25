@@ -75,10 +75,7 @@ export default function HeroSection(): React.ReactElement {
 
   if (imageError) {
     return (
-      <section
-        ref={ref}
-        className="relative flex min-h-screen items-center justify-center bg-black pt-16"
-      >
+      <section ref={ref} className="relative flex min-h-screen items-center justify-center bg-black pt-16">
         <div className="text-center">
           <h1 className={`mb-4 text-5xl font-bold md:text-7xl ${patrickHand.className}`}>
             Noah Lynch
@@ -109,11 +106,7 @@ export default function HeroSection(): React.ReactElement {
 
   return (
     <ErrorBoundary>
-      <section
-        ref={ref}
-        id="hero"
-        className="relative flex min-h-screen items-center overflow-hidden pt-16 pb-0 bg-zinc-950"
-      >
+      <section ref={ref} id="hero" className="relative flex min-h-screen items-center overflow-hidden pt-16 pb-0 bg-zinc-950">
         <div className="absolute inset-0 h-full w-full">
           <Image
             src="/Mobile-Background.jpg"
@@ -148,11 +141,7 @@ export default function HeroSection(): React.ReactElement {
         </div>
 
         <div className="relative z-10 container mx-auto px-4 md:px-6">
-          <div
-            className={`max-w-xl transition-all duration-1000 ${
-              loaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-            }`}
-          >
+          <div className={`max-w-xl transition-all duration-1000 ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             <div className="relative z-20 mb-4 sm:mb-6">
               <div className="w-full max-w-fit">
                 {SHOW_INFO.hasUpcomingShow ? (
@@ -182,12 +171,7 @@ export default function HeroSection(): React.ReactElement {
                             stroke="currentColor"
                             viewBox="0 0 24 24"
                           >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M9 5l7 7-7 7"
-                            />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
                         </div>
                       </div>
@@ -213,9 +197,7 @@ export default function HeroSection(): React.ReactElement {
                   </div>
                 ) : (
                   <div className="flex flex-wrap items-center gap-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-md px-3 py-2 sm:px-4 text-sm sm:text-base font-medium text-white/80 w-full sm:w-auto justify-center sm:justify-start">
-                    <span className="text-xs sm:text-sm md:text-base">
-                      No upcoming shows scheduled
-                    </span>
+                    <span className="text-xs sm:text-sm md:text-base">No upcoming shows scheduled</span>
                   </div>
                 )}
               </div>
@@ -229,10 +211,7 @@ export default function HeroSection(): React.ReactElement {
                   </Link>
                 </Button>
                 <Button asChild variant="secondary" size="default">
-                  <Link
-                    href="mailto:NoahLynchContact@gmail.com"
-                    aria-label="Contact Noah Lynch via email"
-                  >
+                  <Link href="mailto:NoahLynchContact@gmail.com" aria-label="Contact Noah Lynch via email">
                     Contact
                   </Link>
                 </Button>
@@ -319,17 +298,8 @@ export default function HeroSection(): React.ReactElement {
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="sticky top-0 bg-zinc-900/95 backdrop-blur-sm border-b border-zinc-700/50 px-6 py-4 flex items-center justify-between">
-                  <h2
-                    className={`text-xl sm:text-2xl font-bold text-amber-200 ${patrickHand.className}`}
-                  >
-                    Previous Shows
-                  </h2>
-                  <Button
-                    onClick={() => setShowPreviousShows(false)}
-                    variant="ghost"
-                    size="icon-sm"
-                    aria-label="Close modal"
-                  >
+                  <h2 className={`text-xl sm:text-2xl font-bold text-amber-200 ${patrickHand.className}`}>Previous Shows</h2>
+                  <Button onClick={() => setShowPreviousShows(false)} variant="ghost" size="icon-sm" aria-label="Close modal">
                     <X className="h-4 w-4" />
                   </Button>
                 </div>
@@ -360,15 +330,9 @@ export default function HeroSection(): React.ReactElement {
                                 {show.city}, {show.state}
                               </span>
                             </div>
-                            {show.description && (
-                              <p className="text-zinc-400 text-sm mt-3 line-clamp-3">
-                                {show.description}
-                              </p>
-                            )}
+                            {show.description && <p className="text-zinc-400 text-sm mt-3 line-clamp-3">{show.description}</p>}
                             <div className="mt-4 space-y-1">
-                              <div className="text-amber-200 font-medium">
-                                {formatDate(show.date)}
-                              </div>
+                              <div className="text-amber-200 font-medium">{formatDate(show.date)}</div>
                               {show.time && (
                                 <div className="flex items-center gap-1 text-zinc-400 text-sm">
                                   <Clock className="h-3 w-3" />
@@ -385,9 +349,7 @@ export default function HeroSection(): React.ReactElement {
                         <div key={index} className="h-1.5 w-1.5 rounded-full bg-zinc-600" />
                       ))}
                     </div>
-                    <p className="text-center text-zinc-400 text-xs mt-3">
-                      Swipe to see more shows
-                    </p>
+                    <p className="text-center text-zinc-400 text-xs mt-3">Swipe to see more shows</p>
                   </div>
 
                   <div className="hidden sm:block overflow-y-auto max-h-[60vh]">
@@ -406,14 +368,10 @@ export default function HeroSection(): React.ReactElement {
                                   {show.city}, {show.state}
                                 </span>
                               </div>
-                              {show.description && (
-                                <p className="text-zinc-400 text-sm mt-2">{show.description}</p>
-                              )}
+                              {show.description && <p className="text-zinc-400 text-sm mt-2">{show.description}</p>}
                             </div>
                             <div className="flex flex-col sm:items-end gap-1">
-                              <div className="text-amber-200 font-medium">
-                                {formatDate(show.date)}
-                              </div>
+                              <div className="text-amber-200 font-medium">{formatDate(show.date)}</div>
                               {show.time && (
                                 <div className="flex items-center gap-1 text-zinc-400 text-sm">
                                   <Clock className="h-3 w-3" />
@@ -429,9 +387,7 @@ export default function HeroSection(): React.ReactElement {
                 </div>
 
                 <div className="sticky bottom-0 bg-zinc-900/95 backdrop-blur-sm border-t border-zinc-700/50 px-6 py-4">
-                  <p className="text-center text-zinc-400 text-sm">
-                    Follow Noah's socials for updates on upcoming shows!
-                  </p>
+                  <p className="text-center text-zinc-400 text-sm">Follow Noah's socials for updates on upcoming shows!</p>
                 </div>
               </motion.div>
             </motion.div>

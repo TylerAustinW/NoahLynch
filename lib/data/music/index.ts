@@ -1,21 +1,11 @@
-export type {
-  Release,
-  Platform,
-  ReleaseWithPlatforms,
-  Review,
-  PlatformName,
-  ReleaseType,
-  ReleaseData,
-} from '../../types/music';
+export type { Release, Platform, ReleaseWithPlatforms, Review, PlatformName, ReleaseType, ReleaseData } from '../../types/music';
 
 import { getAllReleasesData, getPreviousReleasesData, getUpcomingReleaseData } from '../releases';
 import { createPlatformLink } from '../../config/platforms';
 import type { ReleaseWithPlatforms, ReleaseData, Platform, PlatformName } from '../../types/music';
 
 function resolveReleasePlatforms(releaseData: ReleaseData): ReleaseWithPlatforms {
-  const platforms: Platform[] = releaseData.platformLinks.map((platformLink) =>
-    createPlatformLink(platformLink.platform, platformLink.url)
-  );
+  const platforms: Platform[] = releaseData.platformLinks.map((platformLink) => createPlatformLink(platformLink.platform, platformLink.url));
 
   return {
     id: releaseData.id,
@@ -32,11 +22,9 @@ function resolveReleasePlatforms(releaseData: ReleaseData): ReleaseWithPlatforms
   };
 }
 
-export const allReleases: ReleaseWithPlatforms[] =
-  getAllReleasesData().map(resolveReleasePlatforms);
+export const allReleases: ReleaseWithPlatforms[] = getAllReleasesData().map(resolveReleasePlatforms);
 
-export const previousReleases: ReleaseWithPlatforms[] =
-  getPreviousReleasesData().map(resolveReleasePlatforms);
+export const previousReleases: ReleaseWithPlatforms[] = getPreviousReleasesData().map(resolveReleasePlatforms);
 
 export const upcomingRelease: ReleaseWithPlatforms | null = (() => {
   const upcomingData = getUpcomingReleaseData();

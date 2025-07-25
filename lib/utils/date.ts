@@ -69,38 +69,3 @@ export function isUpcoming(dateString: string): boolean {
 export function isPast(dateString: string): boolean {
   return getDaysUntilShow(dateString) < 0;
 }
-
-/**
- * Get relative time description (e.g., "in 5 days", "yesterday", "today")
- * @param dateString - Date in YYYY-MM-DD format
- * @returns Human-readable relative time
- */
-export function getRelativeTime(dateString: string): string {
-  const days = getDaysUntilShow(dateString);
-
-  if (days === 0) return 'today';
-  if (days === 1) return 'tomorrow';
-  if (days === -1) return 'yesterday';
-  if (days > 1) return `in ${days} days`;
-  if (days < -1) return `${Math.abs(days)} days ago`;
-
-  return '';
-}
-
-/**
- * Sort dates chronologically (earliest first)
- * @param dates - Array of date strings
- * @returns Sorted array of date strings
- */
-export function sortDatesAsc(dates: string[]): string[] {
-  return [...dates].sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
-}
-
-/**
- * Sort dates reverse chronologically (latest first)
- * @param dates - Array of date strings
- * @returns Sorted array of date strings
- */
-export function sortDatesDesc(dates: string[]): string[] {
-  return [...dates].sort((a, b) => new Date(b).getTime() - new Date(a).getTime());
-}

@@ -18,13 +18,7 @@ const MenuIcon = ({ className }: { className?: string }) => (
 
 const CloseIcon = ({ className }: { className?: string }) => (
   <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M7 7l10 10M17 7l-10 10"
-      opacity="0.9"
-    />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7l10 10M17 7l-10 10" opacity="0.9" />
   </svg>
 );
 
@@ -164,9 +158,7 @@ export default function Navbar() {
         className={cn(
           'fixed top-0 right-0 left-0 z-50 py-3 sm:py-4 transition-all duration-300',
           'bg-zinc-900/80 backdrop-blur-sm md:bg-zinc-900/80 md:backdrop-blur-sm',
-          scrolled
-            ? 'opacity-0 pointer-events-none -translate-y-full'
-            : 'opacity-100 pointer-events-auto translate-y-0'
+          scrolled ? 'opacity-0 pointer-events-none -translate-y-full' : 'opacity-100 pointer-events-auto translate-y-0'
         )}
         initial={{ y: 0 }}
         animate={{
@@ -178,11 +170,7 @@ export default function Navbar() {
         }}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 md:px-12 min-h-[44px]">
-          <motion.div
-            className="flex items-center h-full"
-            whileHover={reducedMotion ? {} : { scale: 1.02 }}
-            transition={{ duration: 0.2 }}
-          >
+          <motion.div className="flex items-center h-full" whileHover={reducedMotion ? {} : { scale: 1.02 }} transition={{ duration: 0.2 }}>
             <Link href="/" className="group flex items-center h-full">
               <h1
                 className={cn(
@@ -327,9 +315,7 @@ export default function Navbar() {
                 exit={variants.footer.exit}
                 transition={variants.footer.transition}
               >
-                <p className="text-xs sm:text-sm font-medium text-zinc-500">
-                  Tap anywhere to close
-                </p>
+                <p className="text-xs sm:text-sm font-medium text-zinc-500">Tap anywhere to close</p>
               </motion.div>
             </motion.div>
           )}

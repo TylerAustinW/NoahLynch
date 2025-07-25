@@ -7,6 +7,7 @@ import { Patrick_Hand } from 'next/font/google';
 import Image from 'next/image';
 import { Music, ChevronLeft, ChevronRight, ChevronDown } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 const patrickHand = Patrick_Hand({
   weight: '400',
@@ -63,11 +64,7 @@ export default function BiographySection() {
   };
 
   return (
-    <section
-      id="biography"
-      ref={ref}
-      className="relative overflow-hidden bg-zinc-950 px-4 py-16 sm:py-20 md:px-6 md:py-24 lg:py-28"
-    >
+    <section id="biography" ref={ref} className="relative overflow-hidden bg-zinc-950 px-4 py-16 sm:py-20 md:px-6 md:py-24 lg:py-28">
       <div className="pointer-events-none absolute inset-0 bg-[url('/grain-texture-overlay.png')] bg-repeat opacity-[0.03]" />
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute top-1/3 right-1/4 h-96 w-96 rounded-full bg-white/3 blur-3xl" />
@@ -81,12 +78,8 @@ export default function BiographySection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="mb-4 text-4xl font-bold text-zinc-200 md:text-5xl lg:text-6xl">
-            The Story
-          </h2>
-          <p className={`${patrickHand.className} text-xl text-zinc-300 md:text-2xl`}>
-            "Music isn't just what I do, it's who I am"
-          </p>
+          <h2 className="mb-4 text-4xl font-bold text-zinc-200 md:text-5xl lg:text-6xl">The Story</h2>
+          <p className={`${patrickHand.className} text-xl text-zinc-300 md:text-2xl`}>"Music isn't just what I do, it's who I am"</p>
         </motion.div>
 
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20">
@@ -98,20 +91,16 @@ export default function BiographySection() {
           >
             <div className="space-y-6 text-lg leading-relaxed text-white md:text-xl">
               <p>
-                Introducing{' '}
-                <span className="font-bold text-amber-400 text-xl md:text-2xl">Noah Lynch</span>, a
-                Mississippi-born musician whose journey with music began at the age of 6 when he
-                first picked up a guitar. From those early days, Noah's passion for music has only
+                Introducing <span className="font-bold text-amber-400 text-xl md:text-2xl">Noah Lynch</span>, a Mississippi-born musician whose
+                journey with music began at the age of 6 when he first picked up a guitar. From those early days, Noah's passion for music has only
                 grown stronger, fueling his desire to share his artistry with the world.
               </p>
 
               <p>
-                Drawing inspiration from legends like{' '}
-                <span className="font-semibold text-amber-400">John Mayer</span> and
-                <span className="font-semibold text-amber-400"> Stevie Ray Vaughan</span>, Noah's
-                music blends the soulful melodies of blues with the infectious energy of neo-rock.
-                His sound is a reflection of his upbringing in a small town nestled in Mississippi,
-                where music isn't the typical claim to fame.
+                Drawing inspiration from legends like <span className="font-semibold text-amber-400">John Mayer</span> and
+                <span className="font-semibold text-amber-400"> Stevie Ray Vaughan</span>, Noah's music blends the soulful melodies of blues with the
+                infectious energy of neo-rock. His sound is a reflection of his upbringing in a small town nestled in Mississippi, where music isn't
+                the typical claim to fame.
               </p>
 
               <motion.div
@@ -124,10 +113,8 @@ export default function BiographySection() {
                 style={{ overflow: 'hidden' }}
               >
                 <p>
-                  Noah's upbringing was marked by the serenade of his guitar strings and the
-                  melodies that echoed through his soul. His authentic approach to songwriting
-                  captures the essence of human emotion, creating connections with listeners around
-                  the world.
+                  Noah's upbringing was marked by the serenade of his guitar strings and the melodies that echoed through his soul. His authentic
+                  approach to songwriting captures the essence of human emotion, creating connections with listeners around the world.
                 </p>
               </motion.div>
 
@@ -139,13 +126,8 @@ export default function BiographySection() {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5 }}
                 >
-                  <span className="text-base font-medium">
-                    {isExpanded ? 'Read Less' : 'Read More'}
-                  </span>
-                  <motion.div
-                    animate={{ rotate: isExpanded ? 180 : 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
+                  <span className="text-base font-medium">{isExpanded ? 'Read Less' : 'Read More'}</span>
+                  <motion.div animate={{ rotate: isExpanded ? 180 : 0 }} transition={{ duration: 0.2 }}>
                     <ChevronDown className="h-4 w-4" />
                   </motion.div>
                 </motion.button>
@@ -158,7 +140,7 @@ export default function BiographySection() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              <a
+              <Link
                 href="#music"
                 className="group inline-flex items-center gap-3 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm px-7 py-4 font-medium text-white transition-all duration-300 hover:bg-white/20 hover:border-white/50 focus:outline-none focus:ring-2 focus:ring-amber-400/50"
               >
@@ -173,14 +155,9 @@ export default function BiographySection() {
                   whileHover={{ x: 4 }}
                   transition={{ type: 'spring', stiffness: 400, damping: 10 }}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"
-                  />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </motion.svg>
-              </a>
+              </Link>
             </motion.div>
           </motion.div>
 
@@ -214,11 +191,7 @@ export default function BiographySection() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
                     <div className="absolute bottom-4 left-4 right-4">
-                      <p
-                        className={`${patrickHand.className} mb-1 text-xl text-white/90 drop-shadow-lg`}
-                      >
-                        {slide.caption}
-                      </p>
+                      <p className={`${patrickHand.className} mb-1 text-xl text-white/90 drop-shadow-lg`}>{slide.caption}</p>
                       <p className="text-sm text-zinc-300/80 drop-shadow">{slide.description}</p>
                     </div>
                   </motion.div>
@@ -249,9 +222,7 @@ export default function BiographySection() {
                   key={index}
                   onClick={() => goToSlide(index)}
                   className={`h-2 rounded-full transition-all duration-300 ${
-                    index === currentSlide
-                      ? 'w-8 bg-amber-400'
-                      : 'w-2 bg-zinc-600 hover:bg-zinc-500'
+                    index === currentSlide ? 'w-8 bg-amber-400' : 'w-2 bg-zinc-600 hover:bg-zinc-500'
                   }`}
                   aria-label={`View photo ${index + 1}`}
                 />
@@ -264,9 +235,7 @@ export default function BiographySection() {
               animate={inView ? { opacity: 1, scale: 1, rotate: 2 } : {}}
               transition={{ duration: 0.6, delay: 0.8 }}
             >
-              <p className={`${patrickHand.className} text-sm text-zinc-300`}>
-                "Every song is a piece of my soul, shared with the world"
-              </p>
+              <p className={`${patrickHand.className} text-sm text-zinc-300`}>"Every song is a piece of my soul, shared with the world"</p>
             </motion.div>
           </motion.div>
         </div>

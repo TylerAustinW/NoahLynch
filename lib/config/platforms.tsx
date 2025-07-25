@@ -39,9 +39,7 @@ const PLATFORM_REGISTRY: PlatformRegistry = {
 export function getPlatformConfig(platformName: PlatformName): PlatformConfig {
   const config = PLATFORM_REGISTRY[platformName];
   if (!config) {
-    throw new Error(
-      `Unknown platform: ${platformName}. Available platforms: ${Object.keys(PLATFORM_REGISTRY).join(', ')}`
-    );
+    throw new Error(`Unknown platform: ${platformName}. Available platforms: ${Object.keys(PLATFORM_REGISTRY).join(', ')}`);
   }
   return config;
 }
@@ -52,16 +50,4 @@ export function createPlatformLink(platformName: PlatformName, url: string): Pla
     ...config,
     url,
   };
-}
-
-export function getAvailablePlatforms(): PlatformName[] {
-  return Object.keys(PLATFORM_REGISTRY) as PlatformName[];
-}
-
-export function isValidPlatformName(name: string): name is PlatformName {
-  return name in PLATFORM_REGISTRY;
-}
-
-export function getAllPlatformConfigs(): PlatformRegistry {
-  return PLATFORM_REGISTRY;
 }

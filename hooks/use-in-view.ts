@@ -13,11 +13,7 @@ type Return = {
   inView: boolean;
 };
 
-export function useInView({
-  threshold = 0,
-  rootMargin = '0px',
-  once = false,
-}: Options = {}): Return {
+export function useInView({ threshold = 0, rootMargin = '0px', once = false }: Options = {}): Return {
   const [inView, setInView] = useState(false);
   const ref = useRef<HTMLElement>(null);
   const observed = useRef<HTMLElement | null>(null);

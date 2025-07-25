@@ -29,7 +29,9 @@ export default function Error({ error, reset }: ErrorProps): React.ReactElement 
   useEffect(() => {
     setMounted(true);
     // Log the error to an error reporting service
-    console.error('Application error:', error);
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Application error:', error);
+    }
   }, [error]);
 
   return (
@@ -74,32 +76,20 @@ export default function Error({ error, reset }: ErrorProps): React.ReactElement 
         </motion.div>
 
         {/* Error Message */}
-        <motion.div
-          className="mb-8 sm:mb-12"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-        >
+        <motion.div className="mb-8 sm:mb-12" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4, duration: 0.6 }}>
           <h1
             className={`text-2xl xs:text-3xl sm:text-3xl md:text-4xl font-bold text-amber-200 mb-3 sm:mb-4 leading-tight px-4 sm:px-0 ${patrickHand.className}`}
           >
             Something went wrong!
           </h1>
           <p className="text-base sm:text-lg text-zinc-400 max-w-xs sm:max-w-md mx-auto mb-4 sm:mb-6 leading-relaxed px-2 sm:px-0">
-            We encountered an unexpected error. Don't worry, our team has been notified and we're
-            working on it.
+            We encountered an unexpected error. Don't worry, our team has been notified and we're working on it.
           </p>
           {process.env.NODE_ENV === 'development' && error.message && (
             <div className="mt-4 sm:mt-6 p-3 sm:p-4 rounded-lg bg-zinc-900/50 border border-zinc-800 text-left mx-2 sm:mx-0">
               <p className="text-xs sm:text-sm font-mono text-zinc-500 mb-1">Error details:</p>
-              <p className="text-xs sm:text-sm font-mono text-red-400 break-words">
-                {error.message}
-              </p>
-              {error.digest && (
-                <p className="text-xs font-mono text-zinc-600 mt-2 break-all">
-                  Digest: {error.digest}
-                </p>
-              )}
+              <p className="text-xs sm:text-sm font-mono text-red-400 break-words">{error.message}</p>
+              {error.digest && <p className="text-xs font-mono text-zinc-600 mt-2 break-all">Digest: {error.digest}</p>}
             </div>
           )}
         </motion.div>
@@ -121,12 +111,7 @@ export default function Error({ error, reset }: ErrorProps): React.ReactElement 
             Try Again
           </Button>
 
-          <Button
-            asChild
-            variant="secondary"
-            size="default"
-            className="w-full sm:w-auto min-h-[44px] touch-manipulation"
-          >
+          <Button asChild variant="secondary" size="default" className="w-full sm:w-auto min-h-[44px] touch-manipulation">
             <Link href="/" aria-label="Return to homepage">
               <Home className="h-4 w-4 mr-2" />
               Go Home

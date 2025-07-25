@@ -3,10 +3,8 @@ import './epk.css';
 
 export const metadata: Metadata = {
   title: 'Noah Lynch - Electronic Press Kit',
-  description:
-    'Professional EPK for Noah Lynch - Mississippi singer-songwriter blending acoustic soul, soft rock, and alt-pop',
-  keywords:
-    'Noah Lynch, EPK, Electronic Press Kit, singer-songwriter, acoustic soul, Mississippi music, booking',
+  description: 'Professional EPK for Noah Lynch - Mississippi singer-songwriter blending acoustic soul, soft rock, and alt-pop',
+  keywords: 'Noah Lynch, EPK, Electronic Press Kit, singer-songwriter, acoustic soul, Mississippi music, booking',
   robots: 'index, follow',
   openGraph: {
     title: 'Noah Lynch - Electronic Press Kit',

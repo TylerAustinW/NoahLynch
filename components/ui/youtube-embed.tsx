@@ -11,13 +11,7 @@ interface YouTubeEmbedProps {
   autoplay?: boolean;
 }
 
-export default function YouTubeEmbed({
-  videoId,
-  title,
-  description,
-  className = '',
-  autoplay = false,
-}: YouTubeEmbedProps) {
+export default function YouTubeEmbed({ videoId, title, description, className = '', autoplay = false }: YouTubeEmbedProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 

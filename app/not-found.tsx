@@ -77,20 +77,14 @@ export default function NotFound(): React.ReactElement {
           </motion.div>
 
           {/* Error Message */}
-          <motion.div
-            className="mb-8 sm:mb-12"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
+          <motion.div className="mb-8 sm:mb-12" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4, duration: 0.6 }}>
             <h2
               className={`text-2xl xs:text-3xl sm:text-3xl md:text-4xl font-bold text-amber-200 mb-3 sm:mb-4 leading-tight px-4 sm:px-0 ${patrickHand.className}`}
             >
               Looks like you hit a wrong note!
             </h2>
             <p className="text-base sm:text-lg text-zinc-400 max-w-xs sm:max-w-md mx-auto leading-relaxed px-2 sm:px-0">
-              The page you're looking for doesn't exist. Maybe it's been moved, or perhaps you
-              followed an old link.
+              The page you're looking for doesn't exist. Maybe it's been moved, or perhaps you followed an old link.
             </p>
           </motion.div>
 
@@ -113,12 +107,8 @@ export default function NotFound(): React.ReactElement {
                   className="group block rounded-xl border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm p-4 sm:p-6 transition-all duration-300 hover:border-zinc-700 hover:bg-zinc-900/80 hover:shadow-lg hover:shadow-black/20 hover:-translate-y-0.5 min-h-[44px] touch-manipulation focus:outline-none focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400/50"
                 >
                   <link.icon className="h-6 w-6 sm:h-8 sm:w-8 text-amber-400 mb-2 sm:mb-3 mx-auto transition-transform duration-300 group-hover:scale-110" />
-                  <h3 className="text-sm sm:text-base font-semibold text-white mb-1 group-hover:text-amber-400 transition-colors">
-                    {link.label}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-zinc-500 leading-snug">
-                    {link.description}
-                  </p>
+                  <h3 className="text-sm sm:text-base font-semibold text-white mb-1 group-hover:text-amber-400 transition-colors">{link.label}</h3>
+                  <p className="text-xs sm:text-sm text-zinc-500 leading-snug">{link.description}</p>
                 </Link>
               </motion.div>
             ))}
@@ -141,12 +131,7 @@ export default function NotFound(): React.ReactElement {
               Go Back
             </Button>
 
-            <Button
-              asChild
-              variant="secondary"
-              size="default"
-              className="w-full sm:w-auto min-h-[44px] touch-manipulation"
-            >
+            <Button asChild variant="secondary" size="default" className="w-full sm:w-auto min-h-[44px] touch-manipulation">
               <Link href="/">Return Home</Link>
             </Button>
           </motion.div>

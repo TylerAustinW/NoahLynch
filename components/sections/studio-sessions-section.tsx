@@ -18,30 +18,25 @@ const studioSessions: StudioSession[] = [
   {
     id: '1',
     title: 'Noah Lynch - "For You" Live (Studio Sessions)',
-    description:
-      "An intimate acoustic performance showcasing Noah's raw talent and emotional depth in this heartfelt studio session.",
+    description: "An intimate acoustic performance showcasing Noah's raw talent and emotional depth in this heartfelt studio session.",
     youtubeId: '0WHqv-pE3g8',
   },
   {
     id: '2',
     title: 'Noah Lynch - "Good Things Take Time" Live (Studio Sessions)',
-    description:
-      'Watch Noah perform this inspiring track with soulful vocals and acoustic guitar in an intimate studio setting.',
+    description: 'Watch Noah perform this inspiring track with soulful vocals and acoustic guitar in an intimate studio setting.',
     youtubeId: 'uXSKQiTQoHo',
   },
   {
     id: '3',
     title: 'Noah Lynch - "Honest" Live (Studio Sessions)',
-    description:
-      'A powerful and vulnerable performance of "Honest" that captures the essence of Noah\'s songwriting and vocal delivery.',
+    description: 'A powerful and vulnerable performance of "Honest" that captures the essence of Noah\'s songwriting and vocal delivery.',
     youtubeId: 'UGPzNbSPwZk',
   },
 ];
 
 const YouTubeThumbnail = ({ videoId, title }: { videoId: string; title: string }) => {
-  const [thumbnailSrc, setThumbnailSrc] = useState(
-    `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
-  );
+  const [thumbnailSrc, setThumbnailSrc] = useState(`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`);
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -96,43 +91,35 @@ const YouTubeThumbnail = ({ videoId, title }: { videoId: string; title: string }
   );
 };
 
-const VideoCard = memo(
-  ({
-    session,
-    onSelect,
-  }: {
-    session: StudioSession;
-    onSelect: (session: StudioSession) => void;
-  }) => {
-    return (
-      <motion.button
-        className="group relative w-80 flex-shrink-0 cursor-pointer overflow-hidden rounded-lg border border-zinc-800/50 bg-zinc-900/40 backdrop-blur-sm text-left transition-all hover:border-amber-400/50 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400/50"
-        whileHover={{ scale: 1.02 }}
-        transition={{ duration: 0.2 }}
-        onClick={() => onSelect(session)}
-        aria-label={`Play video: ${session.title}`}
-        type="button"
-      >
-        <div className="relative aspect-video w-full overflow-hidden bg-zinc-900">
-          <YouTubeThumbnail videoId={session.youtubeId} title={session.title} />
-          <div className="absolute inset-0 bg-black/20 transition-opacity group-hover:opacity-0" />
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
-            <div className="rounded-full bg-amber-400 p-3 shadow-lg" aria-hidden="true">
-              <Play className="h-6 w-6 text-white" fill="white" />
-            </div>
+const VideoCard = memo(({ session, onSelect }: { session: StudioSession; onSelect: (session: StudioSession) => void }) => {
+  return (
+    <motion.button
+      className="group relative w-80 flex-shrink-0 cursor-pointer overflow-hidden rounded-lg border border-zinc-800/50 bg-zinc-900/40 backdrop-blur-sm text-left transition-all hover:border-amber-400/50 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400/50"
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.2 }}
+      onClick={() => onSelect(session)}
+      aria-label={`Play video: ${session.title}`}
+      type="button"
+    >
+      <div className="relative aspect-video w-full overflow-hidden bg-zinc-900">
+        <YouTubeThumbnail videoId={session.youtubeId} title={session.title} />
+        <div className="absolute inset-0 bg-black/20 transition-opacity group-hover:opacity-0" />
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
+          <div className="rounded-full bg-amber-400 p-3 shadow-lg" aria-hidden="true">
+            <Play className="h-6 w-6 text-white" fill="white" />
           </div>
         </div>
+      </div>
 
-        <div className="p-3 sm:p-4">
-          <h3 className="mb-2 line-clamp-2 text-sm font-semibold text-white transition-colors group-hover:text-amber-400 sm:text-base">
-            {session.title}
-          </h3>
-          <p className="line-clamp-3 text-xs text-zinc-400 sm:text-sm">{session.description}</p>
-        </div>
-      </motion.button>
-    );
-  }
-);
+      <div className="p-3 sm:p-4">
+        <h3 className="mb-2 line-clamp-2 text-sm font-semibold text-white transition-colors group-hover:text-amber-400 sm:text-base">
+          {session.title}
+        </h3>
+        <p className="line-clamp-3 text-xs text-zinc-400 sm:text-sm">{session.description}</p>
+      </div>
+    </motion.button>
+  );
+});
 VideoCard.displayName = 'VideoCard';
 
 export default function StudioSessionsSection(): React.ReactElement {
@@ -170,10 +157,7 @@ export default function StudioSessionsSection(): React.ReactElement {
     if (scrollContainerRef.current) {
       const container = scrollContainerRef.current;
       const scrollAmount = 320; // Card width + gap
-      const targetScroll =
-        direction === 'left'
-          ? container.scrollLeft - scrollAmount
-          : container.scrollLeft + scrollAmount;
+      const targetScroll = direction === 'left' ? container.scrollLeft - scrollAmount : container.scrollLeft + scrollAmount;
 
       container.scrollTo({
         left: targetScroll,
@@ -189,10 +173,7 @@ export default function StudioSessionsSection(): React.ReactElement {
       className="relative overflow-hidden bg-zinc-950 px-4 py-16 sm:py-20 md:px-6 md:py-24 lg:py-28"
       aria-labelledby="studio-sessions-heading"
     >
-      <div
-        className="absolute inset-0 bg-[url('/grain-texture-overlay.png')] bg-repeat opacity-[0.03]"
-        aria-hidden="true"
-      ></div>
+      <div className="absolute inset-0 bg-[url('/grain-texture-overlay.png')] bg-repeat opacity-[0.03]" aria-hidden="true"></div>
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         <div className="absolute top-1/5 right-1/4 h-88 w-88 rounded-full bg-white/4 blur-3xl"></div>
         <div className="absolute bottom-1/4 left-1/6 h-64 w-64 rounded-full bg-white/2 blur-2xl"></div>
@@ -205,44 +186,24 @@ export default function StudioSessionsSection(): React.ReactElement {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
         >
-          <h2
-            id="studio-sessions-heading"
-            className="mb-3 text-4xl font-bold text-zinc-200 sm:mb-4 sm:text-5xl lg:text-6xl"
-          >
+          <h2 id="studio-sessions-heading" className="mb-3 text-4xl font-bold text-zinc-200 sm:mb-4 sm:text-5xl lg:text-6xl">
             Live Studio Sessions
           </h2>
           <p className="mx-auto max-w-2xl text-sm text-zinc-300 sm:text-base md:text-lg">
-            Experience the raw energy and creativity of Noah's live studio performances. Watch
-            exclusive behind-the-scenes content and intimate acoustic sessions.
+            Experience the raw energy and creativity of Noah's live studio performances. Watch exclusive behind-the-scenes content and intimate
+            acoustic sessions.
           </p>
         </motion.div>
 
-        <motion.div
-          className="relative"
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
+        <motion.div className="relative" initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}} transition={{ duration: 0.5, delay: 0.2 }}>
           <div className="absolute -left-4 top-1/2 z-10 hidden -translate-y-1/2 md:block">
-            <Button
-              variant="ghost"
-              onClick={() => scrollTo('left')}
-              disabled={!canScrollLeft}
-              aria-label="Previous videos"
-              type="button"
-            >
+            <Button variant="ghost" onClick={() => scrollTo('left')} disabled={!canScrollLeft} aria-label="Previous videos" type="button">
               <ChevronLeft className="h-6 w-6" />
             </Button>
           </div>
 
           <div className="absolute -right-4 top-1/2 z-10 hidden -translate-y-1/2 md:block">
-            <Button
-              variant="ghost"
-              onClick={() => scrollTo('right')}
-              disabled={!canScrollRight}
-              aria-label="Next videos"
-              type="button"
-            >
+            <Button variant="ghost" onClick={() => scrollTo('right')} disabled={!canScrollRight} aria-label="Next videos" type="button">
               <ChevronRight className="h-6 w-6" />
             </Button>
           </div>
@@ -271,9 +232,7 @@ export default function StudioSessionsSection(): React.ReactElement {
             {studioSessions.map((_, index) => (
               <div
                 key={index}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex ? 'w-8 bg-amber-400' : 'w-2 bg-zinc-600'
-                }`}
+                className={`h-2 rounded-full transition-all duration-300 ${index === currentIndex ? 'w-8 bg-amber-400' : 'w-2 bg-zinc-600'}`}
               />
             ))}
           </div>
@@ -328,12 +287,7 @@ export default function StudioSessionsSection(): React.ReactElement {
                 allowFullScreen
               ></iframe>
             </div>
-            <Button
-              variant="ghost"
-              onClick={() => setSelectedVideo(null)}
-              aria-label="Close video player"
-              type="button"
-            >
+            <Button variant="ghost" onClick={() => setSelectedVideo(null)} aria-label="Close video player" type="button">
               Close
             </Button>
             <h3 id="video-modal-title" className="sr-only">
