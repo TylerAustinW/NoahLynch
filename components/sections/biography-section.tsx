@@ -81,7 +81,9 @@ export default function BiographySection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="mb-4 text-4xl font-bold text-zinc-200 md:text-5xl lg:text-6xl">The Story</h2>
+          <h2 className="mb-4 text-4xl font-bold text-zinc-200 md:text-5xl lg:text-6xl">
+            The Story
+          </h2>
           <p className={`${patrickHand.className} text-xl text-zinc-300 md:text-2xl`}>
             "Music isn't just what I do, it's who I am"
           </p>
@@ -96,7 +98,8 @@ export default function BiographySection() {
           >
             <div className="space-y-6 text-lg leading-relaxed text-white md:text-xl">
               <p>
-                Introducing <span className="font-bold text-amber-400 text-xl md:text-2xl">Noah Lynch</span>, a
+                Introducing{' '}
+                <span className="font-bold text-amber-400 text-xl md:text-2xl">Noah Lynch</span>, a
                 Mississippi-born musician whose journey with music began at the age of 6 when he
                 first picked up a guitar. From those early days, Noah's passion for music has only
                 grown stronger, fueling his desire to share his artistry with the world.
@@ -105,10 +108,10 @@ export default function BiographySection() {
               <p>
                 Drawing inspiration from legends like{' '}
                 <span className="font-semibold text-amber-400">John Mayer</span> and
-                <span className="font-semibold text-amber-400"> Stevie Ray Vaughan</span>, Noah's music blends the
-                soulful melodies of blues with the infectious energy of neo-rock. His sound is a
-                reflection of his upbringing in a small town nestled in Mississippi, where music
-                isn't the typical claim to fame.
+                <span className="font-semibold text-amber-400"> Stevie Ray Vaughan</span>, Noah's
+                music blends the soulful melodies of blues with the infectious energy of neo-rock.
+                His sound is a reflection of his upbringing in a small town nestled in Mississippi,
+                where music isn't the typical claim to fame.
               </p>
 
               <motion.div

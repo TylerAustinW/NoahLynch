@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ['latin'] });
 const siteUrl = 'https://www.noahlynch.com';
 const siteName = 'Noah Lynch Music';
 const siteDescription =
-  "Experience the raw talent and soulful music of Noah Lynch. Watch exclusive live studio sessions, explore his latest releases including 'Honest', and discover the Mississippi-born musician's authentic approach to songwriting.";
+  'Mississippi-born musician Noah Lynch blends soulful blues with infectious neo-rock energy. Drawing inspiration from John Mayer and Stevie Ray Vaughan, his authentic approach to songwriting captures the essence of human emotion, creating connections with listeners around the world.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -70,7 +70,14 @@ export const metadata: Metadata = {
     creator: '@NoahLynch17',
     title: 'Noah Lynch - Singer-Songwriter & Musician',
     description: siteDescription,
-    images: ['/noah-lynch-portrait-guitar.jpeg'],
+    images: [
+      {
+        url: '/noah-lynch-portrait-guitar.jpeg',
+        width: 1200,
+        height: 630,
+        alt: 'Noah Lynch - Mississippi-born Singer-Songwriter and Musician',
+      },
+    ],
   },
 
   robots: {
@@ -86,15 +93,11 @@ export const metadata: Metadata = {
   },
 
   other: {
-    'theme-color': '#d97706',
-
     author: 'Noah Lynch',
     'article:author': 'Noah Lynch',
-
     'mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-status-bar-style': 'black-translucent',
     'apple-mobile-web-app-title': 'Noah Lynch',
-
     'music:musician': 'Noah Lynch',
     'music:album': 'Honest',
     'music:release_date': '2025-05-09',
@@ -108,27 +111,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <meta name="format-detection" content="telephone=no" />
-        <meta name="msapplication-TileColor" content="#000000" />
-
-        <meta property="og:type" content="website" />
-
         <meta name="theme-color" content="#d97706" />
-
         <link rel="canonical" href={siteUrl} />
-
         <link rel="icon" href="/noah-lynch-portrait-guitar.jpeg" />
         <link rel="apple-touch-icon" sizes="180x180" href="/noah-lynch-portrait-guitar.jpeg" />
-
-        <meta property="og:image:secure_url" content={`${siteUrl}/noah-lynch-portrait-guitar.jpeg`} />
-        <meta property="og:image:type" content="image/jpeg" />
-        <meta property="og:image:width" content="800" />
-        <meta property="og:image:height" content="600" />
-
-        <meta name="twitter:image:alt" content="Noah Lynch - Mississippi-born Singer-Songwriter" />
-
-        <meta property="music:creator" content="Noah Lynch" />
-        <meta property="music:album" content="Honest" />
-        <meta property="music:release_date" content="2025-05-09" />
       </head>
       <body className={inter.className}>
         <SocialSidebar />
