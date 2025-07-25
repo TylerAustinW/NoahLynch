@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 const baseLinkClass =
-  'relative group inline-flex items-center justify-center py-3 px-4 text-sm font-medium tracking-wide transition-all duration-300 hover:text-amber-400 h-[60px] leading-none';
+  'relative group inline-flex items-center justify-center py-2 px-3 text-sm font-medium tracking-wide transition-all duration-300 hover:text-amber-400 h-[44px] leading-none';
 
 const MenuIcon = ({ className }: { className?: string }) => (
   <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -105,11 +105,21 @@ export default function Navbar() {
   }, [mobileOpen]);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    const navElement = document.getElementById(id);
-    if (navElement) {
-      navElement.scrollIntoView({ behavior: 'smooth' });
-      window.history.pushState(null, '', `/#${id}`);
+    // Check if we're on the homepage
+    const isHomepage = window.location.pathname === '/';
+    
+    if (isHomepage) {
+      // If on homepage, prevent default and smooth scroll
+      e.preventDefault();
+      const navElement = document.getElementById(id);
+      if (navElement) {
+        navElement.scrollIntoView({ behavior: 'smooth' });
+        window.history.pushState(null, '', `/#${id}`);
+      }
+    } else {
+      // If not on homepage, let the browser navigate to homepage with hash
+      // The browser will handle scrolling to the element after navigation
+      // Don't prevent default - let the href work normally
     }
   };
 
@@ -141,10 +151,10 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { href: '#biography', label: 'ABOUT', id: 'biography' },
-    { href: '#music', label: 'MUSIC', id: 'music' },
-    { href: '#studio-sessions', label: 'SESSIONS', id: 'studio-sessions' },
+    { href: '/#biography', label: 'ABOUT', id: 'biography' },
+    { href: '/#music', label: 'MUSIC', id: 'music' },
     { href: '/tour-dates', label: 'TOUR', id: null },
+    { href: '/#studio-sessions', label: 'SESSIONS', id: 'studio-sessions' },
     { href: '/epk', label: 'EPK', id: null },
   ];
 
@@ -167,7 +177,7 @@ export default function Navbar() {
           },
         }}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 md:px-12 min-h-[60px]">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 md:px-12 min-h-[44px]">
           <motion.div
             className="flex items-center h-full"
             whileHover={reducedMotion ? {} : { scale: 1.02 }}

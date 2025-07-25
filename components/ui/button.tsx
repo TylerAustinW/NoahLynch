@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
-import * as React from 'react';
+import { forwardRef, type ComponentProps, type ReactNode } from 'react';
 
 const Spinner = ({ size = 'default' }: { size?: 'sm' | 'default' | 'lg' }) => (
   <svg
@@ -90,14 +90,14 @@ const buttonVariants = cva(
   }
 );
 
-interface ButtonProps extends React.ComponentProps<'button'>, VariantProps<typeof buttonVariants> {
+interface ButtonProps extends ComponentProps<'button'>, VariantProps<typeof buttonVariants> {
   asChild?: boolean;
   loading?: boolean;
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
+  leftIcon?: ReactNode;
+  rightIcon?: ReactNode;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       className,

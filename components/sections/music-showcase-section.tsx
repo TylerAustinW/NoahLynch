@@ -6,10 +6,10 @@ import { motion } from 'framer-motion';
 import { ExternalLink, Play, ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, memo } from 'react';
 import { Button } from '@/components/ui/button';
 
-const FeaturedCard = React.memo(({ release }: { release: ReleaseWithPlatforms }) => {
+const FeaturedCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
   const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const FeaturedCard = React.memo(({ release }: { release: ReleaseWithPlatforms })
 
   return (
     <motion.div
-      className="group relative overflow-hidden rounded-xl border border-zinc-700/40 bg-zinc-900/30 backdrop-blur-sm md:rounded-2xl"
+      className="group relative overflow-hidden rounded-xl border border-zinc-800/50 bg-zinc-900/40 backdrop-blur-sm md:rounded-2xl"
       whileHover={reducedMotion ? {} : { scale: 1.02 }}
       transition={{ duration: 0.3, ease: 'easeOut' }}
     >
@@ -96,11 +96,11 @@ const FeaturedCard = React.memo(({ release }: { release: ReleaseWithPlatforms })
 });
 FeaturedCard.displayName = 'FeaturedCard';
 
-const RegularCard = React.memo(({ release }: { release: ReleaseWithPlatforms }) => {
+const RegularCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
   return (
     <Link href={`/music/${release.id}`} className="group block h-full w-80 flex-shrink-0">
       <motion.div
-        className="flex h-full flex-col overflow-hidden rounded-xl border border-zinc-700/40 bg-zinc-900/30 backdrop-blur-sm transition-all duration-300 hover:border-amber-500/50 hover:bg-zinc-800/40"
+        className="flex h-full flex-col overflow-hidden rounded-xl border border-zinc-800/50 bg-zinc-900/40 backdrop-blur-sm transition-all duration-300 hover:border-amber-400/50 hover:bg-zinc-800/50"
         whileHover={{ y: -4 }}
         transition={{ duration: 0.2, ease: 'easeOut' }}
       >
@@ -116,7 +116,7 @@ const RegularCard = React.memo(({ release }: { release: ReleaseWithPlatforms }) 
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
           <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-            <div className="rounded-full bg-amber-500/90 p-3 backdrop-blur-sm">
+            <div className="rounded-full bg-amber-400/90 p-3 backdrop-blur-sm">
               <Play className="h-6 w-6 text-black" fill="currentColor" />
             </div>
           </div>
@@ -194,8 +194,10 @@ export default function MusicShowcaseSection(): React.ReactElement {
         <source src="/noah-lynch-hero-video.mp4" type="video/mp4" />
       </video>
       <div className="pointer-events-none absolute inset-0 bg-[url('/grain-texture-overlay.png')] bg-repeat opacity-[0.03]" />
+      {/* Soft white glow effects */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-1/3 -right-1/4 h-96 w-96 rounded-full bg-amber-500/10 blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 h-80 w-80 rounded-full bg-white/4 blur-3xl" />
+        <div className="absolute bottom-1/3 right-1/3 h-64 w-64 rounded-full bg-white/3 blur-2xl" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl">
@@ -205,7 +207,7 @@ export default function MusicShowcaseSection(): React.ReactElement {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="mb-3 text-4xl font-bold text-white sm:mb-4 sm:text-5xl lg:text-6xl">
+          <h2 className="mb-3 text-4xl font-bold text-zinc-200 sm:mb-4 sm:text-5xl lg:text-6xl">
             The Music
           </h2>
           <p className="mx-auto max-w-2xl text-base text-zinc-300 sm:text-lg">
@@ -228,7 +230,7 @@ export default function MusicShowcaseSection(): React.ReactElement {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <h3 className="mb-6 text-xl font-bold text-white sm:mb-8 sm:text-2xl md:text-3xl">
+            <h3 className="mb-6 text-xl font-bold text-zinc-200 sm:mb-8 sm:text-2xl md:text-3xl">
               More Releases
             </h3>
 
@@ -237,7 +239,7 @@ export default function MusicShowcaseSection(): React.ReactElement {
                 <button
                   onClick={() => scrollTo('left')}
                   disabled={!canScrollLeft}
-                  className={`rounded-full bg-zinc-800/80 p-3 text-white backdrop-blur-sm transition-all hover:bg-zinc-700/80 focus:outline-none focus:ring-2 focus:ring-amber-400/50 disabled:opacity-50 disabled:cursor-not-allowed`}
+                  className={`rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:border-white/30 focus:outline-none focus:ring-2 focus:ring-amber-400/50 disabled:opacity-50 disabled:cursor-not-allowed`}
                   aria-label="Previous releases"
                 >
                   <ChevronLeft className="h-6 w-6" />
@@ -248,7 +250,7 @@ export default function MusicShowcaseSection(): React.ReactElement {
                 <button
                   onClick={() => scrollTo('right')}
                   disabled={!canScrollRight}
-                  className={`rounded-full bg-zinc-800/80 p-3 text-white backdrop-blur-sm transition-all hover:bg-zinc-700/80 focus:outline-none focus:ring-2 focus:ring-amber-400/50 disabled:opacity-50 disabled:cursor-not-allowed`}
+                  className={`rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:border-white/30 focus:outline-none focus:ring-2 focus:ring-amber-400/50 disabled:opacity-50 disabled:cursor-not-allowed`}
                   aria-label="Next releases"
                 >
                   <ChevronRight className="h-6 w-6" />
@@ -278,7 +280,7 @@ export default function MusicShowcaseSection(): React.ReactElement {
                   <div
                     key={index}
                     className={`h-2 rounded-full transition-all duration-300 ${
-                      index === 0 ? 'w-8 bg-amber-500' : 'w-2 bg-zinc-600'
+                      index === 0 ? 'w-8 bg-amber-400' : 'w-2 bg-zinc-600'
                     }`}
                   />
                 ))}

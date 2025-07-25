@@ -69,8 +69,10 @@ export default function BiographySection() {
       className="relative overflow-hidden bg-zinc-950 px-4 py-16 sm:py-20 md:px-6 md:py-24 lg:py-28"
     >
       <div className="pointer-events-none absolute inset-0 bg-[url('/grain-texture-overlay.png')] bg-repeat opacity-[0.03]" />
+      {/* Soft white glow effects */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-1/3 -right-1/4 h-96 w-96 rounded-full bg-amber-500/10 blur-3xl" />
+        <div className="absolute top-1/3 right-1/4 h-96 w-96 rounded-full bg-white/3 blur-3xl" />
+        <div className="absolute bottom-1/4 left-1/5 h-72 w-72 rounded-full bg-white/2 blur-2xl" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl">
@@ -80,8 +82,8 @@ export default function BiographySection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl">The Story</h2>
-          <p className={`${patrickHand.className} text-xl text-amber-200 md:text-2xl`}>
+          <h2 className="mb-4 text-4xl font-bold text-zinc-200 md:text-5xl lg:text-6xl">The Story</h2>
+          <p className={`${patrickHand.className} text-xl text-zinc-300 md:text-2xl`}>
             "Music isn't just what I do, it's who I am"
           </p>
         </motion.div>
@@ -95,7 +97,7 @@ export default function BiographySection() {
           >
             <div className="space-y-6 text-lg leading-relaxed text-white md:text-xl">
               <p>
-                Introducing <span className="font-semibold text-amber-200">Noah Lynch</span>, a
+                Introducing <span className="font-bold text-amber-400 text-xl md:text-2xl">Noah Lynch</span>, a
                 Mississippi-born musician whose journey with music began at the age of 6 when he
                 first picked up a guitar. From those early days, Noah's passion for music has only
                 grown stronger, fueling his desire to share his artistry with the world.
@@ -103,8 +105,8 @@ export default function BiographySection() {
 
               <p>
                 Drawing inspiration from legends like{' '}
-                <span className="text-amber-200">John Mayer</span> and
-                <span className="text-amber-200"> Stevie Ray Vaughan</span>, Noah's music blends the
+                <span className="font-semibold text-amber-400">John Mayer</span> and
+                <span className="font-semibold text-amber-400"> Stevie Ray Vaughan</span>, Noah's music blends the
                 soulful melodies of blues with the infectious energy of neo-rock. His sound is a
                 reflection of his upbringing in a small town nestled in Mississippi, where music
                 isn't the typical claim to fame.
@@ -130,7 +132,7 @@ export default function BiographySection() {
               {isMobile && (
                 <motion.button
                   onClick={() => setIsExpanded(!isExpanded)}
-                  className="group inline-flex items-center gap-2 text-amber-200 transition-colors hover:text-amber-100 focus:outline-none focus:ring-2 focus:ring-amber-400/50 rounded-lg px-2 py-1"
+                  className="group inline-flex items-center gap-2 text-zinc-300 transition-colors hover:text-white focus:outline-none focus:ring-2 focus:ring-zinc-400/50 rounded-lg px-2 py-1"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5 }}
@@ -156,7 +158,7 @@ export default function BiographySection() {
             >
               <a
                 href="#music"
-                className="group inline-flex items-center gap-3 rounded-full bg-amber-500 px-7 py-4 font-medium text-white transition-all duration-300 hover:bg-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400/50"
+                className="group inline-flex items-center gap-3 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm px-7 py-4 font-medium text-white transition-all duration-300 hover:bg-white/20 hover:border-white/50 focus:outline-none focus:ring-2 focus:ring-amber-400/50"
               >
                 <Music className="h-5 w-5" />
                 Explore The Music
@@ -186,7 +188,7 @@ export default function BiographySection() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <div className="relative overflow-hidden rounded-2xl border border-zinc-700/50 shadow-2xl">
+            <div className="relative overflow-hidden rounded-2xl border border-zinc-800/50 shadow-2xl">
               <div className="relative aspect-[4/5] md:aspect-[3/4]">
                 {photoSlides.map((slide, index) => (
                   <motion.div
@@ -224,14 +226,14 @@ export default function BiographySection() {
               <div className="absolute inset-y-0 left-0 right-0 hidden items-center justify-between px-4 md:flex">
                 <button
                   onClick={prevSlide}
-                  className="rounded-full bg-black/30 p-2 text-white backdrop-blur-sm transition-all hover:bg-black/50 focus:outline-none focus:ring-2 focus:ring-amber-400/50"
+                  className="rounded-full bg-white/10 p-2 text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:border-white/30 focus:outline-none focus:ring-2 focus:ring-amber-400/50"
                   aria-label="Previous photo"
                 >
                   <ChevronLeft className="h-6 w-6" />
                 </button>
                 <button
                   onClick={nextSlide}
-                  className="rounded-full bg-black/30 p-2 text-white backdrop-blur-sm transition-all hover:bg-black/50 focus:outline-none focus:ring-2 focus:ring-amber-400/50"
+                  className="rounded-full bg-white/10 p-2 text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:border-white/30 focus:outline-none focus:ring-2 focus:ring-amber-400/50"
                   aria-label="Next photo"
                 >
                   <ChevronRight className="h-6 w-6" />
@@ -246,7 +248,7 @@ export default function BiographySection() {
                   onClick={() => goToSlide(index)}
                   className={`h-2 rounded-full transition-all duration-300 ${
                     index === currentSlide
-                      ? 'w-8 bg-amber-500'
+                      ? 'w-8 bg-amber-400'
                       : 'w-2 bg-zinc-600 hover:bg-zinc-500'
                   }`}
                   aria-label={`View photo ${index + 1}`}
@@ -255,12 +257,12 @@ export default function BiographySection() {
             </div>
 
             <motion.div
-              className="absolute -top-6 -right-4 z-10 hidden max-w-xs rounded-xl bg-zinc-900/90 p-4 backdrop-blur border border-amber-500/30 lg:block"
+              className="absolute -top-6 -right-4 z-10 hidden max-w-xs rounded-xl bg-zinc-900/90 p-4 backdrop-blur border border-amber-400/30 lg:block"
               initial={{ opacity: 0, scale: 0.8, rotate: 3 }}
               animate={inView ? { opacity: 1, scale: 1, rotate: 2 } : {}}
               transition={{ duration: 0.6, delay: 0.8 }}
             >
-              <p className={`${patrickHand.className} text-sm text-amber-200/90`}>
+              <p className={`${patrickHand.className} text-sm text-zinc-300`}>
                 "Every song is a piece of my soul, shared with the world"
               </p>
             </motion.div>

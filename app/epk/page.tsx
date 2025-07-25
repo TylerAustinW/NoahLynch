@@ -19,32 +19,20 @@ export default function EPKPage() {
     epkData;
 
   return (
-    <div className="min-h-screen bg-black text-white print:bg-white print:text-black">
-      <div
-        className="fixed inset-0"
-        style={{
-          background:
-            'radial-gradient(circle at 50% 40%, rgba(245, 158, 11, 0.12) 0%, rgba(139, 69, 19, 0.06) 40%, transparent 70%)',
-        }}
-      />
+    <div className="min-h-screen bg-zinc-950 text-white print:bg-white print:text-black relative overflow-hidden">
+      <div className="absolute inset-0 bg-[url('/grain-texture-overlay.png')] bg-repeat opacity-[0.02] pointer-events-none z-10" />
 
-      <div className="fixed inset-0 bg-gradient-to-br from-amber-900/15 via-black to-zinc-900/30" />
-
-      <div className="fixed inset-0 bg-[url('/grain-texture-overlay.png')] bg-repeat opacity-[0.03]" />
-
-      <div className="fixed top-6 left-6 z-20 hidden md:block">
-        <Button asChild variant="ghost">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 px-4 py-2 bg-zinc-900/80 backdrop-blur-sm border border-zinc-700/50 rounded-lg text-zinc-400 transition-all hover:text-amber-200 hover:border-amber-500/50 duration-300 font-medium"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Back to Home
-          </Link>
-        </Button>
+      <div className="z-50 fixed top-6 left-6 hidden md:block">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-zinc-900/80 backdrop-blur-sm border border-zinc-800/50 rounded-lg text-zinc-400 transition-all hover:text-amber-400 hover:border-amber-400/50 duration-300 font-medium"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back to Home
+        </Link>
       </div>
 
-      <div className="relative z-10">
+      <div className="relative z-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-20 md:py-28">
           <div className="text-center">
             <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white mb-6 sm:mb-10 tracking-tight">
@@ -53,12 +41,12 @@ export default function EPKPage() {
 
             <div className="space-y-6 sm:space-y-8 max-w-2xl mx-auto">
               <p
-                className={`${patrickHand.className} text-lg sm:text-xl md:text-2xl text-amber-200/90 font-light leading-relaxed px-2`}
+                className={`${patrickHand.className} text-lg sm:text-xl md:text-2xl text-zinc-300 font-light leading-relaxed px-2`}
               >
                 {artist.tagline}
               </p>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8 text-sm text-amber-200/80">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8 text-sm text-zinc-300">
                 <div className="flex items-center gap-2">
                   <MapPin className="w-4 h-4" />
                   <span className="font-medium">{artist.location}</span>
@@ -69,62 +57,54 @@ export default function EPKPage() {
                 </div>
               </div>
 
-              <div className="pt-4 sm:pt-6 border-t border-amber-500/30">
+              <div className="pt-4 sm:pt-6 border-t border-zinc-700">
                 <div className="flex flex-col items-center justify-center gap-4 sm:gap-6 text-sm">
                   <Button asChild variant="ghost">
                     <a
                       href={`mailto:${contact.booking}`}
-                      className="flex items-center gap-2 text-amber-200 hover:text-amber-100 transition-colors font-medium group text-center"
+                      className="flex items-center gap-2 text-zinc-300 hover:text-white transition-colors font-medium group text-center"
                     >
                       <Mail className="w-4 h-4 group-hover:scale-110 transition-transform flex-shrink-0" />
                       <span className="break-all sm:break-normal">{contact.booking}</span>
                     </a>
                   </Button>
                   <div className="flex items-center gap-3">
-                    <Button asChild variant="ghost">
-                      <a
-                        href={contact.social.instagram}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Follow Noah Lynch on Instagram"
-                        className="flex items-center justify-center w-8 h-8 rounded-full border border-zinc-600/50 bg-zinc-800/50 text-zinc-400 transition-all duration-300 hover:border-pink-500/50 hover:bg-pink-500/10 hover:text-pink-400 print:border-gray-400 print:text-gray-600"
-                      >
-                        <FaInstagram className="w-4 h-4" />
-                      </a>
-                    </Button>
-                    <Button asChild variant="ghost">
-                      <a
-                        href={contact.social.facebook}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Follow Noah Lynch on Facebook"
-                        className="flex items-center justify-center w-8 h-8 rounded-full border border-zinc-600/50 bg-zinc-800/50 text-zinc-400 transition-all duration-300 hover:border-blue-500/50 hover:bg-blue-500/10 hover:text-blue-400 print:border-gray-400 print:text-gray-600"
-                      >
-                        <FaFacebookF className="w-4 h-4" />
-                      </a>
-                    </Button>
-                    <Button asChild variant="ghost">
-                      <a
-                        href={contact.social.tiktok}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Follow Noah Lynch on TikTok"
-                        className="flex items-center justify-center w-8 h-8 rounded-full border border-zinc-600/50 bg-zinc-800/50 text-zinc-400 transition-all duration-300 hover:border-red-500/50 hover:bg-red-500/10 hover:text-red-400 print:border-gray-400 print:text-gray-600"
-                      >
-                        <FaTiktok className="w-4 h-4" />
-                      </a>
-                    </Button>
-                    <Button asChild variant="ghost">
-                      <a
-                        href={contact.social.youtube}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label="Subscribe to Noah Lynch on YouTube"
-                        className="flex items-center justify-center w-8 h-8 rounded-full border border-zinc-600/50 bg-zinc-800/50 text-zinc-400 transition-all duration-300 hover:border-red-500/50 hover:bg-red-500/10 hover:text-red-400 print:border-gray-400 print:text-gray-600"
-                      >
-                        <FaYoutube className="w-4 h-4" />
-                      </a>
-                    </Button>
+                    <a
+                      href={contact.social.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Follow Noah Lynch on Instagram"
+                      className="flex items-center justify-center w-8 h-8 rounded-full border border-zinc-600/50 bg-zinc-800/50 text-zinc-400 transition-all duration-300 hover:border-pink-500/50 hover:bg-pink-500/10 hover:text-pink-400 print:border-gray-400 print:text-gray-600"
+                    >
+                      <FaInstagram className="w-4 h-4" />
+                    </a>
+                    <a
+                      href={contact.social.facebook}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Follow Noah Lynch on Facebook"
+                      className="flex items-center justify-center w-8 h-8 rounded-full border border-zinc-600/50 bg-zinc-800/50 text-zinc-400 transition-all duration-300 hover:border-blue-500/50 hover:bg-blue-500/10 hover:text-blue-400 print:border-gray-400 print:text-gray-600"
+                    >
+                      <FaFacebookF className="w-4 h-4" />
+                    </a>
+                    <a
+                      href={contact.social.tiktok}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Follow Noah Lynch on TikTok"
+                      className="flex items-center justify-center w-8 h-8 rounded-full border border-zinc-600/50 bg-zinc-800/50 text-zinc-400 transition-all duration-300 hover:border-red-500/50 hover:bg-red-500/10 hover:text-red-400 print:border-gray-400 print:text-gray-600"
+                    >
+                      <FaTiktok className="w-4 h-4" />
+                    </a>
+                    <a
+                      href={contact.social.youtube}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Subscribe to Noah Lynch on YouTube"
+                      className="flex items-center justify-center w-8 h-8 rounded-full border border-zinc-600/50 bg-zinc-800/50 text-zinc-400 transition-all duration-300 hover:border-red-500/50 hover:bg-red-500/10 hover:text-red-400 print:border-gray-400 print:text-gray-600"
+                    >
+                      <FaYoutube className="w-4 h-4" />
+                    </a>
                   </div>
                 </div>
               </div>
@@ -133,11 +113,11 @@ export default function EPKPage() {
         </div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8 md:py-12 print:px-4 print:py-8">
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8 md:py-12 print:px-4 print:py-8">
         <div className="grid gap-8 sm:gap-16 lg:grid-cols-5 lg:gap-20">
           <div className="lg:col-span-2">
             <div className="sticky top-8">
-              <div className="relative aspect-[3/4] sm:aspect-[4/5] overflow-hidden rounded-xl sm:rounded-2xl border border-zinc-700/50 shadow-2xl print:border print:border-gray-300">
+              <div className="relative aspect-[3/4] sm:aspect-[4/5] overflow-hidden rounded-xl sm:rounded-2xl border border-zinc-800/50 shadow-2xl print:border print:border-gray-300">
                 <Image
                   src="/noah-lynch-studio-session.jpeg"
                   alt="Noah Lynch - Professional Studio Photo"

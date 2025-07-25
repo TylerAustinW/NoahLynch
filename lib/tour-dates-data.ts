@@ -14,7 +14,8 @@ import {
   getPastTourDates,
   getFeaturedTourDates,
   hasUpcomingTourDates,
-} from './data/tour-dates';
+  getTourDatesSortedByClosest,
+} from './data/tour/tour-dates';
 
 import { enhanceTourDates, SHOW_INFO } from './config/tour';
 import { formatDate, getDaysUntilShow } from './utils/date';
@@ -31,6 +32,7 @@ export {
   getPastTourDates,
   getFeaturedTourDates,
   hasUpcomingTourDates,
+  getTourDatesSortedByClosest,
   enhanceTourDates,
   formatDate,
   getDaysUntilShow,

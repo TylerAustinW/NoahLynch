@@ -4,7 +4,7 @@ import { useInView } from '@/hooks/use-in-view';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Play, ChevronLeft, ChevronRight } from 'lucide-react';
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, memo } from 'react';
 import { Button } from '@/components/ui/button';
 
 interface StudioSession {
@@ -96,7 +96,7 @@ const YouTubeThumbnail = ({ videoId, title }: { videoId: string; title: string }
   );
 };
 
-const VideoCard = React.memo(
+const VideoCard = memo(
   ({
     session,
     onSelect,
@@ -106,7 +106,7 @@ const VideoCard = React.memo(
   }) => {
     return (
       <motion.button
-        className="group relative w-80 flex-shrink-0 cursor-pointer overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950/50 backdrop-blur-sm text-left transition-all hover:border-amber-900/50 focus:border-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-600/20"
+        className="group relative w-80 flex-shrink-0 cursor-pointer overflow-hidden rounded-lg border border-zinc-800/50 bg-zinc-900/40 backdrop-blur-sm text-left transition-all hover:border-amber-400/50 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400/50"
         whileHover={{ scale: 1.02 }}
         transition={{ duration: 0.2 }}
         onClick={() => onSelect(session)}
@@ -117,7 +117,7 @@ const VideoCard = React.memo(
           <YouTubeThumbnail videoId={session.youtubeId} title={session.title} />
           <div className="absolute inset-0 bg-black/20 transition-opacity group-hover:opacity-0" />
           <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
-            <div className="rounded-full bg-amber-600 p-3 shadow-lg" aria-hidden="true">
+            <div className="rounded-full bg-amber-400 p-3 shadow-lg" aria-hidden="true">
               <Play className="h-6 w-6 text-white" fill="white" />
             </div>
           </div>
@@ -193,8 +193,10 @@ export default function StudioSessionsSection(): React.ReactElement {
         className="absolute inset-0 bg-[url('/grain-texture-overlay.png')] bg-repeat opacity-[0.03]"
         aria-hidden="true"
       ></div>
-      <div className="absolute inset-0" aria-hidden="true">
-        <div className="absolute top-1/2 left-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-500/10 blur-3xl"></div>
+      {/* Soft white glow effects */}
+      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div className="absolute top-1/5 right-1/4 h-88 w-88 rounded-full bg-white/4 blur-3xl"></div>
+        <div className="absolute bottom-1/4 left-1/6 h-64 w-64 rounded-full bg-white/2 blur-2xl"></div>
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl">
@@ -206,7 +208,7 @@ export default function StudioSessionsSection(): React.ReactElement {
         >
           <h2
             id="studio-sessions-heading"
-            className="mb-3 text-4xl font-bold text-white sm:mb-4 sm:text-5xl lg:text-6xl"
+            className="mb-3 text-4xl font-bold text-zinc-200 sm:mb-4 sm:text-5xl lg:text-6xl"
           >
             Live Studio Sessions
           </h2>
@@ -275,7 +277,7 @@ export default function StudioSessionsSection(): React.ReactElement {
               <div
                 key={index}
                 className={`h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex ? 'w-8 bg-amber-500' : 'w-2 bg-zinc-600'
+                  index === currentIndex ? 'w-8 bg-amber-400' : 'w-2 bg-zinc-600'
                 }`}
               />
             ))}

@@ -9,7 +9,7 @@ import { ChevronDown, Calendar, X, MapPin, Clock } from 'lucide-react';
 import { Patrick_Hand } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaFacebookF, FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa6';
 
 const patrickHand = Patrick_Hand({
@@ -128,6 +128,7 @@ export default function HeroSection(): React.ReactElement {
             src="/Mobile-Background.jpg"
             alt="Noah Lynch Mobile Background"
             fill
+            sizes="(max-width: 768px) 100vw, 0px"
             className="object-cover md:hidden"
             style={{
               objectPosition: 'center center',
@@ -139,19 +140,20 @@ export default function HeroSection(): React.ReactElement {
           />
           {/* Desktop Background Image */}
           <Image
-            src="/noah-lynch-studio-session.jpeg"
+            src="/noah-lynch-studio-black-white.jpg"
             alt="Noah Lynch in Studio"
             fill
+            sizes="(min-width: 768px) 100vw, 0px"
             className="object-cover hidden md:block"
             style={{
-              objectPosition: 'center top',
+              objectPosition: 'center 20%',
               transform: loaded ? 'scale(1.02)' : 'scale(1)',
               transition: 'transform 30s ease-out',
             }}
             onError={() => setImageError(true)}
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/50" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/40" />
           {/* Responsive grain texture overlay - reduced for mobile */}
           <div className="pointer-events-none absolute inset-0 bg-[url('/grain-texture-overlay.png')] bg-repeat opacity-[0.01] md:opacity-[0.03]" />
         </div>
@@ -303,8 +305,6 @@ export default function HeroSection(): React.ReactElement {
             </div>
           </div>
         </div>
-        {/* Gradient divider at the bottom for section separation */}
-        <div className="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-b from-transparent to-zinc-950 pointer-events-none" />
 
         <motion.div
           className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 sm:hidden"

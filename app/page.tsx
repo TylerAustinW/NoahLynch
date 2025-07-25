@@ -10,11 +10,8 @@ export default function Home() {
       <Navbar />
       <main>
         <HeroSection />
-        <div className="h-px bg-amber-500/20" />
         <MusicShowcaseSection />
-        <div className="h-px bg-amber-500/20" />
         <StudioSessionsSection />
-        <div className="h-px bg-amber-500/20" />
         <BiographySection />
       </main>
     </div>

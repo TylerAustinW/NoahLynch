@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import TourDates from '@/components/sections/tour-dates';
-import Navbar from '@/components/layout/navbar';
+import TourDatesMinimal from '@/components/sections/tour-dates-minimal';
 
 export const metadata: Metadata = {
   title: 'Tour Dates - Noah Lynch',
@@ -15,9 +14,8 @@ export const metadata: Metadata = {
 
 export default function TourDatesPage() {
   return (
-    <main className="min-h-screen bg-zinc-950">
-      <Navbar />
-      <TourDates />
+    <main className="min-h-screen">
+      <TourDatesMinimal />
     </main>
   );
 }
