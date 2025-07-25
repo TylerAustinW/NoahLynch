@@ -1,7 +1,7 @@
 'use client';
 
 import { useInView } from '@/hooks/use-in-view';
-import { allReleases, type ReleaseWithPlatforms } from '@/lib/musicData';
+import { allReleases, type ReleaseWithPlatforms } from '@/lib/data/music';
 import { motion } from 'framer-motion';
 import { ExternalLink, Play, ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
@@ -194,7 +194,6 @@ export default function MusicShowcaseSection(): React.ReactElement {
         <source src="/noah-lynch-hero-video.mp4" type="video/mp4" />
       </video>
       <div className="pointer-events-none absolute inset-0 bg-[url('/grain-texture-overlay.png')] bg-repeat opacity-[0.03]" />
-      {/* Soft white glow effects */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 h-80 w-80 rounded-full bg-white/4 blur-3xl" />
         <div className="absolute bottom-1/3 right-1/3 h-64 w-64 rounded-full bg-white/3 blur-2xl" />

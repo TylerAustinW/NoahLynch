@@ -81,7 +81,6 @@ export default function SocialSidebar() {
                 <Icon className="h-5 w-5" aria-hidden="true" />
               </a>
 
-              {/* Slide-out handle */}
               <div
                 className={`absolute left-14 top-1/2 -translate-y-1/2 whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium ${social.handleColors} shadow-lg transition-all duration-300 ${
                   prefersReducedMotion
@@ -91,7 +90,6 @@ export default function SocialSidebar() {
                 aria-hidden="true"
               >
                 {social.handle}
-                {/* Arrow pointing to icon */}
                 <div
                   className={`absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent ${social.handleColors.includes('pink') ? 'border-r-pink-500/90' : social.handleColors.includes('blue') ? 'border-r-blue-500/90' : 'border-r-red-500/90'}`}
                 />

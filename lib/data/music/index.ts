@@ -6,15 +6,11 @@ export type {
   PlatformName,
   ReleaseType,
   ReleaseData,
-} from './types/music';
+} from '../../types/music';
 
-import {
-  getAllReleasesData,
-  getPreviousReleasesData,
-  getUpcomingReleaseData,
-} from './data/releases';
-import { createPlatformLink } from './config/platforms';
-import type { ReleaseWithPlatforms, ReleaseData, Platform, PlatformName } from './types/music';
+import { getAllReleasesData, getPreviousReleasesData, getUpcomingReleaseData } from '../releases';
+import { createPlatformLink } from '../../config/platforms';
+import type { ReleaseWithPlatforms, ReleaseData, Platform, PlatformName } from '../../types/music';
 
 function resolveReleasePlatforms(releaseData: ReleaseData): ReleaseWithPlatforms {
   const platforms: Platform[] = releaseData.platformLinks.map((platformLink) =>

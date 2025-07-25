@@ -4,7 +4,7 @@ import {
   type Platform,
   type ReleaseWithPlatforms,
   type Review,
-} from '@/lib/musicData';
+} from '@/lib/data/music';
 import { ArrowLeft, Heart, Quote, Star } from 'lucide-react';
 import type { Metadata } from 'next';
 import { Patrick_Hand } from 'next/font/google';
@@ -213,7 +213,6 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
 
   return (
     <div className="relative min-h-screen bg-zinc-950 text-white">
-      {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <Image
           src={release.imageURL}
@@ -225,10 +224,8 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
         <div className="absolute inset-0 bg-zinc-950/80"></div>
       </div>
 
-      {/* Texture Overlay */}
       <div className="pointer-events-none absolute inset-0 bg-[url('/grain-texture-overlay.png')] bg-repeat opacity-[0.03]" />
 
-      {/* Ambient Light Effects */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-1/3 -right-1/4 h-96 w-96 rounded-full bg-amber-500/8 blur-3xl" />
         <div className="absolute -bottom-1/3 -left-1/4 h-96 w-96 rounded-full bg-orange-500/8 blur-3xl" />
@@ -245,7 +242,6 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
           <div className="mx-auto max-w-7xl">
             {BackToMusicLink}
 
-            {/* Header Section */}
             <div className="mb-12 text-center">
               <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
                 {release.title}
@@ -255,9 +251,7 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
               </p>
             </div>
 
-            {/* Main Content Section */}
             <div className="grid gap-8 lg:grid-cols-2 lg:gap-16 xl:gap-20 mb-12">
-              {/* Left Side - Album Cover & Details */}
               <div className="space-y-6">
                 <div className="relative mx-auto max-w-md overflow-hidden rounded-2xl border border-zinc-700/50 shadow-2xl">
                   <div className="relative aspect-square">
@@ -277,7 +271,6 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
                   </div>
                 </div>
 
-                {/* Release Info */}
                 <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/30 backdrop-blur-sm p-6">
                   <div className="space-y-3 text-center lg:text-left">
                     <p className="text-lg text-zinc-300">Single • {release.year}</p>
@@ -295,7 +288,6 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
                 </div>
               </div>
 
-              {/* Right Side - Description & Listen Links */}
               <div className="space-y-6">
                 <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/30 backdrop-blur-sm p-6">
                   <h2 className="mb-4 text-2xl font-bold text-white">About This Release</h2>
@@ -304,7 +296,6 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
                   </div>
                 </div>
 
-                {/* Listen Now Section */}
                 {(!isUpcoming ||
                   (isUpcoming && release.linkURL) ||
                   (release.platforms && release.platforms.length > 0)) && (
@@ -315,18 +306,14 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
               </div>
             </div>
 
-            {/* Conditional sections for Honest song only */}
             {slug === 'honest' && (
               <>
-                {/* Mobile Tabbed Interface */}
                 <MobileTabs
                   specialThanksContent={SpecialThanksContent}
                   spotlightReviewContent={SpotlightReviewContent}
                 />
 
-                {/* Desktop Two-Column Layout */}
                 <div className="hidden lg:grid lg:grid-cols-2 lg:gap-8">
-                  {/* Special Thanks Section */}
                   <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/30 backdrop-blur-sm p-8 flex flex-col">
                     <h2 className="mb-6 text-3xl font-bold text-amber-200 text-center">
                       Special Thanks
@@ -334,7 +321,6 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
                     {SpecialThanksContent}
                   </div>
 
-                  {/* Spotlight Review Section */}
                   <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/30 backdrop-blur-sm p-8 flex flex-col">
                     <h2 className="mb-6 text-3xl font-bold text-amber-200 text-center flex items-center justify-center">
                       <Star className="h-6 w-6 mr-2 text-amber-400" fill="currentColor" />

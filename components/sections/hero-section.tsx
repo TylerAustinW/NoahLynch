@@ -3,7 +3,8 @@
 import { Button } from '@/components/ui/button';
 import ErrorBoundary from '@/components/ui/error-boundary';
 import { useInView } from '@/hooks/use-in-view';
-import { pastTourDates, SHOW_INFO } from '@/lib/tour-dates-data';
+import { getPastTourDates } from '@/lib/data/tour/tour-dates';
+import { SHOW_INFO } from '@/lib/config/tour';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Calendar, X, MapPin, Clock } from 'lucide-react';
 import { Patrick_Hand } from 'next/font/google';
@@ -28,7 +29,7 @@ export default function HeroSection(): React.ReactElement {
   const [reducedMotion, setPrefersReducedMotion] = useState(false);
   const [showPastShows, setShowPreviousShows] = useState(false);
 
-  const pastShows = pastTourDates;
+  const pastShows = getPastTourDates();
 
   useEffect(() => {
     setLoaded(true);
@@ -123,7 +124,6 @@ export default function HeroSection(): React.ReactElement {
         className="relative flex min-h-screen items-center overflow-hidden pt-16 pb-0 bg-zinc-950"
       >
         <div className="absolute inset-0 h-full w-full">
-          {/* Mobile Background Image */}
           <Image
             src="/Mobile-Background.jpg"
             alt="Noah Lynch Mobile Background"
@@ -138,7 +138,6 @@ export default function HeroSection(): React.ReactElement {
             onError={() => setImageError(true)}
             priority
           />
-          {/* Desktop Background Image */}
           <Image
             src="/noah-lynch-studio-black-white.jpg"
             alt="Noah Lynch in Studio"
@@ -154,7 +153,6 @@ export default function HeroSection(): React.ReactElement {
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/40" />
-          {/* Responsive grain texture overlay - reduced for mobile */}
           <div className="pointer-events-none absolute inset-0 bg-[url('/grain-texture-overlay.png')] bg-repeat opacity-[0.01] md:opacity-[0.03]" />
         </div>
 
@@ -186,7 +184,6 @@ export default function HeroSection(): React.ReactElement {
                           • {SHOW_INFO.venue}
                         </span>
 
-                        {/* Integrated Click Indicator */}
                         <div className="ml-1 opacity-60 group-hover/button:opacity-100 transition-opacity duration-300">
                           <svg
                             className="w-3 h-3 sm:w-4 sm:h-4 text-white/70 group-hover/button:text-white"
@@ -205,24 +202,19 @@ export default function HeroSection(): React.ReactElement {
                       </div>
                     </Link>
 
-                    {/* Smart Hover Tooltip */}
                     <div
                       id="next-show-tooltip"
                       role="tooltip"
                       className="absolute left-full top-1/2 -translate-y-1/2 ml-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-30"
                     >
-                      {/* Tooltip Content */}
                       <div className="bg-zinc-900/95 backdrop-blur-sm text-zinc-100 text-xs font-medium px-3 py-2 rounded-lg border border-zinc-700/50 shadow-lg whitespace-nowrap">
                         Click for details & FREE entry!
-                        {/* Pointer Arrow */}
                         <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-zinc-900/95"></div>
                       </div>
 
-                      {/* Mobile/Responsive Alternative - Show below on small screens */}
                       <div className="sm:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2">
                         <div className="bg-zinc-900/95 backdrop-blur-sm text-zinc-100 text-xs font-medium px-3 py-2 rounded-lg border border-zinc-700/50 shadow-lg whitespace-nowrap">
                           Click for details & FREE entry!
-                          {/* Pointer Arrow - Top */}
                           <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-4 border-transparent border-b-zinc-900/95"></div>
                         </div>
                       </div>

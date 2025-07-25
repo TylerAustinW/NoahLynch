@@ -49,8 +49,7 @@ export const UPCOMING_TOUR_DATES_DATA: TourDate[] = [
   {
     id: 5,
     date: '2025-09-06',
-    venue: 'Backwater Grill Taphouse & Oyster Bar',
-    shortName: 'Backwater Grill',
+    venue: 'Backwater Grill',
     city: 'Brandon',
     state: 'MS',
     time: '6:00 PM CDT',

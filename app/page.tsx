@@ -1,6 +1,6 @@
 import Navbar from '@/components/layout/navbar';
 import BiographySection from '@/components/sections/biography-section';
-import HeroSection from '@/components/sections/hero';
+import HeroSection from '@/components/sections/hero-section';
 import MusicShowcaseSection from '@/components/sections/music-showcase-section';
 import StudioSessionsSection from '@/components/sections/studio-sessions-section';
 

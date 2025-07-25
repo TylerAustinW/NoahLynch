@@ -50,7 +50,6 @@ export default function EPKMobileActions() {
       {isVisible && (
         <div className="fixed bottom-6 right-6 z-50 md:hidden">
           <div className="flex flex-col gap-3">
-            {/* Scroll to Top Button */}
             {showScroll && (
               <motion.button
                 className="flex h-12 w-12 items-center justify-center rounded-full bg-zinc-900/90 backdrop-blur-sm border border-zinc-700/50 text-zinc-300 transition-all duration-300 hover:border-amber-500/50 hover:bg-amber-500/10 hover:text-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 shadow-lg"
@@ -82,7 +81,6 @@ export default function EPKMobileActions() {
               </motion.button>
             )}
 
-            {/* Back to Home Button */}
             <motion.div
               initial={{
                 opacity: 0,

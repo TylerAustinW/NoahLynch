@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import TourDatesMinimal from '@/components/sections/tour-dates-minimal';
+import TourDatesSection from '@/components/sections/tour-dates-section';
 
 export const metadata: Metadata = {
   title: 'Tour Dates - Noah Lynch',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function TourDatesPage() {
   return (
     <main className="min-h-screen">
-      <TourDatesMinimal />
+      <TourDatesSection />
     </main>
   );
 }

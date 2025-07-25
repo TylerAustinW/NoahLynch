@@ -107,7 +107,7 @@ export default function Navbar() {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     // Check if we're on the homepage
     const isHomepage = window.location.pathname === '/';
-    
+
     if (isHomepage) {
       // If on homepage, prevent default and smooth scroll
       e.preventDefault();
@@ -163,7 +163,7 @@ export default function Navbar() {
       <motion.header
         className={cn(
           'fixed top-0 right-0 left-0 z-50 py-3 sm:py-4 transition-all duration-300',
-          'bg-zinc-950/80 backdrop-blur-sm md:bg-zinc-950/80 md:backdrop-blur-sm',
+          'bg-zinc-900/80 backdrop-blur-sm md:bg-zinc-900/80 md:backdrop-blur-sm',
           scrolled
             ? 'opacity-0 pointer-events-none -translate-y-full'
             : 'opacity-100 pointer-events-auto translate-y-0'
@@ -229,7 +229,7 @@ export default function Navbar() {
               type="button"
               className={cn(
                 'relative z-50 h-10 w-10 border rounded-lg md:hidden flex items-center justify-center',
-                'border-zinc-600/50 bg-black/80 backdrop-blur-sm transition-colors',
+                'border-zinc-600/50 bg-zinc-900/80 backdrop-blur-sm transition-colors',
                 'hover:border-amber-500/50 hover:bg-amber-500/10',
                 mobileOpen && 'border-amber-500/70 bg-amber-500/20'
               )}
@@ -276,7 +276,7 @@ export default function Navbar() {
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
-              className="fixed inset-0 z-[90] flex min-h-screen w-full items-center justify-center overflow-hidden bg-black/50 backdrop-blur-2xl md:hidden"
+              className="fixed inset-0 z-[90] flex min-h-screen w-full items-center justify-center overflow-hidden bg-zinc-900/80 backdrop-blur-2xl md:hidden"
               initial={variants.overlay.initial}
               animate={variants.overlay.animate}
               exit={variants.overlay.exit}

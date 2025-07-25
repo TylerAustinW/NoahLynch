@@ -193,7 +193,6 @@ export default function StudioSessionsSection(): React.ReactElement {
         className="absolute inset-0 bg-[url('/grain-texture-overlay.png')] bg-repeat opacity-[0.03]"
         aria-hidden="true"
       ></div>
-      {/* Soft white glow effects */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         <div className="absolute top-1/5 right-1/4 h-88 w-88 rounded-full bg-white/4 blur-3xl"></div>
         <div className="absolute bottom-1/4 left-1/6 h-64 w-64 rounded-full bg-white/2 blur-2xl"></div>
@@ -218,14 +217,12 @@ export default function StudioSessionsSection(): React.ReactElement {
           </p>
         </motion.div>
 
-        {/* Carousel Container */}
         <motion.div
           className="relative"
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          {/* Desktop Navigation Arrows */}
           <div className="absolute -left-4 top-1/2 z-10 hidden -translate-y-1/2 md:block">
             <Button
               variant="ghost"
@@ -250,7 +247,6 @@ export default function StudioSessionsSection(): React.ReactElement {
             </Button>
           </div>
 
-          {/* Scrollable Container */}
           <div
             ref={scrollContainerRef}
             className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth pb-4"
@@ -271,7 +267,6 @@ export default function StudioSessionsSection(): React.ReactElement {
             ))}
           </div>
 
-          {/* Mobile Scroll Indicators */}
           <div className="mt-4 flex justify-center gap-2 md:hidden">
             {studioSessions.map((_, index) => (
               <div
