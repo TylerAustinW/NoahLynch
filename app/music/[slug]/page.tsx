@@ -39,20 +39,34 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const siteUrl = 'https://www.noahlynch.com';
+  const absoluteImageUrl = release.imageURL.startsWith('http') 
+    ? release.imageURL 
+    : `${siteUrl}${release.imageURL}`;
+
   return {
     title: `${release.title} | Noah Lynch Music`,
     description: release.description,
     openGraph: {
-      title: release.title,
+      type: 'music.album',
+      title: `${release.title} - Noah Lynch`,
       description: release.description,
+      url: `${siteUrl}/music/${slug}`,
+      siteName: 'Noah Lynch Music',
       images: [
         {
-          url: release.imageURL,
+          url: absoluteImageUrl,
           width: 800,
           height: 800,
           alt: `${release.title} Cover Art`,
         },
       ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${release.title} - Noah Lynch`,
+      description: release.description,
+      images: [absoluteImageUrl],
     },
   };
 }
