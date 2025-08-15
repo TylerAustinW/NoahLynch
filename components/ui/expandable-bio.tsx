@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { Button } from './button';
 
@@ -13,10 +13,8 @@ interface ExpandableBioProps {
 export default function ExpandableBio({ content, className = '' }: ExpandableBioProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const targetText =
+  const truncatedContent =
     'Noah Lynch is a Mississippi-born singer-songwriter blending acoustic soul, soft rock, and alt-pop into emotionally rich, story-driven music. Known for his heartfelt guitar playing and honest lyrics, Noah delivers performances that feel both intimate and universal. His songs speak to the real — love, heartbreak, growth — all anchored in smooth grooves and Southern sincerity.';
-
-  const truncatedContent = targetText;
   const fullContent = content;
 
   const hasMoreContent = fullContent.length > truncatedContent.length;

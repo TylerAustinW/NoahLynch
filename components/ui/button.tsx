@@ -1,11 +1,16 @@
 import { cn } from '@/lib/utils';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { forwardRef, type ComponentProps, type ReactNode } from 'react';
+import { type ComponentProps, forwardRef, type ReactNode } from 'react';
 
 const Spinner = ({ size = 'default' }: { size?: 'sm' | 'default' | 'lg' }) => (
   <svg
-    className={cn('animate-spin', size === 'sm' && 'h-3 w-3', size === 'default' && 'h-4 w-4', size === 'lg' && 'h-5 w-5')}
+    className={cn(
+      'animate-spin',
+      size === 'sm' && 'h-3 w-3',
+      size === 'default' && 'h-4 w-4',
+      size === 'lg' && 'h-5 w-5'
+    )}
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
@@ -93,22 +98,51 @@ interface ButtonProps extends ComponentProps<'button'>, VariantProps<typeof butt
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, loading = false, leftIcon, rightIcon, children, disabled, ...props }, ref) => {
+  (
+    {
+      className,
+      variant,
+      size,
+      asChild = false,
+      loading = false,
+      leftIcon,
+      rightIcon,
+      children,
+      disabled,
+      ...props
+    },
+    ref
+  ) => {
     const Comp = asChild ? Slot : 'button';
     const isDisabled = disabled || loading;
 
-    const spinnerSize = size === 'sm' || size === 'icon-sm' ? 'sm' : size === 'lg' || size === 'xl' || size === 'icon-lg' ? 'lg' : 'default';
+    const spinnerSize =
+      size === 'sm' || size === 'icon-sm'
+        ? 'sm'
+        : size === 'lg' || size === 'xl' || size === 'icon-lg'
+          ? 'lg'
+          : 'default';
 
     if (asChild) {
       return (
-        <Comp ref={ref} className={cn(buttonVariants({ variant, size, className }))} disabled={isDisabled} {...props}>
+        <Comp
+          ref={ref}
+          className={cn(buttonVariants({ variant, size, className }))}
+          disabled={isDisabled}
+          {...props}
+        >
           {children}
         </Comp>
       );
     }
 
     return (
-      <Comp ref={ref} className={cn(buttonVariants({ variant, size, className }))} disabled={isDisabled} {...props}>
+      <Comp
+        ref={ref}
+        className={cn(buttonVariants({ variant, size, className }))}
+        disabled={isDisabled}
+        {...props}
+      >
         {loading && <Spinner size={spinnerSize} />}
         {!loading && leftIcon && <span className="flex-shrink-0">{leftIcon}</span>}
         {children && <span className={cn(loading && 'opacity-70')}>{children}</span>}

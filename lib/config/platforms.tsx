@@ -1,7 +1,7 @@
 import { FaDeezer, FaSpotify } from 'react-icons/fa';
 import { SiTidal } from 'react-icons/si';
 import { Music, Play } from 'lucide-react';
-import type { PlatformName, PlatformConfig, PlatformRegistry, Platform } from '@/lib/types/music';
+import type { Platform, PlatformConfig, PlatformName, PlatformRegistry } from '@/lib/types/music';
 
 const PLATFORM_REGISTRY: PlatformRegistry = {
   spotify: {
@@ -39,7 +39,9 @@ const PLATFORM_REGISTRY: PlatformRegistry = {
 export function getPlatformConfig(platformName: PlatformName): PlatformConfig {
   const config = PLATFORM_REGISTRY[platformName];
   if (!config) {
-    throw new Error(`Unknown platform: ${platformName}. Available platforms: ${Object.keys(PLATFORM_REGISTRY).join(', ')}`);
+    throw new Error(
+      `Unknown platform: ${platformName}. Available platforms: ${Object.keys(PLATFORM_REGISTRY).join(', ')}`
+    );
   }
   return config;
 }

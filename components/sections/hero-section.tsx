@@ -2,17 +2,19 @@
 
 import { Button } from '@/components/ui/button';
 import ErrorBoundary from '@/components/ui/error-boundary';
+import CheckInButton from '@/components/ui/checkin-button';
 import { useInView } from '@/hooks/use-in-view';
 import { useFocusTrap } from '@/hooks/use-focus-trap';
 import { getPastTourDates } from '@/lib/data/tour/tour-dates';
 import { SHOW_INFO } from '@/lib/config/tour';
 import { formatDate } from '@/lib/utils/date';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Calendar, X, MapPin, Clock } from 'lucide-react';
+import { SOCIAL_LINKS } from '@/lib/config/constants';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Calendar, ChevronDown, Clock, MapPin, X } from 'lucide-react';
 import { Patrick_Hand } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaFacebookF, FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa6';
 
 const patrickHand = Patrick_Hand({
@@ -20,10 +22,6 @@ const patrickHand = Patrick_Hand({
   subsets: ['latin'],
 });
 
-/**
- * Hero landing section with dynamic show status and social links
- * @returns {React.ReactElement} Hero section with background image and CTAs
- */
 export default function HeroSection(): React.ReactElement {
   const { ref } = useInView({ threshold: 0.1 });
   const [loaded, setLoaded] = useState(false);
@@ -75,7 +73,10 @@ export default function HeroSection(): React.ReactElement {
 
   if (imageError) {
     return (
-      <section ref={ref} className="relative flex min-h-screen items-center justify-center bg-black pt-16">
+      <section
+        ref={ref}
+        className="relative flex min-h-screen items-center justify-center bg-black pt-16"
+      >
         <div className="text-center">
           <h1 className={`mb-4 text-5xl font-bold md:text-7xl ${patrickHand.className}`}>
             Noah Lynch
@@ -106,7 +107,11 @@ export default function HeroSection(): React.ReactElement {
 
   return (
     <ErrorBoundary>
-      <section ref={ref} id="hero" className="relative flex min-h-screen items-center overflow-hidden pt-16 pb-0 bg-zinc-950">
+      <section
+        ref={ref}
+        id="hero"
+        className="relative flex min-h-screen items-center overflow-hidden pt-16 pb-0 bg-zinc-950"
+      >
         <div className="absolute inset-0 h-full w-full">
           <Image
             src="/Mobile-Background.jpg"
@@ -141,7 +146,9 @@ export default function HeroSection(): React.ReactElement {
         </div>
 
         <div className="relative z-10 container mx-auto px-4 md:px-6">
-          <div className={`max-w-xl transition-all duration-1000 ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          <div
+            className={`max-w-xl transition-all duration-1000 ${loaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+          >
             <div className="relative z-20 mb-4 sm:mb-6">
               <div className="w-full max-w-fit">
                 {SHOW_INFO.hasUpcomingShow ? (
@@ -171,7 +178,12 @@ export default function HeroSection(): React.ReactElement {
                             stroke="currentColor"
                             viewBox="0 0 24 24"
                           >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5l7 7-7 7"
+                            />
                           </svg>
                         </div>
                       </div>
@@ -197,7 +209,9 @@ export default function HeroSection(): React.ReactElement {
                   </div>
                 ) : (
                   <div className="flex flex-wrap items-center gap-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-md px-3 py-2 sm:px-4 text-sm sm:text-base font-medium text-white/80 w-full sm:w-auto justify-center sm:justify-start">
-                    <span className="text-xs sm:text-sm md:text-base">No upcoming shows scheduled</span>
+                    <span className="text-xs sm:text-sm md:text-base">
+                      No upcoming shows scheduled
+                    </span>
                   </div>
                 )}
               </div>
@@ -211,12 +225,19 @@ export default function HeroSection(): React.ReactElement {
                   </Link>
                 </Button>
                 <Button asChild variant="secondary" size="default">
-                  <Link href="mailto:NoahLynchContact@gmail.com" aria-label="Contact Noah Lynch via email">
+                  <Link
+                    href={`mailto:${SOCIAL_LINKS.EMAIL}`}
+                    aria-label="Contact Noah Lynch via email"
+                  >
                     Contact
                   </Link>
                 </Button>
+                <CheckInButton
+                  variant="inherit"
+                  className="rounded-full border border-white/20 bg-white/5 backdrop-blur-md px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:bg-white/15 hover:border-white/35 focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-transparent min-h-[36px] flex items-center justify-center sm:px-4 sm:py-2 sm:text-sm sm:min-h-[36px]"
+                />
                 <Link
-                  href="#music"
+                  href={'#music'}
                   className="rounded-full border border-white/20 bg-white/5 backdrop-blur-md px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:bg-white/15 hover:border-white/35 focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-transparent min-h-[36px] flex items-center justify-center sm:px-4 sm:py-2 sm:text-sm sm:min-h-[36px]"
                   aria-label="Explore Noah Lynch's music catalog"
                 >
@@ -227,7 +248,7 @@ export default function HeroSection(): React.ReactElement {
               <div className="pt-1 lg:hidden">
                 <div className="flex gap-4 justify-center sm:justify-start">
                   <Link
-                    href="https://instagram.com/noahlynchmusic"
+                    href={SOCIAL_LINKS.INSTAGRAM}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Follow Noah Lynch on Instagram"
@@ -236,7 +257,7 @@ export default function HeroSection(): React.ReactElement {
                     <FaInstagram className="h-5 w-5" aria-hidden="true" />
                   </Link>
                   <Link
-                    href="https://facebook.com/noahlynchmusic"
+                    href={SOCIAL_LINKS.FACEBOOK}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Follow Noah Lynch on Facebook"
@@ -245,7 +266,7 @@ export default function HeroSection(): React.ReactElement {
                     <FaFacebookF className="h-5 w-5" aria-hidden="true" />
                   </Link>
                   <Link
-                    href="https://tiktok.com/@noahlynchmusic"
+                    href={SOCIAL_LINKS.TIKTOK}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Follow Noah Lynch on TikTok"
@@ -254,7 +275,7 @@ export default function HeroSection(): React.ReactElement {
                     <FaTiktok className="h-5 w-5" aria-hidden="true" />
                   </Link>
                   <Link
-                    href="https://youtube.com/@noahlynch"
+                    href={SOCIAL_LINKS.YOUTUBE}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Subscribe to Noah Lynch on YouTube"
@@ -273,7 +294,6 @@ export default function HeroSection(): React.ReactElement {
           initial={{ opacity: 0 }}
           animate={{
             opacity: loaded ? 1 : 0,
-            ...animationVariants.scroll,
           }}
           transition={animationVariants.fadeIn}
         >
@@ -298,8 +318,17 @@ export default function HeroSection(): React.ReactElement {
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="sticky top-0 bg-zinc-900/95 backdrop-blur-sm border-b border-zinc-700/50 px-6 py-4 flex items-center justify-between">
-                  <h2 className={`text-xl sm:text-2xl font-bold text-amber-200 ${patrickHand.className}`}>Previous Shows</h2>
-                  <Button onClick={() => setShowPreviousShows(false)} variant="ghost" size="icon-sm" aria-label="Close modal">
+                  <h2
+                    className={`text-xl sm:text-2xl font-bold text-amber-200 ${patrickHand.className}`}
+                  >
+                    Previous Shows
+                  </h2>
+                  <Button
+                    onClick={() => setShowPreviousShows(false)}
+                    variant="ghost"
+                    size="icon-sm"
+                    aria-label="Close modal"
+                  >
                     <X className="h-4 w-4" />
                   </Button>
                 </div>
@@ -330,9 +359,15 @@ export default function HeroSection(): React.ReactElement {
                                 {show.city}, {show.state}
                               </span>
                             </div>
-                            {show.description && <p className="text-zinc-400 text-sm mt-3 line-clamp-3">{show.description}</p>}
+                            {show.description && (
+                              <p className="text-zinc-400 text-sm mt-3 line-clamp-3">
+                                {show.description}
+                              </p>
+                            )}
                             <div className="mt-4 space-y-1">
-                              <div className="text-amber-200 font-medium">{formatDate(show.date)}</div>
+                              <div className="text-amber-200 font-medium">
+                                {formatDate(show.date)}
+                              </div>
                               {show.time && (
                                 <div className="flex items-center gap-1 text-zinc-400 text-sm">
                                   <Clock className="h-3 w-3" />
@@ -349,7 +384,9 @@ export default function HeroSection(): React.ReactElement {
                         <div key={index} className="h-1.5 w-1.5 rounded-full bg-zinc-600" />
                       ))}
                     </div>
-                    <p className="text-center text-zinc-400 text-xs mt-3">Swipe to see more shows</p>
+                    <p className="text-center text-zinc-400 text-xs mt-3">
+                      Swipe to see more shows
+                    </p>
                   </div>
 
                   <div className="hidden sm:block overflow-y-auto max-h-[60vh]">
@@ -368,10 +405,14 @@ export default function HeroSection(): React.ReactElement {
                                   {show.city}, {show.state}
                                 </span>
                               </div>
-                              {show.description && <p className="text-zinc-400 text-sm mt-2">{show.description}</p>}
+                              {show.description && (
+                                <p className="text-zinc-400 text-sm mt-2">{show.description}</p>
+                              )}
                             </div>
                             <div className="flex flex-col sm:items-end gap-1">
-                              <div className="text-amber-200 font-medium">{formatDate(show.date)}</div>
+                              <div className="text-amber-200 font-medium">
+                                {formatDate(show.date)}
+                              </div>
                               {show.time && (
                                 <div className="flex items-center gap-1 text-zinc-400 text-sm">
                                   <Clock className="h-3 w-3" />
@@ -387,7 +428,9 @@ export default function HeroSection(): React.ReactElement {
                 </div>
 
                 <div className="sticky bottom-0 bg-zinc-900/95 backdrop-blur-sm border-t border-zinc-700/50 px-6 py-4">
-                  <p className="text-center text-zinc-400 text-sm">Follow Noah's socials for updates on upcoming shows!</p>
+                  <p className="text-center text-zinc-400 text-sm">
+                    Follow Noah's socials for updates on upcoming shows!
+                  </p>
                 </div>
               </motion.div>
             </motion.div>

@@ -2,10 +2,10 @@
 
 import { motion } from 'framer-motion';
 import { getTourDatesSortedByClosest } from '@/lib/data/tour/tour-dates';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Navbar from '@/components/layout/navbar';
 import Image from 'next/image';
-import { parseISO, format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 
 function formatTourDate(dateString: string) {
   const dateObj = parseISO(dateString);
@@ -48,7 +48,9 @@ export default function TourDatesMinimal() {
           transition={{ duration: 0.6 }}
           className="text-center py-8 sm:py-10 md:py-16 px-4"
         >
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-zinc-200 mb-2 sm:mb-4">TOUR DATES</h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-zinc-200 mb-2 sm:mb-4">
+            TOUR DATES
+          </h1>
         </motion.div>
 
         <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-12">
@@ -69,7 +71,9 @@ export default function TourDatesMinimal() {
                   </div>
 
                   <div className="space-y-1">
-                    <div className="text-base font-bold text-white uppercase tracking-wide">{date.venue}</div>
+                    <div className="text-base font-bold text-white uppercase tracking-wide">
+                      {date.venue}
+                    </div>
                     <div className="text-sm text-zinc-300 uppercase tracking-wide">
                       {date.city}
                       {date.state ? `, ${date.state}` : ''}
@@ -105,7 +109,9 @@ export default function TourDatesMinimal() {
                   </div>
 
                   <div className="md:col-span-4 text-left md:text-center">
-                    <div className="text-sm md:text-base font-bold text-white uppercase tracking-wide">{date.venue}</div>
+                    <div className="text-sm md:text-base font-bold text-white uppercase tracking-wide">
+                      {date.venue}
+                    </div>
                   </div>
 
                   <div className="md:col-span-4 text-left md:text-center">
@@ -148,7 +154,9 @@ export default function TourDatesMinimal() {
             className="w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-12 mt-16 md:mt-20"
           >
             <div className="text-center py-8 md:py-12">
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-zinc-500 mb-8 uppercase tracking-wider">PAST SHOWS</h3>
+              <h3 className="text-base sm:text-lg md:text-xl font-bold text-zinc-500 mb-8 uppercase tracking-wider">
+                PAST SHOWS
+              </h3>
             </div>
 
             <div className="w-full">
@@ -163,7 +171,9 @@ export default function TourDatesMinimal() {
                       </div>
 
                       <div className="space-y-1">
-                        <div className="text-sm font-semibold text-zinc-200 uppercase tracking-wide">{date.venue}</div>
+                        <div className="text-sm font-semibold text-zinc-200 uppercase tracking-wide">
+                          {date.venue}
+                        </div>
                         <div className="text-xs text-zinc-300 uppercase tracking-wide">
                           {date.city}
                           {date.state ? `, ${date.state}` : ''}
@@ -179,7 +189,9 @@ export default function TourDatesMinimal() {
                       </div>
 
                       <div className="md:col-span-4 text-left md:text-center">
-                        <div className="text-sm md:text-base font-bold text-white uppercase tracking-wide">{date.venue}</div>
+                        <div className="text-sm md:text-base font-bold text-white uppercase tracking-wide">
+                          {date.venue}
+                        </div>
                       </div>
 
                       <div className="md:col-span-4 text-left md:text-center">

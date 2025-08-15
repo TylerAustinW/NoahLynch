@@ -1,5 +1,5 @@
 import { epkData } from '@/lib/data/epk-data';
-import { Mail, Music, MapPin, Play, ArrowLeft } from 'lucide-react';
+import { ArrowLeft, Mail, MapPin, Music, Play } from 'lucide-react';
 import { FaFacebookF, FaInstagram, FaTiktok, FaYoutube } from 'react-icons/fa6';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -15,7 +15,8 @@ const patrickHand = Patrick_Hand({
 });
 
 export default function EPKPage() {
-  const { artist, bio, featuredVideo, liveShow, notableShows, releases, gallery, contact } = epkData;
+  const { artist, bio, featuredVideo, liveShow, notableShows, releases, gallery, contact } =
+    epkData;
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white print:bg-white print:text-black relative overflow-hidden">
@@ -34,10 +35,14 @@ export default function EPKPage() {
       <div className="relative z-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-20 md:py-28">
           <div className="text-center">
-            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white mb-6 sm:mb-10 tracking-tight">{artist.name}</h1>
+            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white mb-6 sm:mb-10 tracking-tight">
+              {artist.name}
+            </h1>
 
             <div className="space-y-6 sm:space-y-8 max-w-2xl mx-auto">
-              <p className={`${patrickHand.className} text-lg sm:text-xl md:text-2xl text-zinc-300 font-light leading-relaxed px-2`}>
+              <p
+                className={`${patrickHand.className} text-lg sm:text-xl md:text-2xl text-zinc-300 font-light leading-relaxed px-2`}
+              >
                 {artist.tagline}
               </p>
 
@@ -125,7 +130,9 @@ export default function EPKPage() {
               </div>
 
               <div className="absolute -top-4 -right-4 z-10 hidden max-w-xs rounded-xl bg-zinc-900/90 p-4 backdrop-blur border border-amber-500/30 lg:block">
-                <p className={`${patrickHand.className} text-sm text-amber-200/90`}>"Every song is a piece of my soul, shared with the world"</p>
+                <p className={`${patrickHand.className} text-sm text-amber-200/90`}>
+                  "Every song is a piece of my soul, shared with the world"
+                </p>
               </div>
             </div>
           </div>
@@ -133,8 +140,12 @@ export default function EPKPage() {
           <div className="lg:col-span-3 space-y-6 sm:space-y-10">
             <div className="p-6 sm:p-8 md:p-10 bg-zinc-900/50 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-zinc-700/50 print:bg-white print:border-gray-300">
               <div className="mb-6 sm:mb-8">
-                <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4 print:text-xl print:text-black">The Story</h2>
-                <p className={`${patrickHand.className} text-base sm:text-lg text-amber-200/80`}>"Music isn't just what I do, it's who I am"</p>
+                <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3 sm:mb-4 print:text-xl print:text-black">
+                  The Story
+                </h2>
+                <p className={`${patrickHand.className} text-base sm:text-lg text-amber-200/80`}>
+                  "Music isn't just what I do, it's who I am"
+                </p>
               </div>
 
               <ExpandableBio content={bio.long} />
@@ -143,9 +154,15 @@ export default function EPKPage() {
             {featuredVideo && (
               <div className="p-6 sm:p-8 md:p-10 bg-zinc-800/20 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-zinc-700/30 print:bg-white print:border-gray-300">
                 <div className="mb-6 sm:mb-8 text-center">
-                  <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4 print:text-xl print:text-black">{featuredVideo.title}</h2>
+                  <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4 print:text-xl print:text-black">
+                    {featuredVideo.title}
+                  </h2>
                   {featuredVideo.video.description && (
-                    <p className={`${patrickHand.className} text-base sm:text-lg text-amber-200/80`}>"{featuredVideo.video.description}"</p>
+                    <p
+                      className={`${patrickHand.className} text-base sm:text-lg text-amber-200/80`}
+                    >
+                      "{featuredVideo.video.description}"
+                    </p>
                   )}
                 </div>
 
@@ -162,7 +179,9 @@ export default function EPKPage() {
 
             <div className="p-6 sm:p-8 md:p-10 bg-zinc-800/30 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-zinc-700/30 print:bg-white print:border-gray-300">
               <div className="mb-6 sm:mb-8">
-                <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4 print:text-xl print:text-black">Live Performance</h2>
+                <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4 print:text-xl print:text-black">
+                  Live Performance
+                </h2>
                 <p className="text-amber-200 font-medium text-base sm:text-lg">{liveShow.format}</p>
               </div>
 
@@ -192,13 +211,19 @@ export default function EPKPage() {
               </div>
               <div className="p-5 sm:p-6 bg-zinc-900/50 rounded-xl border border-zinc-700/50 print:bg-gray-50">
                 <p className="text-zinc-300 text-sm print:text-black">{liveShow.repertoire}</p>
-                {liveShow.paSystem && <p className="text-amber-200/80 text-sm mt-2 print:text-black">PA system available upon request</p>}
+                {liveShow.paSystem && (
+                  <p className="text-amber-200/80 text-sm mt-2 print:text-black">
+                    PA system available upon request
+                  </p>
+                )}
               </div>
             </div>
 
             <div className="p-6 sm:p-8 md:p-10 bg-zinc-800/20 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-zinc-700/30 print:bg-white print:border-gray-300">
               <div className="mb-6 sm:mb-8 text-center">
-                <h2 className="text-xl sm:text-2xl font-bold text-white mb-2 print:text-xl print:text-black">{gallery.title}</h2>
+                <h2 className="text-xl sm:text-2xl font-bold text-white mb-2 print:text-xl print:text-black">
+                  {gallery.title}
+                </h2>
               </div>
 
               <div className="space-y-6 sm:space-y-8">
@@ -217,7 +242,11 @@ export default function EPKPage() {
                       {photo.people && (
                         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                           {photo.people.map((person, personIndex) => (
-                            <div key={personIndex} className="absolute" style={{ left: `${person.x}%`, top: `${person.y}%` }}>
+                            <div
+                              key={personIndex}
+                              className="absolute"
+                              style={{ left: `${person.x}%`, top: `${person.y}%` }}
+                            >
                               <div className="relative">
                                 <div className="w-3 h-3 bg-amber-400 rounded-full border-2 border-white shadow-lg transform -translate-x-1/2 -translate-y-1/2 animate-pulse" />
                                 <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 bg-zinc-900/95 text-white px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap backdrop-blur-sm border border-amber-500/30 shadow-xl">
@@ -235,8 +264,14 @@ export default function EPKPage() {
 
                     <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5">
                       <div className="text-white">
-                        {photo.venue && <p className="text-amber-200 font-medium text-sm sm:text-base mb-1">{photo.venue}</p>}
-                        <p className="text-xs sm:text-sm text-zinc-200 leading-relaxed">{photo.caption}</p>
+                        {photo.venue && (
+                          <p className="text-amber-200 font-medium text-sm sm:text-base mb-1">
+                            {photo.venue}
+                          </p>
+                        )}
+                        <p className="text-xs sm:text-sm text-zinc-200 leading-relaxed">
+                          {photo.caption}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -247,13 +282,22 @@ export default function EPKPage() {
             <div className="grid gap-6 sm:gap-8 lg:gap-10 lg:grid-cols-2">
               <div className="p-6 sm:p-8 bg-zinc-800/20 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-zinc-700/30 print:bg-white print:border-gray-300">
                 <div className="mb-6 sm:mb-8">
-                  <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4 print:text-base print:text-black">Career Highlights</h3>
+                  <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4 print:text-base print:text-black">
+                    Career Highlights
+                  </h3>
                 </div>
                 <div className="space-y-4 sm:space-y-5">
                   {notableShows.map((show, index) => (
-                    <div key={index} className="border-b border-zinc-700/50 pb-3 last:border-b-0 print:border-gray-300">
+                    <div
+                      key={index}
+                      className="border-b border-zinc-700/50 pb-3 last:border-b-0 print:border-gray-300"
+                    >
                       <h4 className="font-medium text-amber-200 print:text-black">{show.venue}</h4>
-                      {show.description && <p className="text-zinc-400 text-sm mt-1 print:text-gray-600">{show.description}</p>}
+                      {show.description && (
+                        <p className="text-zinc-400 text-sm mt-1 print:text-gray-600">
+                          {show.description}
+                        </p>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -261,7 +305,9 @@ export default function EPKPage() {
 
               <div className="p-6 sm:p-8 bg-zinc-800/20 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-zinc-700/30 print:bg-white print:border-gray-300">
                 <div className="mb-6 sm:mb-8">
-                  <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4 print:text-base print:text-black">Latest Releases</h3>
+                  <h3 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4 print:text-base print:text-black">
+                    Latest Releases
+                  </h3>
                 </div>
                 <div className="space-y-4 sm:space-y-5">
                   {releases.map((release, index) => (
@@ -285,9 +331,15 @@ export default function EPKPage() {
                         </div>
                       )}
                       <div className="flex-grow min-w-0">
-                        <h4 className="font-medium text-white print:text-black text-sm truncate">"{release.title}"</h4>
+                        <h4 className="font-medium text-white print:text-black text-sm truncate">
+                          "{release.title}"
+                        </h4>
                         <p className="text-zinc-400 text-xs print:text-gray-600">{release.date}</p>
-                        {release.highlights && <p className="text-zinc-300 text-xs mt-1 print:text-gray-700">{release.highlights}</p>}
+                        {release.highlights && (
+                          <p className="text-zinc-300 text-xs mt-1 print:text-gray-700">
+                            {release.highlights}
+                          </p>
+                        )}
                       </div>
                     </div>
                   ))}

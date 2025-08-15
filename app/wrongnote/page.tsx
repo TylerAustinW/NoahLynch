@@ -8,23 +8,19 @@ export const metadata = {
   robots: 'noindex, nofollow',
 };
 
-/**
- * Custom 404 page with music theme
- * @returns {React.ReactElement} Wrong note page component
- */
 export default function WrongNotePage(): React.ReactElement {
   return (
     <div className="min-h-screen bg-zinc-950 flex items-center justify-center px-4">
       <div className="text-center max-w-md mx-auto">
-        {/* Musical note icon */}
         <div className="mb-8">
           <Music className="h-24 w-24 text-amber-400 mx-auto mb-4" />
           <div className="text-6xl font-bold text-amber-400 mb-2">404</div>
           <h1 className="text-3xl font-bold text-white mb-4">Wrong Note</h1>
-          <p className="text-zinc-400 text-lg mb-8">Looks like you hit a wrong note! This page doesn't exist.</p>
+          <p className="text-zinc-400 text-lg mb-8">
+            Looks like you hit a wrong note! This page doesn't exist.
+          </p>
         </div>
 
-        {/* Navigation options */}
         <div className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <Button asChild variant="primary" size="default">
@@ -59,9 +55,10 @@ export default function WrongNotePage(): React.ReactElement {
           </div>
         </div>
 
-        {/* Musical quote */}
         <div className="mt-12 pt-8 border-t border-zinc-800">
-          <blockquote className="text-zinc-500 italic text-sm">"Sometimes you have to play a wrong note to appreciate the right one."</blockquote>
+          <blockquote className="text-zinc-500 italic text-sm">
+            "Sometimes you have to play a wrong note to appreciate the right one."
+          </blockquote>
           <cite className="text-zinc-600 text-xs mt-2 block">- Noah Lynch</cite>
         </div>
       </div>

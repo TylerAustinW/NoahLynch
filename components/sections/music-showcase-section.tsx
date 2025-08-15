@@ -3,10 +3,10 @@
 import { useInView } from '@/hooks/use-in-view';
 import { allReleases, type ReleaseWithPlatforms } from '@/lib/data/music';
 import { motion } from 'framer-motion';
-import { ExternalLink, Play, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ExternalLink, Play } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState, useRef, memo } from 'react';
+import React, { memo, useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 
 const FeaturedCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
@@ -75,7 +75,10 @@ const FeaturedCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
           >
             <Button asChild variant="primary">
               <Link href={`/music/${release.id}`} aria-label={`Listen to ${release.title}`}>
-                <Play className="h-5 w-5 transition-transform group-hover/btn:scale-110" fill="currentColor" />
+                <Play
+                  className="h-5 w-5 transition-transform group-hover/btn:scale-110"
+                  fill="currentColor"
+                />
                 Listen Now
               </Link>
             </Button>
@@ -120,7 +123,9 @@ const RegularCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
         </div>
 
         <div className="flex flex-grow flex-col p-4">
-          <h4 className="mb-1 text-lg font-semibold text-white transition-colors group-hover:text-amber-400">{release.title}</h4>
+          <h4 className="mb-1 text-lg font-semibold text-white transition-colors group-hover:text-amber-400">
+            {release.title}
+          </h4>
           <p className="mb-2 text-sm text-zinc-400">{release.year}</p>
           <p className="mt-auto text-xs text-zinc-500">{release.releasedBy}</p>
         </div>
@@ -161,7 +166,10 @@ export default function MusicShowcaseSection(): React.ReactElement {
     if (containerRef.current) {
       const container = containerRef.current;
       const scrollAmount = 320;
-      const targetScroll = direction === 'left' ? container.scrollLeft - scrollAmount : container.scrollLeft + scrollAmount;
+      const targetScroll =
+        direction === 'left'
+          ? container.scrollLeft - scrollAmount
+          : container.scrollLeft + scrollAmount;
 
       container.scrollTo({
         left: targetScroll,
@@ -171,8 +179,18 @@ export default function MusicShowcaseSection(): React.ReactElement {
   };
 
   return (
-    <section ref={ref} id="music" className="relative overflow-hidden bg-zinc-950 px-4 py-16 sm:py-20 md:px-6 md:py-24 lg:py-28">
-      <video autoPlay loop muted playsInline className="absolute inset-0 h-full w-full object-cover opacity-15">
+    <section
+      ref={ref}
+      id="music"
+      className="relative overflow-hidden bg-zinc-950 px-4 py-16 sm:py-20 md:px-6 md:py-24 lg:py-28"
+    >
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover opacity-15"
+      >
         <source src="/noah-lynch-hero-video.mp4" type="video/mp4" />
       </video>
       <div className="pointer-events-none absolute inset-0 bg-[url('/grain-texture-overlay.png')] bg-repeat opacity-[0.03]" />
@@ -188,7 +206,9 @@ export default function MusicShowcaseSection(): React.ReactElement {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="mb-3 text-4xl font-bold text-zinc-200 sm:mb-4 sm:text-5xl lg:text-6xl">The Music</h2>
+          <h2 className="mb-3 text-4xl font-bold text-zinc-200 sm:mb-4 sm:text-5xl lg:text-6xl">
+            The Music
+          </h2>
           <p className="mx-auto max-w-2xl text-base text-zinc-300 sm:text-lg">
             From intimate acoustic sessions to full productions, explore the musical journey
           </p>
@@ -204,8 +224,14 @@ export default function MusicShowcaseSection(): React.ReactElement {
         </motion.div>
 
         {releases.length > 0 && (
-          <motion.div initial={{ opacity: 0, y: 40 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, delay: 0.4 }}>
-            <h3 className="mb-6 text-xl font-bold text-zinc-200 sm:mb-8 sm:text-2xl md:text-3xl">More Releases</h3>
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <h3 className="mb-6 text-xl font-bold text-zinc-200 sm:mb-8 sm:text-2xl md:text-3xl">
+              More Releases
+            </h3>
 
             <div className="relative">
               <div className="absolute -left-4 top-1/2 z-10 hidden -translate-y-1/2 md:block">
@@ -261,11 +287,7 @@ export default function MusicShowcaseSection(): React.ReactElement {
         )}
       </div>
 
-      <style jsx>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
+      <style jsx>{``}</style>
     </section>
   );
 }

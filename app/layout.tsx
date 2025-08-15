@@ -1,3 +1,5 @@
+// noinspection HtmlRequiredTitleElement
+
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -5,13 +7,13 @@ import SocialSidebar from '@/components/layout/social-sidebar';
 import ScrollToTop from '@/components/layout/scroll-to-top';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { APP_DESCRIPTION, APP_NAME, SOCIAL_LINKS } from '@/lib/config/constants';
 
 const inter = Inter({ subsets: ['latin'] });
 
 const siteUrl = 'https://www.noahlynch.com';
-const siteName = 'Noah Lynch Music';
-const siteDescription =
-  'Mississippi-born musician Noah Lynch blends soulful blues with infectious neo-rock energy. Drawing inspiration from John Mayer and Stevie Ray Vaughan, his authentic approach to songwriting captures the essence of human emotion, creating connections with listeners around the world.';
+const siteName = APP_NAME;
+const siteDescription = APP_DESCRIPTION;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -127,14 +129,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               '@type': 'Person',
               name: 'Noah Lynch',
               alternateName: ['Noah Lynch Music', 'Noah Lynch Artist'],
-              description: 'Mississippi-born singer-songwriter blending blues and neo-rock, inspired by John Mayer and Stevie Ray Vaughan',
+              description:
+                'Mississippi-born singer-songwriter blending blues and neo-rock, inspired by John Mayer and Stevie Ray Vaughan',
               url: siteUrl,
               image: `${siteUrl}/noah-lynch-portrait-guitar.jpeg`,
               birthPlace: {
                 '@type': 'Place',
                 name: 'Mississippi, USA',
               },
-              sameAs: ['https://youtube.com/@noahlynch', 'https://twitter.com/NoahLynch17', 'https://instagram.com/NoahLynchMusic'],
+              sameAs: [
+                SOCIAL_LINKS.YOUTUBE,
+                'https://twitter.com/NoahLynch17',
+                SOCIAL_LINKS.INSTAGRAM,
+              ],
               jobTitle: 'Singer-Songwriter',
               worksFor: {
                 '@type': 'Organization',

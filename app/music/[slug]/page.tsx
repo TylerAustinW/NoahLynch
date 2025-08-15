@@ -1,4 +1,4 @@
-import { allReleases, getReleaseById, type Platform, type ReleaseWithPlatforms, type Review } from '@/lib/data/music';
+import { allReleases, getReleaseById, type Platform, type ReleaseWithPlatforms, type Review, } from '@/lib/data/music';
 import { ArrowLeft, Heart, Quote, Star } from 'lucide-react';
 import type { Metadata } from 'next';
 import { Patrick_Hand } from 'next/font/google';
@@ -40,8 +40,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const siteUrl = 'https://www.noahlynch.com';
-  const absoluteImageUrl = release.imageURL.startsWith('http') 
-    ? release.imageURL 
+  const absoluteImageUrl = release.imageURL.startsWith('http')
+    ? release.imageURL
     : `${siteUrl}${release.imageURL}`;
 
   return {
@@ -87,7 +87,9 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
 
   const PlatformButtons = (
     <>
-      <h3 className="mb-4 text-xl font-semibold text-center md:text-left text-white">Listen Now:</h3>
+      <h3 className="mb-4 text-xl font-semibold text-center md:text-left text-white">
+        Listen Now:
+      </h3>
       <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 justify-center md:justify-start">
         {release.platforms.map((platform: Platform) => {
           const buttonStyle: React.CSSProperties = {};
@@ -109,11 +111,19 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
               className="flex flex-col sm:flex-row items-center justify-center gap-2 min-h-[48px] hover:border-amber-500/50"
               style={platform.bgColor ? buttonStyle : {}}
             >
-              <Link href={platform.url} target="_blank" rel="noopener noreferrer" aria-label={`Listen on ${platform.name}`}>
+              <Link
+                href={platform.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Listen on ${platform.name}`}
+              >
                 <div style={iconStyle} className="transition-opacity">
                   {platform.icon}
                 </div>
-                <span className="text-sm font-medium" style={platform.bgColor ? { color: platform.color || '#FFFFFF' } : {}}>
+                <span
+                  className="text-sm font-medium"
+                  style={platform.bgColor ? { color: platform.color || '#FFFFFF' } : {}}
+                >
                   {platform.name}
                 </span>
               </Link>
@@ -127,7 +137,12 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
   const ListenNowLinks = (
     <div className="w-full border-t border-zinc-700/40 pt-6 md:pt-8">
       {isUpcoming && release.linkURL ? (
-        <Button asChild variant="primary" size="lg" className="w-full bg-amber-600 hover:bg-amber-500 text-black font-semibold">
+        <Button
+          asChild
+          variant="primary"
+          size="lg"
+          className="w-full bg-amber-600 hover:bg-amber-500 text-black font-semibold"
+        >
           <Link href={release.linkURL} target="_blank" rel="noopener noreferrer">
             {release.linkText || 'Coming Soon'}
           </Link>
@@ -141,17 +156,23 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
   );
 
   const SpecialThanksContent = (
-    <div className={`${patrickHand.className} text-center text-lg lg:text-xl leading-relaxed text-amber-100/90`}>
+    <div
+      className={`${patrickHand.className} text-center text-lg lg:text-xl leading-relaxed text-amber-100/90`}
+    >
       <p className="text-center font-medium">
-        Bringing "Honest" to life has been one of the most meaningful creative experiences of my life, and I couldn't have done it without the
-        support, talent, and heart of some truly incredible people. To <strong>Levi Ready</strong>, <strong>Isaac Moreno</strong>,{' '}
-        <strong>Tyler Bridge</strong>, <strong>Jamie Wroten</strong>, <strong>Tyler Williams</strong>, <strong>Christopher Chittom</strong>,{' '}
-        <strong>Evan Busbin</strong>, <strong>Hagen Brister</strong>, and <strong>Sherry Thibodeaux</strong>
+        Bringing "Honest" to life has been one of the most meaningful creative experiences of my
+        life, and I couldn't have done it without the support, talent, and heart of some truly
+        incredible people. To <strong>Levi Ready</strong>, <strong>Isaac Moreno</strong>,{' '}
+        <strong>Tyler Bridge</strong>, <strong>Jamie Wroten</strong>,{' '}
+        <strong>Tyler Williams</strong>, <strong>Christopher Chittom</strong>,{' '}
+        <strong>Evan Busbin</strong>, <strong>Hagen Brister</strong>, and{' '}
+        <strong>Sherry Thibodeaux</strong>
         —thank you for your time, energy, and the unique ways each of you contributed to this song.
         <br />
         <br />
-        And last but never least, to my amazing wife <strong>Hunter Lynch</strong> your love, strength, and unwavering belief in me are the foundation
-        of everything I do. Thank you for being my home, my muse, and my greatest encouragement.
+        And last but never least, to my amazing wife <strong>Hunter Lynch</strong> your love,
+        strength, and unwavering belief in me are the foundation of everything I do. Thank you for
+        being my home, my muse, and my greatest encouragement.
       </p>
       <p className="mt-6 text-center">
         With all my gratitude,
@@ -216,7 +237,13 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
         <SocialSidebar />
 
         <div className="absolute inset-0 overflow-hidden">
-          <Image src={release.imageURL} alt={`${release.title} Background`} fill sizes="100vw" className="object-cover opacity-20 blur-sm" />
+          <Image
+            src={release.imageURL}
+            alt={`${release.title} Background`}
+            fill
+            sizes="100vw"
+            className="object-cover opacity-20 blur-sm"
+          />
           <div className="absolute inset-0 bg-zinc-950/80"></div>
         </div>
 
@@ -243,8 +270,12 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
                 {BackToMusicLink}
 
                 <div className="mb-12 text-center">
-                  <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl">{release.title}</h1>
-                  <p className={`${patrickHand.className} text-xl text-amber-200/80 md:text-2xl`}>"Every song tells a story"</p>
+                  <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
+                    {release.title}
+                  </h1>
+                  <p className={`${patrickHand.className} text-xl text-amber-200/80 md:text-2xl`}>
+                    "Every song tells a story"
+                  </p>
                 </div>
 
                 <div className="grid gap-8 lg:grid-cols-2 lg:gap-16 xl:gap-20 mb-12">
@@ -272,10 +303,12 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
                         <p className="text-lg text-zinc-300">Single • {release.year}</p>
                         <div className="space-y-2 text-sm text-zinc-400">
                           <p>
-                            <span className="text-zinc-500">Released by:</span> <span className="text-zinc-300">{release.releasedBy}</span>
+                            <span className="text-zinc-500">Released by:</span>{' '}
+                            <span className="text-zinc-300">{release.releasedBy}</span>
                           </p>
                           <p>
-                            <span className="text-zinc-500">Release date:</span> <span className="text-zinc-300">{release.releaseDate}</span>
+                            <span className="text-zinc-500">Release date:</span>{' '}
+                            <span className="text-zinc-300">{release.releaseDate}</span>
                           </p>
                         </div>
                       </div>
@@ -285,22 +318,33 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
                   <div className="space-y-6">
                     <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/30 backdrop-blur-sm p-6">
                       <h2 className="mb-4 text-2xl font-bold text-white">About This Release</h2>
-                      <div className="prose prose-lg prose-invert max-w-none text-zinc-300 leading-relaxed">{release.description}</div>
+                      <div className="prose prose-lg prose-invert max-w-none text-zinc-300 leading-relaxed">
+                        {release.description}
+                      </div>
                     </div>
 
-                    {(!isUpcoming || (isUpcoming && release.linkURL) || (release.platforms && release.platforms.length > 0)) && (
-                      <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/30 backdrop-blur-sm p-6">{ListenNowLinks}</div>
+                    {(!isUpcoming ||
+                      (isUpcoming && release.linkURL) ||
+                      (release.platforms && release.platforms.length > 0)) && (
+                      <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/30 backdrop-blur-sm p-6">
+                        {ListenNowLinks}
+                      </div>
                     )}
                   </div>
                 </div>
 
                 {slug === 'honest' && (
                   <>
-                    <MobileTabs specialThanksContent={SpecialThanksContent} spotlightReviewContent={SpotlightReviewContent} />
+                    <MobileTabs
+                      specialThanksContent={SpecialThanksContent}
+                      spotlightReviewContent={SpotlightReviewContent}
+                    />
 
                     <div className="hidden lg:grid lg:grid-cols-2 lg:gap-8">
                       <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/30 backdrop-blur-sm p-8 flex flex-col">
-                        <h2 className="mb-6 text-3xl font-bold text-amber-200 text-center">Special Thanks</h2>
+                        <h2 className="mb-6 text-3xl font-bold text-amber-200 text-center">
+                          Special Thanks
+                        </h2>
                         {SpecialThanksContent}
                       </div>
 

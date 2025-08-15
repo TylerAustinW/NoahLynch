@@ -1,15 +1,13 @@
 import globals from 'globals';
 import pluginJs from '@eslint/js';
-import tseslint from 'typescript-eslint';
+import tslint from 'typescript-eslint';
 import pluginReact from 'eslint-plugin-react';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
 import pluginJsxA11y from 'eslint-plugin-jsx-a11y';
 import pluginNext from '@next/eslint-plugin-next';
-import prettierConfig from 'eslint-config-prettier';
 
-export default tseslint.config(
+export default tslint.config(
   {
-    // Global ignores for the entire project
     ignores: [
       '.next/',
       'node_modules/',
@@ -21,11 +19,11 @@ export default tseslint.config(
     ],
   },
   pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
+  ...tslint.configs.recommended,
   {
     files: ['**/*.{js,jsx,ts,tsx}'],
     languageOptions: {
-      parser: tseslint.parser,
+      parser: tslint.parser,
       parserOptions: {
         ecmaFeatures: {
           jsx: true,
@@ -57,42 +55,27 @@ export default tseslint.config(
       '@next/next': pluginNext,
     },
     rules: {
-      // React rules
-      'react/react-in-jsx-scope': 'off', // Not needed with Next.js 13+
-      'react/prop-types': 'off', // Not needed with TypeScript
-      'react/display-name': 'off', // Often not needed in Next.js components
-      'react/jsx-uses-react': 'off', // Not needed with React 17+
       'react/jsx-uses-vars': 'error',
 
-      // React Hooks rules
       ...pluginReactHooks.configs.recommended.rules,
 
-      // Accessibility rules
       ...pluginJsxA11y.configs.recommended.rules,
 
-      // Next.js specific rules
       ...pluginNext.configs.recommended.rules,
       ...pluginNext.configs['core-web-vitals'].rules,
       '@next/next/no-img-element': 'warn',
       '@next/next/no-html-link-for-pages': 'off',
 
-      // TypeScript ESLint rules
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/explicit-module-boundary-types': 'off',
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/no-import-type-side-effects': 'error',
 
-      // General ESLint rules
-      'no-console': ['warn', { allow: ['warn', 'error'] }],
       'prefer-const': 'error',
       'no-debugger': 'warn',
       'no-empty-pattern': 'warn',
       'no-duplicate-imports': 'error',
-      'no-undef': 'off', // TypeScript handles this
-      'no-unused-vars': 'off', // Use TypeScript version instead
     },
-  },
-  // Prettier configuration (must be last to override other formatting rules)
-  prettierConfig
+  }
 );

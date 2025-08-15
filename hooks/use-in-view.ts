@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef, type RefObject } from 'react';
+import { type RefObject, useEffect, useRef, useState } from 'react';
 
 type Options = {
   threshold?: number;
@@ -13,7 +13,11 @@ type Return = {
   inView: boolean;
 };
 
-export function useInView({ threshold = 0, rootMargin = '0px', once = false }: Options = {}): Return {
+export function useInView({
+  threshold = 0,
+  rootMargin = '0px',
+  once = false,
+}: Options = {}): Return {
   const [inView, setInView] = useState(false);
   const ref = useRef<HTMLElement>(null);
   const observed = useRef<HTMLElement | null>(null);

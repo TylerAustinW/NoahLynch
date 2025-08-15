@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Play, ExternalLink } from 'lucide-react';
+import { ExternalLink, Play } from 'lucide-react';
 
 interface YouTubeEmbedProps {
   videoId: string;
@@ -11,7 +11,13 @@ interface YouTubeEmbedProps {
   autoplay?: boolean;
 }
 
-export default function YouTubeEmbed({ videoId, title, description, className = '', autoplay = false }: YouTubeEmbedProps) {
+export default function YouTubeEmbed({
+  videoId,
+  title,
+  description,
+  className = '',
+  autoplay = false,
+}: YouTubeEmbedProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 

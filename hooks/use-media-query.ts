@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-// Singleton pattern for MediaQueryList instances to prevent memory leaks
 const mediaQueryInstances = new Map<string, MediaQueryList>();
 
 function getMediaQueryList(query: string): MediaQueryList {
@@ -11,17 +10,17 @@ function getMediaQueryList(query: string): MediaQueryList {
 }
 
 export function useMediaQuery(query: string) {
-  const [matches, setMatches] = useState<boolean>(() => {
-    // Return false during SSR to prevent hydration mismatch
-    if (typeof window === 'undefined') return false;
-    return getMediaQueryList(query).matches;
-  });
+  // Always start with false to ensure server/client consistency
+  const [matches, setMatches] = useState<boolean>(false);
 
   useEffect(() => {
+    // Only run on client side after hydration
+    if (typeof window === 'undefined') return;
+
     const mql = getMediaQueryList(query);
     const onChange = (e: MediaQueryListEvent) => setMatches(e.matches);
 
-    // Set initial value after mount to ensure correct state
+    // Set initial value after mount
     setMatches(mql.matches);
     mql.addEventListener('change', onChange);
 

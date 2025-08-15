@@ -1,5 +1,5 @@
-import type { TourDate, TourDateWithStatus, ShowNotificationConfig } from '@/lib/types/tour';
-import { getDaysUntilShow, isUpcoming, isPast, isToday } from '@/lib/utils/date';
+import type { ShowNotificationConfig, TourDate, TourDateWithStatus } from '@/lib/types/tour';
+import { getDaysUntilShow, isPast, isToday, isUpcoming } from '@/lib/utils/date';
 
 export const SHOW_INFO: ShowNotificationConfig = {
   hasUpcomingShow: true,
@@ -27,7 +27,9 @@ export function enhanceTourDates(tourDates: TourDate[]): TourDateWithStatus[] {
 }
 
 export function getNextTourDate(tourDates: TourDate[]): TourDateWithStatus | null {
-  const upcomingDates = tourDates.filter((date) => isUpcoming(date.date)).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+  const upcomingDates = tourDates
+    .filter((date) => isUpcoming(date.date))
+    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
   return upcomingDates.length > 0 ? enhanceTourDate(upcomingDates[0]) : null;
 }

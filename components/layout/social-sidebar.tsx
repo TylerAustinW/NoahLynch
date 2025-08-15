@@ -46,7 +46,6 @@ export default function SocialSidebar() {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
-    // Check for reduced motion preference
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setPrefersReducedMotion(mediaQuery.matches);
 
@@ -73,7 +72,9 @@ export default function SocialSidebar() {
                 className={`flex h-12 w-12 items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/30 text-zinc-400 backdrop-blur-sm transition-all duration-300 ${social.hoverColors} focus:outline-none focus:ring-2 ${social.focusColors} focus:ring-offset-2 focus:ring-offset-zinc-950`}
                 style={{
                   transform: prefersReducedMotion ? 'none' : undefined,
-                  transition: prefersReducedMotion ? 'color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease' : undefined,
+                  transition: prefersReducedMotion
+                    ? 'color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease'
+                    : undefined,
                 }}
               >
                 <Icon className="h-5 w-5" aria-hidden="true" />

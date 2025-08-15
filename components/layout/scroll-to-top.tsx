@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { ChevronUp } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export default function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
@@ -38,7 +38,6 @@ export default function ScrollToTop() {
     });
   };
 
-  // Hide on EPK page since it has its own mobile actions
   if (pathname === '/epk') {
     return null;
   }

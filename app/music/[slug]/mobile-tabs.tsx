@@ -8,7 +8,10 @@ interface MobileTabsProps {
   spotlightReviewContent: React.ReactNode;
 }
 
-export default function MobileTabs({ specialThanksContent, spotlightReviewContent }: MobileTabsProps) {
+export default function MobileTabs({
+  specialThanksContent,
+  spotlightReviewContent,
+}: MobileTabsProps) {
   const [activeTab, setActiveTab] = useState('thanks');
 
   return (

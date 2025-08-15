@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { ChevronUp, Home } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 
 export default function EPKMobileActions() {
@@ -27,10 +27,8 @@ export default function EPKMobileActions() {
       const scrolled = window.scrollY;
       const viewportHeight = window.innerHeight;
 
-      // Show button after scrolling down a bit
       setIsVisible(scrolled > 200);
 
-      // Show scroll-to-top option after scrolling more than half viewport
       setShowScrollToTop(scrolled > viewportHeight * 0.5);
     };
 

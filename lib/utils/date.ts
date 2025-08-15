@@ -1,4 +1,4 @@
-import type { DateFormatOptions } from '../types/tour';
+import type { DateFormatOptions } from '@/lib/types';
 
 /**
  * Format a date string avoiding timezone issues
@@ -38,9 +38,7 @@ export function getDaysUntilShow(dateString: string): number {
   showDate.setHours(0, 0, 0, 0);
 
   const diffTime = showDate.getTime() - today.getTime();
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-  return diffDays;
+  return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 }
 
 /**
