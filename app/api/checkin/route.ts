@@ -82,6 +82,7 @@ export async function POST(request: NextRequest) {
           });
         } catch (fileError) {
           console.error('Error processing file:', fileError);
+          console.log('File name: ', fieldName.replace('media_', ''));
         }
       }
     }
