@@ -218,7 +218,11 @@ export default function CheckInGallery({ showId, limit = 12 }: CheckInGalleryPro
                   />
                   <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                     <div className="bg-white/90 rounded-full p-3">
-                      <svg className="w-8 h-8 text-zinc-900" fill="currentColor" viewBox="0 0 24 24">
+                      <svg
+                        className="w-8 h-8 text-zinc-900"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
                         <path d="M8 5v14l11-7z" />
                       </svg>
                     </div>
@@ -304,6 +308,7 @@ export default function CheckInGallery({ showId, limit = 12 }: CheckInGalleryPro
             {/* Image or Video */}
             <div className="relative max-w-full max-h-[80vh]">
               {lightboxImage.file_type === 'video' ? (
+                // eslint-disable-next-line jsx-a11y/media-has-caption
                 <video
                   src={lightboxImage.file_url}
                   controls
