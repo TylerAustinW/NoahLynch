@@ -1,4 +1,10 @@
-import { allReleases, getReleaseById, type Platform, type ReleaseWithPlatforms, type Review, } from '@/lib/data/music';
+import {
+  allReleases,
+  getReleaseById,
+  type Platform,
+  type ReleaseWithPlatforms,
+  type Review,
+} from '@/lib/data/music';
 import { ArrowLeft, Heart, Quote, Star } from 'lucide-react';
 import type { Metadata } from 'next';
 import { Patrick_Hand } from 'next/font/google';
