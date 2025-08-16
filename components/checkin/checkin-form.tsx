@@ -121,7 +121,7 @@ export default function CheckInForm() {
     // Validate file size (different limits for images and videos)
     const isVideo = file.type.startsWith('video/');
     const maxSize = isVideo ? FILE_UPLOAD.MAX_VIDEO_SIZE : FILE_UPLOAD.MAX_IMAGE_SIZE;
-    
+
     if (!validateFileSize(file, maxSize / (1024 * 1024))) {
       setError(
         `File is too large (${formatFileSize(file.size)}). Maximum size for ${isVideo ? 'videos' : 'images'} is ${formatFileSize(maxSize)}.`
@@ -299,7 +299,6 @@ export default function CheckInForm() {
             type="file"
             id="photo"
             accept="image/*,video/*"
-            capture="environment"
             onChange={handlePhotoChange}
             required
             disabled={isCompressing}
