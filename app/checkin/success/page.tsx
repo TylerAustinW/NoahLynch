@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import {
   Calendar,
@@ -28,7 +28,7 @@ const patrickHand = Patrick_Hand({
   display: 'swap',
 });
 
-export default function CheckInSuccessPage() {
+function CheckInSuccessContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const checkinId = searchParams.get('id');
@@ -420,5 +420,22 @@ export default function CheckInSuccessPage() {
         }
       `}</style>
     </main>
+  );
+}
+
+export default function CheckInSuccessPage() {
+  return (
+    <Suspense fallback={
+      <main className="min-h-screen bg-zinc-950 py-8">
+        <div className="container mx-auto px-4">
+          <div className="max-w-md mx-auto p-8 text-center">
+            <div className="w-12 h-12 border-3 border-amber-500 border-t-transparent rounded-full mx-auto mb-4 animate-spin" />
+            <p className="text-zinc-400">Loading your check-in...</p>
+          </div>
+        </div>
+      </main>
+    }>
+      <CheckInSuccessContent />
+    </Suspense>
   );
 }
