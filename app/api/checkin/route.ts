@@ -74,15 +74,28 @@ export async function POST(request: NextRequest) {
           } = supabaseAnonymous.storage.from(SUPABASE_BUCKETS.CHECKIN_MEDIA).getPublicUrl(fileName);
 
           const fileType = file.type.startsWith('image/') ? 'image' : 'video';
-          await supabaseAnonymous.from(SUPABASE_TABLES.CHECKIN_MEDIA).insert({
-            checkin_id: checkinData.id,
-            file_url: publicUrl,
-            file_type: fileType,
-            file_size: file.size,
-          });
+          const { error: mediaInsertError } = await supabaseAnonymous
+            .from(SUPABASE_TABLES.CHECKIN_MEDIA)
+            .insert({
+              checkin_id: checkinData.id,
+              file_url: publicUrl,
+              file_type: fileType,
+              file_size: file.size,
+            });
+          
+          if (mediaInsertError) {
+            console.error('Error inserting media record:', mediaInsertError);
+            console.error('Media insert details:', {
+              checkin_id: checkinData.id,
+              file_url: publicUrl,
+              file_type: fileType,
+              file_size: file.size,
+            });
+          } else {
+            console.log('Successfully inserted media record for checkin:', checkinData.id);
+          }
         } catch (fileError) {
           console.error('Error processing file:', fileError);
-          console.log('File name: ', fieldName.replace('media_', ''));
         }
       }
     }

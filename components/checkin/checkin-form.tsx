@@ -2,8 +2,9 @@
 
 import React, { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import Image from 'next/image';
 import ShowSelector from './show-selector';
-import { API_ENDPOINTS, FILE_UPLOAD, ROUTES } from '@/lib/config/constants';
+import { API_ENDPOINTS, FILE_UPLOAD, ROUTES, SUPABASE_TABLES } from '@/lib/config/constants';
 import {
   compressImage,
   createImagePreview,
@@ -12,6 +13,9 @@ import {
   validateFileType,
 } from '@/lib/utils/media';
 import type { CheckInFormData, CheckInSubmissionResponse } from '@/lib/types/checkin';
+import { supabase } from '@/lib/supabase/client';
+import { CheckCircle, Loader2, Upload } from 'lucide-react';
+import { track } from '@vercel/analytics';
 
 export default function CheckInForm() {
   const router = useRouter();
@@ -30,10 +34,39 @@ export default function CheckInForm() {
   const [error, setError] = useState<string | null>(null);
   const [mediaPreview, setMediaPreview] = useState<string | null>(null);
   const [isCompressing, setIsCompressing] = useState(false);
+  const [selectedShowInfo, setSelectedShowInfo] = useState<{
+    id: number;
+    venue: string;
+    city: string;
+    state: string;
+    date: string;
+    time?: string;
+  } | null>(null);
 
   useEffect(() => {
     if (error) setError(null);
   }, [formData, error]);
+
+  // Fetch show information when show_id changes
+  useEffect(() => {
+    async function fetchShowInfo() {
+      if (formData.show_id) {
+        try {
+          const { data: show } = await supabase
+            .from(SUPABASE_TABLES.SHOWS)
+            .select('*')
+            .eq('id', formData.show_id)
+            .single();
+          setSelectedShowInfo(show);
+        } catch (error) {
+          console.error('Error fetching show info:', error);
+        }
+      } else {
+        setSelectedShowInfo(null);
+      }
+    }
+    fetchShowInfo();
+  }, [formData.show_id]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -48,6 +81,11 @@ export default function CheckInForm() {
       ...prev,
       show_id: showId,
     }));
+
+    // Track show selection
+    if (showId) {
+      track('checkin_show_selected', { show_id: showId });
+    }
   };
 
   const handlePhotoChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,6 +96,12 @@ export default function CheckInForm() {
       return;
     }
 
+    // Track photo upload attempt
+    track('checkin_photo_upload_started', {
+      file_type: file.type,
+      file_size: file.size,
+    });
+
     // Debug logging
     console.log('File details:', {
       name: file.name,
@@ -67,14 +111,21 @@ export default function CheckInForm() {
 
     // Validate file type (image or video)
     if (!validateFileType(file, ['image', 'video'])) {
-      setError('Please upload an image or video file');
+      setError(
+        `File type "${file.type}" is not supported. Please upload a JPG, PNG, WebP image or MP4 video.`
+      );
       e.target.value = '';
       return;
     }
 
-    // Validate file size (10MB limit)
-    if (!validateFileSize(file, FILE_UPLOAD.MAX_SIZE / (1024 * 1024))) {
-      setError(`File size must be less than ${formatFileSize(FILE_UPLOAD.MAX_SIZE)}`);
+    // Validate file size (different limits for images and videos)
+    const isVideo = file.type.startsWith('video/');
+    const maxSize = isVideo ? FILE_UPLOAD.MAX_VIDEO_SIZE : FILE_UPLOAD.MAX_IMAGE_SIZE;
+    
+    if (!validateFileSize(file, maxSize / (1024 * 1024))) {
+      setError(
+        `File is too large (${formatFileSize(file.size)}). Maximum size for ${isVideo ? 'videos' : 'images'} is ${formatFileSize(maxSize)}.`
+      );
       e.target.value = '';
       return;
     }
@@ -103,8 +154,11 @@ export default function CheckInForm() {
         }));
       } catch (err) {
         console.error('Error processing image:', err);
-        setError('Failed to process image. Please try another file.');
+        setError(
+          `Failed to process image: ${err instanceof Error ? err.message : 'Unknown error'}. Please try another file or a smaller image.`
+        );
         e.target.value = '';
+        setMediaPreview(null);
       } finally {
         setIsCompressing(false);
       }
@@ -172,6 +226,13 @@ export default function CheckInForm() {
         return;
       }
 
+      // Track successful submission
+      track('checkin_submitted_successfully', {
+        show_id: formData.show_id,
+        has_feedback: !!formData.feedback?.trim(),
+        has_media: !!formData.media,
+      });
+
       router.push(`${ROUTES.CHECKIN_SUCCESS}?id=${result.checkin_id}`);
     } catch (err) {
       console.error('Submission error:', err);
@@ -190,6 +251,29 @@ export default function CheckInForm() {
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <ShowSelector selectedShowId={formData.show_id} onShowSelect={handleShowSelect} />
+
+        {/* Show QR code info when show is preselected or selected */}
+        {preselectedShowId && selectedShowInfo && (
+          <div className="bg-amber-600/20 border border-amber-500/30 rounded-lg p-4 mb-6">
+            <div className="flex items-center mb-2">
+              <div className="w-2 h-2 bg-amber-500 rounded-full mr-2 animate-pulse"></div>
+              <h3 className="text-amber-200 font-semibold">QR Code Check-in</h3>
+            </div>
+            <p className="text-amber-100 text-sm mb-2">
+              You've scanned the QR code for <strong>{selectedShowInfo.venue}</strong>
+            </p>
+            <div className="text-xs text-amber-200/80">
+              {selectedShowInfo.city}, {selectedShowInfo.state} •{' '}
+              {new Date(selectedShowInfo.date + 'T00:00:00').toLocaleDateString('en-US', {
+                weekday: 'long',
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric',
+              })}
+              {selectedShowInfo.time && ` • ${selectedShowInfo.time}`}
+            </div>
+          </div>
+        )}
 
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-white mb-2">
@@ -215,12 +299,26 @@ export default function CheckInForm() {
             type="file"
             id="photo"
             accept="image/*,video/*"
+            capture="environment"
             onChange={handlePhotoChange}
             required
             disabled={isCompressing}
-            className="w-full px-4 py-3 bg-zinc-700 border border-zinc-600 rounded-lg text-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-amber-600 file:text-white hover:file:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full px-4 py-3 bg-zinc-700 border border-zinc-600 rounded-lg text-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-amber-600 file:text-white hover:file:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
           />
-          {isCompressing && <p className="text-sm text-amber-400 mt-2">Processing image...</p>}
+          {isCompressing && (
+            <div className="mt-3 flex items-center gap-3 p-3 bg-amber-600/10 border border-amber-500/30 rounded-lg">
+              <Upload className="w-4 h-4 text-amber-500 animate-pulse" />
+              <div className="flex-1">
+                <p className="text-sm text-amber-400 font-medium">Processing image...</p>
+                <div className="w-full bg-amber-900/30 rounded-full h-2 mt-1">
+                  <div
+                    className="bg-amber-500 h-2 rounded-full animate-pulse"
+                    style={{ width: '70%' }}
+                  ></div>
+                </div>
+              </div>
+            </div>
+          )}
           {formData.media && !isCompressing && (
             <div className="mt-3 space-y-2">
               <p className="text-sm text-zinc-400">
@@ -228,7 +326,12 @@ export default function CheckInForm() {
               </p>
               {mediaPreview && (
                 <div className="relative w-32 h-32 rounded-lg overflow-hidden bg-zinc-800">
-                  <img src={mediaPreview} alt="Preview" className="w-full h-full object-cover" />
+                  <Image
+                    src={mediaPreview}
+                    alt="Preview"
+                    className="w-full h-full object-cover"
+                    fill
+                  />
                 </div>
               )}
               {formData.media.type.startsWith('video/') && (
@@ -269,8 +372,17 @@ export default function CheckInForm() {
         </div>
 
         {error && (
-          <div className="p-4 bg-red-900/50 border border-red-600 rounded-lg">
-            <p className="text-sm text-red-300">{error}</p>
+          <div className="p-4 bg-red-900/20 border border-red-500/30 rounded-lg">
+            <div className="flex items-start gap-3">
+              <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+              <div>
+                <p className="text-sm font-medium text-red-300 mb-1">Unable to submit check-in</p>
+                <p className="text-sm text-red-400">{error}</p>
+                <p className="text-xs text-red-500 mt-2">
+                  Please check your internet connection and try again.
+                </p>
+              </div>
+            </div>
           </div>
         )}
 
@@ -278,19 +390,30 @@ export default function CheckInForm() {
           type="submit"
           disabled={isSubmitting || isCompressing}
           className={`
-            w-full py-4 px-6 rounded-lg font-medium text-lg transition-all
+            w-full py-4 px-6 rounded-lg font-medium text-lg transition-all flex items-center justify-center gap-3 touch-manipulation min-h-[3rem]
             ${
               isSubmitting || isCompressing
                 ? 'bg-zinc-600 cursor-not-allowed text-zinc-400'
-                : 'bg-amber-600 hover:bg-amber-700 text-white shadow-lg hover:shadow-xl transform hover:-translate-y-0.5'
+                : 'bg-amber-600 hover:bg-amber-700 active:bg-amber-800 text-white shadow-lg hover:shadow-xl active:scale-95 transform hover:-translate-y-0.5'
             }
           `}
         >
-          {isSubmitting
-            ? 'Submitting...'
-            : isCompressing
-              ? 'Processing...'
-              : 'Share Your Experience ✨'}
+          {isSubmitting ? (
+            <>
+              <Loader2 className="w-5 h-5 animate-spin" />
+              Submitting your check-in...
+            </>
+          ) : isCompressing ? (
+            <>
+              <Upload className="w-5 h-5 animate-pulse" />
+              Processing image...
+            </>
+          ) : (
+            <>
+              <CheckCircle className="w-5 h-5" />
+              Share Your Experience ✨
+            </>
+          )}
         </button>
       </form>
     </div>

@@ -15,10 +15,10 @@ export default function CheckInButton({ className = '', variant = 'default' }: C
 
   const variantClasses = {
     default:
-      'px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105',
+      'px-6 py-3 bg-amber-600 hover:bg-amber-700 active:bg-amber-800 text-white shadow-lg hover:shadow-xl transform hover:scale-105 active:scale-95 touch-manipulation',
     floating:
-      'fixed bottom-6 right-6 z-50 w-14 h-14 bg-amber-600 hover:bg-amber-700 text-white rounded-full shadow-lg hover:shadow-xl animate-pulse hover:animate-none transform hover:scale-110',
-    inherit: '',
+      'fixed bottom-6 right-6 z-50 w-14 h-14 bg-amber-600 hover:bg-amber-700 active:bg-amber-800 text-white rounded-full shadow-lg hover:shadow-xl active:shadow-2xl animate-pulse hover:animate-none transform hover:scale-110 active:scale-95 touch-manipulation',
+    inherit: 'touch-manipulation',
   };
 
   const iconSize = variant === 'floating' ? 'w-6 h-6' : 'w-5 h-5';

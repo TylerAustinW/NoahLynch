@@ -30,7 +30,9 @@ export const API_ENDPOINTS = {
 } as const;
 
 export const FILE_UPLOAD = {
-  MAX_SIZE: 10 * 1024 * 1024, // 10MB
+  MAX_SIZE: 50 * 1024 * 1024, // 50MB (increased to support videos)
+  MAX_IMAGE_SIZE: 10 * 1024 * 1024, // 10MB for images
+  MAX_VIDEO_SIZE: 50 * 1024 * 1024, // 50MB for videos
   ACCEPTED_IMAGE_TYPES: ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'],
   ACCEPTED_VIDEO_TYPES: ['video/mp4', 'video/webm', 'video/quicktime'],
 } as const;

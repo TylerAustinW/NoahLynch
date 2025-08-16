@@ -46,6 +46,32 @@ export default ({ selectedShowId, onShowSelect, className = '' }: ShowSelectorPr
         });
 
         setShows(sortedShows);
+
+        // Auto-select tomorrow's show if no show is preselected
+        if (!selectedShowId && sortedShows.length > 0) {
+          const tomorrowShow = sortedShows.find((show) => {
+            const date = new Date(show.date + 'T00:00:00');
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            tomorrow.setHours(0, 0, 0, 0);
+            date.setHours(0, 0, 0, 0);
+            return date.getTime() === tomorrow.getTime();
+          });
+
+          // Auto-select tomorrow's show, or first upcoming show if no tomorrow show
+          const defaultShow =
+            tomorrowShow ||
+            sortedShows.find((show) => {
+              const date = new Date(show.date + 'T00:00:00');
+              const today = new Date();
+              today.setHours(0, 0, 0, 0);
+              return date >= today;
+            });
+
+          if (defaultShow) {
+            onShowSelect(defaultShow.id.toString());
+          }
+        }
       } catch (err) {
         setError('Failed to load shows');
         console.error('Error fetching shows:', err);
@@ -54,7 +80,29 @@ export default ({ selectedShowId, onShowSelect, className = '' }: ShowSelectorPr
       }
     }
     fetchShows().then(() => false);
-  }, []);
+  }, [selectedShowId, onShowSelect]);
+
+  const getDateLabel = (showDate: string) => {
+    const date = new Date(showDate + 'T00:00:00');
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    // Set time to start of day for comparison
+    today.setHours(0, 0, 0, 0);
+    tomorrow.setHours(0, 0, 0, 0);
+    date.setHours(0, 0, 0, 0);
+
+    if (date.getTime() === today.getTime()) {
+      return 'TODAY';
+    } else if (date.getTime() === tomorrow.getTime()) {
+      return 'TOMORROW';
+    } else if (date > today) {
+      return 'UPCOMING';
+    } else {
+      return 'PAST';
+    }
+  };
 
   const formatShowOption = (show: Show) => {
     const date = new Date(show.date + 'T00:00:00');
@@ -65,7 +113,10 @@ export default ({ selectedShowId, onShowSelect, className = '' }: ShowSelectorPr
       year: 'numeric',
     });
 
-    return `${formattedDate} - ${show.venue}, ${show.city}, ${show.state}`;
+    const label = getDateLabel(show.date);
+    const labelDisplay = label !== 'PAST' ? ` [${label}]` : '';
+
+    return `${formattedDate}${labelDisplay} - ${show.venue}, ${show.city}, ${show.state}`;
   };
 
   if (loading) {
@@ -107,11 +158,26 @@ export default ({ selectedShowId, onShowSelect, className = '' }: ShowSelectorPr
         required
       >
         <option value="">Choose a show...</option>
-        {shows.map((show) => (
-          <option key={show.id} value={show.id}>
-            {formatShowOption(show)}
-          </option>
-        ))}
+        {shows.map((show) => {
+          const label = getDateLabel(show.date);
+          return (
+            <option
+              key={show.id}
+              value={show.id}
+              className={`${
+                label === 'TODAY'
+                  ? 'bg-green-700 text-white font-bold'
+                  : label === 'TOMORROW'
+                    ? 'bg-amber-700 text-white font-semibold'
+                    : label === 'UPCOMING'
+                      ? 'bg-blue-700 text-white'
+                      : 'bg-zinc-600 text-zinc-300'
+              }`}
+            >
+              {formatShowOption(show)}
+            </option>
+          );
+        })}
       </select>
     </div>
   );

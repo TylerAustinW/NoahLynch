@@ -2,6 +2,7 @@ import Navbar from '@/components/layout/navbar';
 import HeroSection from '@/components/sections/hero-section';
 import MusicShowcaseSection from '@/components/sections/music-showcase-section';
 import StudioSessionsSection from '@/components/sections/studio-sessions-section';
+import CheckInButton from '@/components/ui/checkin-button';
 import dynamic from 'next/dynamic';
 
 const BiographySection = dynamic(() => import('@/components/sections/biography-section'), {
@@ -22,6 +23,7 @@ export default function Home() {
         <StudioSessionsSection />
         <BiographySection />
       </main>
+      <CheckInButton variant="floating" />
     </div>
   );
 }

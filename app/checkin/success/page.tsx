@@ -2,7 +2,18 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Calendar, CheckCircle, Clock, Home, MapPin, MessageSquare, Music, Share2, User, } from 'lucide-react';
+import {
+  Calendar,
+  CheckCircle,
+  Clock,
+  Copy,
+  Home,
+  MapPin,
+  MessageSquare,
+  Music,
+  Share2,
+  User,
+} from 'lucide-react';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -25,6 +36,7 @@ export default function CheckInSuccessPage() {
   const [checkin, setCheckin] = useState<CheckIn | null>(null);
   const [show, setShow] = useState<Show | null>(null);
   const [loading, setLoading] = useState(true);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (!checkinId) {
@@ -123,6 +135,16 @@ export default function CheckInSuccessPage() {
     twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&hashtags=${HASHTAGS.MAIN.slice(1)},${HASHTAGS.LIVE_MUSIC.slice(1)}`,
     instagram: `https://www.instagram.com/`, // Instagram doesn't support direct sharing via URL
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
+  };
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(shareText);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
   };
 
   return (
@@ -305,7 +327,21 @@ export default function CheckInSuccessPage() {
             </p>
 
             {/* Social Media Buttons */}
-            <div className="flex justify-center gap-4 mb-6">
+            <div className="flex justify-center gap-3 mb-6">
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={copyToClipboard}
+                className={`p-3 rounded-xl transition-all border ${
+                  copied
+                    ? 'bg-green-600/20 border-green-500/50 text-green-400'
+                    : 'bg-zinc-800 hover:bg-amber-600/20 border-zinc-700 hover:border-amber-500/50 text-amber-400'
+                }`}
+                aria-label="Copy share text"
+              >
+                <Copy className="w-5 h-5" />
+              </motion.button>
+
               <motion.a
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
@@ -342,6 +378,17 @@ export default function CheckInSuccessPage() {
                 <FaFacebook className="w-5 h-5 text-blue-500" />
               </motion.a>
             </div>
+
+            {copied && (
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="text-green-400 text-sm mb-4"
+              >
+                Share text copied to clipboard! 📋
+              </motion.p>
+            )}
 
             {/* Hashtags */}
             <div className="flex justify-center flex-wrap gap-2 text-sm">

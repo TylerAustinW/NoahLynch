@@ -1,17 +1,18 @@
 export interface Show {
-  id: string;
+  id: number;
   date: string;
   venue: string;
   city: string;
   state: string;
   time?: string;
+  description?: string;
   ticket_link?: string;
   created_at?: string;
 }
 
 export interface CheckIn {
-  id?: string;
-  show_id: string;
+  id?: number;
+  show_id: number;
   name: string;
   feedback?: string;
   created_at?: string;
