@@ -40,7 +40,6 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     const { resetKeys } = props;
     const { prevResetKeys, hasError } = state;
 
-    // Reset error boundary when resetKeys change
     if (hasError && resetKeys && prevResetKeys) {
       const hasResetKeyChanged = resetKeys.some((resetKey, idx) => prevResetKeys[idx] !== resetKey);
 
@@ -57,7 +56,6 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
-    // In development, log the error details
     if (process.env.NODE_ENV === 'development') {
       console.error('Error caught by ErrorBoundary:', error, errorInfo);
       console.warn('Error Boundary Details');
@@ -66,7 +64,6 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
       console.warn('--------------------------------');
     }
 
-    // Call custom error handler if provided
     this.props.onError?.(error, errorInfo);
   }
 

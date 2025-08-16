@@ -7,7 +7,8 @@ import SocialSidebar from '@/components/layout/social-sidebar';
 import ScrollToTop from '@/components/layout/scroll-to-top';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { APP_DESCRIPTION, APP_NAME, SOCIAL_LINKS } from '@/lib/config/constants';
+import { APP_DESCRIPTION, APP_NAME } from '@/lib/config/constants';
+import React from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -121,53 +122,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ScrollToTop />
         {children}
 
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'Person',
-              name: 'Noah Lynch',
-              alternateName: ['Noah Lynch Music', 'Noah Lynch Artist'],
-              description:
-                'Mississippi-born singer-songwriter blending blues and neo-rock, inspired by John Mayer and Stevie Ray Vaughan',
-              url: siteUrl,
-              image: `${siteUrl}/noah-lynch-portrait-guitar.jpeg`,
-              birthPlace: {
-                '@type': 'Place',
-                name: 'Mississippi, USA',
-              },
-              sameAs: [
-                SOCIAL_LINKS.YOUTUBE,
-                'https://twitter.com/NoahLynch17',
-                SOCIAL_LINKS.INSTAGRAM,
-              ],
-              jobTitle: 'Singer-Songwriter',
-              worksFor: {
-                '@type': 'Organization',
-                name: 'Ready Records',
-              },
-              genre: ['Blues', 'Neo-Rock', 'Indie', 'Acoustic'],
-              instrument: ['Guitar', 'Vocals'],
-              mainEntityOfPage: {
-                '@type': 'WebPage',
-                '@id': siteUrl,
-              },
-              hasOfferCatalog: {
-                '@type': 'OfferCatalog',
-                name: 'Music Releases',
-                itemListElement: [
-                  {
-                    '@type': 'MusicAlbum',
-                    name: 'Honest',
-                    datePublished: '2025-05-09',
-                    recordLabel: 'Ready Records',
-                  },
-                ],
-              },
-            }),
-          }}
-        />
+        <script type="application/ld+json" />
         <Analytics />
         <SpeedInsights />
       </body>

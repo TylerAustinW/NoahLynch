@@ -10,7 +10,7 @@ export type {
 
 import { getAllReleasesData, getPreviousReleasesData, getUpcomingReleaseData } from '../releases';
 import { createPlatformLink } from '../../config/platforms';
-import type { Platform, PlatformName, ReleaseData, ReleaseWithPlatforms } from '@/lib/types';
+import type { Platform, ReleaseData, ReleaseWithPlatforms } from '@/lib/types';
 
 function resolveReleasePlatforms(releaseData: ReleaseData): ReleaseWithPlatforms {
   const platforms: Platform[] = releaseData.platformLinks.map((platformLink) =>
@@ -34,32 +34,11 @@ function resolveReleasePlatforms(releaseData: ReleaseData): ReleaseWithPlatforms
 
 export const allReleases: ReleaseWithPlatforms[] =
   getAllReleasesData().map(resolveReleasePlatforms);
-
-export const previousReleases: ReleaseWithPlatforms[] =
-  getPreviousReleasesData().map(resolveReleasePlatforms);
-
-export const upcomingRelease: ReleaseWithPlatforms | null = (() => {
+getPreviousReleasesData().map(resolveReleasePlatforms);
+(() => {
   const upcomingData = getUpcomingReleaseData();
   return upcomingData ? resolveReleasePlatforms(upcomingData) : null;
 })();
-
 export const getReleaseById = (id: string): ReleaseWithPlatforms | undefined => {
   return allReleases.find((release) => release.id === id);
-};
-
-export const PlatformLink = (name: string, url: string): Platform => {
-  const platformNameMap: Record<string, string> = {
-    Spotify: 'spotify',
-    'Apple Music': 'apple-music',
-    'YouTube Music': 'youtube-music',
-    Deezer: 'deezer',
-    Tidal: 'tidal',
-  };
-
-  const platformName = platformNameMap[name];
-  if (!platformName) {
-    throw new Error(`Unknown platform: ${name}`);
-  }
-
-  return createPlatformLink(platformName as PlatformName, url);
 };

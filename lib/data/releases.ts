@@ -98,15 +98,6 @@ export const UPCOMING_RELEASES_DATA: ReleaseData[] = [];
 export function getAllReleasesData(): ReleaseData[] {
   return [...UPCOMING_RELEASES_DATA, ...RELEASES_DATA];
 }
-
-export function getReleasesByType(type: ReleaseData['type']): ReleaseData[] {
-  return getAllReleasesData().filter((release) => release.type === type);
-}
-
-export function getReleaseDataById(id: string): ReleaseData | undefined {
-  return getAllReleasesData().find((release) => release.id === id);
-}
-
 export function getPreviousReleasesData(): ReleaseData[] {
   return RELEASES_DATA.filter((release) => release.type === 'previous');
 }

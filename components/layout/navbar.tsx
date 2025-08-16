@@ -3,7 +3,7 @@
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const baseLinkClass =
   'relative group inline-flex items-center justify-center py-2 px-3 text-sm font-medium tracking-wide transition-all duration-300 hover:text-amber-400 h-[44px] leading-none';

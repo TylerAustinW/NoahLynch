@@ -51,10 +51,4 @@ export interface Review {
   content: string;
   rating: number;
 }
-
-export interface ValidationResult {
-  isValid: boolean;
-  errors: string[];
-}
-
 export type PlatformRegistry = Record<PlatformName, PlatformConfig>;

@@ -64,47 +64,22 @@ export const UPCOMING_TOUR_DATES_DATA: TourDate[] = [
 export function getAllTourDates(): TourDate[] {
   return [...UPCOMING_TOUR_DATES_DATA, ...TOUR_DATES_DATA];
 }
-
-export function getTourDatesByUpcoming(upcoming: boolean): TourDate[] {
-  return getAllTourDates().filter((date) => date.upcoming === upcoming);
-}
-
-export function getTourDateById(id: number): TourDate | undefined {
-  return getAllTourDates().find((date) => date.id === id);
-}
-
-export function getUpcomingTourDates(): TourDate[] {
-  return UPCOMING_TOUR_DATES_DATA;
-}
-
 export function getPastTourDates(): TourDate[] {
   return TOUR_DATES_DATA.filter((date) => !date.upcoming);
 }
-
-export function getFeaturedTourDates(): TourDate[] {
-  return getAllTourDates().filter((date) => date.featured);
-}
-
-export function hasUpcomingTourDates(): boolean {
-  return UPCOMING_TOUR_DATES_DATA.length > 0;
-}
-
 export function getTourDatesSortedByClosest(): TourDate[] {
   return getAllTourDates().sort((a, b) => {
     const dateA = new Date(a.date);
     const dateB = new Date(b.date);
 
-    // For upcoming dates, sort by closest to now
     if (a.upcoming && b.upcoming) {
       return dateA.getTime() - dateB.getTime();
     }
 
-    // For past dates, sort by most recent first
     if (!a.upcoming && !b.upcoming) {
       return dateB.getTime() - dateA.getTime();
     }
 
-    // Upcoming dates come before past dates
     return a.upcoming ? -1 : 1;
   });
 }

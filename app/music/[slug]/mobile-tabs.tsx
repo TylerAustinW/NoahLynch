@@ -1,7 +1,7 @@
 'use client';
 
 import { Heart, MessageCircle, Star } from 'lucide-react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 interface MobileTabsProps {
   specialThanksContent: React.ReactNode;

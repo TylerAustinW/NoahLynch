@@ -5,7 +5,7 @@ import { Patrick_Hand } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Suspense } from 'react';
+import React, { Suspense } from 'react';
 import MobileTabs from './mobile-tabs';
 import Navbar from '@/components/layout/navbar';
 import SocialSidebar from '@/components/layout/social-sidebar';

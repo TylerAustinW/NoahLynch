@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './epk.css';
+import React from 'react';
 
 export const metadata: Metadata = {
   title: 'Noah Lynch - Electronic Press Kit',
