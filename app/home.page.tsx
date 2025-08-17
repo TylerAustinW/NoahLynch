@@ -7,25 +7,25 @@ import CheckInButton from "@/components/ui/checkin-button.component";
 import dynamic from "next/dynamic";
 
 const BiographySection = dynamic(() => import("@/components/features/biography/biography-section.component"), {
-    loading: () => (
-        <div className="min-h-[50vh] bg-zinc-950 flex items-center justify-center">
-            <div className="text-zinc-400">Loading...</div>
-        </div>
-    ),
+	loading: () => (
+		<div className="min-h-[50vh] bg-zinc-950 flex items-center justify-center">
+			<div className="text-zinc-400">Loading...</div>
+		</div>
+	),
 });
 
 export default function Home() {
-    return (
-        <div className="min-h-screen bg-zinc-950 text-white">
-            <Navbar />
-            <main>
-                <HeroSection />
-                <MusicShowcaseSection />
-                <StudioSessionsSection />
-                <LiveGallerySection />
-                <BiographySection />
-            </main>
-            <CheckInButton variant="floating" />
-        </div>
-    );
+	return (
+		<div className="min-h-screen bg-zinc-950 text-white">
+			<Navbar />
+			<main>
+				<HeroSection />
+				<MusicShowcaseSection />
+				<StudioSessionsSection />
+				<LiveGallerySection />
+				<BiographySection />
+			</main>
+			<CheckInButton variant="floating" />
+		</div>
+	);
 }
