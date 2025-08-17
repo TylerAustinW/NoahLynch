@@ -1,7 +1,15 @@
-export type { Release, Platform, ReleaseWithPlatforms, Review, PlatformName, ReleaseType, ReleaseData } from "../../types/music";
+export type {
+    Release,
+    Platform,
+    ReleaseWithPlatforms,
+    Review,
+    PlatformName,
+    ReleaseType,
+    ReleaseData,
+} from "../../types/music.types";
 
-import { getAllReleasesData, getPreviousReleasesData, getUpcomingReleaseData } from "../releases";
-import { createPlatformLink } from "../../config/platforms";
+import { getAllReleasesData, getPreviousReleasesData, getUpcomingReleaseData } from "./releases.data";
+import { createPlatformLink } from "../../config/platforms.config";
 import type { Platform, ReleaseData, ReleaseWithPlatforms } from "@/lib/types";
 
 function resolveReleasePlatforms(releaseData: ReleaseData): ReleaseWithPlatforms {

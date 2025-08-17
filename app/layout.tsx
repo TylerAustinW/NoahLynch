@@ -1,13 +1,11 @@
-// noinspection HtmlRequiredTitleElement
-
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import SocialSidebar from "@/components/layout/social-sidebar";
-import ScrollToTop from "@/components/layout/scroll-to-top";
+import SocialSidebar from "@/components/layout/social-sidebar.component";
+import ScrollToTop from "@/components/layout/scroll-to-top.component";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { APP_DESCRIPTION, APP_NAME } from "@/lib/config/constants";
+import { APP_DESCRIPTION, APP_NAME } from "@/lib/config/app.config";
 import React from "react";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -116,6 +114,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <meta name="format-detection" content="telephone=no" />
                 <meta name="theme-color" content="#d97706" />
                 <link rel="canonical" href={siteUrl} />
+                <title></title>
             </head>
             <body className={inter.className}>
                 <SocialSidebar />

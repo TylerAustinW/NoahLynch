@@ -1,7 +1,8 @@
 import type * as React from "react";
 
-export * from "./music";
-export * from "./checkin";
+export * from "./music.types";
+export * from "./checkin.types";
+export * from "./tour.types";
 export interface WithClassName {
     className?: string;
 }
