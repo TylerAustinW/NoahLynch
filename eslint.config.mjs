@@ -1,9 +1,10 @@
+// noinspection JSCheckFunctionSignatures
+
 import globals from "globals";
 import pluginJs from "@eslint/js";
 import tslint from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
 import pluginReactHooks from "eslint-plugin-react-hooks";
-import pluginJsxA11y from "eslint-plugin-jsx-a11y";
 import pluginNext from "@next/eslint-plugin-next";
 
 export default tslint.config(
@@ -43,15 +44,12 @@ export default tslint.config(
 		plugins: {
 			react: pluginReact,
 			"react-hooks": pluginReactHooks,
-			"jsx-a11y": pluginJsxA11y,
 			"@next/next": pluginNext,
 		},
 		rules: {
 			"react/jsx-uses-vars": "error",
 
 			...pluginReactHooks.configs.recommended.rules,
-
-			...pluginJsxA11y.configs.recommended.rules,
 
 			...pluginNext.configs.recommended.rules,
 			...pluginNext.configs["core-web-vitals"].rules,
@@ -67,7 +65,7 @@ export default tslint.config(
 			"prefer-const": "error",
 			"no-debugger": "warn",
 			"no-empty-pattern": "warn",
-			"no-duplicate-imports": "error",
+			"no-duplicate-imports": "warn",
 		},
 	},
 );

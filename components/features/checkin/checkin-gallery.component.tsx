@@ -282,10 +282,8 @@ export default function CheckInGallery({ showId, limit = 12 }: CheckInGalleryPro
 							<X className="w-8 h-8" />
 						</button>
 
-						{/* Image or Video */}
 						<div className="relative max-w-full max-h-[80vh]">
 							{lightboxImage.file_type === "video" ? (
-								// eslint-disable-next-line jsx-a11y/media-has-caption
 								<video
 									src={lightboxImage.file_url}
 									controls

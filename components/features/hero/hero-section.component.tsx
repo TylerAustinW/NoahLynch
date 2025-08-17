@@ -7,7 +7,7 @@ import PastShowsModal from "./past-shows-modal.component";
 import ShowBadge from "./show-badge.component";
 import { useInView } from "@/lib/hooks/use-in-view.hook";
 import { getPastTourDates } from "@/lib/data/tour/tour-dates.data";
-import { SOCIAL_LINKS } from "@/lib/config/app.config";
+import { SOCIAL_LINKS } from "@/lib/config/constants";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { Patrick_Hand } from "next/font/google";
@@ -28,7 +28,6 @@ export default function HeroSection(): React.ReactElement {
 	const [imageError, setImageError] = useState(false);
 	const [reducedMotion, setPrefersReducedMotion] = useState(false);
 	const [showPastShows, setShowPreviousShows] = useState(false);
-
 	const pastShows = getPastTourDates();
 
 	useEffect(() => {
@@ -103,11 +102,10 @@ export default function HeroSection(): React.ReactElement {
 				id="hero"
 				className="relative flex min-h-screen items-center overflow-hidden pt-16 pb-0 bg-zinc-950"
 			>
-				<div className="absolute inset-0 h-full w-full">
+				<div className="absolute h-full w-full">
 					<Image
-						src="/portraits/Mobile-Background.jpg"
-						alt="Noah Lynch
-						Mobile Background"
+						src="/venues/the-roof/NoahAtTheRoof.jpg"
+						alt="Noah Lynch at The Roof"
 						fill
 						sizes="(max-width: 768px) 100vw, 0px"
 						className="object-cover md:hidden"
@@ -120,8 +118,8 @@ export default function HeroSection(): React.ReactElement {
 						priority
 					/>
 					<Image
-						src="/portraits/noah-lynch-studio-black-white.jpg"
-						alt="Noah Lynch in Studio"
+						src="/venues/the-roof/NoahAtTheRoof2.jpg"
+						alt="Noah Lynch at The Roof"
 						fill
 						sizes="(min-width: 768px) 100vw, 0px"
 						className="object-cover hidden md:block"
@@ -148,67 +146,68 @@ export default function HeroSection(): React.ReactElement {
 						</div>
 
 						<div className="space-y-5">
-							<div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-								<Button asChild variant="primary" size="default">
-									<Link href="/music/honest" aria-label="Listen to the latest album Honest">
-										Listen Now
+							<div className="flex flex-col gap-3">
+								<div className="flex flex-wrap gap-2 sm:gap-3">
+									<Button asChild variant="primary" size="default">
+										<Link href="/music/honest" aria-label="Listen to the latest album Honest">
+											Listen Now
+										</Link>
+									</Button>
+									<Button asChild variant="secondary" size="default">
+										<Link href={`mailto:${SOCIAL_LINKS.EMAIL}`} aria-label="Contact Noah Lynch via email">
+											Contact
+										</Link>
+									</Button>
+									<CheckInButton
+										variant="inherit"
+										className="rounded-full border px-3 py-1.5 text-sm font-medium text-white backdrop-blur-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent min-h-[32px] flex items-center justify-center sm:px-4 sm:py-2 sm:min-h-[36px] border-zinc-700/40 bg-zinc-900/80 hover:bg-zinc-800/90 hover:border-zinc-600/50 focus:ring-zinc-500/40 lg:border-white/20 lg:bg-white/5 lg:hover:bg-white/15 lg:hover:border-white/35 lg:focus:ring-white/30"
+									/>
+									<Link
+										href={"#music"}
+										className="rounded-full border px-3 py-1.5 text-sm font-medium text-white backdrop-blur-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent min-h-[32px] flex items-center justify-center sm:px-4 sm:py-2 sm:min-h-[36px] border-zinc-700/40 bg-zinc-900/80 hover:bg-zinc-800/90 hover:border-zinc-600/50 focus:ring-zinc-500/40 lg:border-white/20 lg:bg-white/5 lg:hover:bg-white/15 lg:hover:border-white/35 lg:focus:ring-white/30"
+										aria-label="Explore Noah Lynch's music catalog"
+									>
+										Explore Music
 									</Link>
-								</Button>
-								<Button asChild variant="secondary" size="default">
-									<Link href={`mailto:${SOCIAL_LINKS.EMAIL}`} aria-label="Contact Noah Lynch via email">
-										Contact
-									</Link>
-								</Button>
-								<CheckInButton
-									variant="inherit"
-									className="rounded-full border border-white/20 bg-white/5 backdrop-blur-md px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:bg-white/15 hover:border-white/35 focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-transparent min-h-[36px] flex items-center justify-center sm:px-4 sm:py-2 sm:text-sm sm:min-h-[36px]"
-								/>
-								<Link
-									href={"#music"}
-									className="rounded-full border border-white/20 bg-white/5 backdrop-blur-md px-4 py-2 text-sm font-medium text-white transition-all duration-300 hover:bg-white/15 hover:border-white/35 focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-transparent min-h-[36px] flex items-center justify-center sm:px-4 sm:py-2 sm:text-sm sm:min-h-[36px]"
-									aria-label="Explore Noah Lynch's music catalog"
-								>
-									Explore Music
-								</Link>
-							</div>
+								</div>
 
-							<div className="pt-1 lg:hidden">
-								<div className="flex gap-4 justify-center sm:justify-start">
+								{/* Social Icons - Mobile only, directly under Listen Now */}
+								<div className="flex gap-3 lg:hidden">
 									<Link
 										href={SOCIAL_LINKS.INSTAGRAM}
 										target="_blank"
 										rel="noopener noreferrer"
 										aria-label="Follow Noah Lynch on Instagram"
-										className="flex h-10 w-10 items-center justify-center rounded-full text-zinc-400 transition-all duration-300 hover:text-pink-400 hover:bg-pink-500/10 focus:outline-none focus:ring-1 focus:ring-pink-400/40"
+										className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/80 backdrop-blur-sm text-white transition-all duration-300 hover:bg-zinc-800/90 hover:border-zinc-600/50 focus:outline-none focus:ring-2 focus:ring-zinc-500/40"
 									>
-										<FaInstagram className="h-5 w-5" aria-hidden="true" />
+										<FaInstagram className="h-4 w-4" aria-hidden="true" />
 									</Link>
 									<Link
 										href={SOCIAL_LINKS.FACEBOOK}
 										target="_blank"
 										rel="noopener noreferrer"
 										aria-label="Follow Noah Lynch on Facebook"
-										className="flex h-10 w-10 items-center justify-center rounded-full text-zinc-400 transition-all duration-300 hover:text-blue-400 hover:bg-blue-500/10 focus:outline-none focus:ring-1 focus:ring-blue-400/40"
+										className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/80 backdrop-blur-sm text-white transition-all duration-300 hover:bg-zinc-800/90 hover:border-zinc-600/50 focus:outline-none focus:ring-2 focus:ring-zinc-500/40"
 									>
-										<FaFacebookF className="h-5 w-5" aria-hidden="true" />
+										<FaFacebookF className="h-4 w-4" aria-hidden="true" />
 									</Link>
 									<Link
 										href={SOCIAL_LINKS.TIKTOK}
 										target="_blank"
 										rel="noopener noreferrer"
 										aria-label="Follow Noah Lynch on TikTok"
-										className="flex h-10 w-10 items-center justify-center rounded-full text-zinc-400 transition-all duration-300 hover:text-red-400 hover:bg-red-500/10 focus:outline-none focus:ring-1 focus:ring-red-400/40"
+										className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/80 backdrop-blur-sm text-white transition-all duration-300 hover:bg-zinc-800/90 hover:border-zinc-600/50 focus:outline-none focus:ring-2 focus:ring-zinc-500/40"
 									>
-										<FaTiktok className="h-5 w-5" aria-hidden="true" />
+										<FaTiktok className="h-4 w-4" aria-hidden="true" />
 									</Link>
 									<Link
 										href={SOCIAL_LINKS.YOUTUBE}
 										target="_blank"
 										rel="noopener noreferrer"
 										aria-label="Subscribe to Noah Lynch on YouTube"
-										className="flex h-10 w-10 items-center justify-center rounded-full text-zinc-400 transition-all duration-300 hover:text-red-400 hover:bg-red-500/10 focus:outline-none focus:ring-1 focus:ring-red-400/40"
+										className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/80 backdrop-blur-sm text-white transition-all duration-300 hover:bg-zinc-800/90 hover:border-zinc-600/50 focus:outline-none focus:ring-2 focus:ring-zinc-500/40"
 									>
-										<FaYoutube className="h-5 w-5" aria-hidden="true" />
+										<FaYoutube className="h-4 w-4" aria-hidden="true" />
 									</Link>
 								</div>
 							</div>

@@ -5,14 +5,11 @@ import SocialSidebar from "@/components/layout/social-sidebar.component";
 import ScrollToTop from "@/components/layout/scroll-to-top.component";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { APP_DESCRIPTION, APP_NAME } from "@/lib/config/app.config";
 import React from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 const siteUrl = "https://www.noahlynch.com";
-const siteName = APP_NAME;
-const siteDescription = APP_DESCRIPTION;
 
 export const metadata: Metadata = {
 	metadataBase: new URL(siteUrl),
@@ -20,7 +17,8 @@ export const metadata: Metadata = {
 		default: "Noah Lynch - Singer-Songwriter & Musician",
 		template: `%s | Noah Lynch`,
 	},
-	description: siteDescription,
+	description:
+		"Discover Noah Lynch, a Mississippi-born singer-songwriter and musician blending blues, neo-rock, and acoustic vibes. Explore his music, upcoming shows, and studio sessions.",
 	keywords: [
 		"Noah Lynch",
 		"musician",
@@ -44,9 +42,10 @@ export const metadata: Metadata = {
 		type: "website",
 		locale: "en_US",
 		url: siteUrl,
-		siteName: siteName,
+		siteName: "Noah Lynch",
 		title: "Noah Lynch - Singer-Songwriter & Musician",
-		description: siteDescription,
+		description:
+			"Discover Noah Lynch, a Mississippi-born singer-songwriter and musician blending blues, neo-rock, and acoustic vibes. Explore his music, upcoming shows, and studio sessions.",
 		images: [
 			{
 				url: "/portraits/noah-lynch-portrait-guitar.jpeg",
@@ -70,7 +69,8 @@ export const metadata: Metadata = {
 		site: "@NoahLynch17",
 		creator: "@NoahLynch17",
 		title: "Noah Lynch - Singer-Songwriter & Musician",
-		description: siteDescription,
+		description:
+			"Discover Noah Lynch, a Mississippi-born singer-songwriter and musician blending blues, neo-rock, and acoustic vibes. Explore his music, upcoming shows, and studio sessions.",
 		images: [
 			{
 				url: "/portraits/noah-lynch-portrait-guitar.jpeg",

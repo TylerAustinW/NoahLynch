@@ -46,7 +46,7 @@ export default function ScrollToTop() {
 		<AnimatePresence>
 			{isVisible && (
 				<motion.button
-					className="fixed bottom-8 right-8 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/80 text-zinc-300 backdrop-blur-sm transition-all duration-300 hover:border-amber-500/50 hover:bg-amber-500/10 hover:text-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:ring-offset-2 focus:ring-offset-zinc-950"
+					className="fixed bottom-8 left-8 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/80 text-zinc-300 backdrop-blur-sm transition-all duration-300 hover:border-amber-500/50 hover:bg-amber-500/10 hover:text-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:ring-offset-2 focus:ring-offset-zinc-950"
 					onClick={scrollToTop}
 					aria-label="Scroll to top"
 					initial={{

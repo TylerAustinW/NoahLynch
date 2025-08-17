@@ -2,7 +2,6 @@ import Navbar from "@/components/layout/navbar.component";
 import HeroSection from "@/components/features/hero/hero-section.component";
 import MusicShowcaseSection from "@/components/features/music/music-showcase-section.component";
 import StudioSessionsSection from "@/components/features/studio-sessions/studio-sessions-section.component";
-import LiveGallerySection from "@/components/features/live-gallery/live-gallery-section.component";
 import CheckInButton from "@/components/ui/checkin-button.component";
 import dynamic from "next/dynamic";
 
@@ -22,7 +21,6 @@ export default function Home() {
 				<HeroSection />
 				<MusicShowcaseSection />
 				<StudioSessionsSection />
-				<LiveGallerySection />
 				<BiographySection />
 			</main>
 			<CheckInButton variant="floating" />

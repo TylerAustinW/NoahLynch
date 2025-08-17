@@ -22,16 +22,19 @@ export const venuePhotoCollections: VenuePhotoCollection[] = [
 		photos: [
 			{
 				filename: "NoahAtTheRoof.jpg",
-				featured: true,
+				featured: false,
 			},
 			{
 				filename: "NoahAtTheRoof2.jpg",
+				featured: true,
 			},
 			{
 				filename: "NoahAtTheRoof3.jpg",
+				featured: false,
 			},
 			{
 				filename: "NoahAtTheRoof4.jpg",
+				featured: false,
 			},
 		],
 	},

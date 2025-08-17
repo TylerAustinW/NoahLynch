@@ -9,8 +9,47 @@ export type {
 } from "../../types/music.types";
 
 import { getAllReleasesData, getPreviousReleasesData, getUpcomingReleaseData } from "./releases.data";
-import { createPlatformLink } from "../../config/platforms.config";
-import type { Platform, ReleaseData, ReleaseWithPlatforms } from "@/lib/types";
+import type { Platform, ReleaseData, ReleaseWithPlatforms, PlatformName } from "@/lib/types";
+
+function createPlatformLink(platform: PlatformName, url: string): Platform {
+	const platformConfigs: Record<PlatformName, Omit<Platform, "url">> = {
+		spotify: {
+			name: "Spotify",
+			icon: "🎵",
+			bgColor: "#1DB954",
+			color: "#ffffff",
+		},
+		"apple-music": {
+			name: "Apple Music",
+			icon: "🍎",
+			bgColor: "#FA243C",
+			color: "#ffffff",
+		},
+		"youtube-music": {
+			name: "YouTube Music",
+			icon: "▶️",
+			bgColor: "#FF0000",
+			color: "#ffffff",
+		},
+		deezer: {
+			name: "Deezer",
+			icon: "🎧",
+			bgColor: "#FEAA2D",
+			color: "#ffffff",
+		},
+		tidal: {
+			name: "TIDAL",
+			icon: "🌊",
+			bgColor: "#000000",
+			color: "#ffffff",
+		},
+	};
+
+	return {
+		...platformConfigs[platform],
+		url,
+	};
+}
 
 function resolveReleasePlatforms(releaseData: ReleaseData): ReleaseWithPlatforms {
 	const platforms: Platform[] = releaseData.platformLinks.map((platformLink) =>

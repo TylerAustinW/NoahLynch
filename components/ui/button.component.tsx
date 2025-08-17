@@ -25,16 +25,30 @@ const buttonVariants = cva(
 		variants: {
 			variant: {
 				primary: [
-					"rounded-full border border-white/30 bg-transparent text-white backdrop-blur-sm font-medium",
-					"hover:bg-white/10 hover:border-white/50 hover:backdrop-blur-md transition-all duration-300",
-					"focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
-					"active:bg-white/20 disabled:opacity-50 disabled:transform-none",
+					"rounded-full border text-white backdrop-blur-sm font-medium",
+					// Mobile styles
+					"border-zinc-700/40 bg-zinc-900/80",
+					"hover:bg-zinc-800/90 hover:border-zinc-600/50",
+					// Desktop styles
+					"lg:border-white/30 lg:bg-transparent",
+					"lg:hover:bg-white/10 lg:hover:border-white/50",
+					// Common styles
+					"hover:backdrop-blur-md transition-all duration-300",
+					"focus-visible:ring-2 focus-visible:ring-zinc-500/40 lg:focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
+					"active:bg-zinc-800/95 lg:active:bg-white/20 disabled:opacity-50 disabled:transform-none",
 				],
 				secondary: [
-					"rounded-full border border-white/20 bg-white/5 text-white backdrop-blur-md font-medium",
-					"hover:bg-white/15 hover:border-white/40 transition-all duration-300",
-					"focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
-					"active:bg-white/20 disabled:opacity-50 disabled:transform-none",
+					"rounded-full border text-white backdrop-blur-md font-medium",
+					// Mobile styles
+					"border-zinc-700/40 bg-zinc-900/70",
+					"hover:bg-zinc-800/80 hover:border-zinc-600/50",
+					// Desktop styles
+					"lg:border-white/20 lg:bg-white/5",
+					"lg:hover:bg-white/15 lg:hover:border-white/40",
+					// Common styles
+					"transition-all duration-300",
+					"focus-visible:ring-2 focus-visible:ring-zinc-500/40 lg:focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
+					"active:bg-zinc-800/90 lg:active:bg-white/20 disabled:opacity-50 disabled:transform-none",
 				],
 				ghost: [
 					"rounded-lg text-zinc-300",

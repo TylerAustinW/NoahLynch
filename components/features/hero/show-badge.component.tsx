@@ -10,7 +10,7 @@ export default function ShowBadge() {
 
 	if (!nextShow) {
 		return (
-			<div className="flex flex-wrap items-center gap-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-md px-3 py-2 sm:px-4 text-sm sm:text-base font-medium text-white/80 w-full sm:w-auto justify-center sm:justify-start">
+			<div className="flex flex-wrap items-center gap-2 rounded-full border backdrop-blur-md px-3 py-2 sm:px-4 text-sm sm:text-base font-medium text-white w-full sm:w-auto justify-center sm:justify-start border-zinc-700/40 bg-zinc-900/80 lg:border-white/20 lg:bg-white/5">
 				<span className="text-xs sm:text-sm md:text-base">No upcoming shows scheduled</span>
 			</div>
 		);
@@ -24,7 +24,7 @@ export default function ShowBadge() {
 				aria-label="View tour dates and get tickets for the upcoming show"
 				aria-describedby="next-show-tooltip"
 			>
-				<div className="group/button flex flex-wrap items-center gap-2 rounded-full border border-white/25 bg-white/10 backdrop-blur-md px-3 py-2 sm:px-4 text-sm sm:text-base font-medium text-white w-full sm:w-auto justify-center sm:justify-start hover:bg-white/20 hover:border-white/40 transition-all duration-300 cursor-pointer">
+				<div className="group/button flex flex-wrap items-center gap-2 rounded-full border backdrop-blur-md px-3 py-2 sm:px-4 text-sm sm:text-base font-medium text-white w-full sm:w-auto justify-center sm:justify-start transition-all duration-300 cursor-pointer border-zinc-700/40 bg-zinc-900/80 hover:bg-zinc-800/90 hover:border-zinc-600/50 lg:border-white/25 lg:bg-white/10 lg:hover:bg-white/20 lg:hover:border-white/40">
 					<Calendar className="inline-block w-4 h-4 sm:w-5 sm:h-5 text-white/80 group-hover/button:text-white transition-colors duration-300" />
 					<span className="text-xs sm:text-sm md:text-base text-white/90 group-hover/button:text-white transition-colors duration-300">
 						Next Show:

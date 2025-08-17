@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import Navbar from "@/components/layout/navbar.component";
 import CheckInForm from "@/components/features/checkin/checkin-form.component";
 import CheckInGallery from "@/components/features/checkin/checkin-gallery.component";
-import { FEATURE_FLAGS, ROUTES } from "@/lib/config/app.config";
+import { FEATURE_FLAGS, ROUTES } from "@/lib/config/constants";
 
 export const metadata: Metadata = {
 	title: "Check In - Noah Lynch",

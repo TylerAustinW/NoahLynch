@@ -33,7 +33,7 @@ export const RELEASES_DATA: ReleaseData[] = [
 	},
 	{
 		id: "good-things-take-time",
-		title: "Good things take time",
+		title: "Good Things Take Time",
 		year: "2024",
 		type: "previous",
 		description:

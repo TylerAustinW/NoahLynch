@@ -74,6 +74,19 @@ export default function BiographySection() {
 			ref={ref}
 			className="relative overflow-hidden bg-zinc-950 px-4 py-16 sm:py-20 md:px-6 md:py-24 lg:py-28"
 		>
+			{/* Background Image */}
+			<div className="absolute inset-0">
+				<Image
+					src="/venues/the-roof/NoahAtTheRoofGuitars.jpg"
+					alt="Noah Lynch performing at The Roof"
+					fill
+					className="object-cover opacity-30"
+					sizes="100vw"
+					priority
+				/>
+				<div className="absolute inset-0 bg-gradient-to-b from-zinc-950/80 via-zinc-950/90 to-zinc-950" />
+			</div>
+
 			<div className="pointer-events-none absolute inset-0 bg-[url('/overlays/grain-texture-overlay.png')] bg-repeat opacity-[0.03]" />
 			<div className="pointer-events-none absolute inset-0 overflow-hidden">
 				<div className="absolute top-1/3 right-1/4 h-96 w-96 rounded-full bg-white/3 blur-3xl" />

@@ -176,6 +176,19 @@ export default function StudioSessionsSection(): React.ReactElement {
 			className="relative overflow-hidden bg-zinc-950 px-4 py-16 sm:py-20 md:px-6 md:py-24 lg:py-28"
 			aria-labelledby="studio-sessions-heading"
 		>
+			{/* Background Image */}
+			<div className="absolute inset-0">
+				<Image
+					src="/venues/the-roof/NoahAtTheRoof5.jpg"
+					alt="Noah Lynch performing at The Roof"
+					fill
+					className="object-cover opacity-30"
+					sizes="100vw"
+					priority
+				/>
+				<div className="absolute inset-0 bg-gradient-to-b from-zinc-950/80 via-zinc-950/90 to-zinc-950" />
+			</div>
+
 			<div
 				className="absolute inset-0 bg-[url('/overlays/grain-texture-overlay.png')] bg-repeat opacity-[0.03]"
 				aria-hidden="true"

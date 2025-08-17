@@ -1,7 +1,3 @@
-export const APP_NAME = "Noah Lynch Music";
-export const APP_DESCRIPTION =
-	"Mississippi-born musician Noah Lynch blends soulful blues with infectious neo-rock energy. Drawing inspiration from John Mayer and Stevie Ray Vaughan, his authentic approach to songwriting captures the essence of human emotion, creating connections with listeners around the world.";
-
 export const SOCIAL_LINKS = {
 	INSTAGRAM: "https://instagram.com/noahlynchmusic",
 	FACEBOOK: "https://facebook.com/noahlynchmusic",
