@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import SocialSidebar from "@/components/layout/social-sidebar.component";
 import ScrollToTop from "@/components/layout/scroll-to-top.component";
@@ -8,6 +8,10 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import React from "react";
 
 const inter = Inter({ subsets: ["latin"] });
+const dancingScript = Dancing_Script({
+	subsets: ["latin"],
+	variable: "--font-dancing-script",
+});
 
 const siteUrl = "https://www.noahlynch.com";
 
@@ -116,7 +120,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<link rel="canonical" href={siteUrl} />
 				<title></title>
 			</head>
-			<body className={inter.className}>
+			<body className={`${inter.className} ${dancingScript.variable}`}>
 				<SocialSidebar />
 				<ScrollToTop />
 				{children}
