@@ -1,14 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { type ReactNode, useState, useEffect } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 
 interface PageFadeWrapperProps {
 	children: ReactNode;
 	delay?: number;
 }
 
-export default function PageFadeWrapper({ children, delay = 2.2 }: PageFadeWrapperProps) {
+export default function PageFadeWrapper({ children, delay = 1.8 }: PageFadeWrapperProps) {
 	const [shouldAnimate, setShouldAnimate] = useState(false);
 
 	useEffect(() => {

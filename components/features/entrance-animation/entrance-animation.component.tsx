@@ -1,18 +1,26 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function EntranceAnimation() {
 	const [isVisible, setIsVisible] = useState(true);
 
 	useEffect(() => {
+		document.body.style.overflow = isVisible ? "hidden" : "";
+		document.documentElement.style.overflow = isVisible ? "hidden" : "";
+
 		const timer = setTimeout(() => {
 			setIsVisible(false);
-		}, 2500);
+		}, 2000);
 
-		return () => clearTimeout(timer);
-	}, []);
+		return () => {
+			clearTimeout(timer);
+			document.body.style.overflow = "";
+			document.documentElement.style.overflow = "";
+		};
+	}, [isVisible]);
 
 	return (
 		<AnimatePresence>
@@ -23,44 +31,52 @@ export default function EntranceAnimation() {
 					exit={{ opacity: 0 }}
 					transition={{ duration: 0.8, ease: "easeInOut" }}
 				>
-					{/* Grain texture background */}
 					<div className="absolute inset-0 bg-[url('/overlays/grain-texture-overlay.png')] bg-repeat opacity-5" />
 
-					{/* Text content */}
-					<div className="relative text-center z-10">
-						{/* Noah Lynch in cursive */}
-						<motion.h1
-							className="text-white text-7xl md:text-8xl lg:text-9xl font-light tracking-wide drop-shadow-2xl"
-							style={{ fontFamily: "var(--font-dancing-script)" }}
-							initial={{ scale: 2, opacity: 0 }}
+					<div className="relative text-center z-10 px-4 w-full">
+						<motion.div
+							className="relative mx-auto will-change-transform"
+							style={{
+								transform: "translateZ(0)",
+								width: "min(90vw, 600px)",
+								height: "min(40vh, 300px)",
+							}}
+							initial={{
+								scale: 1.3,
+								opacity: 0,
+							}}
 							animate={{
 								scale: 1,
 								opacity: 1,
 							}}
 							transition={{
-								duration: 1.5,
+								duration: 1.2,
 								ease: [0.25, 0.1, 0.25, 1],
 							}}
 						>
-							Noah Lynch
-						</motion.h1>
+							<Image src="/NoahSignature.png" alt="Noah Lynch" fill className="object-contain" priority />
+						</motion.div>
 
-						{/* MUSIC text below */}
 						<motion.div
-							className="mt-4"
-							initial={{ scale: 2, opacity: 0, y: 20 }}
+							className="-mt-8 sm:-mt-10 md:-mt-12 will-change-transform"
+							style={{
+								transform: "translateZ(0)",
+							}}
+							initial={{
+								opacity: 0,
+								y: 20,
+							}}
 							animate={{
-								scale: 1,
 								opacity: 1,
 								y: 0,
 							}}
 							transition={{
-								duration: 1.5,
+								duration: 1,
 								delay: 0.3,
 								ease: [0.25, 0.1, 0.25, 1],
 							}}
 						>
-							<span className="text-amber-600 text-2xl md:text-3xl font-bold tracking-[0.3em] uppercase drop-shadow-xl">
+							<span className="text-white/80 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-[0.4em] sm:tracking-[0.5em] md:tracking-[0.6em] uppercase">
 								Music
 							</span>
 						</motion.div>
