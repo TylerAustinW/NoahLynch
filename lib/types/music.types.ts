@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-export type PlatformName = "spotify" | "apple-music" | "youtube-music" | "deezer" | "tidal";
+export type PlatformName = "spotify" | "apple-music" | "youtube-music" | "deezer";
 
 export type ReleaseType = "out-now" | "upcoming" | "previous";
 
@@ -51,4 +51,3 @@ export interface Review {
 	content: string;
 	rating: number;
 }
-export type PlatformRegistry = Record<PlatformName, PlatformConfig>;

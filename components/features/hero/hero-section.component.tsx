@@ -6,6 +6,7 @@ import CheckInButton from "@/components/ui/checkin-button.component";
 import PastShowsModal from "./past-shows-modal.component";
 import ShowBadge from "./show-badge.component";
 import { useInView } from "@/lib/hooks/use-in-view.hook";
+import { useScrollLock } from "@/lib/hooks/use-scroll-lock.hook";
 import { getPastTourDates } from "@/lib/data/tour/tour-dates.data";
 import { SOCIAL_LINKS } from "@/lib/config/constants";
 import { motion } from "framer-motion";
@@ -30,6 +31,9 @@ export default function HeroSection(): React.ReactElement {
 	const [showPastShows, setShowPreviousShows] = useState(false);
 	const pastShows = getPastTourDates();
 
+	// Use the new scroll lock hook
+	useScrollLock(showPastShows);
+
 	useEffect(() => {
 		setLoaded(true);
 
@@ -53,14 +57,10 @@ export default function HeroSection(): React.ReactElement {
 
 		if (showPastShows) {
 			document.addEventListener("keydown", handleEscapeKey);
-			document.body.style.overflow = "hidden";
-		} else {
-			document.body.style.overflow = "";
 		}
 
 		return () => {
 			document.removeEventListener("keydown", handleEscapeKey);
-			document.body.style.overflow = "";
 		};
 	}, [showPastShows]);
 
@@ -102,7 +102,7 @@ export default function HeroSection(): React.ReactElement {
 				id="hero"
 				className="relative flex min-h-screen items-center overflow-hidden pt-16 pb-0 bg-zinc-950"
 			>
-				<div className="absolute h-full w-full">
+				<div className="absolute top-0 h-full w-full">
 					<Image
 						src="/venues/the-roof/NoahAtTheRoof.jpg"
 						alt="Noah Lynch at The Roof"

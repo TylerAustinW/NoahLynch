@@ -3,24 +3,23 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useScrollLock } from "@/lib/hooks/use-scroll-lock.hook";
 
 export default function EntranceAnimation() {
 	const [isVisible, setIsVisible] = useState(true);
 
-	useEffect(() => {
-		document.body.style.overflow = isVisible ? "hidden" : "";
-		document.documentElement.style.overflow = isVisible ? "hidden" : "";
+	// Use the new scroll lock hook
+	useScrollLock(isVisible);
 
+	useEffect(() => {
 		const timer = setTimeout(() => {
 			setIsVisible(false);
-		}, 2000);
+		}, 1200);
 
 		return () => {
 			clearTimeout(timer);
-			document.body.style.overflow = "";
-			document.documentElement.style.overflow = "";
 		};
-	}, [isVisible]);
+	}, []);
 
 	return (
 		<AnimatePresence>
@@ -29,7 +28,7 @@ export default function EntranceAnimation() {
 					className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-zinc-950"
 					initial={{ opacity: 1 }}
 					exit={{ opacity: 0 }}
-					transition={{ duration: 0.8, ease: "easeInOut" }}
+					transition={{ duration: 0.5, ease: "easeInOut" }}
 				>
 					<div className="absolute inset-0 bg-[url('/overlays/grain-texture-overlay.png')] bg-repeat opacity-5" />
 
@@ -50,7 +49,7 @@ export default function EntranceAnimation() {
 								opacity: 1,
 							}}
 							transition={{
-								duration: 1.2,
+								duration: 0.7,
 								ease: [0.25, 0.1, 0.25, 1],
 							}}
 						>
@@ -71,8 +70,8 @@ export default function EntranceAnimation() {
 								y: 0,
 							}}
 							transition={{
-								duration: 1,
-								delay: 0.3,
+								duration: 0.6,
+								delay: 0.2,
 								ease: [0.25, 0.1, 0.25, 1],
 							}}
 						>

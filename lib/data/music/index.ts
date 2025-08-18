@@ -9,38 +9,34 @@ export type {
 } from "../../types/music.types";
 
 import { getAllReleasesData, getPreviousReleasesData, getUpcomingReleaseData } from "./releases.data";
-import type { Platform, ReleaseData, ReleaseWithPlatforms, PlatformName } from "@/lib/types";
+import type { Platform, PlatformName, ReleaseData, ReleaseWithPlatforms } from "@/lib/types";
+import React from "react";
+import { AppleMusicIcon, DeezerIcon, SpotifyIcon, YouTubeMusicIcon } from "@/components/icons/icons";
 
 function createPlatformLink(platform: PlatformName, url: string): Platform {
 	const platformConfigs: Record<PlatformName, Omit<Platform, "url">> = {
 		spotify: {
 			name: "Spotify",
-			icon: "🎵",
+			icon: React.createElement(SpotifyIcon, { className: "w-5 h-5" }),
 			bgColor: "#1DB954",
 			color: "#ffffff",
 		},
 		"apple-music": {
 			name: "Apple Music",
-			icon: "🍎",
+			icon: React.createElement(AppleMusicIcon, { className: "w-5 h-5" }),
 			bgColor: "#FA243C",
 			color: "#ffffff",
 		},
 		"youtube-music": {
 			name: "YouTube Music",
-			icon: "▶️",
+			icon: React.createElement(YouTubeMusicIcon, { className: "w-5 h-5" }),
 			bgColor: "#FF0000",
 			color: "#ffffff",
 		},
 		deezer: {
 			name: "Deezer",
-			icon: "🎧",
+			icon: React.createElement(DeezerIcon, { className: "w-5 h-5" }),
 			bgColor: "#FEAA2D",
-			color: "#ffffff",
-		},
-		tidal: {
-			name: "TIDAL",
-			icon: "🌊",
-			bgColor: "#000000",
 			color: "#ffffff",
 		},
 	};

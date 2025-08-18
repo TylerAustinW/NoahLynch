@@ -57,6 +57,7 @@ export interface EPKData {
 		date: string;
 		highlights?: string;
 		coverArt?: string;
+		slug?: string;
 	}[];
 	gallery: {
 		title: string;
@@ -82,7 +83,7 @@ export const epkData: EPKData = {
 	},
 	bio: {
 		short: "Noah Lynch is a Mississippi-born singer-songwriter blending acoustic soul, soft rock, and alt-pop into emotionally rich, story-driven music. Known for his heartfelt guitar playing and honest lyrics, Noah delivers performances that feel both intimate and universal. His songs speak to the real — love, heartbreak, growth — all anchored in smooth grooves and Southern sincerity.",
-		long: 'Noah Lynch is a solo artist from Meadville, Mississippi, crafting a sound rooted in acoustic soul, soft rock, and alternative pop. With over a decade of experience behind the guitar, Noah delivers stripped-back performances that spotlight the heart of each song. His lyrics speak to real-life moments — heartbreak, healing, and hope — with a calm confidence that draws listeners in. From backyard shows to packed venues, Noah has built a loyal following across Mississippi and beyond. His music has been featured on CraG Radio UK, where tracks like "For You" and "Good Things Take Time" found international ears. Whether he\'s playing a small-town stage or recording his next single, Noah\'s focus is always the same: connect through the song. With a growing catalog and an unmistakable sound, Noah Lynch is quickly becoming a voice of his generation — one story, one song at a time.',
+		long: 'Noah Lynch is a solo artist from Meadville, Mississippi, crafting a sound rooted in acoustic soul, soft rock, and alternative pop. With over a decade of experience behind the guitar, Noah delivers stripped-back performances that spotlight the heart of each song. His lyrics speak to real-life moments — heartbreak, healing, and hope — with a calm confidence that draws listeners in. From backyard shows to packed venues, Noah has built a loyal following across Mississippi and beyond. His music has been featured on CraGs Radio UK, where tracks like "For You" and "Good Things Take Time" found international ears. Whether he\'s playing a small-town stage or recording his next single, Noah\'s focus is always the same: connect through the song. With a growing catalog and an unmistakable sound, Noah Lynch is quickly becoming a voice of his generation — one story, one song at a time.',
 	},
 	featuredVideo: {
 		title: "Featured Performance",
@@ -111,26 +112,30 @@ export const epkData: EPKData = {
 		},
 		{
 			venue: "The Roof at 1311",
-			description: "Return show August 16",
+			description: "120+ Draw",
 		},
 	],
 	releases: [
 		{
 			title: "Honest",
 			date: "May 2025",
+			highlights: "Out Now",
 			coverArt: "/covers/honest-cover.jpeg",
+			slug: "honest",
 		},
 		{
 			title: "For You",
 			date: "June 2024",
-			highlights: "Featured on CraG Radio UK",
+			highlights: "Featured on CraGs Radio UK",
 			coverArt: "/covers/single-for-you-cover.jpg",
+			slug: "for-you",
 		},
 		{
 			title: "Good Things Take Time",
 			date: "2024",
-			highlights: "Featured on CraG Radio UK",
+			highlights: "Featured on CraGs Radio UK",
 			coverArt: "/covers/single-good-things-take-time-cover.jpg",
+			slug: "good-things-take-time",
 		},
 	],
 	gallery: {
@@ -148,7 +153,7 @@ export const epkData: EPKData = {
 					{
 						src: "/venues/magnolia-blues/noah-lynch-magnolia-blues-session.jpg",
 						alt: "Noah Lynch performing at Magnolia Blues BBQ with packed crowd",
-						caption: "Energetic performance with full house audience",
+						caption: "",
 						featured: true,
 						people: [
 							{ name: "Noah", x: 25, y: 20 },
@@ -164,13 +169,13 @@ export const epkData: EPKData = {
 				city: "Vicksburg",
 				state: "MS",
 				date: "2025-08-16",
-				description: "Return show - intimate rooftop performance",
+				description: "120+ Draw - intimate rooftop performance",
 				featured: false,
 				photos: [
 					{
 						src: "/venues/the-roof/NoahAtTheRoof.jpg",
 						alt: "Noah Lynch performing at The Roof at 1311 in Vicksburg",
-						caption: "Intimate acoustic performance at The Roof",
+						caption: "",
 						featured: true,
 					},
 				],

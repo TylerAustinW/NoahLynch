@@ -295,7 +295,7 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
 												<p className="text-lg text-zinc-300">Single • {release.year}</p>
 												<div className="space-y-2 text-sm text-zinc-400">
 													<p>
-														<span className="text-zinc-500">Released by:</span>{" "}
+														<span className="text-zinc-500">Produced By:</span>{" "}
 														<span className="text-zinc-300">{release.releasedBy}</span>
 													</p>
 													<p>

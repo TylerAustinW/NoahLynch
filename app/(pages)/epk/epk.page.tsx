@@ -1,6 +1,8 @@
+"use client";
+
 import { epkData } from "@/lib/data/epk/epk.data";
-import { ArrowLeft, Mail, MapPin, Music, Play } from "lucide-react";
-import { FaFacebookF, FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa6";
+import { ArrowLeft, ChevronLeft, ChevronRight, Mail, MapPin, Music, Play } from "lucide-react";
+import { FaAmazon, FaApple, FaFacebookF, FaInstagram, FaSpotify, FaTiktok, FaYoutube } from "react-icons/fa6";
 import Image from "next/image";
 import Link from "next/link";
 import { Patrick_Hand } from "next/font/google";
@@ -8,14 +10,49 @@ import EPKMobileActions from "./epk-mobile-actions.component";
 import YouTubeEmbed from "@/components/ui/youtube-embed.component";
 import ExpandableBio from "@/components/ui/expandable-bio.component";
 import { Button } from "@/components/ui/button.component";
+import React, { useState } from "react";
 
 const patrickHand = Patrick_Hand({
 	weight: "400",
 	subsets: ["latin"],
 });
 
+const platformIcons: Record<string, React.ReactNode> = {
+	Spotify: <FaSpotify className="w-4 h-4" />,
+	"Apple Music": <FaApple className="w-4 h-4" />,
+	"YouTube Music": <FaYoutube className="w-4 h-4" />,
+	"Amazon Music": <FaAmazon className="w-4 h-4" />,
+};
+
+const platformLinks: Record<string, string> = {
+	Spotify: "https://open.spotify.com/artist/4IKFKRnwaMGZQoExatIlHH",
+	"Apple Music": "https://music.apple.com/us/artist/noah-lynch/1744359568",
+	"YouTube Music": "https://music.youtube.com/channel/UCXDKAVZ1IBGpMaUW7biqAug",
+	"Amazon Music": "https://music.amazon.com/artists/B08SV61FDK/noah-lynch",
+};
+
+const profilePhotos = [
+	{
+		src: "/portraits/noah-lynch-studio-session.jpeg",
+		alt: "Noah Lynch - Professional Studio Photo",
+	},
+	{
+		src: "/venues/the-roof/NoahAtTheRoof2.jpg",
+		alt: "Noah Lynch - Live Performance at The Roof",
+	},
+];
+
 export default function EPKPage() {
 	const { artist, bio, featuredVideo, liveShow, notableShows, releases, gallery, contact } = epkData;
+	const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+
+	const nextPhoto = () => {
+		setCurrentPhotoIndex((prev) => (prev + 1) % profilePhotos.length);
+	};
+
+	const prevPhoto = () => {
+		setCurrentPhotoIndex((prev) => (prev - 1 + profilePhotos.length) % profilePhotos.length);
+	};
 
 	return (
 		<div className="min-h-screen bg-zinc-950 text-white print:bg-white print:text-black relative overflow-hidden">
@@ -116,16 +153,52 @@ export default function EPKPage() {
 				<div className="grid gap-8 sm:gap-16 lg:grid-cols-5 lg:gap-20">
 					<div className="lg:col-span-2">
 						<div className="sticky top-8">
-							<div className="relative aspect-[3/4] sm:aspect-[4/5] overflow-hidden rounded-xl sm:rounded-2xl border border-zinc-800/50 shadow-2xl print:border print:border-gray-300">
+							<div className="relative aspect-[3/4] sm:aspect-[4/5] overflow-hidden rounded-xl sm:rounded-2xl border border-zinc-800/50 shadow-2xl print:border print:border-gray-300 group">
 								<Image
-									src="/portraits/noah-lynch-studio-session.jpeg"
-									alt="Noah Lynch - Professional Studio Photo"
+									src={profilePhotos[currentPhotoIndex].src}
+									alt={profilePhotos[currentPhotoIndex].alt}
 									fill
 									sizes="(max-width: 1024px) 100vw, 40vw"
-									className="object-cover object-top"
+									className="object-cover object-top transition-opacity duration-500"
 									priority
 								/>
 								<div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+
+								{/* Navigation Arrows */}
+								{profilePhotos.length > 1 && (
+									<>
+										<button
+											onClick={prevPhoto}
+											className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-all duration-200 opacity-100 md:opacity-0 md:group-hover:opacity-100 print:hidden"
+											aria-label="Previous photo"
+										>
+											<ChevronLeft className="w-4 h-4" />
+										</button>
+										<button
+											onClick={nextPhoto}
+											className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-all duration-200 opacity-100 md:opacity-0 md:group-hover:opacity-100 print:hidden"
+											aria-label="Next photo"
+										>
+											<ChevronRight className="w-4 h-4" />
+										</button>
+									</>
+								)}
+
+								{/* Photo Indicators */}
+								{profilePhotos.length > 1 && (
+									<div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 print:hidden">
+										{profilePhotos.map((_, index) => (
+											<button
+												key={index}
+												onClick={() => setCurrentPhotoIndex(index)}
+												className={`w-2 h-2 rounded-full transition-all duration-200 ${
+													index === currentPhotoIndex ? "bg-white" : "bg-white/50 hover:bg-white/70"
+												}`}
+												aria-label={`View photo ${index + 1}`}
+											/>
+										))}
+									</div>
+								)}
 							</div>
 
 							<div className="absolute -top-4 -right-4 z-10 hidden max-w-xs rounded-xl bg-zinc-900/90 p-4 backdrop-blur border border-amber-500/30 lg:block">
@@ -328,12 +401,13 @@ export default function EPKPage() {
 								</div>
 								<div className="space-y-4 sm:space-y-5">
 									{releases.map((release, index) => (
-										<div
+										<Link
 											key={index}
-											className="flex items-start gap-4 p-3 sm:p-4 bg-zinc-900/50 rounded-lg border border-zinc-700/50 print:bg-gray-50"
+											href={release.slug ? `/music/${release.slug}` : "#"}
+											className="flex items-start gap-4 p-3 sm:p-4 bg-zinc-900/50 rounded-lg border border-zinc-700/50 print:bg-gray-50 transition-all duration-300 hover:bg-zinc-800/70 hover:border-amber-500/50 hover:shadow-lg hover:shadow-amber-500/10 cursor-pointer group"
 										>
 											{release.coverArt ? (
-												<div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg overflow-hidden flex-shrink-0 border border-zinc-600/50">
+												<div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg overflow-hidden flex-shrink-0 border border-zinc-600/50 group-hover:border-amber-500/50">
 													<Image
 														src={release.coverArt}
 														alt={`${release.title} cover art`}
@@ -348,32 +422,49 @@ export default function EPKPage() {
 												</div>
 											)}
 											<div className="flex-grow min-w-0">
-												<h4 className="font-medium text-white print:text-black text-sm truncate">
-													"{release.title}"
+												<h4 className="font-medium text-white print:text-black text-sm truncate group-hover:text-amber-400 transition-colors">
+													{release.title}
 												</h4>
 												<p className="text-zinc-400 text-xs print:text-gray-600">{release.date}</p>
 												{release.highlights && (
-													<p className="text-zinc-300 text-xs mt-1 print:text-gray-700">
-														{release.highlights}
-													</p>
+													<div className="mt-1.5">
+														<span className="inline-flex items-center px-1.5 py-0.5 bg-zinc-800/50 border border-zinc-700/50 rounded text-amber-400/90 text-[10px] font-medium">
+															{release.highlights}
+														</span>
+													</div>
 												)}
 											</div>
-										</div>
+										</Link>
 									))}
+								</div>
+
+								<div className="mt-4 text-center">
+									<span className="inline-flex items-center px-1.5 py-0.5 bg-zinc-800/50 border border-zinc-700/50 rounded text-amber-300 text-[10px] font-medium">
+										Produced By: Ready Records
+									</span>
 								</div>
 
 								<div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-zinc-700/50 print:border-gray-300">
 									<p className="text-zinc-300 text-xs sm:text-sm font-medium mb-3 sm:mb-4 print:text-black text-center">
 										Available on all major platforms
 									</p>
-									<div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+									<div className="flex justify-center gap-2 sm:gap-3">
 										{["Spotify", "Apple Music", "YouTube Music", "Amazon Music"].map((platform) => (
 											<Button
 												key={platform}
 												variant="ghost"
-												className="px-2 sm:px-3 py-1 bg-zinc-700/50 text-zinc-300 text-[10px] sm:text-xs rounded-full border border-zinc-600/50 print:bg-gray-100 print:text-black print:border-gray-300"
+												title={platform}
+												asChild
+												className="p-2 bg-zinc-700/50 text-zinc-300 rounded-full border border-zinc-600/50 hover:bg-zinc-600/50 hover:text-white transition-colors print:bg-gray-100 print:text-black print:border-gray-300"
 											>
-												{platform}
+												<a
+													href={platformLinks[platform]}
+													target="_blank"
+													rel="noopener noreferrer"
+													aria-label={`Listen on ${platform}`}
+												>
+													{platformIcons[platform]}
+												</a>
 											</Button>
 										))}
 									</div>

@@ -5,7 +5,7 @@ import { useIsMobile } from "@/lib/hooks/use-mobile.hook";
 import { motion } from "framer-motion";
 import { Patrick_Hand } from "next/font/google";
 import Image from "next/image";
-import { ChevronDown, ChevronLeft, ChevronRight, Music } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight, Music, ExternalLink } from "lucide-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
@@ -115,18 +115,12 @@ export default function BiographySection() {
 					>
 						<div className="space-y-6 text-lg leading-relaxed text-white md:text-xl">
 							<p>
-								Introducing <span className="font-bold text-amber-400 text-xl md:text-2xl">Noah Lynch</span>, a
-								Mississippi-born musician whose journey with music began at the age of 6 when he first picked up a
-								guitar. From those early days, Noah's passion for music has only grown stronger, fueling his
-								desire to share his artistry with the world.
-							</p>
-
-							<p>
-								Drawing inspiration from legends like{" "}
-								<span className="font-semibold text-amber-400">John Mayer</span> and
-								<span className="font-semibold text-amber-400"> Stevie Ray Vaughan</span>, Noah's music blends the
-								soulful melodies of blues with the infectious energy of neo-rock. His sound is a reflection of his
-								upbringing in a small town nestled in Mississippi, where music isn't the typical claim to fame.
+								<span className="font-bold text-amber-400 text-xl md:text-2xl">Noah Lynch</span> is an acoustic
+								pop singer-songwriter who takes inspiration from{" "}
+								<span className="font-semibold text-amber-400">John Mayer</span>, blending heartfelt storytelling
+								with smooth, soulful melodies. Coming from a small town where pursuing music isn't the obvious
+								path, Noah has carved his own journey, proving that passion and persistence can break through any
+								limitation.
 							</p>
 
 							<motion.div
@@ -139,9 +133,34 @@ export default function BiographySection() {
 								style={{ overflow: "hidden" }}
 							>
 								<p>
-									Noah's upbringing was marked by the serenade of his guitar strings and the melodies that
-									echoed through his soul. His authentic approach to songwriting captures the essence of human
-									emotion, creating connections with listeners around the world.
+									His{" "}
+									<Link
+										href="/music/for-you"
+										className="font-semibold text-amber-400 hover:text-amber-300 underline decoration-amber-400/30 hover:decoration-amber-300 transition-colors relative group/link inline-flex items-center gap-1"
+										title='Listen to "For You"'
+									>
+										debut single
+										<ExternalLink className="w-3 h-3 opacity-60 md:hidden" />
+										<span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-zinc-900/95 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap opacity-0 group-hover/link:opacity-100 transition-opacity duration-200 pointer-events-none border border-zinc-700/50 hidden md:block">
+											Listen to "For You" →
+										</span>
+									</Link>{" "}
+									quickly gained traction, hitting{" "}
+									<span className="font-semibold text-amber-400">50,000 streams</span> and earning airplay on
+									the UK's CraGs Radio, signaling the start of a promising career. With{" "}
+									<Link
+										href="/music/honest"
+										className="font-semibold text-amber-400 hover:text-amber-300 underline decoration-amber-400/30 hover:decoration-amber-300 transition-colors relative group/link inline-flex items-center gap-1"
+										title='Listen to "Honest"'
+									>
+										honest
+										<ExternalLink className="w-3 h-3 opacity-60 md:hidden" />
+										<span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-zinc-900/95 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap opacity-0 group-hover/link:opacity-100 transition-opacity duration-200 pointer-events-none border border-zinc-700/50 hidden md:block">
+											Listen to "Honest" →
+										</span>
+									</Link>{" "}
+									lyrics and engaging performances, Noah connects deeply with audiences, turning everyday
+									experiences into songs that resonate long after the music stops.
 								</p>
 							</motion.div>
 
