@@ -4,16 +4,8 @@ export const TOUR_DATES: TourDate[] = [
 	{
 		id: 1,
 		date: "2025-06-14",
-		venue: "Magnolia Blues BBQ Company",
+		venue: "Magnolia Blues BBQ",
 		city: "Brookhaven",
-		state: "MS",
-		upcoming: false,
-	},
-	{
-		id: 2,
-		date: "2025-02-01",
-		venue: "Rushing RoadHouse",
-		city: "Jefferson County",
 		state: "MS",
 		upcoming: false,
 	},

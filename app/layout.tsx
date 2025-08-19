@@ -3,6 +3,7 @@ import { Dancing_Script, Inter } from "next/font/google";
 import "./globals.css";
 import SocialSidebar from "@/components/layout/social-sidebar.component";
 import ScrollToTop from "@/components/layout/scroll-to-top.component";
+import Footer from "@/components/layout/footer.component";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import React from "react";
@@ -124,6 +125,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<SocialSidebar />
 				<ScrollToTop />
 				{children}
+				<Footer />
 
 				<script type="application/ld+json" />
 				<Analytics />

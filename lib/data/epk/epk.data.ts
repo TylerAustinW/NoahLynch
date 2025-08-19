@@ -104,22 +104,22 @@ export const epkData: EPKData = {
 	},
 	notableShows: [
 		{
+			venue: "The Roof at 1311",
+			description: "120+ Draw",
+		},
+		{
 			venue: "Magnolia Blues BBQ",
 			description: "Packed house, 90+ draw",
 		},
 		{
-			venue: "Rushings RoudHouse",
-		},
-		{
-			venue: "The Roof at 1311",
-			description: "120+ Draw",
+			venue: "3rd Studio Single - Honest",
+			description: "Out Now (Produced by Ready Records)",
 		},
 	],
 	releases: [
 		{
 			title: "Honest",
 			date: "May 2025",
-			highlights: "Out Now",
 			coverArt: "/covers/honest-cover.jpeg",
 			slug: "honest",
 		},
@@ -142,13 +142,30 @@ export const epkData: EPKData = {
 		title: "Live Performance Gallery",
 		collections: [
 			{
+				id: "the-roof-2025",
+				venue: "The Roof at 1311",
+				city: "Vicksburg",
+				state: "MS",
+				date: "2025-08-16",
+				description: "120+ Draw - intimate rooftop performance",
+				featured: true,
+				photos: [
+					{
+						src: "/venues/the-roof/NoahAtTheRoof.jpg",
+						alt: "Noah Lynch performing at The Roof at 1311 in Vicksburg",
+						caption: "",
+						featured: true,
+					},
+				],
+			},
+			{
 				id: "magnolia-blues-2025",
 				venue: "Magnolia Blues BBQ",
 				city: "Brookhaven",
 				state: "MS",
 				date: "2025-06-14",
 				description: "Packed house, 90+ draw",
-				featured: true,
+				featured: false,
 				photos: [
 					{
 						src: "/venues/magnolia-blues/noah-lynch-magnolia-blues-session.jpg",
@@ -160,23 +177,6 @@ export const epkData: EPKData = {
 							{ name: "Blake", x: 50, y: 15 },
 							{ name: "Jamie", x: 75, y: 25 },
 						],
-					},
-				],
-			},
-			{
-				id: "the-roof-2025",
-				venue: "The Roof at 1311",
-				city: "Vicksburg",
-				state: "MS",
-				date: "2025-08-16",
-				description: "120+ Draw - intimate rooftop performance",
-				featured: false,
-				photos: [
-					{
-						src: "/venues/the-roof/NoahAtTheRoof.jpg",
-						alt: "Noah Lynch performing at The Roof at 1311 in Vicksburg",
-						caption: "",
-						featured: true,
 					},
 				],
 			},
