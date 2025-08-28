@@ -73,15 +73,15 @@ const FeaturedCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4, duration: 0.6 }}
                     >
-                        <Button asChild variant="primary">
+                        <Button asChild variant="primary" size="sm" className="sm:h-10 sm:px-6 sm:text-sm sm:gap-2">
                             <Link href={`/music/${release.id}`} aria-label={`Listen to ${release.title}`}>
-                                <Play className="h-5 w-5 transition-transform group-hover/btn:scale-110" fill="currentColor" />
+                                <Play className="h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover/btn:scale-110" fill="currentColor" />
                                 Listen Now
                             </Link>
                         </Button>
-                        <Button asChild variant="secondary">
+                        <Button asChild variant="secondary" size="sm" className="sm:h-10 sm:px-6 sm:text-sm sm:gap-2">
                             <Link href={`/music/${release.id}`} aria-label={`View details for ${release.title}`}>
-                                <ExternalLink className="h-4 w-4" />
+                                <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4" />
                                 View Details
                             </Link>
                         </Button>

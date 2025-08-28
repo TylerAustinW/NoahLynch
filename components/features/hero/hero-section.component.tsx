@@ -10,7 +10,7 @@ import { useScrollLock } from "@/lib/hooks/use-scroll-lock.hook";
 import { getPastTourDates } from "@/lib/data/tour/tour-dates.data";
 import { SOCIAL_LINKS } from "@/lib/config/constants";
 import { motion } from "framer-motion";
-import { ChevronDown, X } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { Patrick_Hand } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
@@ -29,11 +29,10 @@ export default function HeroSection(): React.ReactElement {
 	const [imageError, setImageError] = useState(false);
 	const [reducedMotion, setPrefersReducedMotion] = useState(false);
 	const [showPastShows, setShowPreviousShows] = useState(false);
-	const [showReleasePopup, setShowReleasePopup] = useState(true);
 	const pastShows = getPastTourDates();
 
 	// Use the new scroll lock hook
-	useScrollLock(showPastShows || showReleasePopup);
+	useScrollLock(showPastShows);
 
 	useEffect(() => {
 		setLoaded(true);
@@ -51,24 +50,19 @@ export default function HeroSection(): React.ReactElement {
 
 	useEffect(() => {
 		const handleEscapeKey = (e: KeyboardEvent) => {
-			if (e.key === "Escape") {
-				if (showPastShows) {
-					setShowPreviousShows(false);
-				}
-				if (showReleasePopup) {
-					setShowReleasePopup(false);
-				}
+			if (e.key === "Escape" && showPastShows) {
+				setShowPreviousShows(false);
 			}
 		};
 
-		if (showPastShows || showReleasePopup) {
+		if (showPastShows) {
 			document.addEventListener("keydown", handleEscapeKey);
 		}
 
 		return () => {
 			document.removeEventListener("keydown", handleEscapeKey);
 		};
-	}, [showPastShows, showReleasePopup]);
+	}, [showPastShows]);
 
 	if (imageError) {
 		return (
@@ -233,56 +227,6 @@ export default function HeroSection(): React.ReactElement {
 				</motion.div>
 
 				<PastShowsModal isOpen={showPastShows} onClose={() => setShowPreviousShows(false)} pastShows={pastShows} />
-
-				{/* Release Announcement Popup */}
-				{showReleasePopup && (
-					<motion.div
-						className="fixed inset-0 z-50 flex items-center justify-center p-4"
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						exit={{ opacity: 0 }}
-						transition={{ duration: 0.3 }}
-					>
-						{/* Full-screen blur backdrop */}
-						<div 
-							className="absolute inset-0 bg-black/60 backdrop-blur-md"
-							onClick={() => setShowReleasePopup(false)}
-						/>
-						
-						{/* Popup content */}
-						<motion.div
-							className="relative z-10 max-w-4xl w-full"
-							initial={{ scale: 0.9, opacity: 0 }}
-							animate={{ scale: 1, opacity: 1 }}
-							exit={{ scale: 0.9, opacity: 0 }}
-							transition={{ duration: 0.3, delay: 0.1 }}
-						>
-							{/* Close button */}
-							<button
-								onClick={() => setShowReleasePopup(false)}
-								className="absolute top-4 right-4 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm transition-colors hover:bg-black/70 focus:outline-none focus:ring-2 focus:ring-amber-400/50"
-								aria-label="Close announcement"
-							>
-								<X className="h-4 w-4" />
-							</button>
-
-							{/* Banner image */}
-							<Link href="/music/chasing-a-feeling" onClick={() => setShowReleasePopup(false)}>
-								<div className="relative overflow-hidden rounded-lg border border-white/20 bg-black/40 backdrop-blur-sm transition-all duration-300 hover:border-amber-400/50">
-									<Image
-										src="/covers/chasing-a-feeling-banner.png"
-										alt="Chasing A Feeling - Coming September 26, 2025"
-										width={1200}
-										height={675}
-										className="w-full h-auto"
-										sizes="(max-width: 640px) 100vw, 1200px"
-										priority
-									/>
-								</div>
-							</Link>
-						</motion.div>
-					</motion.div>
-				)}
 			</section>
 		</ErrorBoundary>
 	);
