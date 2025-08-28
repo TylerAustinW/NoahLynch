@@ -24,6 +24,13 @@ export default function Home() {
 			<HeroSection />
 			<PageFadeWrapper>
 				<Navbar />
+				<div className="w-full">
+					<img 
+						src="/covers/chasing-a-feelin-banner.png" 
+						alt="Chasing a Feelin' by Noah Lynch" 
+						className="w-full h-auto object-cover"
+					/>
+				</div>
 				<MusicShowcaseSection />
 				<StudioSessionsSection />
 				<BiographySection />

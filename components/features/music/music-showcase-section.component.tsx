@@ -9,6 +9,8 @@ import Link from "next/link";
 import React, { memo, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button.component";
 
+const SHOW_FEATURED_COMING_SOON = false;
+
 const FeaturedCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
     const [reducedMotion, setReducedMotion] = useState(false);
 
@@ -75,7 +77,10 @@ const FeaturedCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
                     >
                         <Button asChild variant="primary" size="sm" className="sm:h-10 sm:px-6 sm:text-sm sm:gap-2">
                             <Link href={`/music/${release.id}`} aria-label={`Listen to ${release.title}`}>
-                                <Play className="h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover/btn:scale-110" fill="currentColor" />
+                                <Play
+                                    className="h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover/btn:scale-110"
+                                    fill="currentColor"
+                                />
                                 Listen Now
                             </Link>
                         </Button>
@@ -200,14 +205,16 @@ export default function MusicShowcaseSection(): React.ReactElement {
                     </p>
                 </motion.div>
 
-                <motion.div
-                    className="mb-12 sm:mb-16"
-                    initial={{ opacity: 0, y: 40 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                >
-                    <FeaturedCard release={featured} />
-                </motion.div>
+                {SHOW_FEATURED_COMING_SOON && (
+                    <motion.div
+                        className="mb-12 sm:mb-16"
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={inView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                    >
+                        <FeaturedCard release={featured} />
+                    </motion.div>
+                )}
 
                 {releases.length > 0 && (
                     <motion.div
