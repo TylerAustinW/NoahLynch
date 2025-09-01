@@ -32,8 +32,8 @@ export const UPCOMING_TOUR_DATES_DATA: TourDate[] = [
 		ticketLink:
 			"https://www.bandsintown.com/e/107167473-noah-lynch-at-sunset-grill?came_from=267&utm_medium=web&utm_source=artist_page&utm_campaign=ticket_rsvp",
 		state: "MS",
-		upcoming: true,
-		featured: true,
+		upcoming: false,
+		featured: false,
 		description: "Join Noah Lynch for a live performance at Sunset Grill.",
 	},
 	{
@@ -46,7 +46,7 @@ export const UPCOMING_TOUR_DATES_DATA: TourDate[] = [
 		ticketLink:
 			"https://www.bandsintown.com/e/107170464-noah-lynch-at-backwater-grill-taphouse-and-oyster-bar?came_from=267&utm_medium=web&utm_source=artist_page&utm_campaign=event",
 		upcoming: true,
-		featured: false,
+		featured: true,
 		description: "Join Noah Lynch for a live performance at Backwater Grill.",
 	},
 ];
