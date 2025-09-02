@@ -228,7 +228,7 @@ export default function EPKPage() {
                                         {featuredVideos.title}
                                     </h2>
                                 </div>
-                                {featuredVideos.videos.map((video, index) => (
+                                {featuredVideos.videos.map((video, _index) => (
                                     <div key={video.videoId} className="p-6 sm:p-8 md:p-10 bg-zinc-800/20 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-zinc-700/30 print:bg-white print:border-gray-300">
                                         {video.description && (
                                             <div className="mb-4 text-center">
