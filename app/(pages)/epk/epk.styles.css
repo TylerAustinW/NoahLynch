@@ -1,118 +1,118 @@
 @media print {
-	* {
-		-webkit-print-color-adjust: exact !important;
-		print-color-adjust: exact !important;
-	}
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
 
-	body {
-		background: white !important;
-		color: black !important;
-	}
+    body {
+        background: white !important;
+        color: black !important;
+    }
 
-	.bg-gradient-to-br,
-	.bg-gradient-to-r,
-	.bg-gray-800\/30,
-	.bg-gray-900\/30 {
-		background: #f3f4f6 !important;
-		border: 1px solid #d1d5db !important;
-	}
+    .bg-gradient-to-br,
+    .bg-gradient-to-r,
+    .bg-gray-800\/30,
+    .bg-gray-900\/30 {
+        background: #f3f4f6 !important;
+        border: 1px solid #d1d5db !important;
+    }
 
-	.print\:text-black {
-		color: black !important;
-	}
+    .print\:text-black {
+        color: black !important;
+    }
 
-	.print\:bg-white {
-		background-color: white !important;
-	}
+    .print\:bg-white {
+        background-color: white !important;
+    }
 
-	.print\:bg-gray-100 {
-		background-color: #f3f4f6 !important;
-	}
+    .print\:bg-gray-100 {
+        background-color: #f3f4f6 !important;
+    }
 
-	.print\:border {
-		border: 1px solid #d1d5db !important;
-	}
+    .print\:border {
+        border: 1px solid #d1d5db !important;
+    }
 
-	.print\:border-gray-300 {
-		border-color: #d1d5db !important;
-	}
+    .print\:border-gray-300 {
+        border-color: #d1d5db !important;
+    }
 
-	.print\:text-sm {
-		font-size: 0.875rem !important;
-	}
+    .print\:text-sm {
+        font-size: 0.875rem !important;
+    }
 
-	.print\:text-xs {
-		font-size: 0.75rem !important;
-	}
+    .print\:text-xs {
+        font-size: 0.75rem !important;
+    }
 
-	.print\:mb-8 {
-		margin-bottom: 2rem !important;
-	}
+    .print\:mb-8 {
+        margin-bottom: 2rem !important;
+    }
 
-	.print\:mb-6 {
-		margin-bottom: 1.5rem !important;
-	}
+    .print\:mb-6 {
+        margin-bottom: 1.5rem !important;
+    }
 
-	.print\:mb-4 {
-		margin-bottom: 1rem !important;
-	}
+    .print\:mb-4 {
+        margin-bottom: 1rem !important;
+    }
 
-	.print\:mt-8 {
-		margin-top: 2rem !important;
-	}
+    .print\:mt-8 {
+        margin-top: 2rem !important;
+    }
 
-	.print\:mt-4 {
-		margin-top: 1rem !important;
-	}
+    .print\:mt-4 {
+        margin-top: 1rem !important;
+    }
 
-	.print\:pt-4 {
-		padding-top: 1rem !important;
-	}
+    .print\:pt-4 {
+        padding-top: 1rem !important;
+    }
 
-	.print\:px-4 {
-		padding-left: 1rem !important;
-		padding-right: 1rem !important;
-	}
+    .print\:px-4 {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
 
-	.print\:py-4 {
-		padding-top: 1rem !important;
-		padding-bottom: 1rem !important;
-	}
+    .print\:py-4 {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+    }
 
-	.print\:gap-6 {
-		gap: 1.5rem !important;
-	}
+    .print\:gap-6 {
+        gap: 1.5rem !important;
+    }
 
-	.print\:gap-4 {
-		gap: 1rem !important;
-	}
+    .print\:gap-4 {
+        gap: 1rem !important;
+    }
 
-	.print\:text-4xl {
-		font-size: 2.25rem !important;
-		line-height: 2.5rem !important;
-	}
+    .print\:text-4xl {
+        font-size: 2.25rem !important;
+        line-height: 2.5rem !important;
+    }
 
-	.print\:text-xl {
-		font-size: 1.25rem !important;
-		line-height: 1.75rem !important;
-	}
+    .print\:text-xl {
+        font-size: 1.25rem !important;
+        line-height: 1.75rem !important;
+    }
 
-	.print\:text-lg {
-		font-size: 1.125rem !important;
-		line-height: 1.75rem !important;
-	}
+    .print\:text-lg {
+        font-size: 1.125rem !important;
+        line-height: 1.75rem !important;
+    }
 
-	.print\:text-base {
-		font-size: 1rem !important;
-		line-height: 1.5rem !important;
-	}
+    .print\:text-base {
+        font-size: 1rem !important;
+        line-height: 1.5rem !important;
+    }
 
-	@page {
-		margin: 0.75in;
-		size: letter;
-	}
+    @page {
+        margin: 0.75in;
+        size: letter;
+    }
 
-	.no-print {
-		display: none !important;
-	}
+    .no-print {
+        display: none !important;
+    }
 }

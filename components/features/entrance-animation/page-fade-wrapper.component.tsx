@@ -4,35 +4,35 @@ import { motion } from "framer-motion";
 import { type ReactNode, useEffect, useState } from "react";
 
 interface PageFadeWrapperProps {
-	children: ReactNode;
-	delay?: number;
+    children: ReactNode;
+    delay?: number;
 }
 
 export default function PageFadeWrapper({ children, delay = 1.8 }: PageFadeWrapperProps) {
-	const [shouldAnimate, setShouldAnimate] = useState(false);
+    const [shouldAnimate, setShouldAnimate] = useState(false);
 
-	useEffect(() => {
-		const timer = setTimeout(() => {
-			setShouldAnimate(true);
-		}, delay * 1000);
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShouldAnimate(true);
+        }, delay * 1000);
 
-		return () => clearTimeout(timer);
-	}, [delay]);
+        return () => clearTimeout(timer);
+    }, [delay]);
 
-	if (!shouldAnimate) {
-		return <div style={{ opacity: 0 }}>{children}</div>;
-	}
+    if (!shouldAnimate) {
+        return <div style={{ opacity: 0 }}>{children}</div>;
+    }
 
-	return (
-		<motion.div
-			initial={{ opacity: 0 }}
-			animate={{ opacity: 1 }}
-			transition={{
-				duration: 1,
-				ease: "easeInOut",
-			}}
-		>
-			{children}
-		</motion.div>
-	);
+    return (
+        <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{
+                duration: 1,
+                ease: "easeInOut",
+            }}
+        >
+            {children}
+        </motion.div>
+    );
 }
