@@ -43,7 +43,7 @@ const profilePhotos = [
 ];
 
 export default function EPKPage() {
-    const { artist, bio, featuredVideo, liveShow, notableShows, releases, gallery, contact } = epkData;
+    const { artist, bio, featuredVideos, liveShow, notableShows, releases, gallery, contact } = epkData;
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
 
     const nextPhoto = () => {
@@ -221,27 +221,32 @@ export default function EPKPage() {
                             <ExpandableBio content={bio.long} />
                         </div>
 
-                        {featuredVideo && (
-                            <div className="p-6 sm:p-8 md:p-10 bg-zinc-800/20 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-zinc-700/30 print:bg-white print:border-gray-300">
+                        {featuredVideos && (
+                            <div className="space-y-6">
                                 <div className="mb-6 sm:mb-8 text-center">
                                     <h2 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4 print:text-xl print:text-black">
-                                        {featuredVideo.title}
+                                        {featuredVideos.title}
                                     </h2>
-                                    {featuredVideo.video.description && (
-                                        <p className={`${patrickHand.className} text-base sm:text-lg text-amber-200/80`}>
-                                            "{featuredVideo.video.description}"
-                                        </p>
-                                    )}
                                 </div>
-
-                                <YouTubeEmbed
-                                    videoId={featuredVideo.video.videoId}
-                                    title={featuredVideo.video.title}
-                                    {...(featuredVideo.video.description && {
-                                        description: featuredVideo.video.description,
-                                    })}
-                                    className="max-w-4xl mx-auto"
-                                />
+                                {featuredVideos.videos.map((video, index) => (
+                                    <div key={video.videoId} className="p-6 sm:p-8 md:p-10 bg-zinc-800/20 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-zinc-700/30 print:bg-white print:border-gray-300">
+                                        {video.description && (
+                                            <div className="mb-4 text-center">
+                                                <p className={`${patrickHand.className} text-base sm:text-lg text-amber-200/80`}>
+                                                    "{video.description}"
+                                                </p>
+                                            </div>
+                                        )}
+                                        <YouTubeEmbed
+                                            videoId={video.videoId}
+                                            title={video.title}
+                                            {...(video.description && {
+                                                description: video.description,
+                                            })}
+                                            className="max-w-4xl mx-auto"
+                                        />
+                                    </div>
+                                ))}
                             </div>
                         )}
 
