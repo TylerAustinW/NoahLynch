@@ -53,7 +53,7 @@ export default function EntranceAnimation() {
                                 ease: [0.25, 0.1, 0.25, 1],
                             }}
                         >
-                            <Image src="/NoahSignature.png" alt="Noah Lynch" fill className="object-contain" priority />
+                            <Image src="/NoahSignature.png" alt="Noah Lynch" fill className="object-contain" priority sizes="(max-width: 768px) 90vw, 600px" />
                         </motion.div>
 
                         <motion.div

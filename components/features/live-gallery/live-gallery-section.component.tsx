@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Calendar, ChevronLeft, ChevronRight, MapPin, X } from "lucide-react";
+import { Calendar, ChevronLeft, ChevronRight, MapPin, X, Loader2 } from "lucide-react";
 import { formatDate } from "@/lib/utils/date.utils";
 import { useEffect, useState, useCallback, useRef } from "react";
 import {
@@ -16,13 +16,29 @@ import {
 export default function LiveGallerySection() {
     const [selectedVenue, setSelectedVenue] = useState<VenuePhotoCollection | null>(null);
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
-    const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+    const [imageLoadingStates, setImageLoadingStates] = useState<{ [key: string]: boolean }>({});
+    const touchStartRef = useRef<{ x: number; y: number; time: number } | null>(null);
     const touchEndRef = useRef<{ x: number; y: number } | null>(null);
+    const preloadedImages = useRef<Set<string>>(new Set());
+
+    const preloadImage = useCallback((src: string) => {
+        if (!preloadedImages.current.has(src)) {
+            const img = new window.Image();
+            img.src = src;
+            preloadedImages.current.add(src);
+        }
+    }, []);
 
     const handleVenueClick = (venue: VenuePhotoCollection) => {
         if (hasMultiplePhotos(venue)) {
             setSelectedVenue(venue);
             setCurrentPhotoIndex(0);
+
+            // Preload first three images
+            venue.photos.slice(0, 3).forEach((photo) => {
+                const path = getPhotoPath(venue.id, photo.filename);
+                preloadImage(path);
+            });
         }
     };
 
@@ -33,19 +49,31 @@ export default function LiveGallerySection() {
 
     const nextPhoto = useCallback(() => {
         if (selectedVenue) {
-            setCurrentPhotoIndex((prev) => (prev === selectedVenue.photos.length - 1 ? 0 : prev + 1));
+            const nextIndex = currentPhotoIndex === selectedVenue.photos.length - 1 ? 0 : currentPhotoIndex + 1;
+            setCurrentPhotoIndex(nextIndex);
+
+            // Preload the next image after this one
+            const preloadIndex = nextIndex === selectedVenue.photos.length - 1 ? 0 : nextIndex + 1;
+            const preloadPath = getPhotoPath(selectedVenue.id, selectedVenue.photos[preloadIndex].filename);
+            preloadImage(preloadPath);
         }
-    }, [selectedVenue]);
+    }, [selectedVenue, currentPhotoIndex, preloadImage]);
 
     const prevPhoto = useCallback(() => {
         if (selectedVenue) {
-            setCurrentPhotoIndex((prev) => (prev === 0 ? selectedVenue.photos.length - 1 : prev - 1));
+            const prevIndex = currentPhotoIndex === 0 ? selectedVenue.photos.length - 1 : currentPhotoIndex - 1;
+            setCurrentPhotoIndex(prevIndex);
+
+            // Preload the previous image before this one
+            const preloadIndex = prevIndex === 0 ? selectedVenue.photos.length - 1 : prevIndex - 1;
+            const preloadPath = getPhotoPath(selectedVenue.id, selectedVenue.photos[preloadIndex].filename);
+            preloadImage(preloadPath);
         }
-    }, [selectedVenue]);
+    }, [selectedVenue, currentPhotoIndex, preloadImage]);
 
     const handleTouchStart = useCallback((e: React.TouchEvent) => {
         const touch = e.touches[0];
-        touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+        touchStartRef.current = { x: touch.clientX, y: touch.clientY, time: Date.now() };
     }, []);
 
     const handleTouchEnd = useCallback(
@@ -57,8 +85,13 @@ export default function LiveGallerySection() {
 
             const deltaX = touchEndRef.current.x - touchStartRef.current.x;
             const deltaY = touchEndRef.current.y - touchStartRef.current.y;
+            const deltaTime = Date.now() - touchStartRef.current.time;
+            const velocity = Math.abs(deltaX) / deltaTime;
 
-            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+            // Lower threshold for faster swipes, higher for slower ones
+            const threshold = velocity > 0.3 ? 30 : 50;
+
+            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > threshold) {
                 if (deltaX > 0) {
                     prevPhoto();
                 } else {
@@ -136,14 +169,18 @@ export default function LiveGallerySection() {
                                     }`}
                                     onClick={() => handleVenueClick(venue)}
                                 >
-                                    <div className="aspect-[4/3] relative overflow-hidden">
+                                    <div className="aspect-[4/3] relative overflow-hidden bg-zinc-800">
                                         <Image
                                             src={photoPath}
                                             alt={featuredPhoto.filename}
                                             fill
                                             className="object-cover transition-transform duration-500 group-hover:scale-105"
                                             sizes="(max-width: 768px) 100vw, 50vw"
-                                            priority={index === 0 && venue.id === "sunset-grill"}
+                                            quality={75}
+                                            loading={index > 1 ? "lazy" : "eager"}
+                                            priority={index === 0}
+                                            placeholder="blur"
+                                            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwAA8A/9k="
                                         />
 
                                         {hasGallery && (
@@ -227,15 +264,42 @@ export default function LiveGallerySection() {
                             className="relative w-full max-h-[80vh] flex items-center justify-center touch-manipulation"
                             onTouchStart={handleTouchStart}
                             onTouchEnd={handleTouchEnd}
+                            style={{ touchAction: "pan-y pinch-zoom" }}
                         >
-                            <Image
-                                src={getPhotoPath(selectedVenue.id, selectedVenue.photos[currentPhotoIndex].filename)}
-                                alt={selectedVenue.photos[currentPhotoIndex].filename}
-                                className="max-w-full max-h-full object-contain rounded-lg"
-                                width={1200}
-                                height={800}
-                                unoptimized
-                            />
+                            <div className="relative w-full h-full flex items-center justify-center">
+                                {imageLoadingStates[`${selectedVenue.id}-${currentPhotoIndex}`] && (
+                                    <div className="absolute inset-0 flex items-center justify-center bg-zinc-900/80 rounded-lg z-10">
+                                        <Loader2 className="w-8 h-8 text-amber-400 animate-spin" />
+                                    </div>
+                                )}
+                                <Image
+                                    key={`${selectedVenue.id}-${currentPhotoIndex}`}
+                                    src={getPhotoPath(selectedVenue.id, selectedVenue.photos[currentPhotoIndex].filename)}
+                                    alt={selectedVenue.photos[currentPhotoIndex].filename}
+                                    className={`max-w-full max-h-full object-contain rounded-lg transition-opacity duration-300 ${
+                                        imageLoadingStates[`${selectedVenue.id}-${currentPhotoIndex}`]
+                                            ? "opacity-0"
+                                            : "opacity-100"
+                                    }`}
+                                    width={1200}
+                                    height={800}
+                                    sizes="(max-width: 768px) 100vw, 80vw"
+                                    quality={85}
+                                    priority
+                                    onLoad={() => {
+                                        setImageLoadingStates((prev) => ({
+                                            ...prev,
+                                            [`${selectedVenue.id}-${currentPhotoIndex}`]: false,
+                                        }));
+                                    }}
+                                    onLoadStart={() => {
+                                        setImageLoadingStates((prev) => ({
+                                            ...prev,
+                                            [`${selectedVenue.id}-${currentPhotoIndex}`]: true,
+                                        }));
+                                    }}
+                                />
+                            </div>
                         </div>
 
                         {selectedVenue.photos.length > 1 && (
@@ -256,7 +320,6 @@ export default function LiveGallerySection() {
                                 </button>
                             </>
                         )}
-
 
                         {selectedVenue.photos.length > 1 && (
                             <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">

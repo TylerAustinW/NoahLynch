@@ -90,7 +90,7 @@ export const epkData: EPKData = {
         videos: [
             {
                 videoId: "3rKv1BmopUQ",
-                title: 'Noah Lynch - Performance',
+                title: "Noah Lynch - Performance",
                 description: "Live Performance at Sunset Grill in Brandon, MS.",
                 type: "performance",
             },

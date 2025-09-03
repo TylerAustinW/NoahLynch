@@ -17,11 +17,19 @@ const patrickHand = Patrick_Hand({
     subsets: ["latin"],
 });
 
-const platformIcons: Record<string, React.ReactNode> = {
-    Spotify: <FaSpotify className="w-4 h-4" />,
-    "Apple Music": <FaApple className="w-4 h-4" />,
-    "YouTube Music": <FaYoutube className="w-4 h-4" />,
-    "Amazon Music": <FaAmazon className="w-4 h-4" />,
+const getPlatformIcon = (platform: string) => {
+    switch (platform) {
+        case "Spotify":
+            return <FaSpotify className="w-4 h-4" />;
+        case "Apple Music":
+            return <FaApple className="w-4 h-4" />;
+        case "YouTube Music":
+            return <FaYoutube className="w-4 h-4" />;
+        case "Amazon Music":
+            return <FaAmazon className="w-4 h-4" />;
+        default:
+            return null;
+    }
 };
 
 const platformLinks: Record<string, string> = {
@@ -217,7 +225,6 @@ export default function EPKPage() {
                                     "Music isn't just what I do, it's who I am"
                                 </p>
                             </div>
-
                             <ExpandableBio content={bio.long} />
                         </div>
 
@@ -229,7 +236,10 @@ export default function EPKPage() {
                                     </h2>
                                 </div>
                                 {featuredVideos.videos.map((video, _index) => (
-                                    <div key={video.videoId} className="p-6 sm:p-8 md:p-10 bg-zinc-800/20 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-zinc-700/30 print:bg-white print:border-gray-300">
+                                    <div
+                                        key={video.videoId}
+                                        className="p-6 sm:p-8 md:p-10 bg-zinc-800/20 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-zinc-700/30 print:bg-white print:border-gray-300"
+                                    >
                                         {video.description && (
                                             <div className="mb-4 text-center">
                                                 <p className={`${patrickHand.className} text-base sm:text-lg text-amber-200/80`}>
@@ -324,7 +334,7 @@ export default function EPKPage() {
                                         <div className="space-y-6">
                                             {collection.photos.map((photo, photoIndex) => (
                                                 <div key={photoIndex} className="relative group">
-                                                    <div className="relative aspect-[16/10] sm:aspect-9/9] overflow-hidden rounded-lg border border-zinc-600/50 shadow-lg">
+                                                    <div className="relative aspect-[16/10] sm:aspect-[9/9] overflow-hidden rounded-lg border border-zinc-600/50 shadow-lg">
                                                         <Image
                                                             src={photo.src}
                                                             alt={photo.alt}
@@ -467,7 +477,7 @@ export default function EPKPage() {
                                                     rel="noopener noreferrer"
                                                     aria-label={`Listen on ${platform}`}
                                                 >
-                                                    {platformIcons[platform]}
+                                                    {getPlatformIcon(platform)}
                                                 </a>
                                             </Button>
                                         ))}
