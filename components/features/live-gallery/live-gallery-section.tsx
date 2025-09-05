@@ -34,7 +34,6 @@ export default function LiveGallerySection() {
             setSelectedVenue(venue);
             setCurrentPhotoIndex(0);
 
-            // Preload first three images
             venue.photos.slice(0, 3).forEach((photo) => {
                 const path = getPhotoPath(venue.id, photo.filename);
                 preloadImage(path);
@@ -52,7 +51,6 @@ export default function LiveGallerySection() {
             const nextIndex = currentPhotoIndex === selectedVenue.photos.length - 1 ? 0 : currentPhotoIndex + 1;
             setCurrentPhotoIndex(nextIndex);
 
-            // Preload the next image after this one
             const preloadIndex = nextIndex === selectedVenue.photos.length - 1 ? 0 : nextIndex + 1;
             const preloadPath = getPhotoPath(selectedVenue.id, selectedVenue.photos[preloadIndex].filename);
             preloadImage(preloadPath);
@@ -64,7 +62,6 @@ export default function LiveGallerySection() {
             const prevIndex = currentPhotoIndex === 0 ? selectedVenue.photos.length - 1 : currentPhotoIndex - 1;
             setCurrentPhotoIndex(prevIndex);
 
-            // Preload the previous image before this one
             const preloadIndex = prevIndex === 0 ? selectedVenue.photos.length - 1 : prevIndex - 1;
             const preloadPath = getPhotoPath(selectedVenue.id, selectedVenue.photos[preloadIndex].filename);
             preloadImage(preloadPath);
@@ -88,7 +85,6 @@ export default function LiveGallerySection() {
             const deltaTime = Date.now() - touchStartRef.current.time;
             const velocity = Math.abs(deltaX) / deltaTime;
 
-            // Lower threshold for faster swipes, higher for slower ones
             const threshold = velocity > 0.3 ? 30 : 50;
 
             if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > threshold) {
@@ -149,6 +145,12 @@ export default function LiveGallerySection() {
                         <h2 id="live-gallery-title" className="text-3xl md:text-4xl font-bold text-white mb-4">
                             Live from the Stage
                         </h2>
+                        <div id="Social-Link" className="text-zinc-200 text-md mb-4">
+                            <p className="text-zinc-200 text-md">
+                                Follow @noahlynchmusic on social media for more behind-the-scenes content
+                            </p>
+                        </div>
+                        <div className="h-1 w-full bg-zinc-700/20 mb-4" />
                     </motion.div>
 
                     <div className="grid md:grid-cols-2 gap-8">
@@ -225,11 +227,7 @@ export default function LiveGallerySection() {
                         transition={{ duration: 0.6, delay: 0.4 }}
                         viewport={{ once: true }}
                         className="text-center mt-12"
-                    >
-                        <p className="text-zinc-400 text-sm">
-                            Follow @noahlynchmusic on social media for more behind-the-scenes content
-                        </p>
-                    </motion.div>
+                    ></motion.div>
                 </div>
             </section>
             {selectedVenue && (

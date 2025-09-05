@@ -45,7 +45,7 @@ export default function TourDatesMinimal() {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.3 }}
                     className="text-center py-8 sm:py-10 md:py-16 px-4"
                 >
                     <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-zinc-200 mb-2 sm:mb-4">TOUR DATES</h1>
@@ -57,7 +57,7 @@ export default function TourDatesMinimal() {
                             key={date.id}
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.1 * index, duration: 0.4 }}
+                            transition={{ delay: 0.05 * index, duration: 0.2 }}
                             className="border-b border-zinc-700/40 last:border-b-0"
                         >
                             <div className="w-full py-6 sm:py-5 md:py-6">
@@ -146,7 +146,7 @@ export default function TourDatesMinimal() {
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ delay: 0.6, duration: 0.6 }}
+                        transition={{ delay: 0.3, duration: 0.3 }}
                         className="w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-12 mt-16 md:mt-20"
                     >
                         <div className="text-center py-8 md:py-12">

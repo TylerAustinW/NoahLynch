@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/layout/navbar.component";
-import LiveGallerySection from "@/components/features/live-gallery/live-gallery-section.component";
+import LiveGallerySection from "@/components/features/live-gallery/live-gallery-section";
 
 export const metadata: Metadata = {
     title: "Gallery - Noah Lynch",

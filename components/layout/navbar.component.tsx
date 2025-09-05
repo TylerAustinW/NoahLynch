@@ -115,7 +115,7 @@ export default function Navbar() {
         setMobileOpen(false);
     };
 
-    const textColor = cn(scrolled ? "text-white" : "text-white", "transition-colors duration-300");
+    const textColor = "text-white transition-colors duration-300";
 
     const variants = {
         overlay: {
@@ -153,9 +153,8 @@ export default function Navbar() {
                 className={cn(
                     "fixed top-0 right-0 left-0 z-50 py-3 sm:py-4 transition-all duration-300",
                     "bg-zinc-900/80 backdrop-blur-sm md:bg-zinc-900/80 md:backdrop-blur-sm",
-                    scrolled
-                        ? "opacity-0 pointer-events-none -translate-y-full"
-                        : "opacity-100 pointer-events-auto translate-y-0",
+                    "opacity-100 pointer-events-auto translate-y-0",
+                    "will-change-[backdrop-filter] transform-gpu",
                 )}
                 initial={{ y: 0 }}
                 animate={{
@@ -176,7 +175,6 @@ export default function Navbar() {
                             <h1
                                 className={cn(
                                     "text-xl sm:text-2xl md:text-3xl font-bold tracking-wider text-white transition-all duration-300 group-hover:text-amber-400 leading-none",
-                                    scrolled && "drop-shadow-sm",
                                 )}
                             >
                                 NOAH LYNCH
@@ -191,7 +189,7 @@ export default function Navbar() {
                                     key={link.label}
                                     initial={{ opacity: 0, y: -20 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.1 * index, duration: 0.4 }}
+                                    transition={{ delay: 0.03 * index, duration: 0.2 }}
                                     className="flex items-center h-full"
                                 >
                                     <Link

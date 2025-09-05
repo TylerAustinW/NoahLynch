@@ -19,15 +19,11 @@ const photoSlides = [
         id: "portrait",
         src: "/portraits/noah-lynch-portrait-guitar.jpeg",
         alt: "Noah Lynch - The Artist",
-        caption: "The Artist",
-        description: "Capturing the essence of Noah's artistic vision and musical passion",
     },
     {
         id: "studio",
         src: "/portraits/noah-lynch-studio-session.jpeg",
         alt: "Noah Lynch - In the Studio",
-        caption: "In His Element",
-        description: "Behind the scenes in the creative process where the magic happens",
     },
 ];
 
@@ -243,9 +239,8 @@ export default function BiographySection() {
 
                                         <div className="absolute bottom-4 left-4 right-4">
                                             <p className={`${Font.className} mb-1 text-xl text-white/90 drop-shadow-lg`}>
-                                                {slide.caption}
                                             </p>
-                                            <p className="text-sm text-zinc-300/80 drop-shadow">{slide.description}</p>
+                                            <p className="text-sm text-zinc-300/80 drop-shadow"></p>
                                         </div>
                                     </motion.div>
                                 ))}

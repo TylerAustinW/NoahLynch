@@ -102,8 +102,6 @@ export async function POST(request: NextRequest) {
                             file_type: fileType,
                             file_size: file.size,
                         });
-                    } else {
-                        console.log("Successfully inserted media record for checkin:", checkinData.id);
                     }
                 } catch (fileError) {
                     console.error("Error processing file:", fileError);
