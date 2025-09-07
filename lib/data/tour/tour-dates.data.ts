@@ -2,23 +2,17 @@ import type { TourDate } from "@/lib/types/tour.types";
 
 export const TOUR_DATES: TourDate[] = [
     {
-        id: 1,
-        date: "2025-06-14",
-        venue: "Magnolia Blues BBQ",
-        city: "Brookhaven",
+        id: 5,
+        date: "2025-09-06",
+        venue: "Backwater Grill",
+        city: "Brandon",
         state: "MS",
-        upcoming: false,
-    },
-    {
-        id: 3,
-        date: "2025-08-16",
-        venue: "The Roof at 1311",
-        city: "Vicksburg",
-        state: "MS",
-        time: "7:00 PM CDT",
+        time: "6:00 PM CDT",
+        ticketLink:
+            "https://www.bandsintown.com/e/107170464-noah-lynch-at-backwater-grill-taphouse-and-oyster-bar?came_from=267&utm_medium=web&utm_source=artist_page&utm_campaign=event",
         upcoming: false,
         featured: false,
-        description: "Amazing performance at The Roof on the 3rd floor with a packed crowd.",
+        description: "Join Noah Lynch for a live performance at Backwater Grill.",
     },
     {
         id: 4,
@@ -32,17 +26,32 @@ export const TOUR_DATES: TourDate[] = [
         description: "Join Noah Lynch for a live performance at Sunset Grill.",
     },
     {
-        id: 5,
-        date: "2025-09-06",
-        venue: "Backwater Grill",
-        city: "Brandon",
+        id: 3,
+        date: "2025-08-16",
+        venue: "The Roof at 1311",
+        city: "Vicksburg",
         state: "MS",
-        time: "6:00 PM CDT",
-        ticketLink:
-            "https://www.bandsintown.com/e/107170464-noah-lynch-at-backwater-grill-taphouse-and-oyster-bar?came_from=267&utm_medium=web&utm_source=artist_page&utm_campaign=event",
+        time: "7:00 PM CDT",
         upcoming: false,
         featured: false,
-        description: "Join Noah Lynch for a live performance at Backwater Grill.",
+        description: "Amazing performance at The Roof on the 3rd floor with a packed crowd.",
+    },
+    {
+        id: 1,
+        date: "2025-06-14",
+        venue: "Magnolia Blues BBQ",
+        city: "Brookhaven",
+        state: "MS",
+        upcoming: false,
+    },
+    {
+        id: 6,
+        date: "2025-02-01",
+        venue: "Rushing Roadhouse",
+        city: "Jefferson County",
+        state: "MS",
+        upcoming: false,
+        description: "Live acoustic performance at Rushing Roadhouse.",
     },
 ];
 

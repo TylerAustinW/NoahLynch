@@ -21,12 +21,20 @@ export default function LiveGallerySection() {
     const touchEndRef = useRef<{ x: number; y: number } | null>(null);
     const preloadedImages = useRef<Set<string>>(new Set());
 
-    const preloadImage = useCallback((src: string) => {
-        if (!preloadedImages.current.has(src)) {
+    const preloadImage = useCallback((src: string): Promise<void> => {
+        return new Promise((resolve) => {
+            if (preloadedImages.current.has(src)) {
+                resolve();
+                return;
+            }
             const img = new window.Image();
+            img.onload = () => {
+                preloadedImages.current.add(src);
+                resolve();
+            };
+            img.onerror = () => resolve();
             img.src = src;
-            preloadedImages.current.add(src);
-        }
+        });
     }, []);
 
     const handleVenueClick = (venue: VenuePhotoCollection) => {
@@ -34,10 +42,12 @@ export default function LiveGallerySection() {
             setSelectedVenue(venue);
             setCurrentPhotoIndex(0);
 
-            venue.photos.slice(0, 3).forEach((photo) => {
-                const path = getPhotoPath(venue.id, photo.filename);
-                preloadImage(path);
-            });
+            Promise.all(
+                venue.photos.slice(0, 3).map((photo) => {
+                    const path = getPhotoPath(venue.id, photo.filename);
+                    return preloadImage(path);
+                }),
+            );
         }
     };
 
@@ -53,7 +63,7 @@ export default function LiveGallerySection() {
 
             const preloadIndex = nextIndex === selectedVenue.photos.length - 1 ? 0 : nextIndex + 1;
             const preloadPath = getPhotoPath(selectedVenue.id, selectedVenue.photos[preloadIndex].filename);
-            preloadImage(preloadPath);
+            preloadImage(preloadPath).catch(() => {});
         }
     }, [selectedVenue, currentPhotoIndex, preloadImage]);
 
@@ -64,7 +74,7 @@ export default function LiveGallerySection() {
 
             const preloadIndex = prevIndex === 0 ? selectedVenue.photos.length - 1 : prevIndex - 1;
             const preloadPath = getPhotoPath(selectedVenue.id, selectedVenue.photos[preloadIndex].filename);
-            preloadImage(preloadPath);
+            preloadImage(preloadPath).catch(() => {});
         }
     }, [selectedVenue, currentPhotoIndex, preloadImage]);
 
@@ -131,6 +141,19 @@ export default function LiveGallerySection() {
         };
     }, [nextPhoto, prevPhoto, selectedVenue]);
 
+    useEffect(() => {
+        const preloadInitialImages = async () => {
+            const imagesToPreload = venuePhotoCollections.slice(0, 4).map((venue) => {
+                const featured = getFeaturedPhoto(venue);
+                return getPhotoPath(venue.id, featured.filename);
+            });
+
+            await Promise.all(imagesToPreload.map(preloadImage));
+        };
+
+        preloadInitialImages();
+    }, [preloadImage]);
+
     return (
         <>
             <section className="py-16 px-4 bg-zinc-900/50">
@@ -179,8 +202,8 @@ export default function LiveGallerySection() {
                                             className="object-cover transition-transform duration-500 group-hover:scale-105"
                                             sizes="(max-width: 768px) 100vw, 50vw"
                                             quality={75}
-                                            loading={index > 1 ? "lazy" : "eager"}
-                                            priority={index === 0}
+                                            loading={index < 4 ? "eager" : "lazy"}
+                                            priority={index < 2}
                                             placeholder="blur"
                                             blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwAA8A/9k="
                                         />
@@ -192,11 +215,11 @@ export default function LiveGallerySection() {
                                         )}
                                     </div>
 
-                                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white bg-gradient-to-t from-black/90 via-black/70 to-transparent">
                                         <div className="space-y-2">
-                                            <h3 className="text-xl font-bold">{venue.venue}</h3>
+                                            <h3 className="text-xl font-bold text-white">{venue.venue}</h3>
 
-                                            <div className="flex items-center gap-4 text-sm text-zinc-300">
+                                            <div className="flex items-center gap-4 text-sm text-white/90">
                                                 <div className="flex items-center gap-1">
                                                     <MapPin className="w-4 h-4" />
                                                     <span>
@@ -211,7 +234,7 @@ export default function LiveGallerySection() {
 
                                             {hasGallery && (
                                                 <p className="text-xs text-amber-400 mt-2">
-                                                    Click to view gallery ({venue.photos.length} photos)
+                                                    Click to view gallery
                                                 </p>
                                             )}
                                         </div>
@@ -252,12 +275,6 @@ export default function LiveGallerySection() {
                             <X className="w-6 h-6 sm:w-8 sm:h-8" />
                         </button>
 
-                        <div className="absolute top-2 sm:top-4 left-2 sm:left-4 bg-black/80 backdrop-blur-sm rounded-full px-2 sm:px-3 py-1 z-10">
-                            <span className="text-white text-xs sm:text-sm font-medium">
-                                {currentPhotoIndex + 1} of {selectedVenue.photos.length}
-                            </span>
-                        </div>
-
                         <div
                             className="relative w-full max-h-[80vh] flex items-center justify-center touch-manipulation"
                             onTouchStart={handleTouchStart}
@@ -265,25 +282,36 @@ export default function LiveGallerySection() {
                             style={{ touchAction: "pan-y pinch-zoom" }}
                         >
                             <div className="relative w-full h-full flex items-center justify-center">
-                                {imageLoadingStates[`${selectedVenue.id}-${currentPhotoIndex}`] && (
-                                    <div className="absolute inset-0 flex items-center justify-center bg-zinc-900/80 rounded-lg z-10">
-                                        <Loader2 className="w-8 h-8 text-amber-400 animate-spin" />
+                                <div className="relative inline-block max-w-full max-h-full">
+                                    <div className="absolute top-2 sm:top-4 left-2 sm:left-4 bg-black/80 backdrop-blur-sm rounded-full px-2 sm:px-3 py-1 z-20">
+                                        <span className="text-white text-xs sm:text-sm font-medium">
+                                            {currentPhotoIndex + 1} of {selectedVenue.photos.length}
+                                        </span>
                                     </div>
-                                )}
-                                <Image
+                                    
+                                    {imageLoadingStates[`${selectedVenue.id}-${currentPhotoIndex}`] && (
+                                        <div className="absolute inset-0 flex items-center justify-center bg-zinc-900/80 rounded-lg z-10">
+                                            <Loader2 className="w-8 h-8 text-amber-400 animate-spin" />
+                                        </div>
+                                    )}
+                                    <Image
                                     key={`${selectedVenue.id}-${currentPhotoIndex}`}
                                     src={getPhotoPath(selectedVenue.id, selectedVenue.photos[currentPhotoIndex].filename)}
                                     alt={selectedVenue.photos[currentPhotoIndex].filename}
-                                    className={`max-w-full max-h-full object-contain rounded-lg transition-opacity duration-300 ${
+                                    className={`w-auto h-auto max-w-full max-h-[80vh] object-contain rounded-lg transition-opacity duration-300 ${
                                         imageLoadingStates[`${selectedVenue.id}-${currentPhotoIndex}`]
                                             ? "opacity-0"
                                             : "opacity-100"
                                     }`}
-                                    width={1200}
-                                    height={800}
-                                    sizes="(max-width: 768px) 100vw, 80vw"
+                                    width={1920}
+                                    height={1920}
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                                     quality={85}
                                     priority
+                                    style={{
+                                        maxWidth: '100%',
+                                        height: 'auto'
+                                    }}
                                     onLoad={() => {
                                         setImageLoadingStates((prev) => ({
                                             ...prev,
@@ -296,7 +324,8 @@ export default function LiveGallerySection() {
                                             [`${selectedVenue.id}-${currentPhotoIndex}`]: true,
                                         }));
                                     }}
-                                />
+                                    />
+                                </div>
                             </div>
                         </div>
 

@@ -14,6 +14,23 @@ export interface VenuePhotoCollection {
 
 export const venuePhotoCollections: VenuePhotoCollection[] = [
     {
+        id: "backwater-grill",
+        venue: "Backwater Grill",
+        city: "Brandon",
+        state: "MS",
+        date: "2025-09-06",
+        photos: [
+            {
+                filename: "BackWaterGrill-NoahLynch.jpg",
+                featured: true,
+            },
+            {
+                filename: "BackwaterGrill-NoahLynch2.jpg",
+                featured: false,
+            },
+        ],
+    },
+    {
         id: "sunset-grill",
         venue: "Sunset Grill",
         city: "Brandon",

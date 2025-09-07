@@ -150,13 +150,53 @@ export const epkData: EPKData = {
         title: "Live Performance Gallery",
         collections: [
             {
+                id: "backwater-grill-2025",
+                venue: "Backwater Grill",
+                city: "Brandon",
+                state: "MS",
+                date: "2025-09-06",
+                description: "Live acoustic performance",
+                featured: true,
+                photos: [
+                    {
+                        src: "/venues/backwater-grill/BackWaterGrill-NoahLynch.jpg",
+                        alt: "Noah Lynch performing at Backwater Grill",
+                        caption: "",
+                        featured: true,
+                    },
+                    {
+                        src: "/venues/backwater-grill/BackwaterGrill-NoahLynch2.jpg",
+                        alt: "Noah Lynch at Backwater Grill",
+                        caption: "",
+                        featured: false,
+                    },
+                ],
+            },
+            {
+                id: "sunset-grill-2025",
+                venue: "Sunset Grill",
+                city: "Brandon",
+                state: "MS",
+                date: "2025-09-01",
+                description: "Live performance",
+                featured: false,
+                photos: [
+                    {
+                        src: "/venues/sunset-grill/noah-sunset-grill.png",
+                        alt: "Noah Lynch performing at Sunset Grill",
+                        caption: "",
+                        featured: true,
+                    },
+                ],
+            },
+            {
                 id: "the-roof-2025",
                 venue: "The Roof at 1311",
                 city: "Vicksburg",
                 state: "MS",
                 date: "2025-08-16",
                 description: "120+ Draw - intimate rooftop performance",
-                featured: true,
+                featured: false,
                 photos: [
                     {
                         src: "/venues/the-roof/NoahAtTheRoof.jpg",
@@ -185,6 +225,23 @@ export const epkData: EPKData = {
                             { name: "Blake", x: 50, y: 15 },
                             { name: "Jamie", x: 75, y: 25 },
                         ],
+                    },
+                ],
+            },
+            {
+                id: "rushing-roadhouse-2025",
+                venue: "Rushing Roadhouse",
+                city: "Jefferson County",
+                state: "MS",
+                date: "2025-02-01",
+                description: "Live acoustic performance",
+                featured: false,
+                photos: [
+                    {
+                        src: "/venues/rushing-roadhouse/placeholder.jpg",
+                        alt: "Noah Lynch performing at Rushing Roadhouse",
+                        caption: "",
+                        featured: true,
                     },
                 ],
             },
