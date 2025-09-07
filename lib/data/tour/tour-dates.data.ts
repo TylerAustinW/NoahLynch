@@ -31,9 +31,6 @@ export const TOUR_DATES: TourDate[] = [
         featured: false,
         description: "Join Noah Lynch for a live performance at Sunset Grill.",
     },
-];
-
-export const UPCOMING_TOUR_DATES_DATA: TourDate[] = [
     {
         id: 5,
         date: "2025-09-06",
@@ -43,11 +40,13 @@ export const UPCOMING_TOUR_DATES_DATA: TourDate[] = [
         time: "6:00 PM CDT",
         ticketLink:
             "https://www.bandsintown.com/e/107170464-noah-lynch-at-backwater-grill-taphouse-and-oyster-bar?came_from=267&utm_medium=web&utm_source=artist_page&utm_campaign=event",
-        upcoming: true,
-        featured: true,
+        upcoming: false,
+        featured: false,
         description: "Join Noah Lynch for a live performance at Backwater Grill.",
     },
 ];
+
+export const UPCOMING_TOUR_DATES_DATA: TourDate[] = [];
 
 export function getAllTourDates(): TourDate[] {
     return [...UPCOMING_TOUR_DATES_DATA, ...TOUR_DATES];

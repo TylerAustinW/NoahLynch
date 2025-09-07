@@ -88,9 +88,7 @@ export default ({ selectedShowId, onShowSelect, className = "" }: ShowSelectorPr
         tomorrow.setHours(0, 0, 0, 0);
         date.setHours(0, 0, 0, 0);
 
-        if (date.getTime() === today.getTime()) {
-            return "TODAY";
-        } else if (date.getTime() === tomorrow.getTime()) {
+        if (date.getTime() === tomorrow.getTime()) {
             return "TOMORROW";
         } else if (date > today) {
             return "UPCOMING";
@@ -156,13 +154,11 @@ export default ({ selectedShowId, onShowSelect, className = "" }: ShowSelectorPr
                             key={show.id}
                             value={show.id}
                             className={`${
-                                label === "TODAY"
-                                    ? "bg-green-700 text-white font-bold"
-                                    : label === "TOMORROW"
-                                      ? "bg-amber-700 text-white font-semibold"
-                                      : label === "UPCOMING"
-                                        ? "bg-blue-700 text-white"
-                                        : "bg-zinc-600 text-zinc-300"
+                                label === "TOMORROW"
+                                    ? "bg-amber-700 text-white font-semibold"
+                                    : label === "UPCOMING"
+                                      ? "bg-blue-700 text-white"
+                                      : "bg-zinc-600 text-zinc-300"
                             }`}
                         >
                             {formatShowOption(show)}

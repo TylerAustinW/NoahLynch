@@ -52,6 +52,11 @@ export default function TourDatesMinimal() {
                 </motion.div>
 
                 <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-12">
+                    {upcoming.length === 0 && (
+                        <div className="text-center py-12">
+                            <p className="text-lg text-zinc-300">More Shows Coming Soon</p>
+                        </div>
+                    )}
                     {upcoming.map((date, index) => (
                         <motion.div
                             key={date.id}
