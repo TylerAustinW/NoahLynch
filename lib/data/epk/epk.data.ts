@@ -182,7 +182,7 @@ export const epkData: EPKData = {
                 featured: false,
                 photos: [
                     {
-                        src: "/venues/sunset-grill/noah-sunset-grill.png",
+                        src: "/venues/sunset-grill/noah-sunset-grill.jpg",
                         alt: "Noah Lynch performing at Sunset Grill",
                         caption: "",
                         featured: true,
@@ -225,23 +225,6 @@ export const epkData: EPKData = {
                             { name: "Blake", x: 50, y: 15 },
                             { name: "Jamie", x: 75, y: 25 },
                         ],
-                    },
-                ],
-            },
-            {
-                id: "rushing-roadhouse-2025",
-                venue: "Rushing Roadhouse",
-                city: "Jefferson County",
-                state: "MS",
-                date: "2025-02-01",
-                description: "Live acoustic performance",
-                featured: false,
-                photos: [
-                    {
-                        src: "/venues/rushing-roadhouse/placeholder.jpg",
-                        alt: "Noah Lynch performing at Rushing Roadhouse",
-                        caption: "",
-                        featured: true,
                     },
                 ],
             },

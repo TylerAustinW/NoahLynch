@@ -42,12 +42,14 @@ export default function LiveGallerySection() {
             setSelectedVenue(venue);
             setCurrentPhotoIndex(0);
 
-            Promise.all(
-                venue.photos.slice(0, 3).map((photo) => {
-                    const path = getPhotoPath(venue.id, photo.filename);
-                    return preloadImage(path);
-                }),
-            );
+            // Only preload the first image and next image
+            const firstImagePath = getPhotoPath(venue.id, venue.photos[0].filename);
+            preloadImage(firstImagePath);
+            
+            if (venue.photos.length > 1) {
+                const nextImagePath = getPhotoPath(venue.id, venue.photos[1].filename);
+                preloadImage(nextImagePath);
+            }
         }
     };
 
@@ -143,7 +145,8 @@ export default function LiveGallerySection() {
 
     useEffect(() => {
         const preloadInitialImages = async () => {
-            const imagesToPreload = venuePhotoCollections.slice(0, 4).map((venue) => {
+            // Only preload first 2 featured images for above-the-fold content
+            const imagesToPreload = venuePhotoCollections.slice(0, 2).map((venue) => {
                 const featured = getFeaturedPhoto(venue);
                 return getPhotoPath(venue.id, featured.filename);
             });
@@ -201,8 +204,8 @@ export default function LiveGallerySection() {
                                             fill
                                             className="object-cover transition-transform duration-500 group-hover:scale-105"
                                             sizes="(max-width: 768px) 100vw, 50vw"
-                                            quality={75}
-                                            loading={index < 4 ? "eager" : "lazy"}
+                                            quality={60}
+                                            loading={index < 2 ? "eager" : "lazy"}
                                             priority={index < 2}
                                             placeholder="blur"
                                             blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwAA8A/9k="
@@ -283,11 +286,6 @@ export default function LiveGallerySection() {
                         >
                             <div className="relative w-full h-full flex items-center justify-center">
                                 <div className="relative inline-block max-w-full max-h-full">
-                                    <div className="absolute top-2 sm:top-4 left-2 sm:left-4 bg-black/80 backdrop-blur-sm rounded-full px-2 sm:px-3 py-1 z-20">
-                                        <span className="text-white text-xs sm:text-sm font-medium">
-                                            {currentPhotoIndex + 1} of {selectedVenue.photos.length}
-                                        </span>
-                                    </div>
                                     
                                     {imageLoadingStates[`${selectedVenue.id}-${currentPhotoIndex}`] && (
                                         <div className="absolute inset-0 flex items-center justify-center bg-zinc-900/80 rounded-lg z-10">
@@ -303,11 +301,13 @@ export default function LiveGallerySection() {
                                             ? "opacity-0"
                                             : "opacity-100"
                                     }`}
-                                    width={1920}
-                                    height={1920}
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-                                    quality={85}
-                                    priority
+                                    width={1200}
+                                    height={800}
+                                    sizes="(max-width: 768px) 95vw, (max-width: 1200px) 80vw, 1200px"
+                                    quality={75}
+                                    loading="lazy"
+                                    placeholder="blur"
+                                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwAA8A/9k="
                                     style={{
                                         maxWidth: '100%',
                                         height: 'auto'
@@ -348,20 +348,6 @@ export default function LiveGallerySection() {
                             </>
                         )}
 
-                        {selectedVenue.photos.length > 1 && (
-                            <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-                                {selectedVenue.photos.map((_, index) => (
-                                    <button
-                                        key={index}
-                                        onClick={() => setCurrentPhotoIndex(index)}
-                                        className={`w-3 h-3 sm:w-2 sm:h-2 rounded-full transition-colors touch-manipulation ${
-                                            index === currentPhotoIndex ? "bg-amber-400" : "bg-white/50"
-                                        }`}
-                                        aria-label={`Go to photo ${index + 1}`}
-                                    />
-                                ))}
-                            </div>
-                        )}
                     </div>
                 </div>
             )}

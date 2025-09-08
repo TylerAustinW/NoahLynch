@@ -28,6 +28,22 @@ export const venuePhotoCollections: VenuePhotoCollection[] = [
                 filename: "BackwaterGrill-NoahLynch2.jpg",
                 featured: false,
             },
+            {
+                filename: "IMG_6716.jpg",
+                featured: false,
+            },
+            {
+                filename: "IMG_6717.jpg",
+                featured: false,
+            },
+            {
+                filename: "IMG_6718.jpg",
+                featured: false,
+            },
+            {
+                filename: "IMG_6719.jpg",
+                featured: false,
+            },
         ],
     },
     {
@@ -38,14 +54,28 @@ export const venuePhotoCollections: VenuePhotoCollection[] = [
         date: "2025-09-01",
         photos: [
             {
-                filename: "noah-jamie-landscape.png",
+                filename: "noah-jamie-landscape.jpg",
+                featured: false,
             },
             {
-                filename: "noah-sunset-grill.png",
+                filename: "noah-sunset-grill.jpg",
                 featured: true,
             },
             {
-                filename: "noah-sunset.png",
+                filename: "noah-sunset.jpg",
+                featured: false,
+            },
+            {
+                filename: "Sunset-Grill (4).jpg",
+                featured: false,
+            },
+            {
+                filename: "Sunset-Grill (5).jpg",
+                featured: false,
+            },
+            {
+                filename: "Sunset-Grill (6).jpg",
+                featured: false,
             },
         ],
     },
@@ -70,6 +100,14 @@ export const venuePhotoCollections: VenuePhotoCollection[] = [
             },
             {
                 filename: "NoahAtTheRoof4.jpg",
+                featured: false,
+            },
+            {
+                filename: "NoahAtTheRoof5.jpg",
+                featured: false,
+            },
+            {
+                filename: "NoahAtTheRoofGuitars.jpg",
                 featured: false,
             },
         ],
