@@ -90,14 +90,12 @@ export const epkData: EPKData = {
         videos: [
             {
                 videoId: "3rKv1BmopUQ",
-                title: "Noah Lynch - Performance",
-                description: "Live Performance at Sunset Grill in Brandon, MS.",
+                title: "Chasing a Feelin’ (Unreleased, Live at SunSet Grill)",
                 type: "performance",
             },
             {
                 videoId: "EPYGIRsGPpw",
                 title: 'Noah Lynch - "Collide" (Live Cover)',
-                description: "Live Performance at Magnolia Blues BBQ in Brookhaven, MS.",
                 type: "performance",
             },
         ],
@@ -159,16 +157,10 @@ export const epkData: EPKData = {
                 featured: true,
                 photos: [
                     {
-                        src: "/venues/backwater-grill/BackWaterGrill-NoahLynch.jpg",
+                        src: "/venues/backwater-grill/IMG_6718.jpg",
                         alt: "Noah Lynch performing at Backwater Grill",
                         caption: "",
                         featured: true,
-                    },
-                    {
-                        src: "/venues/backwater-grill/BackwaterGrill-NoahLynch2.jpg",
-                        alt: "Noah Lynch at Backwater Grill",
-                        caption: "",
-                        featured: false,
                     },
                 ],
             },

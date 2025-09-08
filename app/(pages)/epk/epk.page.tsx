@@ -160,7 +160,7 @@ export default function EPKPage() {
             <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-8 md:py-12 print:px-4 print:py-8">
                 <div className="grid gap-8 sm:gap-16 lg:grid-cols-5 lg:gap-20">
                     <div className="lg:col-span-2">
-                        <div className="sticky top-8">
+                        <div className="sticky top-8 lg:relative">
                             <div className="relative aspect-[3/4] sm:aspect-[4/5] overflow-hidden rounded-xl sm:rounded-2xl border border-zinc-800/50 shadow-2xl print:border print:border-gray-300 group">
                                 <Image
                                     src={profilePhotos[currentPhotoIndex].src}
@@ -312,7 +312,23 @@ export default function EPKPage() {
                             <div className="space-y-8 sm:space-y-12">
                                 {gallery.collections.map((collection, collectionIndex) => (
                                     <div key={collection.id} className="space-y-4">
-                                        <div className="text-center border-b border-zinc-600/30 pb-4">
+                                        {collectionIndex > 0 && (
+                                            <div className="relative py-8">
+                                                <div className="absolute inset-0 flex items-center">
+                                                    <div className="w-full border-t border-zinc-600/50"></div>
+                                                </div>
+                                                <div className="relative flex justify-center">
+                                                    <span className="bg-zinc-900/95 px-4">
+                                                        <div className="flex items-center gap-2 text-zinc-500">
+                                                            <div className="w-1.5 h-1.5 bg-amber-500/50 rounded-full"></div>
+                                                            <div className="w-1.5 h-1.5 bg-amber-500/50 rounded-full"></div>
+                                                            <div className="w-1.5 h-1.5 bg-amber-500/50 rounded-full"></div>
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        )}
+                                        <div className="text-center bg-zinc-800/20 backdrop-blur-sm rounded-lg border border-zinc-700/40 p-4 mb-6">
                                             <h3 className="text-lg font-semibold text-amber-400 print:text-black">
                                                 {collection.venue}
                                             </h3>
@@ -341,7 +357,11 @@ export default function EPKPage() {
                                                             fill
                                                             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 60vw"
                                                             className="object-cover scale-110 transition-transform duration-500 group-hover:scale-115"
-                                                            style={{ objectPosition: "center 40%" }}
+                                                            style={{ 
+                                                                objectPosition: photo.src.includes('sunset-grill') 
+                                                                    ? "center 20%" 
+                                                                    : "center 40%" 
+                                                            }}
                                                             priority={collectionIndex === 0 && photoIndex === 0}
                                                         />
 
