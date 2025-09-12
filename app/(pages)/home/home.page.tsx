@@ -8,7 +8,6 @@ import CheckInButton from "@/components/ui/checkin-button.component";
 import EntranceAnimation from "@/components/features/entrance-animation/entrance-animation.component";
 import PageFadeWrapper from "@/components/features/entrance-animation/page-fade-wrapper.component";
 import dynamic from "next/dynamic";
-import Image from "next/image";
 
 const BiographySection = dynamic(() => import("@/components/features/biography/biography-section.component"), {
     loading: () => (
@@ -25,17 +24,6 @@ export default function Home() {
             <HeroSection />
             <PageFadeWrapper>
                 <Navbar />
-                <div className="w-full">
-                    <Image
-                        width={1000}
-                        height={1000}
-                        sizes="100vw"
-                        src="/covers/chasing-a-feelin-banner.png"
-                        alt="Chasing a Feelin' by Noah Lynch"
-                        className="w-full h-auto object-cover"
-                        priority
-                    />
-                </div>
                 <MusicShowcaseSection />
                 <StudioSessionsSection />
                 <BiographySection />
