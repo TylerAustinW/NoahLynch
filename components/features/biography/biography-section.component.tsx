@@ -5,7 +5,7 @@ import { useIsMobile } from "@/lib/hooks/use-mobile.hook";
 import { motion } from "framer-motion";
 import { Patrick_Hand } from "next/font/google";
 import Image from "next/image";
-import { ChevronDown, ChevronLeft, ChevronRight, Music, ExternalLink } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight, Music, ExternalLink, Award } from "lucide-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
@@ -17,7 +17,7 @@ const Font = Patrick_Hand({
 const photoSlides = [
 	{
 		id: "portrait",
-		src: "/portraits/noah-lynch-portrait-guitar.jpeg",
+		src: "/venues/backwater-grill/IMG_6718.jpg",
 		alt: "Noah Lynch - The Artist",
 	},
 	{
@@ -98,7 +98,13 @@ export default function BiographySection() {
 					transition={{ duration: 0.8 }}
 				>
 					<h2 className="mb-4 text-4xl font-bold text-zinc-200 md:text-5xl lg:text-6xl">The Story</h2>
-					<p className={`${Font.className} text-xl text-zinc-300 md:text-2xl`}>"Music isn't just what I do, it's who I am"</p>
+					<p className={`${Font.className} text-xl text-zinc-300 md:text-2xl mb-6`}>"Music isn't just what I do, it's who I am"</p>
+					<div className="flex justify-center">
+						<span className="inline-flex items-center px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-lg text-amber-300 font-semibold">
+							<Award className="w-4 h-4" />
+							2025 Best Local Solo Artist Winner
+						</span>
+					</div>
 				</motion.div>
 
 				<div className="grid gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20">
@@ -248,12 +254,11 @@ export default function BiographySection() {
 									<motion.div
 										key={slide.id}
 										className="absolute inset-0"
-										initial={{ opacity: 0, x: 100 }}
+										initial={{ opacity: 0 }}
 										animate={{
 											opacity: index === currentSlide ? 1 : 0,
-											x: index === currentSlide ? 0 : index > currentSlide ? 100 : -100,
 										}}
-										transition={{ duration: 0.5, ease: "easeInOut" }}
+										transition={{ duration: 0.3, ease: "easeInOut" }}
 									>
 										<Image
 											src={slide.src}

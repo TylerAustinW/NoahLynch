@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Calendar, ChevronLeft, ChevronRight, MapPin, X, Loader2 } from "lucide-react";
+import { Calendar, MapPin, X, Loader2, ChevronLeft, ChevronRight } from "lucide-react";
 import { formatDate } from "@/lib/utils/date.utils";
 import { useEffect, useState, useCallback, useRef } from "react";
 import {
@@ -41,11 +41,8 @@ export default function LiveGallerySection() {
 		if (hasMultiplePhotos(venue)) {
 			setSelectedVenue(venue);
 			setCurrentPhotoIndex(0);
-
-			// Only preload the first image and next image
 			const firstImagePath = getPhotoPath(venue.id, venue.photos[0].filename);
 			preloadImage(firstImagePath);
-
 			if (venue.photos.length > 1) {
 				const nextImagePath = getPhotoPath(venue.id, venue.photos[1].filename);
 				preloadImage(nextImagePath);
@@ -62,7 +59,6 @@ export default function LiveGallerySection() {
 		if (selectedVenue) {
 			const nextIndex = currentPhotoIndex === selectedVenue.photos.length - 1 ? 0 : currentPhotoIndex + 1;
 			setCurrentPhotoIndex(nextIndex);
-
 			const preloadIndex = nextIndex === selectedVenue.photos.length - 1 ? 0 : nextIndex + 1;
 			const preloadPath = getPhotoPath(selectedVenue.id, selectedVenue.photos[preloadIndex].filename);
 			preloadImage(preloadPath).catch(() => {});
@@ -73,7 +69,6 @@ export default function LiveGallerySection() {
 		if (selectedVenue) {
 			const prevIndex = currentPhotoIndex === 0 ? selectedVenue.photos.length - 1 : currentPhotoIndex - 1;
 			setCurrentPhotoIndex(prevIndex);
-
 			const preloadIndex = prevIndex === 0 ? selectedVenue.photos.length - 1 : prevIndex - 1;
 			const preloadPath = getPhotoPath(selectedVenue.id, selectedVenue.photos[preloadIndex].filename);
 			preloadImage(preloadPath).catch(() => {});
@@ -88,15 +83,12 @@ export default function LiveGallerySection() {
 	const handleTouchEnd = useCallback(
 		(e: React.TouchEvent) => {
 			if (!touchStartRef.current) return;
-
 			const touch = e.changedTouches[0];
 			touchEndRef.current = { x: touch.clientX, y: touch.clientY };
-
 			const deltaX = touchEndRef.current.x - touchStartRef.current.x;
 			const deltaY = touchEndRef.current.y - touchStartRef.current.y;
 			const deltaTime = Date.now() - touchStartRef.current.time;
 			const velocity = Math.abs(deltaX) / deltaTime;
-
 			const threshold = velocity > 0.3 ? 30 : 50;
 
 			if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > threshold) {
@@ -106,7 +98,6 @@ export default function LiveGallerySection() {
 					nextPhoto();
 				}
 			}
-
 			touchStartRef.current = null;
 			touchEndRef.current = null;
 		},
@@ -116,7 +107,6 @@ export default function LiveGallerySection() {
 	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {
 			if (!selectedVenue) return;
-
 			switch (e.key) {
 				case "Escape":
 					closeModal();
@@ -145,7 +135,6 @@ export default function LiveGallerySection() {
 
 	useEffect(() => {
 		const preloadInitialImages = async () => {
-			// Only preload first 2 featured images for above-the-fold content
 			const imagesToPreload = venuePhotoCollections.slice(0, 2).map((venue) => {
 				const featured = getFeaturedPhoto(venue);
 				return getPhotoPath(venue.id, featured.filename);

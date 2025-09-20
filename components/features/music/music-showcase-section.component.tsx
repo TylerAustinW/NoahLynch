@@ -12,25 +12,9 @@ import { Button } from "@/components/ui/button.component";
 const SHOW_FEATURED_COMING_SOON = false;
 
 const FeaturedCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
-	const [reducedMotion, setReducedMotion] = useState(false);
-
-	useEffect(() => {
-		const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-		setReducedMotion(mediaQuery.matches);
-
-		const handleChange = (e: MediaQueryListEvent) => {
-			setReducedMotion(e.matches);
-		};
-
-		mediaQuery.addEventListener("change", handleChange);
-		return () => mediaQuery.removeEventListener("change", handleChange);
-	}, []);
-
 	return (
 		<motion.div
 			className="group relative overflow-hidden rounded-xl border border-zinc-800/50 bg-zinc-900/40 backdrop-blur-sm md:rounded-2xl"
-			whileHover={reducedMotion ? {} : { scale: 1.02 }}
-			transition={{ duration: 0.3, ease: "easeOut" }}
 		>
 			<div className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-[16/9] md:aspect-[16/10]">
 				<Image
@@ -38,7 +22,7 @@ const FeaturedCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
 					alt={`${release.title} - ${release.year}`}
 					fill
 					sizes="(max-width: 768px) 100vw, 90vw"
-					className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+					className="object-cover"
 					priority
 					quality={75}
 				/>
@@ -101,8 +85,6 @@ const RegularCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
 		<Link href={`/music/${release.id}`} className="group block h-full w-[85vw] sm:w-80 flex-shrink-0">
 			<motion.div
 				className="flex h-full flex-col overflow-hidden rounded-xl border border-zinc-800/50 bg-zinc-900/40 backdrop-blur-sm transition-all duration-300 hover:border-amber-400/50 hover:bg-zinc-800/50"
-				whileHover={{ y: -4 }}
-				transition={{ duration: 0.2, ease: "easeOut" }}
 			>
 				<div className="relative aspect-square w-full overflow-hidden">
 					<Image
@@ -110,13 +92,13 @@ const RegularCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
 						alt={`${release.title} - ${release.year}`}
 						fill
 						sizes="320px"
-						className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+						className="object-cover"
 						loading="lazy"
 						quality={75}
 					/>
-					<div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+					<div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100" />
 
-					<div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+					<div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100">
 						<div className="rounded-full bg-amber-400/90 p-3 backdrop-blur-sm">
 							<Play className="h-6 w-6 text-black" fill="currentColor" />
 						</div>
