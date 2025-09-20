@@ -8,7 +8,6 @@ import {
   Award,
   ChevronLeft,
   ChevronRight,
-  Download,
   Loader2,
   Mail,
   MapPin,
@@ -285,10 +284,6 @@ export default function EPKPage() {
                       <Mail className="w-5 h-5" />
                       Book Now
                     </a>
-                    <button className="inline-flex items-center gap-2 px-6 py-3 bg-zinc-800 hover:bg-zinc-700 text-white font-semibold rounded-lg transition-all border border-zinc-700">
-                      <Download className="w-5 h-5" />
-                      Download EPK
-                    </button>
                     <div className="flex items-center gap-3">
                       <a
                         href={contact.social.instagram}
