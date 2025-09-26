@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Dancing_Script, Inter } from "next/font/google";
+import { Dancing_Script, Inter, Patrick_Hand } from "next/font/google";
 import "./globals.css";
 import SocialSidebar from "@/components/layout/social-sidebar.component";
 import ScrollToTop from "@/components/layout/scroll-to-top.component";
@@ -11,6 +11,12 @@ const inter = Inter({ subsets: ["latin"] });
 const dancingScript = Dancing_Script({
 	subsets: ["latin"],
 	variable: "--font-dancing-script",
+});
+const patrickHand = Patrick_Hand({
+	weight: "400",
+	subsets: ["latin"],
+	variable: "--font-patrick-hand",
+	display: "swap",
 });
 
 const siteUrl = "https://www.noahlynch.com";
@@ -120,7 +126,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<link rel="canonical" href={siteUrl} />
 				<title></title>
 			</head>
-			<body className={`${inter.className} ${dancingScript.variable}`}>
+			<body className={`${inter.className} ${dancingScript.variable} ${patrickHand.variable}`}>
 				<SocialSidebar />
 				<ScrollToTop />
 				{children}

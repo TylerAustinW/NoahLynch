@@ -3,16 +3,10 @@
 import { useInView } from "@/lib/hooks/use-in-view.hook";
 import { useIsMobile } from "@/lib/hooks/use-mobile.hook";
 import { motion } from "framer-motion";
-import { Patrick_Hand } from "next/font/google";
 import Image from "next/image";
-import { ChevronDown, ChevronLeft, ChevronRight, Music, ExternalLink, Award } from "lucide-react";
+import { ChevronDown, Music, ExternalLink, Award } from "lucide-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-
-const Font = Patrick_Hand({
-	weight: "400",
-	subsets: ["latin"],
-});
 
 const photoSlides = [
 	{
@@ -20,17 +14,11 @@ const photoSlides = [
 		src: "/venues/backwater-grill/IMG_6718.jpg",
 		alt: "Noah Lynch - The Artist",
 	},
-	{
-		id: "studio",
-		src: "/portraits/noah-lynch-studio-session.jpeg",
-		alt: "Noah Lynch - In the Studio",
-	},
 ];
 
 export default function BiographySection() {
 	const { ref, inView } = useInView({ threshold: 0.1, once: true });
-	const [currentSlide, setCurrentSlide] = useState(0);
-	const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+	const [currentSlide] = useState(0);
 	const [isExpanded, setIsExpanded] = useState(false);
 	const [isMounted, setIsMounted] = useState(false);
 	const isMobile = useIsMobile();
@@ -39,30 +27,6 @@ export default function BiographySection() {
 		setIsMounted(true);
 	}, []);
 
-	useEffect(() => {
-		if (!isAutoPlaying || !inView) return;
-
-		const interval = setInterval(() => {
-			setCurrentSlide((prev) => (prev + 1) % photoSlides.length);
-		}, 5000);
-
-		return () => clearInterval(interval);
-	}, [isAutoPlaying, inView]);
-
-	const goToSlide = (index: number) => {
-		setCurrentSlide(index);
-		setIsAutoPlaying(false);
-	};
-
-	const nextSlide = () => {
-		setCurrentSlide((prev) => (prev + 1) % photoSlides.length);
-		setIsAutoPlaying(false);
-	};
-
-	const prevSlide = () => {
-		setCurrentSlide((prev) => (prev - 1 + photoSlides.length) % photoSlides.length);
-		setIsAutoPlaying(false);
-	};
 
 	return (
 		<section
@@ -78,13 +42,13 @@ export default function BiographySection() {
 					fill
 					className="object-cover opacity-30"
 					sizes="100vw"
-					priority
-					quality={75}
+					priority={false}
+					quality={40}
+					loading="lazy"
 				/>
 				<div className="absolute inset-0 bg-gradient-to-b from-zinc-950/80 via-zinc-950/90 to-zinc-950" />
 			</div>
 
-			<div className="pointer-events-none absolute inset-0 bg-[url('/overlays/grain-texture-overlay.png')] bg-repeat opacity-[0.03]" />
 			<div className="pointer-events-none absolute inset-0 overflow-hidden">
 				<div className="absolute top-1/3 right-1/4 h-96 w-96 rounded-full bg-white/3 blur-3xl" />
 				<div className="absolute bottom-1/4 left-1/5 h-72 w-72 rounded-full bg-white/2 blur-2xl" />
@@ -98,7 +62,7 @@ export default function BiographySection() {
 					transition={{ duration: 0.8 }}
 				>
 					<h2 className="mb-4 text-4xl font-bold text-zinc-200 md:text-5xl lg:text-6xl">The Story</h2>
-					<p className={`${Font.className} text-xl text-zinc-300 md:text-2xl mb-6`}>"Music isn't just what I do, it's who I am"</p>
+					<p className="font-patrick text-xl text-zinc-300 md:text-2xl mb-6">"Music isn't just what I do, it's who I am"</p>
 					<div className="flex justify-center">
 						<span className="inline-flex items-center px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-lg text-amber-300 font-semibold">
 							<Award className="w-4 h-4" />
@@ -164,7 +128,7 @@ export default function BiographySection() {
 										</span>
 									</Link>{" "}
 									quickly gained traction, hitting <span className="font-semibold text-amber-400">50,000 streams</span> and
-									earning airplay on the UK's CraGs Radio, signaling the start of a promising career. With{" "}
+									earning airplay on the UK's Crags Radio, signaling the start of a promising career. With{" "}
 									<Link
 										href="/music/honest"
 										className="font-semibold text-amber-400 hover:text-amber-300 transition-colors relative group/link inline-flex items-center gap-1"
@@ -272,43 +236,15 @@ export default function BiographySection() {
 										<div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
 										<div className="absolute bottom-4 left-4 right-4">
-											<p className={`${Font.className} mb-1 text-xl text-white/90 drop-shadow-lg`}></p>
+											<p className="font-patrick mb-1 text-xl text-white/90 drop-shadow-lg"></p>
 											<p className="text-sm text-zinc-300/80 drop-shadow"></p>
 										</div>
 									</motion.div>
 								))}
 							</div>
 
-							<div className="absolute inset-y-0 left-0 right-0 hidden items-center justify-between px-4 md:flex">
-								<button
-									onClick={prevSlide}
-									className="rounded-full bg-white/10 p-2 text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:border-white/30 focus:outline-none focus:ring-2 focus:ring-amber-400/50"
-									aria-label="Previous photo"
-								>
-									<ChevronLeft className="h-6 w-6" />
-								</button>
-								<button
-									onClick={nextSlide}
-									className="rounded-full bg-white/10 p-2 text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:border-white/30 focus:outline-none focus:ring-2 focus:ring-amber-400/50"
-									aria-label="Next photo"
-								>
-									<ChevronRight className="h-6 w-6" />
-								</button>
-							</div>
 						</div>
 
-						<div className="mt-4 flex justify-center gap-2">
-							{photoSlides.map((_, index) => (
-								<button
-									key={index}
-									onClick={() => goToSlide(index)}
-									className={`h-2 rounded-full transition-all duration-300 ${
-										index === currentSlide ? "w-8 bg-amber-400" : "w-2 bg-zinc-600 hover:bg-zinc-500"
-									}`}
-									aria-label={`View photo ${index + 1}`}
-								/>
-							))}
-						</div>
 					</motion.div>
 				</div>
 			</div>

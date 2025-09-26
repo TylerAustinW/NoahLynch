@@ -28,6 +28,10 @@ const config = {
 			"2xl": "1536px",
 		},
 		extend: {
+			fontFamily: {
+				patrick: ["var(--font-patrick-hand)", "cursive"],
+				dancing: ["var(--font-dancing-script)", "cursive"],
+			},
 			backgroundImage: {
 				"grain-overlay": "url('/overlays/grain-texture-overlay.png')",
 			},

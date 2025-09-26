@@ -45,7 +45,7 @@ export default ({ error, reset }: ErrorProps): React.ReactElement => {
 
 				<div className="absolute inset-0 bg-black/70 bg-gradient-to-b from-red-950/20 to-black/80" />
 
-				<div className="pointer-events-none absolute inset-0 bg-[url('/overlays/grain-texture-overlay.png')] bg-repeat opacity-[0.02]" />
+				
 			</div>
 
 			<motion.div

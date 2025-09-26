@@ -185,7 +185,6 @@ export default function MusicShowcaseSection(): React.ReactElement {
 			<video autoPlay loop muted playsInline className="absolute inset-0 h-full w-full object-cover opacity-15">
 				<source src="/videos/noah-lynch-hero-video.mp4" type="video/mp4" />
 			</video>
-			<div className="pointer-events-none absolute inset-0 bg-[url('/overlays/grain-texture-overlay.png')] bg-repeat opacity-[0.03]" />
 			<div className="pointer-events-none absolute inset-0 overflow-hidden">
 				<div className="absolute top-1/4 left-1/4 h-80 w-80 rounded-full bg-white/4 blur-3xl" />
 				<div className="absolute bottom-1/3 right-1/3 h-64 w-64 rounded-full bg-white/3 blur-2xl" />
