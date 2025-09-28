@@ -25,10 +25,21 @@ export default function EntranceAnimation() {
 		<AnimatePresence>
 			{isVisible && (
 				<motion.div
-					className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-zinc-950"
+					className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-zinc-950"
 					initial={{ opacity: 1 }}
 					exit={{ opacity: 0 }}
 					transition={{ duration: 0.5, ease: "easeInOut" }}
+					style={{
+						width: '100vw',
+						height: '100vh',
+						minHeight: '100vh',
+						minWidth: '100vw',
+						position: 'fixed',
+						top: 0,
+						left: 0,
+						right: 0,
+						bottom: 0
+					}}
 				>
 					<div className="absolute inset-0 bg-[url('/overlays/grain-texture-overlay.png')] bg-repeat opacity-5" />
 
@@ -37,7 +48,7 @@ export default function EntranceAnimation() {
 							className="relative mx-auto will-change-transform"
 							style={{
 								transform: "translateZ(0)",
-								width: "min(90vw, 600px)",
+								width: "min(70vw, 600px)",  // Reduced from 90vw to 70vw for mobile
 								height: "min(40vh, 300px)",
 							}}
 							initial={{
