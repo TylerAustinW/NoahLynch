@@ -263,7 +263,7 @@ export default function Navbar() {
 				<AnimatePresence>
 					{mobileOpen && (
 						<motion.div
-							className="fixed inset-0 z-[90] flex items-center justify-center overflow-hidden bg-zinc-900/95 backdrop-blur-2xl md:hidden w-screen h-dvh"
+							className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-zinc-900 backdrop-blur-2xl md:hidden w-screen h-screen min-h-[100vh]"
 							initial={variants.overlay.initial}
 							animate={variants.overlay.animate}
 							exit={variants.overlay.exit}

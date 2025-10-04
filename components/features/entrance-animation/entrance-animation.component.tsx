@@ -24,7 +24,7 @@ export default function EntranceAnimation() {
 		<AnimatePresence>
 			{isVisible && (
 				<motion.div
-					className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-zinc-950 w-screen h-dvh"
+					className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-zinc-950 w-screen h-screen min-h-[100vh]"
 					initial={{ opacity: 1 }}
 					exit={{ opacity: 0 }}
 					transition={{ duration: 0.5, ease: "easeInOut" }}
