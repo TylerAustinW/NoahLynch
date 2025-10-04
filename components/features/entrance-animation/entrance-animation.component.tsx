@@ -8,7 +8,6 @@ import { useScrollLock } from "@/lib/hooks/use-scroll-lock.hook";
 export default function EntranceAnimation() {
 	const [isVisible, setIsVisible] = useState(true);
 
-	// Use the new scroll lock hook
 	useScrollLock(isVisible);
 
 	useEffect(() => {
@@ -25,7 +24,7 @@ export default function EntranceAnimation() {
 		<AnimatePresence>
 			{isVisible && (
 				<motion.div
-					className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-zinc-950 w-screen h-screen"
+					className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-zinc-950 w-screen h-dvh"
 					initial={{ opacity: 1 }}
 					exit={{ opacity: 0 }}
 					transition={{ duration: 0.5, ease: "easeInOut" }}
@@ -37,7 +36,7 @@ export default function EntranceAnimation() {
 							className="relative mx-auto will-change-transform"
 							style={{
 								transform: "translateZ(0)",
-								width: "min(70vw, 600px)",  // Reduced from 90vw to 70vw for mobile
+								width: "min(70vw, 600px)",  
 								height: "min(40vh, 300px)",
 							}}
 							initial={{

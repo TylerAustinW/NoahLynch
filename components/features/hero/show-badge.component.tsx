@@ -10,8 +10,8 @@ export default function ShowBadge() {
 
 	if (!nextShow) {
 		return (
-			<div className="flex flex-wrap items-center gap-2 rounded-full border backdrop-blur-md px-3 py-2 sm:px-4 text-sm sm:text-base font-medium text-white w-full sm:w-auto justify-center sm:justify-start border-zinc-700/40 bg-zinc-900/80 lg:border-white/20 lg:bg-white/5">
-				<span className="text-xs sm:text-sm md:text-base">More Shows Coming Soon</span>
+			<div className="flex flex-wrap items-center gap-2 rounded-full border backdrop-blur-md px-3 py-2 sm:px-4 text-sm sm:text-base font-medium text-white w-full sm:w-auto justify-center sm:justify-start border-zinc-700/40 bg-zinc-900/80 lg:border-white/20 lg:bg-white/5 transition-all duration-300">
+				<span className="text-xs sm:text-sm md:text-base">MORE SHOWS COMING SOON</span>
 			</div>
 		);
 	}

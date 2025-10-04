@@ -5,6 +5,7 @@ const nextConfig = {
 	},
 	typescript: {},
 	images: {
+		qualities: [25, 40, 50, 75, 100],
 		remotePatterns: [
 			{
 				protocol: "https",

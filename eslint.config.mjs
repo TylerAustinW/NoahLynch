@@ -1,5 +1,3 @@
-// noinspection JSCheckFunctionSignatures
-
 import globals from "globals";
 import pluginJs from "@eslint/js";
 import tslint from "typescript-eslint";
@@ -9,7 +7,7 @@ import pluginNext from "@next/eslint-plugin-next";
 
 export default tslint.config(
 	{
-		ignores: [".next/", "node_modules/", "dist/", "public/", ".turbo/", "coverage/", "tsconfig.tsbuildinfo"],
+		ignores: [".next/", "node_modules/", "dist/", "public/", ".turbo/", "coverage/", "tsconfig.tsbuildinfo", "next-env.d.ts"],
 	},
 	pluginJs.configs.recommended,
 	...tslint.configs.recommended,
