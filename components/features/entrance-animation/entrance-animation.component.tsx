@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useScrollLock } from "@/lib/hooks/use-scroll-lock.hook";
 
@@ -24,7 +24,12 @@ export default function EntranceAnimation() {
 		<AnimatePresence>
 			{isVisible && (
 				<motion.div
-					className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-zinc-950 w-screen h-screen min-h-[100vh]"
+					className="fixed top-0 left-0 right-0 bottom-0 z-[9999] flex items-center justify-center overflow-hidden bg-zinc-950"
+					style={{
+						height: "-webkit-fill-available" as React.CSSProperties["height"],
+						minHeight: "100vh",
+						width: "100vw"
+					}}
 					initial={{ opacity: 1 }}
 					exit={{ opacity: 0 }}
 					transition={{ duration: 0.5, ease: "easeInOut" }}

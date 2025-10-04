@@ -263,7 +263,12 @@ export default function Navbar() {
 				<AnimatePresence>
 					{mobileOpen && (
 						<motion.div
-							className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-zinc-900 backdrop-blur-2xl md:hidden w-screen h-screen min-h-[100vh]"
+							className="fixed top-0 left-0 right-0 bottom-0 z-[100] flex items-center justify-center overflow-hidden bg-zinc-900 backdrop-blur-2xl md:hidden"
+							style={{
+								height: "-webkit-fill-available" as React.CSSProperties["height"],
+								minHeight: "100vh",
+								width: "100vw"
+							}}
 							initial={variants.overlay.initial}
 							animate={variants.overlay.animate}
 							exit={variants.overlay.exit}
