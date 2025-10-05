@@ -144,7 +144,7 @@ export default function EPKPage() {
 
       const preloadIndex =
         nextIndex === selectedCollection.photos.length - 1 ? 0 : nextIndex + 1;
-      preloadImage(selectedCollection.photos[preloadIndex].src).catch(() => {});
+      preloadImage(selectedCollection.photos[preloadIndex].src).catch(() => { });
     }
   }, [selectedCollection, currentGalleryPhotoIndex, preloadImage]);
 
@@ -158,7 +158,7 @@ export default function EPKPage() {
 
       const preloadIndex =
         prevIndex === 0 ? selectedCollection.photos.length - 1 : prevIndex - 1;
-      preloadImage(selectedCollection.photos[preloadIndex].src).catch(() => {});
+      preloadImage(selectedCollection.photos[preloadIndex].src).catch(() => { });
     }
   }, [selectedCollection, currentGalleryPhotoIndex, preloadImage]);
 
@@ -350,11 +350,10 @@ export default function EPKPage() {
                             <button
                               key={index}
                               onClick={() => setCurrentPhotoIndex(index)}
-                              className={`w-2 h-2 rounded-full transition-all ${
-                                index === currentPhotoIndex
-                                  ? "w-8 bg-white"
-                                  : "bg-white/50 hover:bg-white/70"
-                              }`}
+                              className={`w-2 h-2 rounded-full transition-all ${index === currentPhotoIndex
+                                ? "w-8 bg-white"
+                                : "bg-white/50 hover:bg-white/70"
+                                }`}
                               aria-label={`View photo ${index + 1}`}
                             />
                           ))}
@@ -820,10 +819,10 @@ export default function EPKPage() {
                   {imageLoadingStates[
                     `${selectedCollection.id}-${currentGalleryPhotoIndex}`
                   ] && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-zinc-900/80 rounded-lg z-10">
-                      <Loader2 className="w-8 h-8 text-amber-400 animate-spin" />
-                    </div>
-                  )}
+                      <div className="absolute inset-0 flex items-center justify-center bg-zinc-900/80 rounded-lg z-10">
+                        <Loader2 className="w-8 h-8 text-amber-400 animate-spin" />
+                      </div>
+                    )}
                   <Image
                     key={`${selectedCollection.id}-${currentGalleryPhotoIndex}`}
                     src={
@@ -832,13 +831,12 @@ export default function EPKPage() {
                     alt={
                       selectedCollection.photos[currentGalleryPhotoIndex].alt
                     }
-                    className={`w-auto h-auto max-w-full max-h-[80vh] object-contain rounded-lg transition-opacity duration-300 ${
-                      imageLoadingStates[
-                        `${selectedCollection.id}-${currentGalleryPhotoIndex}`
-                      ]
-                        ? "opacity-0"
-                        : "opacity-100"
-                    }`}
+                    className={`w-auto h-auto max-w-full max-h-[80vh] object-contain rounded-lg transition-opacity duration-300 ${imageLoadingStates[
+                      `${selectedCollection.id}-${currentGalleryPhotoIndex}`
+                    ]
+                      ? "opacity-0"
+                      : "opacity-100"
+                      }`}
                     width={1200}
                     height={800}
                     sizes="(max-width: 768px) 95vw, (max-width: 1200px) 80vw, 1200px"

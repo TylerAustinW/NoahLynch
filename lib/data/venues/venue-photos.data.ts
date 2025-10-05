@@ -14,6 +14,27 @@ export interface VenuePhotoCollection {
 
 export const venuePhotoCollections: VenuePhotoCollection[] = [
 	{
+		id: "Ole-Brook-Festival",
+		venue: "Ole Brook Festival",
+		city: "Brookhaven",
+		state: "MS",
+		date: "2025-10-04",
+		photos: [
+			{
+				filename: "thenoahlynchband.png",
+				featured: true,
+			},
+			{
+				filename: "noah-hunter.png",
+				featured: false,
+			},
+			{
+				filename: "image.png",
+				featured: false,
+			},
+		],
+	},
+	{
 		id: "backwater-grill",
 		venue: "Backwater Grill",
 		city: "Brandon",

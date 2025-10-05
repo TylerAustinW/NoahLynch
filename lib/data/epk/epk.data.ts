@@ -179,13 +179,40 @@ export const epkData: EPKData = {
     title: "Live Performance Gallery",
     collections: [
       {
+        id: "ole-brook-festival-2025",
+        venue: "Ole Brook Festival",
+        city: "Brookhaven",
+        state: "MS",
+        date: "2025-10-04",
+        description: "Festival performance with The Noah Lynch Band",
+        featured: true,
+        photos: [
+          {
+            src: "/venues/Ole-Brook-Festival/thenoahlynchband.png",
+            alt: "The Noah Lynch Band performing at Ole Brook Festival",
+            caption: "Full band performance at Ole Brook Festival",
+            featured: true,
+          },
+          {
+            src: "/venues/Ole-Brook-Festival/noah-hunter.png",
+            alt: "Noah Lynch with Hunter at Ole Brook Festival",
+            caption: "Noah Lynch and Hunter performing at Ole Brook Festival",
+          },
+          {
+            src: "/venues/Ole-Brook-Festival/image.png",
+            alt: "Noah Lynch at Ole Brook Festival",
+            caption: "Live performance at Ole Brook Festival",
+          },
+        ],
+      },
+      {
         id: "backwater-grill-2025",
         venue: "Backwater Grill",
         city: "Brandon",
         state: "MS",
         date: "2025-09-06",
         description: "Live acoustic performance",
-        featured: true,
+        featured: false,
         photos: [
           {
             src: "/venues/backwater-grill/IMG_6718.jpg",
