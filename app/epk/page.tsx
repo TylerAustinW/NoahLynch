@@ -325,7 +325,7 @@ export default function EPKPage() {
                       sizes="(max-width: 1024px) 100vw, 40vw"
                       className="object-cover object-top transition-opacity duration-500"
                       priority
-                      quality={90}
+                      quality={75}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
 
@@ -820,7 +820,7 @@ export default function EPKPage() {
                     width={1200}
                     height={800}
                     sizes="(max-width: 768px) 95vw, (max-width: 1200px) 80vw, 1200px"
-                    quality={90}
+                    quality={75}
                     loading="lazy"
                     onLoad={() => {
                       setImageLoadingStates((prev) => ({
