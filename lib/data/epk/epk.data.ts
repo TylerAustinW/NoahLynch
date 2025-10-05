@@ -42,8 +42,12 @@ export interface EPKData {
     }[];
   };
   liveShow: {
-    format: string;
-    setup: string[];
+    formats: {
+      name: string;
+      description: string;
+      setup?: string[];
+      idealFor?: string;
+    }[];
     repertoire: string;
     venueTypes: string[];
     paSystem: boolean;
@@ -83,8 +87,8 @@ export const epkData: EPKData = {
   },
   bio: {
     short:
-      "Noah Lynch is a Mississippi-born singer-songwriter blending acoustic soul, soft rock, and alt-pop into emotionally rich, story-driven music. Known for his heartfelt guitar playing and honest lyrics, Noah delivers performances that feel both intimate and universal. His songs speak to the real — love, heartbreak, growth — all anchored in smooth grooves and Southern sincerity.",
-    long: 'Noah Lynch is a solo artist from Meadville, Mississippi, crafting a sound rooted in acoustic soul, soft rock, and alternative pop. With over a decade of experience behind the guitar, Noah delivers stripped-back performances that spotlight the heart of each song. His lyrics speak to real-life moments — heartbreak, healing, and hope — with a calm confidence that draws listeners in. From backyard shows to packed venues, Noah has built a loyal following across Mississippi and beyond. His music has been featured on CraGs Radio UK, where tracks like "For You" and "Good Things Take Time" found international ears. Whether he\'s playing a small-town stage or recording his next single, Noah\'s focus is always the same: connect through the song. With a growing catalog and an unmistakable sound, Noah Lynch is quickly becoming a voice of his generation — one story, one song at a time.',
+      "Noah Lynch is a <strong>Mississippi-born singer-songwriter</strong> blending acoustic soul, soft rock, and alt-pop into <strong>emotionally rich, story-driven music</strong>. Known for his heartfelt guitar playing and honest lyrics, Noah delivers performances that feel both <strong>intimate and universal</strong>. His songs speak to the real — love, heartbreak, growth — all anchored in smooth grooves and Southern sincerity.",
+    long: 'Noah Lynch is a solo artist from Meadville, Mississippi, crafting a sound rooted in <strong>acoustic soul, soft rock, and alternative pop</strong>. With <strong>over a decade of experience</strong> behind the guitar, Noah delivers stripped-back performances that spotlight the heart of each song. His lyrics speak to real-life moments — heartbreak, healing, and hope — with a calm confidence that draws listeners in. From backyard shows to packed venues, Noah has built a <strong>loyal following across Mississippi and beyond</strong>. His music has been <strong>featured on Crags Radio UK</strong>, where tracks like "For You" and "Good Things Take Time" found international ears. Whether he\'s playing a small-town stage or recording his next single, Noah\'s focus is always the same: <strong>connect through the song</strong>. With a growing catalog and an unmistakable sound, Noah Lynch is quickly becoming <strong>a voice of his generation</strong> — one story, one song at a time.',
   },
   featuredVideos: {
     title: "Featured Performances",
@@ -102,8 +106,28 @@ export const epkData: EPKData = {
     ],
   },
   liveShow: {
-    format: "Solo Acoustic Performance",
-    setup: ["2 acoustic guitars", "1 cajon (percussion)"],
+    formats: [
+      {
+        name: "Solo Acoustic",
+        description: "<strong>Just me and my acoustic guitar</strong> — intimate, stripped-down sound.",
+        idealFor: "Small intimate settings",
+      },
+      {
+        name: "Duo",
+        description: "<strong>Acoustic performance with one additional musician</strong> (e.g., second guitarist, percussionist, or keyboardist).",
+        idealFor: "Ideal for medium-sized patios, wine bars, private events, or restaurants",
+      },
+      {
+        name: "Trio",
+        description: "<strong>A fuller sound with three performers</strong> (commonly guitar, percussion, bass or keys).",
+        idealFor: "Medium to large venues",
+      },
+      {
+        name: "Full Band",
+        description: "<strong>Full lineup available for large venues and events</strong> — high energy, dynamic sound.",
+        idealFor: "Large venues and events",
+      },
+    ],
     repertoire:
       "Cover songs from John Mayer, Edwin McCain, James Taylor, Lifehouse, The Fray, and more, with 3–5 original songs integrated into each set",
     venueTypes: [
@@ -139,14 +163,14 @@ export const epkData: EPKData = {
     {
       title: "For You",
       date: "June 2024",
-      highlights: "Featured on CraGs Radio UK",
+      highlights: "Featured on Crags Radio UK",
       coverArt: "/covers/single-for-you-cover.jpg",
       slug: "for-you",
     },
     {
       title: "Good Things Take Time",
       date: "2024",
-      highlights: "Featured on CraGs Radio UK",
+      highlights: "Featured on Crags Radio UK",
       coverArt: "/covers/single-good-things-take-time-cover.jpg",
       slug: "good-things-take-time",
     },

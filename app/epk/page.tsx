@@ -420,7 +420,7 @@ export default function EPKPage() {
                     <div className="w-1 h-8 bg-amber-400 rounded-full" />
                     Biography
                   </h2>
-                  <ExpandableBio content={bio.long} />
+                  <ExpandableBio content={bio.long} shortContent={bio.short} />
                 </div>
               </section>
 
@@ -486,28 +486,50 @@ export default function EPKPage() {
                     <div className="w-1 h-6 bg-amber-400 rounded-full" />
                     Live Performance
                   </h2>
-                  <div className="mb-3">
-                    <span className="inline-block px-3 py-1 bg-amber-500/20 border border-amber-500/30 rounded-lg text-amber-300 font-semibold text-sm">
-                      {liveShow.format}
-                    </span>
+                  <div className="mb-4">
+                    <h4 className="font-semibold text-amber-300 mb-3 text-sm">Performance Formats</h4>
+                    <div className="space-y-2">
+                      {liveShow.formats.map((format, index) => (
+                        <div
+                          key={index}
+                          className="bg-zinc-800/30 border border-zinc-700/50 rounded-lg p-3"
+                        >
+                          <div className="flex items-start justify-between">
+                            <div className="flex-1">
+                              <span className="inline-block px-2 py-0.5 bg-amber-500/20 border border-amber-500/30 rounded text-amber-300 font-semibold text-xs mb-2">
+                                {format.name}
+                              </span>
+                              <p
+                                className="text-zinc-300 text-xs mb-1"
+                                dangerouslySetInnerHTML={{ __html: format.description }}
+                              />
+                              {format.idealFor && (
+                                <p className="text-zinc-400 text-xs italic">
+                                  {format.idealFor}
+                                </p>
+                              )}
+                            </div>
+                          </div>
+                          {format.setup && (
+                            <div className="mt-2 pl-3">
+                              <ul className="space-y-0.5">
+                                {format.setup.map((item, i) => (
+                                  <li
+                                    key={i}
+                                    className="flex items-start gap-2 text-zinc-400 text-xs"
+                                  >
+                                    <div className="w-1 h-1 bg-amber-500 rounded-full mt-1" />
+                                    <span>{item}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                   <div className="grid md:grid-cols-2 gap-3 mb-3">
-                    <div>
-                      <h4 className="font-semibold text-amber-300 mb-2 text-sm">
-                        Setup
-                      </h4>
-                      <ul className="space-y-1">
-                        {liveShow.setup.map((item, index) => (
-                          <li
-                            key={index}
-                            className="flex items-start gap-2 text-zinc-300 text-sm"
-                          >
-                            <div className="w-1.5 h-1.5 bg-amber-500 rounded-full mt-1.5" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
                     <div>
                       <h4 className="font-semibold text-amber-300 mb-2 text-sm">
                         Ideal Venues

@@ -7,14 +7,14 @@ import { Button } from "./button.component";
 
 interface ExpandableBioProps {
 	content: string;
+	shortContent?: string;
 	className?: string;
 }
 
-export default function ExpandableBio({ content, className = "" }: ExpandableBioProps) {
+export default function ExpandableBio({ content, shortContent, className = "" }: ExpandableBioProps) {
 	const [isExpanded, setIsExpanded] = useState(false);
 
-	const truncatedContent =
-		"Noah Lynch is a Mississippi-born singer-songwriter blending acoustic soul, soft rock, and alt-pop into emotionally rich, story-driven music. Known for his heartfelt guitar playing and honest lyrics, Noah delivers performances that feel both intimate and universal. His songs speak to the real — love, heartbreak, growth — all anchored in smooth grooves and Southern sincerity.";
+	const truncatedContent = shortContent || content.substring(0, 300) + "...";
 	const fullContent = content;
 
 	const hasMoreContent = fullContent.length > truncatedContent.length;
@@ -45,9 +45,8 @@ export default function ExpandableBio({ content, className = "" }: ExpandableBio
 								ease: [0.25, 0.46, 0.45, 0.94],
 							}}
 							className="will-change-transform"
-						>
-							{fullContent}
-						</motion.div>
+							dangerouslySetInnerHTML={{ __html: fullContent }}
+						/>
 					) : (
 						<motion.div
 							key="truncated"
@@ -59,9 +58,8 @@ export default function ExpandableBio({ content, className = "" }: ExpandableBio
 								ease: [0.25, 0.46, 0.45, 0.94],
 							}}
 							className="will-change-transform"
-						>
-							{truncatedContent}
-						</motion.div>
+							dangerouslySetInnerHTML={{ __html: truncatedContent }}
+						/>
 					)}
 				</AnimatePresence>
 			</motion.div>
