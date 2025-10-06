@@ -1,9 +1,6 @@
 import type { DateFormatOptions } from "@/lib/types";
 
-export function formatDate(
-  dateString: string,
-  options: DateFormatOptions = {}
-): string {
+export function formatDate(dateString: string, options: DateFormatOptions = {}): string {
   const { includeYear = true, format = "long" } = options;
 
   const [year, month, day] = dateString.split("-").map(Number);

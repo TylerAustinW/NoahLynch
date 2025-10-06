@@ -8,25 +8,28 @@ import EntranceAnimation from "@/components/features/entrance-animation/entrance
 import PageFadeWrapper from "@/components/features/entrance-animation/page-fade-wrapper.component";
 import dynamic from "next/dynamic";
 
-const BiographySection = dynamic(() => import("@/components/features/biography/biography-section.component"), {
-	loading: () => (
-		<div className="min-h-[50vh] bg-zinc-950 flex items-center justify-center">
-			<div className="text-zinc-400">Loading...</div>
-		</div>
-	),
-});
+const BiographySection = dynamic(
+  () => import("@/components/features/biography/biography-section.component"),
+  {
+    loading: () => (
+      <div className="min-h-[50vh] bg-zinc-950 flex items-center justify-center">
+        <div className="text-zinc-400">Loading...</div>
+      </div>
+    ),
+  },
+);
 
 export default function Home() {
-	return (
-		<div className="min-h-screen bg-zinc-950 text-white">
-			<EntranceAnimation />
-			<HeroSection />
-			<PageFadeWrapper>
-				<Navbar />
-				<MusicShowcaseSection />
-				<StudioSessionsSection />
-				<BiographySection />
-			</PageFadeWrapper>
-		</div>
-	);
+  return (
+    <div className="min-h-screen bg-zinc-950 text-white">
+      <EntranceAnimation />
+      <HeroSection />
+      <PageFadeWrapper>
+        <Navbar />
+        <MusicShowcaseSection />
+        <StudioSessionsSection />
+        <BiographySection />
+      </PageFadeWrapper>
+    </div>
+  );
 }

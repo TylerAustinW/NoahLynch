@@ -14,12 +14,14 @@ export const getPastShows = () => tourRepository.getPastShows();
 export const getNextShow = () => tourRepository.getNextShow();
 export const getFeaturedShows = () => tourRepository.getFeaturedShows();
 export const getShowsSortedByDate = () => tourRepository.getShowsSortedByDate();
-export const addShow = (showData: Parameters<typeof tourRepository.addShow>[0]) => tourRepository.addShow(showData);
+export const addShow = (showData: Parameters<typeof tourRepository.addShow>[0]) =>
+  tourRepository.addShow(showData);
 export const updateShow = (id: string, updates: Parameters<typeof tourRepository.updateShow>[1]) =>
-	tourRepository.updateShow(id, updates);
+  tourRepository.updateShow(id, updates);
 export const removeShow = (id: string) => tourRepository.removeShow(id);
 export const findShowById = (id: string) => tourRepository.findShowById(id);
-export const isShowUpcoming = (show: Parameters<typeof tourRepository.isShowUpcoming>[0]) => tourRepository.isShowUpcoming(show);
+export const isShowUpcoming = (show: Parameters<typeof tourRepository.isShowUpcoming>[0]) =>
+  tourRepository.isShowUpcoming(show);
 export const getAllVenues = () => tourRepository.getAllVenues();
 export const getVenueById = (id: string) => tourRepository.getVenueById(id);
 export const getShowsByVenue = (venueId: string) => tourRepository.getShowsByVenue(venueId);

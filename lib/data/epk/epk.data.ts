@@ -109,34 +109,32 @@ export const epkData: EPKData = {
     formats: [
       {
         name: "Solo Acoustic",
-        description: "<strong>Just me and my acoustic guitar</strong> — intimate, stripped-down sound.",
+        description:
+          "<strong>Just me and my acoustic guitar</strong> — intimate, stripped-down sound.",
         idealFor: "Small intimate settings",
       },
       {
         name: "Duo",
-        description: "<strong>Acoustic performance with one additional musician</strong> (e.g., second guitarist, percussionist, or keyboardist).",
+        description:
+          "<strong>Acoustic performance with one additional musician</strong> (e.g., second guitarist, percussionist, or keyboardist).",
         idealFor: "Ideal for medium-sized patios, wine bars, private events, or restaurants",
       },
       {
         name: "Trio",
-        description: "<strong>A fuller sound with three performers</strong> (commonly guitar, percussion, bass or keys).",
+        description:
+          "<strong>A fuller sound with three performers</strong> (commonly guitar, percussion, bass or keys).",
         idealFor: "Medium to large venues",
       },
       {
         name: "Full Band",
-        description: "<strong>Full lineup available for large venues and events</strong> — high energy, dynamic sound.",
+        description:
+          "<strong>Full lineup available for large venues and events</strong> — high energy, dynamic sound.",
         idealFor: "Large venues and events",
       },
     ],
     repertoire:
       "Cover songs from John Mayer, Edwin McCain, James Taylor, Lifehouse, The Fray, and more, with 3–5 original songs integrated into each set",
-    venueTypes: [
-      "Songwriter rounds",
-      "Listening rooms",
-      "Patios",
-      "Restaurants",
-      "Festivals",
-    ],
+    venueTypes: ["Songwriter rounds", "Listening rooms", "Patios", "Restaurants", "Festivals"],
     paSystem: true,
   },
   notableShows: [
@@ -367,9 +365,7 @@ export const epkData: EPKData = {
 };
 
 // Helper functions for EPK gallery collections
-export function getFeaturedCollection(
-  epkData: EPKData
-): EPKGalleryCollection | undefined {
+export function getFeaturedCollection(epkData: EPKData): EPKGalleryCollection | undefined {
   return (
     epkData.gallery.collections.find((collection) => collection.featured) ||
     epkData.gallery.collections[0]
@@ -377,17 +373,12 @@ export function getFeaturedCollection(
 }
 
 export function getFeaturedPhotoFromCollection(
-  collection: EPKGalleryCollection
+  collection: EPKGalleryCollection,
 ): EPKGalleryPhoto | undefined {
-  return (
-    collection.photos.find((photo) => photo.featured) || collection.photos[0]
-  );
+  return collection.photos.find((photo) => photo.featured) || collection.photos[0];
 }
 
-export function getCollectionById(
-  epkData: EPKData,
-  id: string
-): EPKGalleryCollection | undefined {
+export function getCollectionById(epkData: EPKData, id: string): EPKGalleryCollection | undefined {
   return epkData.gallery.collections.find((collection) => collection.id === id);
 }
 
@@ -395,11 +386,8 @@ export function getAllCollections(epkData: EPKData): EPKGalleryCollection[] {
   return epkData.gallery.collections;
 }
 
-export function getCollectionsByVenue(
-  epkData: EPKData,
-  venue: string
-): EPKGalleryCollection[] {
+export function getCollectionsByVenue(epkData: EPKData, venue: string): EPKGalleryCollection[] {
   return epkData.gallery.collections.filter((collection) =>
-    collection.venue.toLowerCase().includes(venue.toLowerCase())
+    collection.venue.toLowerCase().includes(venue.toLowerCase()),
   );
 }

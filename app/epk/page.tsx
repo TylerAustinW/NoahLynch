@@ -19,14 +19,7 @@ import { Patrick_Hand } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
-import {
-  FaAmazon,
-  FaApple,
-  FaFacebookF,
-  FaInstagram,
-  FaSpotify,
-  FaYoutube,
-} from "react-icons/fa6";
+import { FaAmazon, FaApple, FaFacebookF, FaInstagram, FaSpotify, FaYoutube } from "react-icons/fa6";
 import EPKMobileActions from "./components/epk-mobile-actions.component";
 
 const patrickHand = Patrick_Hand({
@@ -68,16 +61,8 @@ const profilePhotos = [
 ];
 
 export default function EPKPage() {
-  const {
-    artist,
-    bio,
-    featuredVideos,
-    liveShow,
-    notableShows,
-    releases,
-    gallery,
-    contact,
-  } = epkData;
+  const { artist, bio, featuredVideos, liveShow, notableShows, releases, gallery, contact } =
+    epkData;
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const [selectedCollection, setSelectedCollection] = useState<
     (typeof gallery.collections)[0] | null
@@ -109,14 +94,12 @@ export default function EPKPage() {
   };
 
   const prevPhoto = () => {
-    setCurrentPhotoIndex(
-      (prev) => (prev - 1 + profilePhotos.length) % profilePhotos.length
-    );
+    setCurrentPhotoIndex((prev) => (prev - 1 + profilePhotos.length) % profilePhotos.length);
   };
 
   const handleGalleryClick = (
     collection: (typeof gallery.collections)[0],
-    photoIndex: number = 0
+    photoIndex: number = 0,
   ) => {
     setSelectedCollection(collection);
     setCurrentGalleryPhotoIndex(photoIndex);
@@ -142,9 +125,8 @@ export default function EPKPage() {
           : currentGalleryPhotoIndex + 1;
       setCurrentGalleryPhotoIndex(nextIndex);
 
-      const preloadIndex =
-        nextIndex === selectedCollection.photos.length - 1 ? 0 : nextIndex + 1;
-      preloadImage(selectedCollection.photos[preloadIndex].src).catch(() => { });
+      const preloadIndex = nextIndex === selectedCollection.photos.length - 1 ? 0 : nextIndex + 1;
+      preloadImage(selectedCollection.photos[preloadIndex].src).catch(() => {});
     }
   }, [selectedCollection, currentGalleryPhotoIndex, preloadImage]);
 
@@ -156,9 +138,8 @@ export default function EPKPage() {
           : currentGalleryPhotoIndex - 1;
       setCurrentGalleryPhotoIndex(prevIndex);
 
-      const preloadIndex =
-        prevIndex === 0 ? selectedCollection.photos.length - 1 : prevIndex - 1;
-      preloadImage(selectedCollection.photos[preloadIndex].src).catch(() => { });
+      const preloadIndex = prevIndex === 0 ? selectedCollection.photos.length - 1 : prevIndex - 1;
+      preloadImage(selectedCollection.photos[preloadIndex].src).catch(() => {});
     }
   }, [selectedCollection, currentGalleryPhotoIndex, preloadImage]);
 
@@ -350,10 +331,11 @@ export default function EPKPage() {
                             <button
                               key={index}
                               onClick={() => setCurrentPhotoIndex(index)}
-                              className={`w-2 h-2 rounded-full transition-all ${index === currentPhotoIndex
-                                ? "w-8 bg-white"
-                                : "bg-white/50 hover:bg-white/70"
-                                }`}
+                              className={`w-2 h-2 rounded-full transition-all ${
+                                index === currentPhotoIndex
+                                  ? "w-8 bg-white"
+                                  : "bg-white/50 hover:bg-white/70"
+                              }`}
                               aria-label={`View photo ${index + 1}`}
                             />
                           ))}
@@ -385,9 +367,7 @@ export default function EPKPage() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12 max-w-2xl mx-auto">
             <div className="bg-zinc-900/50 backdrop-blur-sm rounded-xl border border-zinc-800/50 p-6 text-center">
-              <div className="text-3xl font-bold text-amber-400 mb-1">
-                100k+
-              </div>
+              <div className="text-3xl font-bold text-amber-400 mb-1">100k+</div>
               <div className="text-sm text-zinc-400">Total Streams</div>
             </div>
             <div className="bg-zinc-900/50 backdrop-blur-sm rounded-xl border border-zinc-800/50 p-6 text-center">
@@ -486,7 +466,9 @@ export default function EPKPage() {
                     Live Performance
                   </h2>
                   <div className="mb-4">
-                    <h4 className="font-semibold text-amber-300 mb-3 text-sm">Performance Formats</h4>
+                    <h4 className="font-semibold text-amber-300 mb-3 text-sm">
+                      Performance Formats
+                    </h4>
                     <div className="space-y-2">
                       {liveShow.formats.map((format, index) => (
                         <div
@@ -503,9 +485,7 @@ export default function EPKPage() {
                                 dangerouslySetInnerHTML={{ __html: format.description }}
                               />
                               {format.idealFor && (
-                                <p className="text-zinc-400 text-xs italic">
-                                  {format.idealFor}
-                                </p>
+                                <p className="text-zinc-400 text-xs italic">{format.idealFor}</p>
                               )}
                             </div>
                           </div>
@@ -530,15 +510,10 @@ export default function EPKPage() {
                   </div>
                   <div className="grid md:grid-cols-2 gap-3 mb-3">
                     <div>
-                      <h4 className="font-semibold text-amber-300 mb-2 text-sm">
-                        Ideal Venues
-                      </h4>
+                      <h4 className="font-semibold text-amber-300 mb-2 text-sm">Ideal Venues</h4>
                       <ul className="space-y-1">
                         {liveShow.venueTypes.map((type, index) => (
-                          <li
-                            key={index}
-                            className="flex items-start gap-2 text-zinc-300 text-sm"
-                          >
+                          <li key={index} className="flex items-start gap-2 text-zinc-300 text-sm">
                             <div className="w-1.5 h-1.5 bg-amber-500 rounded-full mt-1.5" />
                             <span>{type}</span>
                           </li>
@@ -547,9 +522,7 @@ export default function EPKPage() {
                     </div>
                   </div>
                   <div className="bg-zinc-800/50 rounded-lg p-3">
-                    <p className="text-zinc-300 text-xs">
-                      {liveShow.repertoire}
-                    </p>
+                    <p className="text-zinc-300 text-xs">{liveShow.repertoire}</p>
                     {liveShow.paSystem && (
                       <p className="text-amber-300 text-xs mt-2 font-medium">
                         ✓ PA system available upon request
@@ -590,17 +563,10 @@ export default function EPKPage() {
                       </p>
                     </div>
                     {notableShows.map((show, index) => (
-                      <div
-                        key={index}
-                        className="pb-4 border-b border-zinc-700/50 last:border-0"
-                      >
-                        <h4 className="font-semibold text-amber-300">
-                          {show.venue}
-                        </h4>
+                      <div key={index} className="pb-4 border-b border-zinc-700/50 last:border-0">
+                        <h4 className="font-semibold text-amber-300">{show.venue}</h4>
                         {show.description && (
-                          <p className="text-sm text-zinc-400 mt-1">
-                            {show.description}
-                          </p>
+                          <p className="text-sm text-zinc-400 mt-1">{show.description}</p>
                         )}
                       </div>
                     ))}
@@ -621,10 +587,7 @@ export default function EPKPage() {
                     playsInline
                     className="w-full h-full object-cover opacity-8 rounded-2xl"
                   >
-                    <source
-                      src="/videos/noah-lynch-hero-video.mp4"
-                      type="video/mp4"
-                    />
+                    <source src="/videos/noah-lynch-hero-video.mp4" type="video/mp4" />
                   </video>
                   <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/90 via-zinc-900/95 to-zinc-900/95 rounded-2xl" />
                 </div>
@@ -657,9 +620,7 @@ export default function EPKPage() {
                           <h4 className="font-semibold text-white group-hover:text-amber-400 transition-colors whitespace-nowrap overflow-hidden text-ellipsis">
                             {release.title}
                           </h4>
-                          <p className="text-xs text-zinc-400">
-                            {release.date}
-                          </p>
+                          <p className="text-xs text-zinc-400">{release.date}</p>
                         </div>
                         {release.highlights && (
                           <span className="px-2 py-1 bg-amber-500/20 text-amber-300 text-xs rounded-full">
@@ -675,23 +636,20 @@ export default function EPKPage() {
                       Available on all platforms
                     </p>
                     <div className="flex justify-center gap-3">
-                      {[
-                        "Spotify",
-                        "Apple Music",
-                        "YouTube Music",
-                        "Amazon Music",
-                      ].map((platform) => (
-                        <a
-                          key={platform}
-                          href={platformLinks[platform]}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-10 h-10 rounded-full bg-zinc-800 hover:bg-zinc-700 flex items-center justify-center text-zinc-400 hover:text-white transition-all"
-                          title={platform}
-                        >
-                          {getPlatformIcon(platform)}
-                        </a>
-                      ))}
+                      {["Spotify", "Apple Music", "YouTube Music", "Amazon Music"].map(
+                        (platform) => (
+                          <a
+                            key={platform}
+                            href={platformLinks[platform]}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-10 h-10 rounded-full bg-zinc-800 hover:bg-zinc-700 flex items-center justify-center text-zinc-400 hover:text-white transition-all"
+                            title={platform}
+                          >
+                            {getPlatformIcon(platform)}
+                          </a>
+                        ),
+                      )}
                     </div>
                   </div>
                 </div>
@@ -724,14 +682,10 @@ export default function EPKPage() {
                   {gallery.collections.map((collection) => (
                     <div key={collection.id} className="space-y-4">
                       <div className="bg-zinc-800/50 rounded-lg p-4">
-                        <h3 className="font-semibold text-amber-400">
-                          {collection.venue}
-                        </h3>
+                        <h3 className="font-semibold text-amber-400">{collection.venue}</h3>
                         <p className="text-sm text-zinc-400">
                           {collection.city}, {collection.state} •{" "}
-                          {new Date(
-                            collection.date + "T12:00:00"
-                          ).toLocaleDateString("en-US", {
+                          {new Date(collection.date + "T12:00:00").toLocaleDateString("en-US", {
                             year: "numeric",
                             month: "short",
                             day: "numeric",
@@ -742,9 +696,7 @@ export default function EPKPage() {
                         <div
                           key={photoIdx}
                           className="relative aspect-video overflow-hidden rounded-lg group cursor-pointer"
-                          onClick={() =>
-                            handleGalleryClick(collection, photoIdx)
-                          }
+                          onClick={() => handleGalleryClick(collection, photoIdx)}
                         >
                           <Image
                             src={photo.src}
@@ -816,27 +768,20 @@ export default function EPKPage() {
             <div className="relative w-full max-h-[80vh] flex items-center justify-center">
               <div className="relative w-full h-full flex items-center justify-center">
                 <div className="relative inline-block max-w-full max-h-full">
-                  {imageLoadingStates[
-                    `${selectedCollection.id}-${currentGalleryPhotoIndex}`
-                  ] && (
-                      <div className="absolute inset-0 flex items-center justify-center bg-zinc-900/80 rounded-lg z-10">
-                        <Loader2 className="w-8 h-8 text-amber-400 animate-spin" />
-                      </div>
-                    )}
+                  {imageLoadingStates[`${selectedCollection.id}-${currentGalleryPhotoIndex}`] && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-zinc-900/80 rounded-lg z-10">
+                      <Loader2 className="w-8 h-8 text-amber-400 animate-spin" />
+                    </div>
+                  )}
                   <Image
                     key={`${selectedCollection.id}-${currentGalleryPhotoIndex}`}
-                    src={
-                      selectedCollection.photos[currentGalleryPhotoIndex].src
-                    }
-                    alt={
-                      selectedCollection.photos[currentGalleryPhotoIndex].alt
-                    }
-                    className={`w-auto h-auto max-w-full max-h-[80vh] object-contain rounded-lg transition-opacity duration-300 ${imageLoadingStates[
-                      `${selectedCollection.id}-${currentGalleryPhotoIndex}`
-                    ]
-                      ? "opacity-0"
-                      : "opacity-100"
-                      }`}
+                    src={selectedCollection.photos[currentGalleryPhotoIndex].src}
+                    alt={selectedCollection.photos[currentGalleryPhotoIndex].alt}
+                    className={`w-auto h-auto max-w-full max-h-[80vh] object-contain rounded-lg transition-opacity duration-300 ${
+                      imageLoadingStates[`${selectedCollection.id}-${currentGalleryPhotoIndex}`]
+                        ? "opacity-0"
+                        : "opacity-100"
+                    }`}
                     width={1200}
                     height={800}
                     sizes="(max-width: 768px) 95vw, (max-width: 1200px) 80vw, 1200px"
@@ -845,15 +790,13 @@ export default function EPKPage() {
                     onLoad={() => {
                       setImageLoadingStates((prev) => ({
                         ...prev,
-                        [`${selectedCollection.id}-${currentGalleryPhotoIndex}`]:
-                          false,
+                        [`${selectedCollection.id}-${currentGalleryPhotoIndex}`]: false,
                       }));
                     }}
                     onLoadStart={() => {
                       setImageLoadingStates((prev) => ({
                         ...prev,
-                        [`${selectedCollection.id}-${currentGalleryPhotoIndex}`]:
-                          true,
+                        [`${selectedCollection.id}-${currentGalleryPhotoIndex}`]: true,
                       }));
                     }}
                   />

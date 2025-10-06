@@ -11,8 +11,7 @@ export const metadata: Metadata = {
   robots: "index, follow",
   openGraph: {
     title: "Noah Lynch - EPK",
-    description:
-      "Noah Lynch - Mississippi singer-songwriter",
+    description: "Noah Lynch - Mississippi singer-songwriter",
     url: "https://noahlynch.com/epk",
     siteName: "Noah Lynch Music",
     type: "website",
@@ -20,15 +19,10 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Noah Lynch - EPK",
-    description:
-      "Noah Lynch - Mississippi singer-songwriter",
+    description: "Noah Lynch - Mississippi singer-songwriter",
   },
 };
 
 export default function EPKLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="min-h-screen bg-white text-gray-900 print:bg-white">
-      {children}
-    </div>
-  );
+  return <div className="min-h-screen bg-white text-gray-900 print:bg-white">{children}</div>;
 }
