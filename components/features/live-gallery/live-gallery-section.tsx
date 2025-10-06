@@ -41,11 +41,17 @@ export default function LiveGallerySection() {
     if (hasMultiplePhotos(venue)) {
       setSelectedVenue(venue);
       setCurrentPhotoIndex(0);
-      const firstImagePath = getPhotoPath(venue.id, venue.photos[0].filename);
-      preloadImage(firstImagePath);
+      const firstPhoto = venue.photos[0];
+      if (firstPhoto) {
+        const firstImagePath = getPhotoPath(venue.id, firstPhoto.filename);
+        preloadImage(firstImagePath);
+      }
       if (venue.photos.length > 1) {
-        const nextImagePath = getPhotoPath(venue.id, venue.photos[1].filename);
-        preloadImage(nextImagePath);
+        const secondPhoto = venue.photos[1];
+        if (secondPhoto) {
+          const nextImagePath = getPhotoPath(venue.id, secondPhoto.filename);
+          preloadImage(nextImagePath);
+        }
       }
     }
   };
@@ -61,11 +67,11 @@ export default function LiveGallerySection() {
         currentPhotoIndex === selectedVenue.photos.length - 1 ? 0 : currentPhotoIndex + 1;
       setCurrentPhotoIndex(nextIndex);
       const preloadIndex = nextIndex === selectedVenue.photos.length - 1 ? 0 : nextIndex + 1;
-      const preloadPath = getPhotoPath(
-        selectedVenue.id,
-        selectedVenue.photos[preloadIndex].filename,
-      );
-      preloadImage(preloadPath).catch(() => {});
+      const photoToPreload = selectedVenue.photos[preloadIndex];
+      if (photoToPreload) {
+        const preloadPath = getPhotoPath(selectedVenue.id, photoToPreload.filename);
+        preloadImage(preloadPath).catch(() => {});
+      }
     }
   }, [selectedVenue, currentPhotoIndex, preloadImage]);
 
@@ -75,35 +81,39 @@ export default function LiveGallerySection() {
         currentPhotoIndex === 0 ? selectedVenue.photos.length - 1 : currentPhotoIndex - 1;
       setCurrentPhotoIndex(prevIndex);
       const preloadIndex = prevIndex === 0 ? selectedVenue.photos.length - 1 : prevIndex - 1;
-      const preloadPath = getPhotoPath(
-        selectedVenue.id,
-        selectedVenue.photos[preloadIndex].filename,
-      );
-      preloadImage(preloadPath).catch(() => {});
+      const photoToPreload = selectedVenue.photos[preloadIndex];
+      if (photoToPreload) {
+        const preloadPath = getPhotoPath(selectedVenue.id, photoToPreload.filename);
+        preloadImage(preloadPath).catch(() => {});
+      }
     }
   }, [selectedVenue, currentPhotoIndex, preloadImage]);
 
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
     const touch = e.touches[0];
-    touchStartRef.current = { x: touch.clientX, y: touch.clientY, time: Date.now() };
+    if (touch) {
+      touchStartRef.current = { x: touch.clientX, y: touch.clientY, time: Date.now() };
+    }
   }, []);
 
   const handleTouchEnd = useCallback(
     (e: React.TouchEvent) => {
       if (!touchStartRef.current) return;
       const touch = e.changedTouches[0];
-      touchEndRef.current = { x: touch.clientX, y: touch.clientY };
-      const deltaX = touchEndRef.current.x - touchStartRef.current.x;
-      const deltaY = touchEndRef.current.y - touchStartRef.current.y;
-      const deltaTime = Date.now() - touchStartRef.current.time;
-      const velocity = Math.abs(deltaX) / deltaTime;
-      const threshold = velocity > 0.3 ? 30 : 50;
+      if (touch) {
+        touchEndRef.current = { x: touch.clientX, y: touch.clientY };
+        const deltaX = touchEndRef.current.x - touchStartRef.current.x;
+        const deltaY = touchEndRef.current.y - touchStartRef.current.y;
+        const deltaTime = Date.now() - touchStartRef.current.time;
+        const velocity = Math.abs(deltaX) / deltaTime;
+        const threshold = velocity > 0.3 ? 30 : 50;
 
-      if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > threshold) {
-        if (deltaX > 0) {
-          prevPhoto();
-        } else {
-          nextPhoto();
+        if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > threshold) {
+          if (deltaX > 0) {
+            prevPhoto();
+          } else {
+            nextPhoto();
+          }
         }
       }
       touchStartRef.current = null;
@@ -290,11 +300,15 @@ export default function LiveGallerySection() {
                   )}
                   <Image
                     key={`${selectedVenue.id}-${currentPhotoIndex}`}
-                    src={getPhotoPath(
-                      selectedVenue.id,
-                      selectedVenue.photos[currentPhotoIndex].filename,
-                    )}
-                    alt={selectedVenue.photos[currentPhotoIndex].filename}
+                    src={
+                      selectedVenue.photos[currentPhotoIndex]
+                        ? getPhotoPath(
+                            selectedVenue.id,
+                            selectedVenue.photos[currentPhotoIndex].filename,
+                          )
+                        : ""
+                    }
+                    alt={selectedVenue.photos[currentPhotoIndex]?.filename || ""}
                     className={`w-auto h-auto max-w-full max-h-[80vh] object-contain rounded-lg transition-opacity duration-300 ${
                       imageLoadingStates[`${selectedVenue.id}-${currentPhotoIndex}`]
                         ? "opacity-0"

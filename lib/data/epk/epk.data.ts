@@ -47,6 +47,8 @@ export interface EPKData {
       description: string;
       setup?: string[];
       idealFor?: string;
+      videoUrl?: string;
+      videoTitle?: string;
     }[];
     repertoire: string;
     venueTypes: string[];
@@ -130,6 +132,8 @@ export const epkData: EPKData = {
         description:
           "<strong>Full lineup available for large venues and events</strong> — high energy, dynamic sound.",
         idealFor: "Large venues and events",
+        videoUrl: "https://youtu.be/cPixagF6mkM",
+        videoTitle: '"Upside Down" (Jack Johnson Cover) - Live at Ole Brook Festival 2025',
       },
     ],
     repertoire:

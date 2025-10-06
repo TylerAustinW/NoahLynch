@@ -26,7 +26,7 @@ export function useInView({
     if (!ref.current) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        const intersecting = entry.isIntersecting;
+        const intersecting = entry?.isIntersecting ?? false;
 
         if (intersecting || !once) {
           setInView(intersecting);

@@ -149,7 +149,7 @@ export const venuePhotoCollections: VenuePhotoCollection[] = [
 ];
 
 export function getFeaturedPhoto(collection: VenuePhotoCollection): VenuePhoto {
-  return collection.photos.find((photo) => photo.featured) || collection.photos[0];
+  return collection.photos.find((photo) => photo.featured) || collection.photos[0]!;
 }
 
 export function getPhotoPath(venueId: string, filename: string): string {

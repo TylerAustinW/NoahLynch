@@ -103,12 +103,21 @@ export default function EPKPage() {
   ) => {
     setSelectedCollection(collection);
     setCurrentGalleryPhotoIndex(photoIndex);
-    preloadImage(collection.photos[photoIndex].src);
+    const currentPhoto = collection.photos[photoIndex];
+    if (currentPhoto) {
+      preloadImage(currentPhoto.src);
+    }
     if (photoIndex > 0) {
-      preloadImage(collection.photos[photoIndex - 1].src);
+      const prevPhoto = collection.photos[photoIndex - 1];
+      if (prevPhoto) {
+        preloadImage(prevPhoto.src);
+      }
     }
     if (photoIndex < collection.photos.length - 1) {
-      preloadImage(collection.photos[photoIndex + 1].src);
+      const nextPhoto = collection.photos[photoIndex + 1];
+      if (nextPhoto) {
+        preloadImage(nextPhoto.src);
+      }
     }
   };
 
@@ -126,7 +135,9 @@ export default function EPKPage() {
       setCurrentGalleryPhotoIndex(nextIndex);
 
       const preloadIndex = nextIndex === selectedCollection.photos.length - 1 ? 0 : nextIndex + 1;
-      preloadImage(selectedCollection.photos[preloadIndex].src).catch(() => {});
+      if (selectedCollection.photos[preloadIndex]) {
+        preloadImage(selectedCollection.photos[preloadIndex].src).catch(() => {});
+      }
     }
   }, [selectedCollection, currentGalleryPhotoIndex, preloadImage]);
 
@@ -139,7 +150,9 @@ export default function EPKPage() {
       setCurrentGalleryPhotoIndex(prevIndex);
 
       const preloadIndex = prevIndex === 0 ? selectedCollection.photos.length - 1 : prevIndex - 1;
-      preloadImage(selectedCollection.photos[preloadIndex].src).catch(() => {});
+      if (selectedCollection.photos[preloadIndex]) {
+        preloadImage(selectedCollection.photos[preloadIndex].src).catch(() => {});
+      }
     }
   }, [selectedCollection, currentGalleryPhotoIndex, preloadImage]);
 
@@ -300,8 +313,8 @@ export default function EPKPage() {
                 <div className="lg:col-span-5 order-1 lg:order-2">
                   <div className="relative aspect-[3/4] max-w-sm mx-auto lg:max-w-none overflow-hidden rounded-2xl border border-zinc-800/50 shadow-2xl group">
                     <Image
-                      src={profilePhotos[currentPhotoIndex].src}
-                      alt={profilePhotos[currentPhotoIndex].alt}
+                      src={profilePhotos[currentPhotoIndex]?.src || "/images/profile-1.jpg"}
+                      alt={profilePhotos[currentPhotoIndex]?.alt || "Noah Lynch"}
                       fill
                       sizes="(max-width: 1024px) 100vw, 40vw"
                       className="object-cover object-top transition-opacity duration-500"
@@ -486,6 +499,24 @@ export default function EPKPage() {
                               />
                               {format.idealFor && (
                                 <p className="text-zinc-400 text-xs italic">{format.idealFor}</p>
+                              )}
+                              {format.videoUrl && (
+                                <div className="mt-2 pt-2 border-t border-zinc-700/30">
+                                  <a
+                                    href={format.videoUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 transition-colors group"
+                                  >
+                                    <div className="flex items-center gap-1 px-1.5 py-0.5 bg-amber-500/10 border border-amber-500/20 rounded text-xs">
+                                      <Play className="h-3 w-3" fill="currentColor" />
+                                      <span className="font-semibold">VIDEO</span>
+                                    </div>
+                                    <span className="text-xs group-hover:underline">
+                                      {format.videoTitle || "Watch Performance Example"}
+                                    </span>
+                                  </a>
+                                </div>
                               )}
                             </div>
                           </div>
@@ -775,8 +806,8 @@ export default function EPKPage() {
                   )}
                   <Image
                     key={`${selectedCollection.id}-${currentGalleryPhotoIndex}`}
-                    src={selectedCollection.photos[currentGalleryPhotoIndex].src}
-                    alt={selectedCollection.photos[currentGalleryPhotoIndex].alt}
+                    src={selectedCollection.photos[currentGalleryPhotoIndex]?.src || ""}
+                    alt={selectedCollection.photos[currentGalleryPhotoIndex]?.alt || ""}
                     className={`w-auto h-auto max-w-full max-h-[80vh] object-contain rounded-lg transition-opacity duration-300 ${
                       imageLoadingStates[`${selectedCollection.id}-${currentGalleryPhotoIndex}`]
                         ? "opacity-0"

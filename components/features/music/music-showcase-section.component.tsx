@@ -137,8 +137,11 @@ export default function MusicShowcaseSection(): React.ReactElement {
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const featured = allReleases.find((release) => release.featured === true) || allReleases[0];
-  const releases = allReleases.filter((release) => release.id !== featured.id);
+  const featured =
+    allReleases.find((release) => release.featured === true) || allReleases[0] || null;
+  const releases = featured
+    ? allReleases.filter((release) => release.id !== featured.id)
+    : allReleases;
 
   const updateScrollButtons = useCallback(() => {
     if (containerRef.current) {
@@ -232,7 +235,7 @@ export default function MusicShowcaseSection(): React.ReactElement {
           </p>
         </motion.div>
 
-        {SHOW_FEATURED_COMING_SOON && (
+        {SHOW_FEATURED_COMING_SOON && featured && (
           <motion.div
             className="mb-12 sm:mb-16"
             initial={{ opacity: 0, y: 40 }}

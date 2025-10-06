@@ -22,7 +22,7 @@ class TourRepository {
 
   getNextShow(): TourDate | null {
     const upcomingShows = this.getUpcomingShows();
-    return upcomingShows.length > 0 ? upcomingShows[0] : null;
+    return upcomingShows.length > 0 ? upcomingShows[0]! : null;
   }
 
   getFeaturedShows(): TourDate[] {
@@ -59,7 +59,7 @@ class TourRepository {
   updateShow(id: string, updates: Partial<TourDate>): void {
     const index = this.shows.findIndex((show) => show.id === id);
     if (index !== -1) {
-      this.shows[index] = { ...this.shows[index], ...updates };
+      this.shows[index] = { ...this.shows[index]!, ...updates };
     }
   }
 
