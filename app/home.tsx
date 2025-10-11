@@ -7,6 +7,7 @@ import StudioSessionsSection from "@/components/features/studio-sessions/studio-
 import EntranceAnimation from "@/components/features/entrance-animation/entrance-animation.component";
 import PageFadeWrapper from "@/components/features/entrance-animation/page-fade-wrapper.component";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 
 const BiographySection = dynamic(
   () => import("@/components/features/biography/biography-section.component"),
@@ -26,6 +27,16 @@ export default function Home() {
       <HeroSection />
       <PageFadeWrapper>
         <Navbar />
+        <div className="w-full">
+          <Image
+            src="/covers/chasing-a-feelin-banner.png"
+            alt="Chasing a Feelin' - October 24th 2025"
+            width={1920}
+            height={640}
+            className="w-full h-auto"
+            priority
+          />
+        </div>
         <MusicShowcaseSection />
         <StudioSessionsSection />
         <BiographySection />
