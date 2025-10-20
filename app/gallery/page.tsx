@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 
 export default function GalleryPage() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-white">
+    <div className="min-h-screen bg-zinc-950 text-white relative overflow-hidden">
+      <div className="absolute inset-0 bg-[url('/overlays/grain-texture-overlay.png')] bg-repeat opacity-[0.02] pointer-events-none z-10" />
       <Navbar />
       <main className="pt-16">
         <LiveGallerySection />

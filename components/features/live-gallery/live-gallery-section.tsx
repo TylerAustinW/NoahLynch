@@ -166,8 +166,19 @@ export default function LiveGallerySection() {
 
   return (
     <>
-      <section className="py-16 px-4 bg-zinc-900/50">
-        <div className="container mx-auto max-w-6xl">
+      <section className="py-16 px-4 bg-zinc-900/50 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/venues/the-roof/NoahAtTheRoofGuitars.jpg"
+            alt="Noah Lynch performing at The Roof"
+            fill
+            className="object-cover opacity-10"
+            sizes="100vw"
+            quality={75}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/80 via-zinc-950/90 to-zinc-950" />
+        </div>
+        <div className="container mx-auto max-w-6xl relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
