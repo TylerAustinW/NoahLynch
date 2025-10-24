@@ -9,7 +9,7 @@ import Link from "next/link";
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button.component";
 
-const SHOW_FEATURED_COMING_SOON = false;
+const SHOW_FEATURED_COMING_SOON = true;
 
 const FeaturedCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
   return (

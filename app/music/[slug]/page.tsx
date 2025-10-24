@@ -275,6 +275,12 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
                             <span className="text-zinc-500">Produced By:</span>{" "}
                             <span className="text-zinc-300">{release.releasedBy}</span>
                           </p>
+                          {release.writtenBy && (
+                            <p>
+                              <span className="text-zinc-500">Written By:</span>{" "}
+                              <span className="text-zinc-300">{release.writtenBy}</span>
+                            </p>
+                          )}
                           <p>
                             <span className="text-zinc-500">Release date:</span>{" "}
                             <span className="text-zinc-300">{release.releaseDate}</span>

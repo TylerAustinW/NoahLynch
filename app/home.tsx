@@ -27,16 +27,6 @@ export default function Home() {
       <HeroSection />
       <PageFadeWrapper>
         <Navbar />
-        <div className="w-full">
-          <Image
-            src="/covers/chasing-a-feelin-banner.png"
-            alt="Chasing a Feelin' - October 24th 2025"
-            width={1920}
-            height={640}
-            className="w-full h-auto"
-            priority
-          />
-        </div>
         <MusicShowcaseSection />
         <StudioSessionsSection />
         <BiographySection />

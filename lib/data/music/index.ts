@@ -69,6 +69,7 @@ function resolveReleasePlatforms(releaseData: ReleaseData): ReleaseWithPlatforms
     imageURL: releaseData.imageURL,
     type: releaseData.type,
     releasedBy: releaseData.releasedBy,
+    ...(releaseData.writtenBy && { writtenBy: releaseData.writtenBy }),
     releaseDate: releaseData.releaseDate,
     platforms,
     ...(releaseData.featured !== undefined && { featured: releaseData.featured }),

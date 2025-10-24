@@ -31,6 +31,7 @@ export interface PlatformLinkData {
 export interface ReleaseData extends Release {
   type: ReleaseType;
   releasedBy: string;
+  writtenBy?: string;
   releaseDate: string;
   platformLinks: PlatformLinkData[];
   featured?: boolean;
@@ -41,6 +42,7 @@ export interface ReleaseData extends Release {
 export interface ReleaseWithPlatforms extends Release {
   type: ReleaseType;
   releasedBy: string;
+  writtenBy?: string;
   releaseDate: string;
   platforms: Platform[];
   featured?: boolean;
