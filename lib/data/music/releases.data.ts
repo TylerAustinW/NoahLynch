@@ -102,7 +102,7 @@ export const RELEASES_DATA: ReleaseData[] = [
     featured: true,
     type: "out-now",
     description:
-      "Chasing a Feelin' is Noah Lynch's fourth official studio single. It's a story-driven track about holding onto something that's already slipping away. It captures the moment you realize you've been giving your all to someone who was never truly there. With heartfelt vocals, vivid storytelling, and a blend of acoustic warmth and modern edge, the song speaks to anyone who's ever tried to save a one-sided love. Produced by Ready Records and written by Noah Lynch, Chasing a Feelin' showcases his most honest and refined sound yet, offering a glimpse of what's to come on his debut album.",
+      "Chasing a Feelin' is Noah Lynch's fourth official studio single. It's a story-driven track about holding onto something that's already slipping away. It captures the moment you realize you've been giving your all to someone who was never truly there. With heartfelt vocals, vivid storytelling, and a blend of acoustic warmth and modern edge, the song speaks to anyone who's ever tried to save a one-sided love. Showcasing his most honest and refined sound yet, it offers a glimpse of what's to come on his debut album.",
     imageURL: "/covers/chasing-a-feelin.png",
     releasedBy: "Ready Records",
     writtenBy: "Noah Lynch",
