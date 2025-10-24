@@ -7,7 +7,6 @@ import StudioSessionsSection from "@/components/features/studio-sessions/studio-
 import EntranceAnimation from "@/components/features/entrance-animation/entrance-animation.component";
 import PageFadeWrapper from "@/components/features/entrance-animation/page-fade-wrapper.component";
 import dynamic from "next/dynamic";
-import Image from "next/image";
 
 const BiographySection = dynamic(
   () => import("@/components/features/biography/biography-section.component"),

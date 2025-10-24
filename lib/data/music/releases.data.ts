@@ -104,7 +104,24 @@ export const RELEASES_DATA: ReleaseData[] = [
     releasedBy: "Ready Records",
     writtenBy: "Noah Lynch",
     releaseDate: "October 24, 2025",
-    platformLinks: [],
+    platformLinks: [
+      {
+        platform: "spotify",
+        url: "https://open.spotify.com/album/3LZxsw9j2CVZL1VOaMeG3K",
+      },
+      {
+        platform: "youtube-music",
+        url: "https://www.youtube.com/watch?v=jEdLu0jFN7Y",
+      },
+      {
+        platform: "apple-music",
+        url: "https://music.apple.com/us/album/chasing-a-feelin-single/1846472605",
+      },
+      {
+        platform: "deezer",
+        url: "https://www.deezer.com/us/album/839393512",
+      },
+    ],
     linkText: "LISTEN NOW!",
   },
 ];
