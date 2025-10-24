@@ -10,6 +10,7 @@ export const RELEASES_DATA: ReleaseData[] = [
       "\"Honest\" is Noah Lynch's personal reflection on embracing vulnerability during life's challenges. Written while anticipating fatherhood, the song encourages authenticity and reminds listeners that it's okay to not be okay. Noah hopes the track will foster understanding and connection through open communication.",
     imageURL: "/covers/honest-cover.jpeg",
     releasedBy: "Ready Records",
+    writtenBy: "Noah Lynch",
     releaseDate: "May 9, 2025",
     featured: false,
     platformLinks: [
@@ -41,6 +42,7 @@ export const RELEASES_DATA: ReleaseData[] = [
       '"Good Things Take Time" The 2nd release from "Noah Lynch" takes a deeper look into his personal life. With the instant success of "For You" Noah had doubt and worry when it came to his music career. This song highlights the emotion Noah was facing during this time, while also reminding himself that "Good Things Take Time"',
     imageURL: "/covers/single-good-things-take-time-cover.jpg",
     releasedBy: "Ready Records",
+    writtenBy: "Noah Lynch",
     releaseDate: "July 27, 2024",
     platformLinks: [
       {
@@ -71,6 +73,7 @@ export const RELEASES_DATA: ReleaseData[] = [
       "For You is a soulful, heartfelt ballad that captures the moment love changes everything. It's a song about gratitude, peace, and unwavering devotion to someone who brings joy and strength through every season of life. With emotional lyrics and a timeless feel, For You is a tribute to the kind of love you never stop being thankful for.",
     imageURL: "/covers/single-for-you-cover.jpg",
     releasedBy: "Ready Records",
+    writtenBy: "Noah Lynch",
     releaseDate: "June 1, 2024",
     platformLinks: [
       {
