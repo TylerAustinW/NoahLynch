@@ -97,12 +97,17 @@ export const epkData: EPKData = {
     videos: [
       {
         videoId: "3rKv1BmopUQ",
-        title: "Chasing a Feelin’ (Unreleased, Live at SunSet Grill)",
+        title: "Chasing a Feelin' (Unreleased, Live at SunSet Grill)",
         type: "performance",
       },
       {
         videoId: "EPYGIRsGPpw",
         title: 'Noah Lynch - "Collide" (Live Cover)',
+        type: "performance",
+      },
+      {
+        videoId: "cPixagF6mkM",
+        title: '"Upside Down" (Jack Johnson Cover) - Live at Ole Brook Festival 2025',
         type: "performance",
       },
     ],
