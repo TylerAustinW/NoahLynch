@@ -156,6 +156,10 @@ export const epkData: EPKData = {
       description: "Packed house, 90+ draw",
     },
     {
+      venue: "3rd Studio Single - Honest",
+      description: "Out Now (Produced by Ready Records)",
+    },
+    {
       venue: "4th Studio Single - Chasing a Feelin'",
       description: "Out Now (Produced by Ready Records)",
     },
