@@ -4,9 +4,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useScrollLock } from "@/lib/hooks/use-scroll-lock.hook";
+import { useViewportHeight } from "@/lib/hooks/use-viewport-height.hook";
 
 export default function EntranceAnimation() {
   const [isVisible, setIsVisible] = useState(true);
+  const viewportHeight = useViewportHeight();
 
   useScrollLock(isVisible);
 
@@ -26,8 +28,9 @@ export default function EntranceAnimation() {
         <motion.div
           className="fixed top-0 left-0 right-0 bottom-0 z-[9999] flex items-center justify-center overflow-hidden bg-zinc-950"
           style={{
-            height: "-webkit-fill-available" as React.CSSProperties["height"],
-            minHeight: "100vh",
+            // Use actual viewport height from JS, with CSS fallbacks
+            height: viewportHeight ? `${viewportHeight}px` : "100dvh",
+            minHeight: viewportHeight ? `${viewportHeight}px` : "100dvh",
             width: "100vw",
           }}
           initial={{ opacity: 1 }}
