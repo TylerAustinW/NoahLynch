@@ -249,7 +249,7 @@ export default function EPKPage() {
                   <div className="flex items-center gap-3 mb-4">
                     <span className="inline-flex items-center px-3 py-1 bg-amber-500/20 border border-amber-500/30 rounded-full text-amber-300 text-sm font-semibold">
                       <Award className="w-4 h-4 mr-2" />
-                      2025 Best Local Solo Artist Winner
+                      2025 Readers Choice - Best Solo Musician
                     </span>
                   </div>
                   <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-4 tracking-tight">
@@ -327,14 +327,14 @@ export default function EPKPage() {
                       <>
                         <button
                           onClick={prevPhoto}
-                          className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100"
+                          className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-all md:opacity-0 md:group-hover:opacity-100"
                           aria-label="Previous photo"
                         >
                           <ChevronLeft className="w-5 h-5" />
                         </button>
                         <button
                           onClick={nextPhoto}
-                          className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-all opacity-0 group-hover:opacity-100"
+                          className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-all md:opacity-0 md:group-hover:opacity-100"
                           aria-label="Next photo"
                         >
                           <ChevronRight className="w-5 h-5" />
@@ -380,11 +380,11 @@ export default function EPKPage() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12 max-w-2xl mx-auto">
             <div className="bg-zinc-900/50 backdrop-blur-sm rounded-xl border border-zinc-800/50 p-6 text-center">
-              <div className="text-3xl font-bold text-amber-400 mb-1">100k+</div>
+              <div className="text-3xl font-bold text-amber-400 mb-1">200k+</div>
               <div className="text-sm text-zinc-400">Total Streams</div>
             </div>
             <div className="bg-zinc-900/50 backdrop-blur-sm rounded-xl border border-zinc-800/50 p-6 text-center">
-              <div className="text-3xl font-bold text-amber-400 mb-1">3</div>
+              <div className="text-3xl font-bold text-amber-400 mb-1">4</div>
               <div className="text-sm text-zinc-400">Original Releases</div>
             </div>
           </div>
@@ -586,12 +586,25 @@ export default function EPKPage() {
                   </h3>
                   <div className="space-y-4">
                     <div className="pb-4 border-b border-zinc-700/50">
-                      <h4 className="font-semibold text-amber-300">
-                        2025 Best Local Solo Artist Winner
-                      </h4>
-                      <p className="text-sm text-zinc-400 mt-1">
-                        Awarded for outstanding solo performances
-                      </p>
+                      <div className="flex flex-col sm:flex-row gap-4 items-start">
+                        <div className="relative w-full sm:w-32 aspect-[3/4] rounded-lg overflow-hidden border border-zinc-700/50 flex-shrink-0">
+                          <Image
+                            src="/awards/readers-choice-2025.jpg"
+                            alt="Noah Lynch - 2025 Readers Choice Award Winner for Best Solo Musician"
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 640px) 100vw, 128px"
+                          />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-amber-300">
+                            2025 Readers Choice Award Winner
+                          </h4>
+                          <p className="text-sm text-zinc-400 mt-1">
+                            Best Solo Musician - Enterprise-Journal
+                          </p>
+                        </div>
+                      </div>
                     </div>
                     {notableShows.map((show, index) => (
                       <div key={index} className="pb-4 border-b border-zinc-700/50 last:border-0">
