@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+/* Mobile viewport height fix - use CSS custom property for dynamic viewport height */
+:root {
+  --vh: 1vh;
+}
+
+/* Support for dynamic viewport units (dvh) with fallback */
+@supports (height: 100dvh) {
+  :root {
+    --vh: 1dvh;
+  }
+}
+
 @theme {
   --background: 220 13% 7%;
   --foreground: 0 0% 95%;
@@ -52,6 +64,17 @@ html {
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+
+  /* Full viewport height utility that works on mobile */
+  .h-screen-dynamic {
+    height: 100vh;
+    height: 100dvh;
+  }
+
+  .min-h-screen-dynamic {
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 }
 
