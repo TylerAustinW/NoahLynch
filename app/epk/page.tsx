@@ -589,7 +589,7 @@ export default function EPKPage() {
                       <div className="flex flex-col sm:flex-row gap-4 items-start">
                         <div className="relative w-full sm:w-32 aspect-[3/4] rounded-lg overflow-hidden border border-zinc-700/50 flex-shrink-0">
                           <Image
-                            src="/readers-choice-2025.jpg"
+                            src=""
                             alt="Noah Lynch - 2025 Readers Choice Award Winner for Best Solo Musician"
                             fill
                             className="object-cover"
