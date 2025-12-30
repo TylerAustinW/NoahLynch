@@ -44,6 +44,25 @@ export const VENUES: Record<string, Venue> = {
 
 export const SHOWS_DATA: TourDate[] = [
   {
+    id: "show-2026-01-29-roof",
+    date: "2026-01-29",
+    venue: "The Roof at 1311",
+    city: "Vicksburg",
+    state: "MS",
+    time: "6:00 PM - 9:00 PM CST",
+    featured: true,
+  },
+  {
+    id: "show-2026-01-23-sunset",
+    date: "2026-01-23",
+    venue: "Sunset Grill",
+    city: "Brandon",
+    state: "MS",
+    time: "7:00 PM - 11:00 PM CST",
+    description: "First gig of 2026!",
+    featured: true,
+  },
+  {
     id: "show-2025-10-03-ole-brook",
     date: "2025-10-03",
     venue: "Ole Brook Festival",
