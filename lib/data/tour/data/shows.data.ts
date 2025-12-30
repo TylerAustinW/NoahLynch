@@ -44,6 +44,15 @@ export const VENUES: Record<string, Venue> = {
 
 export const SHOWS_DATA: TourDate[] = [
   {
+    id: "show-2026-01-tbd-sunset",
+    date: "2026-01-09", // Placeholder: Date TBD (either Jan 9 or Jan 23)
+    venue: "Sunset Grill",
+    city: "Brandon",
+    state: "MS",
+    description: "First gig of 2026! Date TBD - either January 9th or 23rd.",
+    featured: true,
+  },
+  {
     id: "show-2025-10-03-ole-brook",
     date: "2025-10-03",
     venue: "Ole Brook Festival",
