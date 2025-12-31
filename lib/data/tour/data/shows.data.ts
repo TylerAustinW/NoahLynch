@@ -53,8 +53,8 @@ export const SHOWS_DATA: TourDate[] = [
     featured: true,
   },
   {
-    id: "show-2026-01-23-sunset",
-    date: "2026-01-23",
+    id: "show-2026-01-16-sunset",
+    date: "2026-01-16",
     venue: "Sunset Grill",
     city: "Brandon",
     state: "MS",
