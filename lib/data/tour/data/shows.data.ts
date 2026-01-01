@@ -44,6 +44,15 @@ export const VENUES: Record<string, Venue> = {
 
 export const SHOWS_DATA: TourDate[] = [
   {
+    id: "show-2026-03-13-backwater",
+    date: "2026-03-13",
+    venue: "Backwater Grill",
+    city: "Brandon",
+    state: "MS",
+    time: "6:00 PM - 9:00 PM CST",
+    featured: true,
+  },
+  {
     id: "show-2026-01-29-roof",
     date: "2026-01-29",
     venue: "The Roof at 1311",
