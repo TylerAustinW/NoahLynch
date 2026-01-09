@@ -40,6 +40,12 @@ export const VENUES: Record<string, Venue> = {
     state: "MS",
     defaultLink: "https://visitbrookhavenms.com/stay/",
   },
+  "station-jxn": {
+    id: "station-jxn",
+    name: "The Station JXN",
+    city: "Jackson",
+    state: "MS",
+  },
 };
 
 export const SHOWS_DATA: TourDate[] = [
@@ -50,6 +56,14 @@ export const SHOWS_DATA: TourDate[] = [
     city: "Brandon",
     state: "MS",
     time: "6:00 PM - 9:00 PM CST",
+    featured: true,
+  },
+  {
+    id: "show-2026-04-10-station-jxn",
+    date: "2026-04-10",
+    venue: "The Station JXN",
+    city: "Jackson",
+    state: "MS",
     featured: true,
   },
   {
