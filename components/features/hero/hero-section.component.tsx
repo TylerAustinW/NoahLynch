@@ -153,7 +153,7 @@ export default function HeroSection(): React.ReactElement {
               <div className="flex flex-col gap-3">
                 <div className="flex flex-wrap gap-2 sm:gap-3">
                   <Button asChild variant="primary" size="default">
-                    <Link href="/music/honest" aria-label="Listen to the latest album Honest">
+                    <Link href="/music/chasing-a-feelin" aria-label="Listen to the latest album Honest">
                       Listen Now
                     </Link>
                   </Button>
@@ -181,7 +181,7 @@ export default function HeroSection(): React.ReactElement {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Follow Noah Lynch on Instagram"
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/80 backdrop-blur-sm text-white transition-all duration-300 hover:bg-zinc-800/90 hover:border-zinc-600/50 focus:outline-none focus:ring-2 focus:ring-zinc-500/40"
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/80 backdrop-blur-sm text-white transition-all duration-300 hover:bg-zinc-800/90 hover:border-zinc-600/50"
                   >
                     <FaInstagram className="h-4 w-4" aria-hidden="true" />
                   </Link>
@@ -190,7 +190,7 @@ export default function HeroSection(): React.ReactElement {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Follow Noah Lynch on Facebook"
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/80 backdrop-blur-sm text-white transition-all duration-300 hover:bg-zinc-800/90 hover:border-zinc-600/50 focus:outline-none focus:ring-2 focus:ring-zinc-500/40"
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/80 backdrop-blur-sm text-white transition-all duration-300 hover:bg-zinc-800/90 hover:border-zinc-600/50"
                   >
                     <FaFacebookF className="h-4 w-4" aria-hidden="true" />
                   </Link>
@@ -199,7 +199,7 @@ export default function HeroSection(): React.ReactElement {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Follow Noah Lynch on TikTok"
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/80 backdrop-blur-sm text-white transition-all duration-300 hover:bg-zinc-800/90 hover:border-zinc-600/50 focus:outline-none focus:ring-2 focus:ring-zinc-500/40"
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/80 backdrop-blur-sm text-white transition-all duration-300 hover:bg-zinc-800/90 hover:border-zinc-600/50"
                   >
                     <FaTiktok className="h-4 w-4" aria-hidden="true" />
                   </Link>
@@ -208,7 +208,7 @@ export default function HeroSection(): React.ReactElement {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Subscribe to Noah Lynch on YouTube"
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/80 backdrop-blur-sm text-white transition-all duration-300 hover:bg-zinc-800/90 hover:border-zinc-600/50 focus:outline-none focus:ring-2 focus:ring-zinc-500/40"
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/80 backdrop-blur-sm text-white transition-all duration-300 hover:bg-zinc-800/90 hover:border-zinc-600/50"
                   >
                     <FaYoutube className="h-4 w-4" aria-hidden="true" />
                   </Link>
