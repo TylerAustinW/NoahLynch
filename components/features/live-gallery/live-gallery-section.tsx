@@ -197,9 +197,9 @@ export default function LiveGallerySection() {
               const shouldShowYearDivider = index > 0 && currentYear !== prevYear;
 
               return (
-                <>
+                <div key={venue.id + "-" + index}>
                   {shouldShowYearDivider && (
-                    <div key={`divider-${venue.id}`} className="md:col-span-2 flex flex-col items-center gap-3 my-2">
+                    <div className="md:col-span-2 flex flex-col items-center gap-3 my-2">
                       <div className="h-px w-full bg-zinc-700/30" />
                       <span className="text-sm text-zinc-300 font-semibold">{currentYear}</span>
                       <div className="h-px w-full bg-zinc-700/30" />
@@ -207,7 +207,6 @@ export default function LiveGallerySection() {
                   )}
 
                   <motion.div
-                    key={venue.id}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.2 }}
@@ -227,8 +226,6 @@ export default function LiveGallerySection() {
                         quality={75}
                         loading={index < 2 ? "eager" : "lazy"}
                         priority={index < 2}
-                        placeholder="blur"
-                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKC[...]
                       />
 
                       {hasGallery && (
@@ -259,7 +256,7 @@ export default function LiveGallerySection() {
                       </div>
                     </div>
                   </motion.div>
-                </>
+                </div>
               );
             })}
           </div>
@@ -289,7 +286,7 @@ export default function LiveGallerySection() {
           >
             <button
               onClick={closeModal}
-              className="absolute -top-10 sm:-top-12 right-0 p-2 text-white hover:text-amber-400 transition-colors z-30 touch-manipulation bg-black/50 rounded-full w-10 h-10 sm:w-auto sm:h-auto s[...]
+              className="absolute -top-10 sm:-top-12 right-0 p-2 text-white hover:text-amber-400 transition-colors z-30 touch-manipulation bg-black/50 rounded-full w-10 h-10"
               aria-label="Close gallery"
             >
               <X className="w-6 h-6 sm:w-8 sm:h-8" />
@@ -329,8 +326,6 @@ export default function LiveGallerySection() {
                     sizes="(max-width: 768px) 95vw, (max-width: 1200px) 80vw, 1200px"
                     quality={75}
                     loading="lazy"
-                    placeholder="blur"
-                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChM[...]
                     style={{
                       maxWidth: "100%",
                       height: "auto",
@@ -356,14 +351,14 @@ export default function LiveGallerySection() {
               <>
                 <button
                   onClick={prevPhoto}
-                  className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-black/80 backdrop-blur-sm rounded-full text-white hover:text-amber-400 transition-colors z-20 touch-m[...]
+                  className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-black/80 backdrop-blur-sm rounded-full text-white hover:text-amber-400 transition-colors z-20"
                   aria-label="Previous photo"
                 >
                   <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
                 </button>
                 <button
                   onClick={nextPhoto}
-                  className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-black/80 backdrop-blur-sm rounded-full text-white hover:text-amber-400 transition-colors z-20 touch[...]
+                  className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-black/80 backdrop-blur-sm rounded-full text-white hover:text-amber-400 transition-colors z-20"
                   aria-label="Next photo"
                 >
                   <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
