@@ -192,64 +192,74 @@ export default function LiveGallerySection() {
               const photoPath = getPhotoPath(venue.id, featuredPhoto.filename);
               const hasGallery = hasMultiplePhotos(venue);
 
+              const currentYear = new Date(venue.date).getFullYear();
+              const prevYear = index > 0 ? new Date(venuePhotoCollections[index - 1].date).getFullYear() : currentYear;
+              const shouldShowYearDivider = index > 0 && currentYear !== prevYear;
+
               return (
-                <motion.div
-                  key={venue.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  viewport={{ once: true }}
-                  className={`group relative overflow-hidden rounded-xl bg-zinc-800/50 border border-zinc-700/30 ${
-                    hasGallery ? "cursor-pointer touch-manipulation" : ""
-                  }`}
-                  onClick={() => handleVenueClick(venue)}
-                >
-                  <div className="aspect-[4/3] relative overflow-hidden bg-zinc-800">
-                    <Image
-                      src={photoPath}
-                      alt={featuredPhoto.filename}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      quality={75}
-                      loading={index < 2 ? "eager" : "lazy"}
-                      priority={index < 2}
-                      placeholder="blur"
-                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwAA8A/9k="
-                    />
+                <>
+                  {shouldShowYearDivider && (
+                    <div key={`divider-${venue.id}`} className="md:col-span-2 flex flex-col items-center gap-3 my-2">
+                      <div className="h-px w-full bg-zinc-700/30" />
+                      <span className="text-sm text-zinc-300 font-semibold">{currentYear}</span>
+                      <div className="h-px w-full bg-zinc-700/30" />
+                    </div>
+                  )}
 
-                    {hasGallery && (
-                      <div className="absolute top-4 right-4 bg-black/70 backdrop-blur-sm rounded-full px-3 py-1">
-                        <span className="text-white text-sm font-medium">
-                          +{venue.photos.length - 1}
-                        </span>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white bg-gradient-to-t from-black/90 via-black/70 to-transparent">
-                    <div className="space-y-2">
-                      <h3 className="text-xl font-bold text-white">{venue.venue}</h3>
-
-                      <div className="flex items-center gap-4 text-sm text-white/90">
-                        <div className="flex items-center gap-1">
-                          <MapPin className="w-4 h-4" />
-                          <span>
-                            {venue.city}, {venue.state}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-4 h-4" />
-                          <span>{formatDate(venue.date)}</span>
-                        </div>
-                      </div>
+                  <motion.div
+                    key={venue.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.2 }}
+                    viewport={{ once: true }}
+                    className={`group relative overflow-hidden rounded-xl bg-zinc-800/50 border border-zinc-700/30 ${
+                      hasGallery ? "cursor-pointer touch-manipulation" : ""
+                    }`}
+                    onClick={() => handleVenueClick(venue)}
+                  >
+                    <div className="aspect-[4/3] relative overflow-hidden bg-zinc-800">
+                      <Image
+                        src={photoPath}
+                        alt={featuredPhoto.filename}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        quality={75}
+                        loading={index < 2 ? "eager" : "lazy"}
+                        priority={index < 2}
+                        placeholder="blur"
+                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKC[...]
+                      />
 
                       {hasGallery && (
-                        <p className="text-xs text-amber-400 mt-2">Click to view gallery</p>
+                        <div className="absolute top-4 right-4 bg-black/70 backdrop-blur-sm rounded-full px-3 py-1">
+                          <span className="text-white text-sm font-medium">+{venue.photos.length - 1}</span>
+                        </div>
                       )}
                     </div>
-                  </div>
-                </motion.div>
+
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white bg-gradient-to-t from-black/90 via-black/70 to-transparent">
+                      <div className="space-y-2">
+                        <h3 className="text-xl font-bold text-white">{venue.venue}</h3>
+
+                        <div className="flex items-center gap-4 text-sm text-white/90">
+                          <div className="flex items-center gap-1">
+                            <MapPin className="w-4 h-4" />
+                            <span>{venue.city}, {venue.state}</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Calendar className="w-4 h-4" />
+                            <span>{formatDate(venue.date)}</span>
+                          </div>
+                        </div>
+
+                        {hasGallery && (
+                          <p className="text-xs text-amber-400 mt-2">Click to view gallery</p>
+                        )}
+                      </div>
+                    </div>
+                  </motion.div>
+                </>
               );
             })}
           </div>
@@ -279,7 +289,7 @@ export default function LiveGallerySection() {
           >
             <button
               onClick={closeModal}
-              className="absolute -top-10 sm:-top-12 right-0 p-2 text-white hover:text-amber-400 transition-colors z-30 touch-manipulation bg-black/50 rounded-full w-10 h-10 sm:w-auto sm:h-auto sm:bg-transparent flex items-center justify-center"
+              className="absolute -top-10 sm:-top-12 right-0 p-2 text-white hover:text-amber-400 transition-colors z-30 touch-manipulation bg-black/50 rounded-full w-10 h-10 sm:w-auto sm:h-auto s[...]
               aria-label="Close gallery"
             >
               <X className="w-6 h-6 sm:w-8 sm:h-8" />
@@ -320,7 +330,7 @@ export default function LiveGallerySection() {
                     quality={75}
                     loading="lazy"
                     placeholder="blur"
-                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCwAA8A/9k="
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChM[...]
                     style={{
                       maxWidth: "100%",
                       height: "auto",
@@ -346,14 +356,14 @@ export default function LiveGallerySection() {
               <>
                 <button
                   onClick={prevPhoto}
-                  className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-black/80 backdrop-blur-sm rounded-full text-white hover:text-amber-400 transition-colors z-20 touch-manipulation w-12 h-12 sm:w-auto sm:h-auto flex items-center justify-center"
+                  className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-black/80 backdrop-blur-sm rounded-full text-white hover:text-amber-400 transition-colors z-20 touch-m[...]
                   aria-label="Previous photo"
                 >
                   <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
                 </button>
                 <button
                   onClick={nextPhoto}
-                  className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-black/80 backdrop-blur-sm rounded-full text-white hover:text-amber-400 transition-colors z-20 touch-manipulation w-12 h-12 sm:w-auto sm:h-auto flex items-center justify-center"
+                  className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-black/80 backdrop-blur-sm rounded-full text-white hover:text-amber-400 transition-colors z-20 touch[...]
                   aria-label="Next photo"
                 >
                   <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
