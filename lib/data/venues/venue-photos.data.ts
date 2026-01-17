@@ -13,6 +13,22 @@ export interface VenuePhotoCollection {
 }
 
 export const venuePhotoCollections: VenuePhotoCollection[] = [
+  // NEW: Sunset Grill (2026) — added for the images uploaded in the conversation
+  {
+    id: "sunset-grill-2026",
+    venue: "Sunset Grill",
+    city: "Brandon",
+    state: "MS",
+    date: "2026-01-17",
+    photos: [
+      { filename: "sunsetgrill-2026-1.jpg", featured: false },
+      { filename: "sunsetgrill-2026-2.jpg", featured: true },
+      { filename: "sunsetgrill-2026-3.jpg", featured: false },
+      { filename: "sunsetgrill-2026-4.jpg", featured: false },
+    ],
+  },
+
+  // existing collections (unchanged)
   {
     id: "Ole-Brook-Festival",
     venue: "Ole Brook Festival",
