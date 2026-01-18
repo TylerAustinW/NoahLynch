@@ -7,9 +7,6 @@ import React, { useEffect, useState } from "react";
 import { FaInstagram, FaFacebookF, FaTiktok, FaYoutube } from "react-icons/fa6";
 import { SOCIAL_LINKS } from "@/lib/config/constants";
 
-const baseLinkClass =
-  "relative group inline-flex items-center justify-center py-2 px-3 text-sm font-medium tracking-normal transition-all duration-200 hover:text-amber-400 h-[44px] leading-none";
-
 const MenuIcon = ({ className }: { className?: string }) => (
   <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <rect x="4" y="7" width="16" height="1.5" rx="0.75" fill="currentColor" opacity="0.9" />
@@ -123,8 +120,6 @@ export default function Navbar() {
     setMobileOpen(false);
   };
 
-  const textColor = "text-white transition-colors duration-300";
-
   const variants = {
     overlay: {
       initial: { opacity: 0 },
@@ -160,7 +155,7 @@ export default function Navbar() {
       <motion.header
         className={cn(
           "fixed top-0 right-0 left-0 z-50 py-3 transition-all duration-300",
-          "bg-black",
+          "bg-zinc-950/95 backdrop-blur-md border-b border-zinc-900/50",
           "opacity-100 pointer-events-auto translate-y-0",
           "safe-area-inset-top",
         )}
@@ -176,7 +171,7 @@ export default function Navbar() {
         <div className="mx-auto grid max-w-7xl grid-cols-3 items-center px-4 sm:px-6 md:px-16 min-h-[52px]">
           {/* Left: Navigation Links */}
           <nav className="hidden items-center gap-6 md:flex h-full justify-start">
-            {navLinks.map((link, index) => (
+            {navLinks.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
