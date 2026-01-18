@@ -166,7 +166,7 @@ export default function LiveGallerySection() {
 
   return (
     <> 
-      <section className="py-16 px-4 bg-zinc-900/50">
+      <section className="py-16 px-4 bg-zinc-900/50" suppressHydrationWarning>
         <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -186,79 +186,85 @@ export default function LiveGallerySection() {
           <div className="h-1 w-full bg-zinc-700/20 mb-4" />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {venuePhotoCollections.map((venue: VenuePhotoCollection, index: number) => {
+        <div className="grid md:grid-cols-2 gap-8" suppressHydrationWarning>
+          {venuePhotoCollections.flatMap((venue: VenuePhotoCollection, index: number) => {
             const featuredPhoto = getFeaturedPhoto(venue);
             const photoPath = getPhotoPath(venue.id, featuredPhoto.filename);
             const hasGallery = hasMultiplePhotos(venue);
 
-             const currentYear = new Date(venue.date).getFullYear();
-             const prevCollection = venuePhotoCollections[index - 1] ?? null;
-             const prevYear = prevCollection ? new Date(prevCollection.date).getFullYear() : currentYear;
-             const shouldShowYearDivider = index > 0 && currentYear !== prevYear;
+            const currentYear = new Date(venue.date).getFullYear();
+            const prevCollection = venuePhotoCollections[index - 1] ?? null;
+            const prevYear = prevCollection ? new Date(prevCollection.date).getFullYear() : currentYear;
+            const shouldShowYearDivider = index > 0 && currentYear !== prevYear;
 
-            return (
-              <div key={venue.id + "-" + index}>
-                {shouldShowYearDivider && (
-                  <div className="md:col-span-2 flex flex-col items-center gap-3 my-2">
-                    <div className="h-px w-full bg-zinc-700/30" />
-                    <span className="text-sm text-zinc-300 font-semibold">{currentYear}</span>
-                    <div className="h-px w-full bg-zinc-700/30" />
+            const elements = [];
+
+            if (shouldShowYearDivider) {
+              elements.push(
+                <div key={`divider-${currentYear}`} className="md:col-span-2 my-12">
+                  <div className="h-px w-full bg-zinc-600/50" />
+                </div>
+              );
+            }
+
+            elements.push(
+              <motion.div
+                key={venue.id + "-" + index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                className={`group relative overflow-hidden rounded-xl bg-zinc-800/50 border border-zinc-700/30 ${
+                  hasGallery ? "cursor-pointer touch-manipulation" : ""
+                }`}
+                onClick={() => handleVenueClick(venue)}
+              >
+                <div className="aspect-[4/3] relative overflow-hidden bg-zinc-800">
+                  <Image
+                    src={photoPath}
+                    alt={featuredPhoto.filename}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    quality={75}
+                    loading={index < 2 ? "eager" : "lazy"}
+                    priority={index < 2}
+                  />
+
+                  {hasGallery && (
+                    <div className="absolute top-4 right-4 bg-black/70 backdrop-blur-sm rounded-full px-3 py-1">
+                      <span className="text-white text-sm font-medium">+{venue.photos.length - 1}</span>
+                    </div>
+                  )}
+                  <div className="absolute top-4 left-4 bg-amber-400/90 backdrop-blur-sm rounded-full px-3 py-1.5">
+                    <span className="text-black text-sm font-bold">{currentYear}</span>
                   </div>
-                )}
+                </div>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  viewport={{ once: true }}
-                  className={`group relative overflow-hidden rounded-xl bg-zinc-800/50 border border-zinc-700/30 ${
-                    hasGallery ? "cursor-pointer touch-manipulation" : ""
-                  }`}
-                  onClick={() => handleVenueClick(venue)}
-                >
-                  <div className="aspect-[4/3] relative overflow-hidden bg-zinc-800">
-                    <Image
-                      src={photoPath}
-                      alt={featuredPhoto.filename}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      quality={75}
-                      loading={index < 2 ? "eager" : "lazy"}
-                      priority={index < 2}
-                    />
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white bg-gradient-to-t from-black/90 via-black/70 to-transparent">
+                  <div className="space-y-2">
+                    <h3 className="text-xl font-bold text-white">{venue.venue}</h3>
+
+                    <div className="flex items-center gap-4 text-sm text-white/90">
+                      <div className="flex items-center gap-1">
+                        <MapPin className="w-4 h-4" />
+                        <span>{venue.city}, {venue.state}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Calendar className="w-4 h-4" />
+                        <span>{formatDate(venue.date)}</span>
+                      </div>
+                    </div>
 
                     {hasGallery && (
-                      <div className="absolute top-4 right-4 bg-black/70 backdrop-blur-sm rounded-full px-3 py-1">
-                        <span className="text-white text-sm font-medium">+{venue.photos.length - 1}</span>
-                      </div>
+                      <p className="text-xs text-amber-400 mt-2">Click to view gallery</p>
                     )}
                   </div>
-
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white bg-gradient-to-t from-black/90 via-black/70 to-transparent">
-                    <div className="space-y-2">
-                      <h3 className="text-xl font-bold text-white">{venue.venue}</h3>
-
-                      <div className="flex items-center gap-4 text-sm text-white/90">
-                        <div className="flex items-center gap-1">
-                          <MapPin className="w-4 h-4" />
-                          <span>{venue.city}, {venue.state}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-4 h-4" />
-                          <span>{formatDate(venue.date)}</span>
-                        </div>
-                      </div>
-
-                      {hasGallery && (
-                        <p className="text-xs text-amber-400 mt-2">Click to view gallery</p>
-                      )}
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
+                </div>
+              </motion.div>
             );
+
+            return elements;
           })}
         </div>
 

@@ -4,9 +4,11 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { FaInstagram, FaFacebookF, FaTiktok, FaYoutube } from "react-icons/fa6";
+import { SOCIAL_LINKS } from "@/lib/config/constants";
 
 const baseLinkClass =
-  "relative group inline-flex items-center justify-center py-2 px-3 text-sm font-medium tracking-wide transition-all duration-300 hover:text-amber-400 h-[44px] leading-none";
+  "relative group inline-flex items-center justify-center py-2 px-3 text-sm font-medium tracking-normal transition-all duration-200 hover:text-amber-400 h-[44px] leading-none";
 
 const MenuIcon = ({ className }: { className?: string }) => (
   <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -157,10 +159,10 @@ export default function Navbar() {
     <>
       <motion.header
         className={cn(
-          "fixed top-0 right-0 left-0 z-50 py-3 sm:py-4 transition-all duration-300",
-          "bg-zinc-900/80 backdrop-blur-sm md:bg-zinc-900/80 md:backdrop-blur-sm",
+          "fixed top-0 right-0 left-0 z-50 py-3 transition-all duration-300",
+          "bg-black",
           "opacity-100 pointer-events-auto translate-y-0",
-          "will-change-[backdrop-filter] transform-gpu",
+          "safe-area-inset-top",
         )}
         initial={{ y: 0 }}
         animate={{
@@ -171,60 +173,100 @@ export default function Navbar() {
           },
         }}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 md:px-12 min-h-[44px]">
-          <motion.div
-            className="flex items-center h-full"
-            whileHover={reducedMotion ? {} : { scale: 1.02 }}
-            transition={{ duration: 0.2 }}
-          >
-            <Link href="/" className="group flex items-center h-full">
-              <h1
+        <div className="mx-auto grid max-w-7xl grid-cols-3 items-center px-4 sm:px-6 md:px-16 min-h-[52px]">
+          {/* Left: Navigation Links */}
+          <nav className="hidden items-center gap-6 md:flex h-full justify-start">
+            {navLinks.map((link, index) => (
+              <Link
+                key={link.label}
+                href={link.href}
                 className={cn(
-                  "text-xl sm:text-2xl md:text-3xl font-bold tracking-wider text-white transition-all duration-300 group-hover:text-amber-400 leading-none",
+                  "text-xs sm:text-sm font-serif text-zinc-300 hover:text-white transition-colors duration-200",
+                  "tracking-wide whitespace-nowrap"
                 )}
+                onClick={
+                  link.id
+                    ? (e) => {
+                        handleNavClick(e, link.id);
+                        closeMenu();
+                      }
+                    : () => closeMenu()
+                }
               >
-                NOAH LYNCH
-              </h1>
-            </Link>
-          </motion.div>
+                {link.label}
+              </Link>
+            ))}
+          </nav>
 
-          <div className="flex items-center h-full">
-            <nav className="hidden items-center space-x-2 md:flex h-full">
-              {navLinks.map((link, index) => (
-                <motion.div
-                  key={link.label}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.03 * index, duration: 0.2 }}
-                  className="flex items-center h-full"
+          {/* Center: Artist Name - Perfectly Centered */}
+          <div className="flex items-center justify-center h-full">
+            <motion.div
+              className="flex items-center h-full"
+              whileHover={reducedMotion ? {} : { scale: 1.02 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Link href="/" className="group flex items-center h-full">
+                <h1
+                  className={cn(
+                    "text-base sm:text-lg md:text-2xl font-serif font-normal tracking-wide text-white transition-all duration-300",
+                    "leading-none whitespace-nowrap"
+                  )}
                 >
-                  <Link
-                    href={link.href}
-                    className={cn(baseLinkClass, textColor, "flex items-center justify-center")}
-                    onClick={
-                      link.id
-                        ? (e) => {
-                            handleNavClick(e, link.id);
-                            closeMenu();
-                          }
-                        : () => closeMenu()
-                    }
-                  >
-                    <span className="relative z-10">{link.label}</span>
-                    <div className="absolute inset-0 rounded-lg bg-amber-500/10 opacity-0 transition-all duration-300 group-hover:opacity-100" />
-                    <div className="absolute bottom-1 left-4 right-4 h-0.5 bg-gradient-to-r from-amber-400 to-amber-600 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
-                  </Link>
-                </motion.div>
-              ))}
+                  NOAH LYNCH
+                </h1>
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* Right: Social Icons */}
+          <div className="flex items-center justify-end gap-6 h-full">
+            <nav className="hidden items-center gap-6 md:flex h-full">
+              <Link
+                href={SOCIAL_LINKS.INSTAGRAM}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow Noah Lynch on Instagram"
+                className="text-zinc-300 hover:text-white transition-colors duration-200"
+              >
+                <FaInstagram className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
+              </Link>
+              <Link
+                href={SOCIAL_LINKS.FACEBOOK}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow Noah Lynch on Facebook"
+                className="text-zinc-300 hover:text-white transition-colors duration-200"
+              >
+                <FaFacebookF className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
+              </Link>
+              <Link
+                href={SOCIAL_LINKS.TIKTOK}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Follow Noah Lynch on TikTok"
+                className="text-zinc-300 hover:text-white transition-colors duration-200"
+              >
+                <FaTiktok className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
+              </Link>
+              <Link
+                href={SOCIAL_LINKS.YOUTUBE}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Subscribe to Noah Lynch on YouTube"
+                className="text-zinc-300 hover:text-white transition-colors duration-200"
+              >
+                <FaYoutube className="h-4 w-4 sm:h-5 sm:w-5" aria-hidden="true" />
+              </Link>
             </nav>
 
             <button
               type="button"
               className={cn(
-                "relative z-50 h-10 w-10 border rounded-lg md:hidden flex items-center justify-center",
-                "border-zinc-600/50 bg-zinc-900/80 backdrop-blur-sm transition-colors",
-                "hover:border-amber-500/50 hover:bg-amber-500/10",
-                mobileOpen && "border-amber-500/70 bg-amber-500/20",
+                "relative z-50 h-11 w-11 border rounded-lg md:hidden flex items-center justify-center",
+                "border-zinc-700 bg-zinc-900 transition-all duration-200",
+                "hover:border-zinc-600 hover:bg-zinc-800 active:bg-zinc-800",
+                "touch-manipulation",
+                mobileOpen && "border-zinc-600 bg-zinc-800",
               )}
               aria-label="Toggle navigation menu"
               aria-expanded={mobileOpen}
@@ -243,7 +285,7 @@ export default function Navbar() {
                     exit={{ rotate: reducedMotion ? 0 : 90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <CloseIcon className="h-4 w-4 text-amber-400" />
+                    <CloseIcon className="h-4 w-4 text-white" />
                   </motion.div>
                 ) : (
                   <motion.div
@@ -256,7 +298,7 @@ export default function Navbar() {
                     exit={{ rotate: reducedMotion ? 0 : -90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <MenuIcon className="h-4 w-4 text-white" />
+                    <MenuIcon className="h-4 w-4 text-zinc-300" />
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -269,11 +311,15 @@ export default function Navbar() {
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
-              className="fixed top-0 left-0 right-0 bottom-0 z-[100] flex items-center justify-center overflow-hidden bg-zinc-900 backdrop-blur-2xl md:hidden"
+              className="fixed top-0 left-0 right-0 bottom-0 z-[100] flex items-center justify-center overflow-hidden bg-black md:hidden"
               style={{
-                height: "-webkit-fill-available" as React.CSSProperties["height"],
-                minHeight: "100vh",
+                height: "100dvh",
+                minHeight: "-webkit-fill-available",
                 width: "100vw",
+                paddingTop: "env(safe-area-inset-top)",
+                paddingBottom: "env(safe-area-inset-bottom)",
+                paddingLeft: "env(safe-area-inset-left)",
+                paddingRight: "env(safe-area-inset-right)",
               }}
               initial={variants.overlay.initial}
               animate={variants.overlay.animate}
@@ -300,7 +346,7 @@ export default function Navbar() {
                     >
                       <Link
                         href={link.href}
-                        className="relative flex items-center justify-center text-2xl sm:text-3xl font-bold tracking-wider text-white transition-all duration-300 hover:text-amber-400 active:text-amber-300 py-4"
+                        className="relative flex items-center justify-center text-2xl sm:text-3xl font-serif font-normal tracking-wide text-zinc-300 transition-all duration-200 hover:text-white active:text-white py-4"
                         onClick={
                           link.id
                             ? (e) => {
@@ -310,8 +356,7 @@ export default function Navbar() {
                             : () => closeMenu()
                         }
                       >
-                        <span className="relative z-10">{link.label}</span>
-                        <div className="absolute inset-0 -inset-x-4 -inset-y-2 rounded-xl bg-gradient-to-r from-amber-500/0 via-amber-500/10 to-amber-500/0 opacity-0 transition-all duration-300 group-hover:opacity-100 group-active:opacity-100" />
+                        {link.label}
                       </Link>
                     </motion.div>
                   ))}
@@ -319,7 +364,10 @@ export default function Navbar() {
               </nav>
 
               <motion.div
-                className="pointer-events-none absolute bottom-6 left-0 right-0 p-4 text-center"
+                className="pointer-events-none absolute left-0 right-0 p-4 text-center"
+                style={{
+                  bottom: "calc(1.5rem + env(safe-area-inset-bottom))",
+                }}
                 initial={variants.footer.initial}
                 animate={variants.footer.animate}
                 exit={variants.footer.exit}

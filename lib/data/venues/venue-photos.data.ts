@@ -15,16 +15,18 @@ export interface VenuePhotoCollection {
 export const venuePhotoCollections: VenuePhotoCollection[] = [
   // NEW: Sunset Grill (2026) — added for the images uploaded in the conversation
   {
-    id: "sunset-grill-2026",
+    id: "sunset-grill/2026",
     venue: "Sunset Grill",
     city: "Brandon",
     state: "MS",
-    date: "2026-01-17",
+    date: "2026-01-16",
     photos: [
-      { filename: "sunsetgrill-2026-1.jpg", featured: false },
-      { filename: "sunsetgrill-2026-2.jpg", featured: true },
-      { filename: "sunsetgrill-2026-3.jpg", featured: false },
-      { filename: "sunsetgrill-2026-4.jpg", featured: false },
+      { filename: "sunset-grill-2026-6.jpg", featured: true },
+      { filename: "Sunset-grill-2026-1.jpg", featured: false },
+      { filename: "Sunset-grill-2026-2.jpg", featured: false },
+      { filename: "sunset-grill-2026-3.jpg", featured: false },
+      { filename: "sunset-grill-2026-4.jpg", featured: false },
+      { filename: "sunset-grill-2026-5.jpg", featured: false },
     ],
   },
 

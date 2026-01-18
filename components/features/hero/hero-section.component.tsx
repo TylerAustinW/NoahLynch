@@ -107,8 +107,8 @@ export default function HeroSection(): React.ReactElement {
         <div className="absolute top-0 h-full w-full">
           <Image
             quality={75}
-            src="/venues/the-roof/NoahAtTheRoof.jpg"
-            alt="Noah Lynch at The Roof"
+            src="/venues/sunset-grill/2026/sunset-grill-2026-6.jpg"
+            alt="Noah Lynch performing at Sunset Grill"
             fill
             sizes="(max-width: 768px) 100vw, 0px"
             className="object-cover md:hidden"
@@ -122,8 +122,8 @@ export default function HeroSection(): React.ReactElement {
           />
           <Image
             quality={75}
-            src="/venues/the-roof/NoahAtTheRoof2.jpg"
-            alt="Noah Lynch at The Roof"
+            src="/venues/sunset-grill/2026/sunset-grill-2026-6.jpg"
+            alt="Noah Lynch performing at Sunset Grill"
             fill
             sizes="(min-width: 768px) 100vw, 0px"
             className="object-cover hidden md:block"
