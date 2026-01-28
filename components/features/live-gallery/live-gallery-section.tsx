@@ -166,7 +166,11 @@ export default function LiveGallerySection() {
 
   return (
     <> 
-      <section className="py-16 px-4 bg-zinc-900/50" suppressHydrationWarning>
+      <section
+        id="gallery-grid"
+        className="py-16 px-4 bg-zinc-900/50 scroll-mt-24"
+        suppressHydrationWarning
+      >
         <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
