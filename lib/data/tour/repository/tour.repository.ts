@@ -1,5 +1,5 @@
 import { SHOWS_DATA, VENUES } from "../data/shows.data";
-import { ShowStatus, type TourDate, type Venue } from "../models/tour.model";
+import type { TourDate, Venue } from "../models/tour.model";
 
 class TourRepository {
   private shows: TourDate[] = [...SHOWS_DATA];
@@ -11,18 +11,33 @@ class TourRepository {
   getUpcomingShows(): TourDate[] {
     return this.shows
       .filter((show) => this.isShowUpcoming(show))
-      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+      .sort(
+        (a, b) =>
+          this.parseShowDate(a.date).getTime() -
+          this.parseShowDate(b.date).getTime(),
+      );
   }
 
   getPastShows(): TourDate[] {
     return this.shows
       .filter((show) => !this.isShowUpcoming(show))
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      .sort(
+        (a, b) =>
+          this.parseShowDate(b.date).getTime() -
+          this.parseShowDate(a.date).getTime(),
+      );
   }
 
   getNextShow(): TourDate | null {
-    const upcomingShows = this.getUpcomingShows();
-    return upcomingShows.length > 0 ? upcomingShows[0]! : null;
+    const enabledShows = this.shows
+      .filter((show) => show.enabled)
+      .sort(
+        (a, b) =>
+          this.parseShowDate(a.date).getTime() -
+          this.parseShowDate(b.date).getTime(),
+      );
+
+    return enabledShows.length > 0 ? enabledShows[0]! : null;
   }
 
   getFeaturedShows(): TourDate[] {
@@ -35,11 +50,17 @@ class TourRepository {
       const bIsUpcoming = this.isShowUpcoming(b);
 
       if (aIsUpcoming && bIsUpcoming) {
-        return new Date(a.date).getTime() - new Date(b.date).getTime();
+        return (
+          this.parseShowDate(a.date).getTime() -
+          this.parseShowDate(b.date).getTime()
+        );
       }
 
       if (!aIsUpcoming && !bIsUpcoming) {
-        return new Date(b.date).getTime() - new Date(a.date).getTime();
+        return (
+          this.parseShowDate(b.date).getTime() -
+          this.parseShowDate(a.date).getTime()
+        );
       }
 
       return aIsUpcoming ? -1 : 1;
@@ -72,14 +93,20 @@ class TourRepository {
   }
 
   isShowUpcoming(show: TourDate): boolean {
-    if (show.manualStatus === ShowStatus.PAST) return false;
-    if (show.manualStatus === ShowStatus.UPCOMING) return true;
-
-    const showDate = new Date(show.date);
+    const showDate = this.parseShowDate(show.date);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
     return showDate >= today;
+  }
+
+  private parseShowDate(date: string): Date {
+    const [year, month, day] = date.split("-").map(Number);
+    if (!year || !month || !day) {
+      return new Date(date);
+    }
+
+    return new Date(year, month - 1, day);
   }
 
   private generateId(date: string, venue: string): string {
