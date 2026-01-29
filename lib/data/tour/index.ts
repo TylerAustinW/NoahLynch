@@ -1,6 +1,5 @@
 // Re-export everything from the tour system
 export type { TourDate, Venue, ShowNotificationConfig } from "./models/tour.model";
-export { ShowStatus } from "./models/tour.model";
 export { tourRepository } from "./repository/tour.repository";
 export { VENUES } from "./data/shows.data";
 

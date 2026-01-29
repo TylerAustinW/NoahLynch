@@ -4,12 +4,12 @@ export interface TourDate {
   venue: string;
   city: string;
   state: string;
+  enabled: boolean;
   time?: string;
   actionLink?: string;
   actionText?: string;
   description?: string;
   featured?: boolean;
-  manualStatus?: "upcoming" | "past";
 }
 
 export interface Venue {
@@ -27,9 +27,4 @@ export interface ShowNotificationConfig {
   venue: string;
   location: string;
   ticketUrl: string;
-}
-
-export enum ShowStatus {
-  UPCOMING = "upcoming",
-  PAST = "past",
 }

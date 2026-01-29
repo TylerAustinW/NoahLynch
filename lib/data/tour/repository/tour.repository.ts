@@ -1,5 +1,5 @@
 import { SHOWS_DATA, VENUES } from "../data/shows.data";
-import { ShowStatus, type TourDate, type Venue } from "../models/tour.model";
+import type { TourDate, Venue } from "../models/tour.model";
 
 class TourRepository {
   private shows: TourDate[] = [...SHOWS_DATA];
@@ -86,14 +86,7 @@ class TourRepository {
   }
 
   isShowUpcoming(show: TourDate): boolean {
-    if (show.manualStatus === ShowStatus.PAST) return false;
-    if (show.manualStatus === ShowStatus.UPCOMING) return true;
-
-    const showDate = this.parseShowDate(show.date);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    return showDate >= today;
+    return show.enabled;
   }
 
   private parseShowDate(date: string): Date {

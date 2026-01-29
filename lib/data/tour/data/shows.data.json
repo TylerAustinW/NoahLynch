@@ -1,0 +1,116 @@
+[
+  {
+    "id": "show-2026-05-23-backwater",
+    "date": "2026-05-23",
+    "venue": "Backwater Grill",
+    "city": "Brandon",
+    "state": "MS",
+    "enabled": false,
+    "time": "6:00 PM - 9:00 PM CST",
+    "featured": true
+  },
+  {
+    "id": "show-2026-04-10-station-jxn",
+    "date": "2026-04-10",
+    "venue": "The Station JXN",
+    "city": "Jackson",
+    "state": "MS",
+    "enabled": false,
+    "featured": true
+  },
+  {
+    "id": "show-2026-03-13-backwater",
+    "date": "2026-03-13",
+    "venue": "Backwater Grill",
+    "city": "Brandon",
+    "state": "MS",
+    "enabled": false,
+    "time": "6:00 PM - 9:00 PM CST",
+    "featured": true
+  },
+  {
+    "id": "show-2026-01-29-roof",
+    "date": "2026-01-29",
+    "venue": "The Roof at 1311",
+    "city": "Vicksburg",
+    "state": "MS",
+    "enabled": true,
+    "time": "6:00 PM - 9:00 PM CST",
+    "featured": true
+  },
+  {
+    "id": "show-2026-01-16-sunset",
+    "date": "2026-01-16",
+    "venue": "Sunset Grill",
+    "city": "Brandon",
+    "state": "MS",
+    "enabled": false,
+    "time": "7:00 PM - 11:00 PM CST",
+    "description": "First gig of 2026!",
+    "featured": true
+  },
+  {
+    "id": "show-2025-10-03-ole-brook",
+    "date": "2025-10-03",
+    "venue": "Ole Brook Festival",
+    "city": "Brookhaven",
+    "state": "MS",
+    "enabled": false,
+    "time": "6:00 PM - 7:00 PM CDT",
+    "actionLink": "https://www.bandsintown.com/e/107374328?&came_from=210",
+    "actionText": "Event Info",
+    "featured": true,
+    "description": "Live performance at Ole Brook Festival."
+  },
+  {
+    "id": "show-2025-09-06-backwater",
+    "date": "2025-09-06",
+    "venue": "Backwater Grill",
+    "city": "Brandon",
+    "state": "MS",
+    "enabled": false,
+    "time": "6:00 PM CDT",
+    "actionLink": "https://www.bandsintown.com/e/107170464-noah-lynch-at-backwater-grill-taphouse-and-oyster-bar?came_from=267&utm_medium=web&utm_source=artist_page&utm_campaign=event",
+    "featured": false,
+    "description": "Join Noah Lynch for a live performance at Backwater Grill."
+  },
+  {
+    "id": "show-2025-09-01-sunset",
+    "date": "2025-09-01",
+    "venue": "Sunset Grill",
+    "city": "Brandon",
+    "state": "MS",
+    "enabled": false,
+    "time": "12:00 PM CDT",
+    "featured": false,
+    "description": "Join Noah Lynch for a live performance at Sunset Grill."
+  },
+  {
+    "id": "show-2025-08-16-roof",
+    "date": "2025-08-16",
+    "venue": "The Roof at 1311",
+    "city": "Vicksburg",
+    "state": "MS",
+    "enabled": false,
+    "time": "7:00 PM CDT",
+    "featured": false,
+    "description": "Amazing performance at The Roof on the 3rd floor with a packed crowd."
+  },
+  {
+    "id": "show-2025-06-14-magnolia",
+    "date": "2025-06-14",
+    "venue": "Magnolia Blues BBQ",
+    "city": "Brookhaven",
+    "state": "MS",
+    "enabled": false
+  },
+  {
+    "id": "show-2025-02-01-rushing",
+    "date": "2025-02-01",
+    "venue": "Rushing Roadhouse",
+    "city": "Jefferson County",
+    "state": "MS",
+    "enabled": false,
+    "description": "Live acoustic performance at Rushing Roadhouse."
+  }
+]
