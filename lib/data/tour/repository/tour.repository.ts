@@ -11,13 +11,21 @@ class TourRepository {
   getUpcomingShows(): TourDate[] {
     return this.shows
       .filter((show) => this.isShowUpcoming(show))
-      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+      .sort(
+        (a, b) =>
+          this.parseShowDate(a.date).getTime() -
+          this.parseShowDate(b.date).getTime(),
+      );
   }
 
   getPastShows(): TourDate[] {
     return this.shows
       .filter((show) => !this.isShowUpcoming(show))
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      .sort(
+        (a, b) =>
+          this.parseShowDate(b.date).getTime() -
+          this.parseShowDate(a.date).getTime(),
+      );
   }
 
   getNextShow(): TourDate | null {
@@ -35,11 +43,17 @@ class TourRepository {
       const bIsUpcoming = this.isShowUpcoming(b);
 
       if (aIsUpcoming && bIsUpcoming) {
-        return new Date(a.date).getTime() - new Date(b.date).getTime();
+        return (
+          this.parseShowDate(a.date).getTime() -
+          this.parseShowDate(b.date).getTime()
+        );
       }
 
       if (!aIsUpcoming && !bIsUpcoming) {
-        return new Date(b.date).getTime() - new Date(a.date).getTime();
+        return (
+          this.parseShowDate(b.date).getTime() -
+          this.parseShowDate(a.date).getTime()
+        );
       }
 
       return aIsUpcoming ? -1 : 1;
@@ -75,11 +89,20 @@ class TourRepository {
     if (show.manualStatus === ShowStatus.PAST) return false;
     if (show.manualStatus === ShowStatus.UPCOMING) return true;
 
-    const showDate = new Date(show.date);
+    const showDate = this.parseShowDate(show.date);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
     return showDate >= today;
+  }
+
+  private parseShowDate(date: string): Date {
+    const [year, month, day] = date.split("-").map(Number);
+    if (!year || !month || !day) {
+      return new Date(date);
+    }
+
+    return new Date(year, month - 1, day);
   }
 
   private generateId(date: string, venue: string): string {
