@@ -29,8 +29,15 @@ class TourRepository {
   }
 
   getNextShow(): TourDate | null {
-    const upcomingShows = this.getUpcomingShows();
-    return upcomingShows.length > 0 ? upcomingShows[0]! : null;
+    const enabledShows = this.shows
+      .filter((show) => show.enabled)
+      .sort(
+        (a, b) =>
+          this.parseShowDate(a.date).getTime() -
+          this.parseShowDate(b.date).getTime(),
+      );
+
+    return enabledShows.length > 0 ? enabledShows[0]! : null;
   }
 
   getFeaturedShows(): TourDate[] {
@@ -86,7 +93,11 @@ class TourRepository {
   }
 
   isShowUpcoming(show: TourDate): boolean {
-    return show.enabled;
+    const showDate = this.parseShowDate(show.date);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    return showDate >= today;
   }
 
   private parseShowDate(date: string): Date {
