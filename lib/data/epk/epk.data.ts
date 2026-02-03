@@ -166,6 +166,11 @@ export const epkData: EPKData = {
   ],
   releases: [
     {
+      title: "Bad Pick",
+      date: "February 2026",
+      highlights: "New Single",
+    },
+    {
       title: "Chasing A Feelin'",
       date: "October 2025",
       coverArt: "/covers/chasing-a-feelin.png",
