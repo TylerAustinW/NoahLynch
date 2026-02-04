@@ -24,7 +24,7 @@
     "venue": "Backwater Grill",
     "city": "Brandon",
     "state": "MS",
-    "enabled": false,
+    "enabled": true,
     "time": "6:00 PM - 9:00 PM CST",
     "featured": true
   },
@@ -34,7 +34,7 @@
     "venue": "The Roof at 1311",
     "city": "Vicksburg",
     "state": "MS",
-    "enabled": true,
+    "enabled": false,
     "time": "6:00 PM - 9:00 PM CST",
     "featured": true
   },
