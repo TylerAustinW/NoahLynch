@@ -55,6 +55,10 @@ const profilePhotos = [
     alt: "Noah Lynch - Professional Studio Photo",
   },
   {
+    src: "/venues/Ole-Brook-Festival/thenoahlynchband.png",
+    alt: "Noah Lynch Band performing at Ole Brook Festival",
+  },
+  {
     src: "/venues/the-roof/NoahAtTheRoof2.jpg",
     alt: "Noah Lynch - Live Performance at The Roof",
   },
