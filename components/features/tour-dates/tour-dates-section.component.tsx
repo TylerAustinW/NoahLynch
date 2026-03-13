@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Navbar from "@/components/layout/navbar.component";
 import Image from "next/image";
 import { format, parseISO } from "date-fns";
+import { isDateToday } from "@/lib/utils/date.utils";
 
 function formatTourDate(dateString: string) {
   const dateObj = parseISO(dateString);
@@ -100,7 +101,7 @@ export default function TourDatesMinimal() {
                         disabled
                         className="inline-block w-full text-center px-6 py-3 text-sm font-medium uppercase tracking-wider border border-zinc-600 text-zinc-600 cursor-not-allowed"
                       >
-                        Free Entry
+                        {isDateToday(date.date) ? "Show Is Today" : "Free Entry"}
                       </button>
                     )}
                   </div>
@@ -141,7 +142,7 @@ export default function TourDatesMinimal() {
                         disabled
                         className="inline-block px-6 py-2 text-xs md:text-sm font-medium uppercase tracking-wider border border-zinc-600 text-zinc-600 cursor-not-allowed"
                       >
-                        Free Entry
+                        {isDateToday(date.date) ? "Show Is Today" : "Free Entry"}
                       </button>
                     )}
                   </div>
