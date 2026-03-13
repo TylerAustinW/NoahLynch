@@ -21,3 +21,19 @@ export function formatDate(dateString: string, options: DateFormatOptions = {}):
 
   return date.toLocaleDateString("en-US", formatOptions);
 }
+
+export function isDateToday(dateString: string): boolean {
+  const parts = dateString.split("-").map(Number);
+  const year = parts[0] ?? new Date().getFullYear();
+  const month = parts[1] ?? 1;
+  const day = parts[2] ?? 1;
+
+  const date = new Date(year, month - 1, day);
+  const today = new Date();
+
+  return (
+    date.getFullYear() === today.getFullYear() &&
+    date.getMonth() === today.getMonth() &&
+    date.getDate() === today.getDate()
+  );
+}
