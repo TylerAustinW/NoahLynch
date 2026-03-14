@@ -196,6 +196,80 @@ export const epkData: EPKData = {
     title: "Live Performance Gallery",
     collections: [
       {
+        id: "sunset-grill-2026",
+        venue: "Sunset Grill",
+        city: "Brandon",
+        state: "MS",
+        date: "2026-01-16",
+        description: "2026 live performance gallery",
+        featured: false,
+        photos: [
+          {
+            src: "/venues/sunset-grill/2026/sunset-grill-2026-6.jpg",
+            alt: "Noah Lynch performing at Sunset Grill in 2026",
+            caption: "Live acoustic performance at Sunset Grill in 2026",
+            featured: true,
+          },
+          {
+            src: "/venues/sunset-grill/2026/Sunset-grill-2026-1.jpg",
+            alt: "Noah Lynch performing at Sunset Grill in 2026",
+            caption: "2026 live set at Sunset Grill",
+          },
+          {
+            src: "/venues/sunset-grill/2026/Sunset-grill-2026-2.jpg",
+            alt: "Noah Lynch performing at Sunset Grill in 2026",
+            caption: "Noah Lynch live at Sunset Grill in 2026",
+          },
+          {
+            src: "/venues/sunset-grill/2026/sunset-grill-2026-3.jpg",
+            alt: "Noah Lynch performing at Sunset Grill in 2026",
+            caption: "Acoustic storytelling at Sunset Grill in 2026",
+          },
+          {
+            src: "/venues/sunset-grill/2026/sunset-grill-2026-4.jpg",
+            alt: "Noah Lynch performing at Sunset Grill in 2026",
+            caption: "Sunset Grill 2026 performance moment",
+          },
+          {
+            src: "/venues/sunset-grill/2026/sunset-grill-2026-5.jpg",
+            alt: "Noah Lynch performing at Sunset Grill in 2026",
+            caption: "Another 2026 live moment at Sunset Grill",
+          },
+        ],
+      },
+      {
+        id: "backwater-grill-2026",
+        venue: "Backwater Grill",
+        city: "Brandon",
+        state: "MS",
+        date: "2026-03-14",
+        description: "2026 live performance gallery",
+        featured: false,
+        photos: [
+          {
+            src: "/venues/backwater-grill/2026/backwater-grill-2026-1.jpg",
+            alt: "Noah Lynch performing at Backwater Grill in 2026",
+            caption: "Live acoustic performance at Backwater Grill in 2026",
+            featured: true,
+          },
+          {
+            src: "/venues/backwater-grill/2026/backwater-grill-2026-2.jpg",
+            alt: "Noah Lynch performing at Backwater Grill in 2026",
+            caption: "2026 live set at Backwater Grill",
+          },
+          {
+            src: "/venues/backwater-grill/2026/backwater-grill-2026-3.jpg",
+            alt: "Noah Lynch performing at Backwater Grill in 2026",
+            caption: "Noah Lynch live at Backwater Grill in 2026",
+          },
+          {
+            src: "/venues/backwater-grill/2026/backwater-grill-2026-4.jpg",
+            alt: "Noah Lynch performing at Backwater Grill in 2026",
+            caption: "Another 2026 performance moment at Backwater Grill",
+          },
+        ],
+      },
+      {
         id: "ole-brook-festival-2025",
         venue: "Ole Brook Festival",
         city: "Brookhaven",

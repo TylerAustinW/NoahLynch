@@ -4,7 +4,6 @@ export interface TourDate {
   venue: string;
   city: string;
   state: string;
-  enabled: boolean;
   time?: string;
   actionLink?: string;
   actionText?: string;

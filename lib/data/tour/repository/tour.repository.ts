@@ -29,15 +29,15 @@ class TourRepository {
   }
 
   getNextShow(): TourDate | null {
-    const enabledShows = this.shows
-      .filter((show) => show.enabled)
+    const upcomingShows = this.shows
+      .filter((show) => this.isShowUpcoming(show))
       .sort(
         (a, b) =>
           this.parseShowDate(a.date).getTime() -
           this.parseShowDate(b.date).getTime(),
       );
 
-    return enabledShows.length > 0 ? enabledShows[0]! : null;
+    return upcomingShows.length > 0 ? upcomingShows[0]! : null;
   }
 
   getFeaturedShows(): TourDate[] {

@@ -63,6 +63,9 @@ const profilePhotos = [
 export default function EPKPage() {
   const { artist, bio, featuredVideos, liveShow, notableShows, releases, gallery, contact } =
     epkData;
+  const sortedGalleryCollections = [...gallery.collections].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+  );
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const [selectedCollection, setSelectedCollection] = useState<
     (typeof gallery.collections)[0] | null
@@ -746,7 +749,7 @@ export default function EPKPage() {
                 </h2>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {gallery.collections.map((collection) => (
+                  {sortedGalleryCollections.map((collection) => (
                     <div key={collection.id} className="space-y-4">
                       <div className="bg-zinc-800/50 rounded-lg p-4">
                         <h3 className="font-semibold text-amber-400">{collection.venue}</h3>

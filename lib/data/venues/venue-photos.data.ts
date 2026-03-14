@@ -30,6 +30,20 @@ export const venuePhotoCollections: VenuePhotoCollection[] = [
     ],
   },
 
+  {
+    id: "backwater-grill/2026",
+    venue: "Backwater Grill",
+    city: "Brandon",
+    state: "MS",
+    date: "2026-03-14",
+    photos: [
+      { filename: "backwater-grill-2026-1.jpg", featured: true },
+      { filename: "backwater-grill-2026-2.jpg", featured: false },
+      { filename: "backwater-grill-2026-3.jpg", featured: false },
+      { filename: "backwater-grill-2026-4.jpg", featured: false },
+    ],
+  },
+
   // existing collections (unchanged)
   {
     id: "Ole-Brook-Festival",
