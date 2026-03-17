@@ -61,7 +61,7 @@ export default function EntranceAnimation() {
               }}
             >
               <Image
-                src="/NoahSignature.png"
+                src="/noah-signature.png"
                 alt="Noah Lynch"
                 fill
                 className="object-contain"

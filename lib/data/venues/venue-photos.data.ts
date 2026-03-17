@@ -22,8 +22,8 @@ export const venuePhotoCollections: VenuePhotoCollection[] = [
     date: "2026-01-16",
     photos: [
       { filename: "sunset-grill-2026-6.jpg", featured: true },
-      { filename: "Sunset-grill-2026-1.jpg", featured: false },
-      { filename: "Sunset-grill-2026-2.jpg", featured: false },
+      { filename: "sunset-grill-2026-1.jpg", featured: false },
+      { filename: "sunset-grill-2026-2.jpg", featured: false },
       { filename: "sunset-grill-2026-3.jpg", featured: false },
       { filename: "sunset-grill-2026-4.jpg", featured: false },
       { filename: "sunset-grill-2026-5.jpg", featured: false },
@@ -46,7 +46,7 @@ export const venuePhotoCollections: VenuePhotoCollection[] = [
 
   // existing collections (unchanged)
   {
-    id: "Ole-Brook-Festival",
+    id: "ole-brook-festival",
     venue: "Ole Brook Festival",
     city: "Brookhaven",
     state: "MS",
@@ -74,27 +74,27 @@ export const venuePhotoCollections: VenuePhotoCollection[] = [
     date: "2025-09-06",
     photos: [
       {
-        filename: "BackWaterGrill-NoahLynch.jpg",
+        filename: "backwater-grill-noah-lynch.jpg",
         featured: true,
       },
       {
-        filename: "BackwaterGrill-NoahLynch2.jpg",
+        filename: "backwater-grill-noah-lynch-2.jpg",
         featured: false,
       },
       {
-        filename: "IMG_6716.jpg",
+        filename: "backwater-grill-1.jpg",
         featured: false,
       },
       {
-        filename: "IMG_6717.jpg",
+        filename: "backwater-grill-2.jpg",
         featured: false,
       },
       {
-        filename: "IMG_6718.jpg",
+        filename: "backwater-grill-3.jpg",
         featured: false,
       },
       {
-        filename: "IMG_6719.jpg",
+        filename: "backwater-grill-4.jpg",
         featured: false,
       },
     ],
@@ -119,15 +119,15 @@ export const venuePhotoCollections: VenuePhotoCollection[] = [
         featured: false,
       },
       {
-        filename: "Sunset-Grill (4).jpg",
+        filename: "sunset-grill-4.jpg",
         featured: false,
       },
       {
-        filename: "Sunset-Grill (5).jpg",
+        filename: "sunset-grill-5.jpg",
         featured: false,
       },
       {
-        filename: "Sunset-Grill (6).jpg",
+        filename: "sunset-grill-6.jpg",
         featured: false,
       },
     ],
@@ -140,27 +140,27 @@ export const venuePhotoCollections: VenuePhotoCollection[] = [
     date: "2025-08-16",
     photos: [
       {
-        filename: "NoahAtTheRoof.jpg",
+        filename: "noah-at-the-roof.jpg",
         featured: false,
       },
       {
-        filename: "NoahAtTheRoof2.jpg",
+        filename: "noah-at-the-roof-2.jpg",
         featured: true,
       },
       {
-        filename: "NoahAtTheRoof3.jpg",
+        filename: "noah-at-the-roof-3.jpg",
         featured: false,
       },
       {
-        filename: "NoahAtTheRoof4.jpg",
+        filename: "noah-at-the-roof-4.jpg",
         featured: false,
       },
       {
-        filename: "NoahAtTheRoof5.jpg",
+        filename: "noah-at-the-roof-5.jpg",
         featured: false,
       },
       {
-        filename: "NoahAtTheRoofGuitars.jpg",
+        filename: "noah-at-the-roof-guitars.jpg",
         featured: false,
       },
     ],

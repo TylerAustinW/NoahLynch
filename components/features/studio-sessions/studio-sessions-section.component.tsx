@@ -192,7 +192,7 @@ export default function StudioSessionsSection(): React.ReactElement {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/venues/the-roof/NoahAtTheRoof5.jpg"
+          src="/venues/the-roof/noah-at-the-roof-5.jpg"
           alt="Noah Lynch performing at The Roof"
           fill
           className="object-cover opacity-30"

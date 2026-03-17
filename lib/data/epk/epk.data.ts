@@ -211,12 +211,12 @@ export const epkData: EPKData = {
             featured: true,
           },
           {
-            src: "/venues/sunset-grill/2026/Sunset-grill-2026-1.jpg",
+            src: "/venues/sunset-grill/2026/sunset-grill-2026-1.jpg",
             alt: "Noah Lynch performing at Sunset Grill in 2026",
             caption: "2026 live set at Sunset Grill",
           },
           {
-            src: "/venues/sunset-grill/2026/Sunset-grill-2026-2.jpg",
+            src: "/venues/sunset-grill/2026/sunset-grill-2026-2.jpg",
             alt: "Noah Lynch performing at Sunset Grill in 2026",
             caption: "Noah Lynch live at Sunset Grill in 2026",
           },
@@ -279,18 +279,18 @@ export const epkData: EPKData = {
         featured: true,
         photos: [
           {
-            src: "/venues/Ole-Brook-Festival/thenoahlynchband.png",
+            src: "/venues/ole-brook-festival/thenoahlynchband.png",
             alt: "The Noah Lynch Band performing at Ole Brook Festival",
             caption: "Full band performance at Ole Brook Festival",
             featured: true,
           },
           {
-            src: "/venues/Ole-Brook-Festival/noah-hunter.png",
+            src: "/venues/ole-brook-festival/noah-hunter.png",
             alt: "Noah Lynch with Hunter at Ole Brook Festival",
             caption: "Noah Lynch and Hunter performing at Ole Brook Festival",
           },
           {
-            src: "/venues/Ole-Brook-Festival/image.png",
+            src: "/venues/ole-brook-festival/image.png",
             alt: "Noah Lynch at Ole Brook Festival",
             caption: "Live performance at Ole Brook Festival",
           },
@@ -306,33 +306,33 @@ export const epkData: EPKData = {
         featured: false,
         photos: [
           {
-            src: "/venues/backwater-grill/IMG_6718.jpg",
+            src: "/venues/backwater-grill/backwater-grill-3.jpg",
             alt: "Noah Lynch performing at Backwater Grill",
             caption: "Live acoustic performance at Backwater Grill",
             featured: true,
           },
           {
-            src: "/venues/backwater-grill/BackWaterGrill-NoahLynch.jpg",
+            src: "/venues/backwater-grill/backwater-grill-noah-lynch.jpg",
             alt: "Noah Lynch performing at Backwater Grill",
             caption: "Intimate acoustic set at Backwater Grill",
           },
           {
-            src: "/venues/backwater-grill/BackwaterGrill-NoahLynch2.jpg",
+            src: "/venues/backwater-grill/backwater-grill-noah-lynch-2.jpg",
             alt: "Noah Lynch performing at Backwater Grill",
             caption: "Connecting with the audience at Backwater Grill",
           },
           {
-            src: "/venues/backwater-grill/IMG_6716.jpg",
+            src: "/venues/backwater-grill/backwater-grill-1.jpg",
             alt: "Noah Lynch performing at Backwater Grill",
             caption: "Guitar and vocals at Backwater Grill",
           },
           {
-            src: "/venues/backwater-grill/IMG_6717.jpg",
+            src: "/venues/backwater-grill/backwater-grill-2.jpg",
             alt: "Noah Lynch performing at Backwater Grill",
             caption: "Live performance at Backwater Grill",
           },
           {
-            src: "/venues/backwater-grill/IMG_6719.jpg",
+            src: "/venues/backwater-grill/backwater-grill-4.jpg",
             alt: "Noah Lynch performing at Backwater Grill",
             caption: "Acoustic storytelling at Backwater Grill",
           },
@@ -364,17 +364,17 @@ export const epkData: EPKData = {
             caption: "Collaborative performance with Jamie at Sunset Grill",
           },
           {
-            src: "/venues/sunset-grill/Sunset-Grill (4).jpg",
+            src: "/venues/sunset-grill/sunset-grill-4.jpg",
             alt: "Noah Lynch performing at Sunset Grill",
             caption: "Guitar and vocals at Sunset Grill",
           },
           {
-            src: "/venues/sunset-grill/Sunset-Grill (5).jpg",
+            src: "/venues/sunset-grill/sunset-grill-5.jpg",
             alt: "Noah Lynch performing at Sunset Grill",
             caption: "Live set at Sunset Grill",
           },
           {
-            src: "/venues/sunset-grill/Sunset-Grill (6).jpg",
+            src: "/venues/sunset-grill/sunset-grill-6.jpg",
             alt: "Noah Lynch performing at Sunset Grill",
             caption: "Acoustic storytelling at Sunset Grill",
           },
@@ -390,33 +390,33 @@ export const epkData: EPKData = {
         featured: false,
         photos: [
           {
-            src: "/venues/the-roof/NoahAtTheRoof.jpg",
+            src: "/venues/the-roof/noah-at-the-roof.jpg",
             alt: "Noah Lynch performing at The Roof at 1311 in Vicksburg",
             caption: "Rooftop performance with 120+ crowd at The Roof",
             featured: true,
           },
           {
-            src: "/venues/the-roof/NoahAtTheRoof2.jpg",
+            src: "/venues/the-roof/noah-at-the-roof-2.jpg",
             alt: "Noah Lynch performing at The Roof at 1311",
             caption: "Intimate rooftop setting at The Roof at 1311",
           },
           {
-            src: "/venues/the-roof/NoahAtTheRoof3.jpg",
+            src: "/venues/the-roof/noah-at-the-roof-3.jpg",
             alt: "Noah Lynch performing at The Roof at 1311",
             caption: "Live acoustic performance at The Roof",
           },
           {
-            src: "/venues/the-roof/NoahAtTheRoof4.jpg",
+            src: "/venues/the-roof/noah-at-the-roof-4.jpg",
             alt: "Noah Lynch performing at The Roof at 1311",
             caption: "Guitar and vocals at The Roof at 1311",
           },
           {
-            src: "/venues/the-roof/NoahAtTheRoof5.jpg",
+            src: "/venues/the-roof/noah-at-the-roof-5.jpg",
             alt: "Noah Lynch performing at The Roof at 1311",
             caption: "Connecting with the rooftop audience",
           },
           {
-            src: "/venues/the-roof/NoahAtTheRoofGuitars.jpg",
+            src: "/venues/the-roof/noah-at-the-roof-guitars.jpg",
             alt: "Noah Lynch's guitars at The Roof at 1311",
             caption: "Guitar setup for the rooftop performance",
           },

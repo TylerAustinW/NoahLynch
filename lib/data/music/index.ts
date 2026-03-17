@@ -20,7 +20,7 @@ import {
   DeezerIcon,
   SpotifyIcon,
   YouTubeMusicIcon,
-} from "@/components/icons/icons";
+} from "@/components/icons/platform-icons.component";
 
 function createPlatformLink(platform: PlatformName, url: string): Platform {
   const platformConfigs: Record<PlatformName, Omit<Platform, "url">> = {
@@ -80,11 +80,15 @@ function resolveReleasePlatforms(releaseData: ReleaseData): ReleaseWithPlatforms
 
 export const allReleases: ReleaseWithPlatforms[] =
   getAllReleasesData().map(resolveReleasePlatforms);
-getPreviousReleasesData().map(resolveReleasePlatforms);
-(() => {
+
+export const previousReleases: ReleaseWithPlatforms[] =
+  getPreviousReleasesData().map(resolveReleasePlatforms);
+
+export const upcomingRelease: ReleaseWithPlatforms | null = (() => {
   const upcomingData = getUpcomingReleaseData();
   return upcomingData ? resolveReleasePlatforms(upcomingData) : null;
 })();
+
 export const getReleaseById = (id: string): ReleaseWithPlatforms | undefined => {
   return allReleases.find((release) => release.id === id);
 };

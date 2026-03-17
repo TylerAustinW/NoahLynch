@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
-    dirs: ["app", "components", "hooks", "lib", "styles"],
+    dirs: ["app", "components", "lib"],
   },
   typescript: {},
   images: {

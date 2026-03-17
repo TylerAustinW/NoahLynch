@@ -2,7 +2,7 @@
 
 import ExpandableBio from "@/components/ui/expandable-bio.component";
 import YouTubeEmbed from "@/components/ui/youtube-embed.component";
-import { epkData } from "@/lib/data/epk/epk.data";
+import { epkData } from "@/lib/data/epk";
 import {
   ArrowLeft,
   Award,
@@ -20,7 +20,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { FaAmazon, FaApple, FaFacebookF, FaInstagram, FaSpotify, FaYoutube } from "react-icons/fa6";
-import EPKMobileActions from "./components/epk-mobile-actions.component";
+import EPKMobileActions from "@/components/features/epk/epk-mobile-actions.component";
 
 const patrickHand = Patrick_Hand({
   weight: "400",
@@ -55,7 +55,7 @@ const profilePhotos = [
     alt: "Noah Lynch - Professional Studio Photo",
   },
   {
-    src: "/venues/the-roof/NoahAtTheRoof2.jpg",
+    src: "/venues/the-roof/noah-at-the-roof-2.jpg",
     alt: "Noah Lynch - Live Performance at The Roof",
   },
 ];
@@ -196,7 +196,7 @@ export default function EPKPage() {
       <header className="relative bg-gradient-to-b from-zinc-900 to-zinc-950 border-b border-zinc-800/50">
         <div className="absolute inset-0">
           <Image
-            src="/venues/the-roof/NoahAtTheRoof2.jpg"
+            src="/venues/the-roof/noah-at-the-roof-2.jpg"
             alt="Noah Lynch performing"
             fill
             className="object-cover opacity-15"
@@ -370,7 +370,7 @@ export default function EPKPage() {
         {/* Main Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/venues/the-roof/NoahAtTheRoofGuitars.jpg"
+            src="/venues/the-roof/noah-at-the-roof-guitars.jpg"
             alt="Noah Lynch performing at The Roof"
             fill
             className="object-cover opacity-10"
@@ -411,7 +411,7 @@ export default function EPKPage() {
                 <div className="flex flex-col sm:flex-row gap-4 items-start">
                   <div className="relative w-full sm:w-32 aspect-[3/4] rounded-lg overflow-hidden border border-zinc-700/50 flex-shrink-0">
                     <Image
-                      src="/IMG_7130.jpeg"
+                      src="/epk-backstage.jpg"
                       alt="Noah Lynch - 2025 Readers Choice Award Winner for Best Solo Musician"
                       fill
                       className="object-cover"
@@ -445,7 +445,7 @@ export default function EPKPage() {
                 {/* Background Image for Bio Section */}
                 <div className="absolute inset-0">
                   <Image
-                    src="/venues/the-roof/NoahAtTheRoofGuitars.jpg"
+                    src="/venues/the-roof/noah-at-the-roof-guitars.jpg"
                     alt="Noah Lynch performing at The Roof"
                     fill
                     className="object-cover opacity-5 rounded-2xl"
@@ -471,7 +471,7 @@ export default function EPKPage() {
                   {/* Background Image for Videos Section */}
                   <div className="absolute inset-0">
                     <Image
-                      src="/venues/the-roof/NoahAtTheRoof5.jpg"
+                      src="/venues/the-roof/noah-at-the-roof-5.jpg"
                       alt="Noah Lynch performing at The Roof"
                       fill
                       className="object-cover opacity-10 rounded-2xl"
@@ -511,7 +511,7 @@ export default function EPKPage() {
                 {/* Background Image for Live Performance Section */}
                 <div className="absolute inset-0">
                   <Image
-                    src="/venues/backwater-grill/IMG_6718.jpg"
+                    src="/venues/backwater-grill/backwater-grill-3.jpg"
                     alt="Noah Lynch performing"
                     fill
                     className="object-cover opacity-8 rounded-2xl"
@@ -733,7 +733,7 @@ export default function EPKPage() {
               {/* Background Image for Gallery Section */}
               <div className="absolute inset-0">
                 <Image
-                  src="/venues/the-roof/NoahAtTheRoof.jpg"
+                  src="/venues/the-roof/noah-at-the-roof.jpg"
                   alt="Noah Lynch gallery"
                   fill
                   className="object-cover opacity-5 rounded-2xl"

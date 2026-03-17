@@ -11,7 +11,7 @@ import Link from "next/link";
 const photoSlides = [
   {
     id: "portrait",
-    src: "/venues/backwater-grill/IMG_6718.jpg",
+    src: "/venues/backwater-grill/backwater-grill-3.jpg",
     alt: "Noah Lynch - The Artist",
   },
 ];
@@ -36,7 +36,7 @@ export default function BiographySection() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/venues/the-roof/NoahAtTheRoofGuitars.jpg"
+          src="/venues/the-roof/noah-at-the-roof-guitars.jpg"
           alt="Noah Lynch performing at The Roof"
           fill
           className="object-cover opacity-30"

@@ -22,7 +22,11 @@ export default function ShowBadge() {
       <Link
         href={nextShow.actionLink || "/tour-dates"}
         className="group block"
-        aria-label={isTodayShow ? "View details for today's show" : "View tour dates and get tickets for the upcoming show"}
+        aria-label={
+          isTodayShow
+            ? "View details for today's show"
+            : "View tour dates and get tickets for the upcoming show"
+        }
         aria-describedby="next-show-tooltip"
       >
         <div className="group/button flex flex-wrap items-center gap-2 rounded-full border backdrop-blur-md px-3 py-2 sm:px-4 text-sm sm:text-base font-medium text-white w-full sm:w-auto justify-center sm:justify-start transition-all duration-300 cursor-pointer border-zinc-700/40 bg-zinc-900/80 hover:bg-zinc-800/90 hover:border-zinc-600/50 lg:border-white/25 lg:bg-white/10 lg:hover:bg-white/20 lg:hover:border-white/40">
@@ -56,13 +60,17 @@ export default function ShowBadge() {
         className="absolute left-full top-1/2 -translate-y-1/2 ml-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-30"
       >
         <div className="bg-zinc-900/95 backdrop-blur-sm text-zinc-100 text-xs font-medium px-3 py-2 rounded-lg border border-zinc-700/50 shadow-lg whitespace-nowrap">
-          {isTodayShow ? "Show is today — click for details & FREE entry!" : "Click for details & FREE entry!"}
+          {isTodayShow
+            ? "Show is today — click for details & FREE entry!"
+            : "Click for details & FREE entry!"}
           <div className="absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent border-r-zinc-900/95"></div>
         </div>
 
         <div className="sm:hidden absolute top-full left-1/2 -translate-x-1/2 mt-2">
           <div className="bg-zinc-900/95 backdrop-blur-sm text-zinc-100 text-xs font-medium px-3 py-2 rounded-lg border border-zinc-700/50 shadow-lg whitespace-nowrap">
-            {isTodayShow ? "Show is today — click for details & FREE entry!" : "Click for details & FREE entry!"}
+            {isTodayShow
+              ? "Show is today — click for details & FREE entry!"
+              : "Click for details & FREE entry!"}
             <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-4 border-transparent border-b-zinc-900/95"></div>
           </div>
         </div>

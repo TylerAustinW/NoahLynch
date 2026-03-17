@@ -11,31 +11,19 @@ class TourRepository {
   getUpcomingShows(): TourDate[] {
     return this.shows
       .filter((show) => this.isShowUpcoming(show))
-      .sort(
-        (a, b) =>
-          this.parseShowDate(a.date).getTime() -
-          this.parseShowDate(b.date).getTime(),
-      );
+      .sort((a, b) => this.parseShowDate(a.date).getTime() - this.parseShowDate(b.date).getTime());
   }
 
   getPastShows(): TourDate[] {
     return this.shows
       .filter((show) => !this.isShowUpcoming(show))
-      .sort(
-        (a, b) =>
-          this.parseShowDate(b.date).getTime() -
-          this.parseShowDate(a.date).getTime(),
-      );
+      .sort((a, b) => this.parseShowDate(b.date).getTime() - this.parseShowDate(a.date).getTime());
   }
 
   getNextShow(): TourDate | null {
     const upcomingShows = this.shows
       .filter((show) => this.isShowUpcoming(show))
-      .sort(
-        (a, b) =>
-          this.parseShowDate(a.date).getTime() -
-          this.parseShowDate(b.date).getTime(),
-      );
+      .sort((a, b) => this.parseShowDate(a.date).getTime() - this.parseShowDate(b.date).getTime());
 
     return upcomingShows.length > 0 ? upcomingShows[0]! : null;
   }
@@ -50,17 +38,11 @@ class TourRepository {
       const bIsUpcoming = this.isShowUpcoming(b);
 
       if (aIsUpcoming && bIsUpcoming) {
-        return (
-          this.parseShowDate(a.date).getTime() -
-          this.parseShowDate(b.date).getTime()
-        );
+        return this.parseShowDate(a.date).getTime() - this.parseShowDate(b.date).getTime();
       }
 
       if (!aIsUpcoming && !bIsUpcoming) {
-        return (
-          this.parseShowDate(b.date).getTime() -
-          this.parseShowDate(a.date).getTime()
-        );
+        return this.parseShowDate(b.date).getTime() - this.parseShowDate(a.date).getTime();
       }
 
       return aIsUpcoming ? -1 : 1;
