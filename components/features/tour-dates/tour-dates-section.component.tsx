@@ -13,6 +13,14 @@ function formatTourDate(dateString: string) {
   return format(dateObj, "MMM dd, yyyy").toUpperCase();
 }
 
+function formatShowTimeForCentral(time?: string) {
+  if (!time) {
+    return null;
+  }
+
+  return time.trim().replace(/\s?(CST|CDT|CT)\b/i, " CT");
+}
+
 export default function TourDatesMinimal() {
   const [, setIsLoading] = useState(true);
 
@@ -84,6 +92,9 @@ export default function TourDatesMinimal() {
                       {date.city}
                       {date.state ? `, ${date.state}` : ""}
                     </div>
+                    <div className="text-xs text-amber-200 font-semibold tracking-wide uppercase">
+                      Time (CT): {date.time ? formatShowTimeForCentral(date.time) : "TBA"}
+                    </div>
                   </div>
 
                   <div className="pt-2 w-full flex justify-center">
@@ -124,6 +135,9 @@ export default function TourDatesMinimal() {
                     <div className="text-sm md:text-base text-zinc-300 uppercase tracking-wide">
                       {date.city}
                       {date.state ? `, ${date.state}` : ""}
+                    </div>
+                    <div className="text-xs text-amber-200 font-semibold tracking-wide uppercase mt-1">
+                      Time (CT): {date.time ? formatShowTimeForCentral(date.time) : "TBA"}
                     </div>
                   </div>
 
