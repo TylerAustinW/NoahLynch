@@ -18,7 +18,13 @@ function formatShowTimeForCentral(time?: string) {
     return null;
   }
 
-  return time.trim().replace(/\s?(CST|CDT|CT)\b/i, " CT");
+  const normalized = time.trim().replace(/\s+/g, " ");
+
+  if (/(CST|CDT|CT)\b/i.test(normalized)) {
+    return normalized.replace(/\b(cst|cdt|ct)\b/i, (match) => match.toUpperCase());
+  }
+
+  return `${normalized} CT`;
 }
 
 export default function TourDatesMinimal() {
@@ -93,7 +99,7 @@ export default function TourDatesMinimal() {
                       {date.state ? `, ${date.state}` : ""}
                     </div>
                     <div className="text-xs text-amber-200 font-semibold tracking-wide uppercase">
-                      Time (CT): {date.time ? formatShowTimeForCentral(date.time) : "TBA"}
+                      Time (Central): {date.time ? formatShowTimeForCentral(date.time) : "TBA"}
                     </div>
                   </div>
 
@@ -137,7 +143,7 @@ export default function TourDatesMinimal() {
                       {date.state ? `, ${date.state}` : ""}
                     </div>
                     <div className="text-xs text-amber-200 font-semibold tracking-wide uppercase mt-1">
-                      Time (CT): {date.time ? formatShowTimeForCentral(date.time) : "TBA"}
+                      Time (Central): {date.time ? formatShowTimeForCentral(date.time) : "TBA"}
                     </div>
                   </div>
 
