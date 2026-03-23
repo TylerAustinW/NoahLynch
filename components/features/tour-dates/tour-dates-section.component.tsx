@@ -99,7 +99,7 @@ export default function TourDatesMinimal() {
                       {date.state ? `, ${date.state}` : ""}
                     </div>
                     <div className="text-xs text-amber-200 font-semibold tracking-wide uppercase">
-                      Time (Central): {date.time ? formatShowTimeForCentral(date.time) : "TBA"}
+                      {date.time ? formatShowTimeForCentral(date.time) : "TBA"}
                     </div>
                   </div>
 
@@ -143,7 +143,7 @@ export default function TourDatesMinimal() {
                       {date.state ? `, ${date.state}` : ""}
                     </div>
                     <div className="text-xs text-amber-200 font-semibold tracking-wide uppercase mt-1">
-                      Time (Central): {date.time ? formatShowTimeForCentral(date.time) : "TBA"}
+                      {date.time ? formatShowTimeForCentral(date.time) : "TBA"}
                     </div>
                   </div>
 
