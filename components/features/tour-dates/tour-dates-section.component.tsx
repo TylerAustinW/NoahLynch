@@ -98,9 +98,11 @@ export default function TourDatesMinimal() {
                       {date.city}
                       {date.state ? `, ${date.state}` : ""}
                     </div>
-                    <div className="text-xs text-amber-200 font-semibold tracking-wide uppercase">
-                      {date.time ? formatShowTimeForCentral(date.time) : "TBA"}
-                    </div>
+                    {date.time && (
+                      <div className="text-xs text-amber-200 font-semibold tracking-wide uppercase">
+                        {formatShowTimeForCentral(date.time)}
+                      </div>
+                    )}
                   </div>
 
                   <div className="pt-2 w-full flex justify-center">
@@ -142,9 +144,11 @@ export default function TourDatesMinimal() {
                       {date.city}
                       {date.state ? `, ${date.state}` : ""}
                     </div>
-                    <div className="text-xs text-amber-200 font-semibold tracking-wide uppercase mt-1">
-                      {date.time ? formatShowTimeForCentral(date.time) : "TBA"}
-                    </div>
+                    {date.time && (
+                      <div className="text-xs text-amber-200 font-semibold tracking-wide uppercase mt-1">
+                        {formatShowTimeForCentral(date.time)}
+                      </div>
+                    )}
                   </div>
 
                   <div className="md:col-span-2 flex justify-start md:justify-end">

@@ -148,20 +148,16 @@ export const epkData: EPKData = {
   },
   notableShows: [
     {
-      venue: "The Roof at 1311",
-      description: "120+ Draw",
+      venue: "Readers Choice Solo Artist",
+      description: "Enterprise-Journal Readers Choice Award Winner (2025)",
     },
     {
-      venue: "Magnolia Blues BBQ",
-      description: "Packed house, 90+ draw",
+      venue: "Headliner - Ole Brook Festival 2025",
+      description: "Featured headlining performance at Ole Brook Festival",
     },
     {
-      venue: "3rd Studio Single - Honest",
-      description: "Out Now (Produced by Ready Records)",
-    },
-    {
-      venue: "4th Studio Single - Chasing a Feelin'",
-      description: "Out Now (Produced by Ready Records)",
+      venue: "3 Singles on International Radio",
+      description: "Three different singles played on international radio stations",
     },
   ],
   releases: [

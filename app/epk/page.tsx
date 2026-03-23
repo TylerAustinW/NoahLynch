@@ -58,6 +58,10 @@ const profilePhotos = [
     src: "/venues/the-roof/NoahAtTheRoof2.jpg",
     alt: "Noah Lynch - Live Performance at The Roof",
   },
+  {
+    src: "/venues/Ole-Brook-Festival/thenoahlynchband.png",
+    alt: "Noah Lynch Band live performance",
+  },
 ];
 
 export default function EPKPage() {
