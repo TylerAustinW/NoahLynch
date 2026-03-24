@@ -148,6 +148,18 @@ export const epkData: EPKData = {
   },
   notableShows: [
     {
+      venue: "2025 Readers Choice - Best Solo Musician",
+      description: "Readers Choice Award Winner",
+    },
+    {
+      venue: "Ole Brook Festival 2025",
+      description: "Headliner",
+    },
+    {
+      venue: "International Radio Airplay",
+      description: "3 singles played on international radio stations",
+    },
+    {
       venue: "The Roof at 1311",
       description: "120+ Draw",
     },

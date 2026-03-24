@@ -1,5 +1,14 @@
 [
   {
+    "id": "show-2026-04-04-shaggys-rez",
+    "date": "2026-04-04",
+    "venue": "Shaggy's on the Rez",
+    "city": "Brandon",
+    "state": "MS",
+    "featured": true,
+    "description": "New show added for April 4 at Shaggy's on the Rez."
+  },
+  {
     "id": "show-2026-05-23-backwater",
     "date": "2026-05-23",
     "venue": "Backwater Grill",

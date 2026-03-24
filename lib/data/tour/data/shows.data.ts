@@ -47,6 +47,12 @@ export const VENUES: Record<string, Venue> = {
     city: "Jackson",
     state: "MS",
   },
+  "shaggys-on-the-rez": {
+    id: "shaggys-on-the-rez",
+    name: "Shaggy's on the Rez",
+    city: "Brandon",
+    state: "MS",
+  },
 };
 
 export const SHOWS_DATA: TourDate[] = showsData;
