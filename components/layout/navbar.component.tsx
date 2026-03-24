@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 const baseLinkClass =
   "relative group inline-flex items-center justify-center py-2 px-3 text-sm font-medium tracking-wide transition-all duration-300 hover:text-amber-400 h-[44px] leading-none";
@@ -51,14 +52,30 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
+    if (!mobileOpen) {
+      return;
     }
 
+    const scrollY = window.scrollY;
+    const originalBodyOverflow = document.body.style.overflow;
+    const originalBodyPosition = document.body.style.position;
+    const originalBodyTop = document.body.style.top;
+    const originalBodyWidth = document.body.style.width;
+    const originalHtmlOverflow = document.documentElement.style.overflow;
+
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
+
     return () => {
-      document.body.style.overflow = "";
+      document.documentElement.style.overflow = originalHtmlOverflow;
+      document.body.style.overflow = originalBodyOverflow;
+      document.body.style.position = originalBodyPosition;
+      document.body.style.top = originalBodyTop;
+      document.body.style.width = originalBodyWidth;
+      window.scrollTo(0, scrollY);
     };
   }, [mobileOpen]);
 
@@ -265,74 +282,76 @@ export default function Navbar() {
         </div>
       </motion.header>
 
-      {isMounted && (
-        <AnimatePresence>
-          {mobileOpen && (
-            <motion.div
-              className="fixed top-0 left-0 right-0 bottom-0 z-[100] flex items-center justify-center overflow-hidden bg-zinc-900 backdrop-blur-2xl md:hidden"
-              style={{
-                height: "-webkit-fill-available" as React.CSSProperties["height"],
-                minHeight: "100vh",
-                width: "100vw",
-              }}
-              initial={variants.overlay.initial}
-              animate={variants.overlay.animate}
-              exit={variants.overlay.exit}
-              transition={variants.overlay.transition}
-              onClick={closeMenu}
-            >
-              <nav id="mobile-menu" role="navigation" aria-label="Mobile navigation">
-                <motion.div
-                  className="flex flex-col items-center justify-center gap-6 sm:gap-8"
-                  initial={variants.menu.initial}
-                  animate={variants.menu.animate}
-                  exit={variants.menu.exit}
-                  transition={variants.menu.transition}
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  {navLinks.map((link, index) => (
-                    <motion.div
-                      key={link.label}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1 + index * 0.1, duration: 0.4 }}
-                      className="group"
-                    >
-                      <Link
-                        href={link.href}
-                        className="relative flex items-center justify-center text-2xl sm:text-3xl font-bold tracking-wider text-white transition-all duration-300 hover:text-amber-400 active:text-amber-300 py-4"
-                        onClick={
-                          link.id
-                            ? (e) => {
-                                handleNavClick(e, link.id);
-                                closeMenu();
-                              }
-                            : () => closeMenu()
-                        }
-                      >
-                        <span className="relative z-10">{link.label}</span>
-                        <div className="absolute inset-0 -inset-x-4 -inset-y-2 rounded-xl bg-gradient-to-r from-amber-500/0 via-amber-500/10 to-amber-500/0 opacity-0 transition-all duration-300 group-hover:opacity-100 group-active:opacity-100" />
-                      </Link>
-                    </motion.div>
-                  ))}
-                </motion.div>
-              </nav>
-
+      {isMounted &&
+        createPortal(
+          <AnimatePresence>
+            {mobileOpen && (
               <motion.div
-                className="pointer-events-none absolute bottom-6 left-0 right-0 p-4 text-center"
-                initial={variants.footer.initial}
-                animate={variants.footer.animate}
-                exit={variants.footer.exit}
-                transition={variants.footer.transition}
+                className="fixed inset-0 z-[100] flex h-[100dvh] min-h-screen-dynamic w-screen items-center justify-center overflow-y-auto overscroll-contain bg-zinc-900/95 backdrop-blur-2xl md:hidden safe-area-inset safe-area-inset-top safe-area-inset-bottom"
+                initial={variants.overlay.initial}
+                animate={variants.overlay.animate}
+                exit={variants.overlay.exit}
+                transition={variants.overlay.transition}
+                onClick={closeMenu}
               >
-                <p className="text-xs sm:text-sm font-medium text-zinc-500">
-                  Tap anywhere to close
-                </p>
+                <nav
+                  id="mobile-menu"
+                  role="navigation"
+                  aria-label="Mobile navigation"
+                  className="flex min-h-full w-full items-center justify-center px-6 py-24"
+                >
+                  <motion.div
+                    className="flex w-full flex-col items-center justify-center gap-6 sm:gap-8"
+                    initial={variants.menu.initial}
+                    animate={variants.menu.animate}
+                    exit={variants.menu.exit}
+                    transition={variants.menu.transition}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {navLinks.map((link, index) => (
+                      <motion.div
+                        key={link.label}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1 + index * 0.1, duration: 0.4 }}
+                        className="group w-full"
+                      >
+                        <Link
+                          href={link.href}
+                          className="relative flex w-full items-center justify-center text-2xl sm:text-3xl font-bold tracking-wider text-white transition-all duration-300 hover:text-amber-400 active:text-amber-300 py-4"
+                          onClick={
+                            link.id
+                              ? (e) => {
+                                  handleNavClick(e, link.id);
+                                  closeMenu();
+                                }
+                              : () => closeMenu()
+                          }
+                        >
+                          <span className="relative z-10">{link.label}</span>
+                          <div className="absolute inset-0 -inset-x-4 -inset-y-2 rounded-xl bg-gradient-to-r from-amber-500/0 via-amber-500/10 to-amber-500/0 opacity-0 transition-all duration-300 group-hover:opacity-100 group-active:opacity-100" />
+                        </Link>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </nav>
+
+                <motion.div
+                  className="pointer-events-none absolute bottom-6 left-0 right-0 p-4 text-center"
+                  initial={variants.footer.initial}
+                  animate={variants.footer.animate}
+                  exit={variants.footer.exit}
+                  transition={variants.footer.transition}
+                >
+                  <p className="text-xs sm:text-sm font-medium text-zinc-500">
+                    Tap anywhere to close
+                  </p>
+                </motion.div>
               </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      )}
+            )}
+          </AnimatePresence>,
+          document.body,
+        )}
     </>
   );
 }

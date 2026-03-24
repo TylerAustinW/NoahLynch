@@ -66,6 +66,7 @@ export default function EPKPage() {
   const sortedGalleryCollections = [...gallery.collections].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
   );
+
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const [selectedCollection, setSelectedCollection] = useState<
     (typeof gallery.collections)[0] | null
@@ -393,8 +394,8 @@ export default function EPKPage() {
           </div>
 
           {/* Readers Choice Section */}
-          <div className="mb-12 max-w-2xl mx-auto">
-            <div className="relative bg-zinc-900/50 backdrop-blur-sm rounded-2xl border border-zinc-800/50 p-6 overflow-hidden">
+          <div className="mb-12 max-w-2xl lg:max-w-3xl mx-auto">
+            <div className="relative bg-zinc-900/50 backdrop-blur-sm rounded-2xl border border-zinc-800/50 p-6 lg:p-7 overflow-hidden">
               {/* Background Image for Readers Choice */}
               <div className="absolute inset-0">
                 <Image
@@ -402,32 +403,32 @@ export default function EPKPage() {
                   alt="Noah Lynch in studio"
                   fill
                   className="object-cover opacity-6 rounded-2xl"
-                  sizes="50vw"
+                  sizes="(max-width: 1024px) 50vw, 896px"
                   quality={75}
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/90 via-zinc-900/95 to-zinc-900/95 rounded-2xl" />
               </div>
               <div className="relative z-10">
-                <div className="flex flex-col sm:flex-row gap-4 items-start">
-                  <div className="relative w-full sm:w-32 aspect-[3/4] rounded-lg overflow-hidden border border-zinc-700/50 flex-shrink-0">
+                <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 items-start lg:items-center">
+                  <div className="relative w-full sm:w-32 lg:w-36 aspect-[3/4] rounded-lg lg:rounded-xl overflow-hidden border border-zinc-700/50 flex-shrink-0">
                     <Image
                       src="/IMG_7130.jpeg"
                       alt="Noah Lynch - 2025 Readers Choice Award Winner for Best Solo Musician"
                       fill
                       className="object-cover"
-                      sizes="(max-width: 640px) 100vw, 128px"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 128px, 176px"
                     />
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-2 flex items-center gap-2">
-                      <Award className="w-5 h-5 text-amber-400" />
+                  <div className="lg:py-1">
+                    <h3 className="text-xl lg:text-2xl font-bold text-white mb-2 lg:mb-3 flex items-center gap-2 lg:gap-3">
+                      <Award className="w-5 h-5 lg:w-6 lg:h-6 text-amber-400" />
                       2025 Readers Choice Award Winner
                     </h3>
-                    <p className="text-sm text-zinc-400 mb-2">
+                    <p className="text-sm lg:text-base text-zinc-400 mb-2 lg:mb-3">
                       Best Solo Musician - Enterprise-Journal
                     </p>
-                    <span className="inline-flex items-center px-3 py-1 bg-amber-500/20 border border-amber-500/30 rounded-full text-amber-300 text-sm font-semibold">
-                      <Award className="w-4 h-4 mr-2" />
+                    <span className="inline-flex items-center px-3 py-1 lg:px-3.5 lg:py-1.5 bg-amber-500/20 border border-amber-500/30 rounded-full text-amber-300 text-sm lg:text-sm font-semibold">
+                      <Award className="w-4 h-4 lg:w-[18px] lg:h-[18px] mr-2" />
                       Readers Choice Award
                     </span>
                   </div>

@@ -53,7 +53,7 @@ export const venuePhotoCollections: VenuePhotoCollection[] = [
     date: "2025-10-04",
     photos: [
       {
-        filename: "thenoahlynchband.png",
+        filename: "IMG_7287.jpg",
         featured: true,
       },
       {
