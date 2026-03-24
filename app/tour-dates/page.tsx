@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import TourDatesSection from "@/components/features/tour-dates/tour-dates-section.component";
+import { getTourPageData } from "@/lib/data/tour/server";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Tour Dates - Noah Lynch",
@@ -12,10 +15,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function TourDatesPage() {
+export default async function TourDatesPage() {
+  const { upcoming, past } = await getTourPageData();
+
   return (
     <main className="min-h-screen">
-      <TourDatesSection />
+      <TourDatesSection upcoming={upcoming} past={past} />
     </main>
   );
 }

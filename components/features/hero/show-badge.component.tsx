@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { Calendar } from "lucide-react";
-import { formatDate, isDateToday } from "@/lib/utils/date.utils";
-import { getNextShow } from "@/lib/data/tour";
+import { formatDate } from "@/lib/utils/date.utils";
+import { getNextShow, isShowTodayLocal } from "@/lib/data/tour";
 
 export default function ShowBadge() {
   const nextShow = getNextShow();
-  const isTodayShow = nextShow ? isDateToday(nextShow.date) : false;
+  const isTodayShow = nextShow ? isShowTodayLocal(nextShow) : false;
 
   if (!nextShow) {
     return (

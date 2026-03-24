@@ -142,11 +142,23 @@ export const epkData: EPKData = {
       },
     ],
     repertoire:
-      "Cover songs from John Mayer, Edwin McCain, James Taylor, Lifehouse, The Fray, and more, with 3–5 original songs integrated into each set",
+      "A crowd-friendly mix of acoustic/pop-rock covers in the lane of John Mayer, Jack Johnson, Edwin McCain, James Taylor, Lifehouse, and The Fray — with 3–5 original Noah Lynch songs woven into each set.",
     venueTypes: ["Songwriter rounds", "Listening rooms", "Patios", "Restaurants", "Festivals"],
     paSystem: true,
   },
   notableShows: [
+    {
+      venue: "2025 Readers Choice - Best Solo Musician",
+      description: "Readers Choice Award Winner",
+    },
+    {
+      venue: "Ole Brook Festival 2025",
+      description: "Headliner",
+    },
+    {
+      venue: "International Radio Airplay",
+      description: "3 singles played on international radio stations",
+    },
     {
       venue: "The Roof at 1311",
       description: "120+ Draw",
@@ -279,7 +291,7 @@ export const epkData: EPKData = {
         featured: true,
         photos: [
           {
-            src: "/venues/Ole-Brook-Festival/thenoahlynchband.png",
+            src: "/venues/Ole-Brook-Festival/IMG_7287.jpg",
             alt: "The Noah Lynch Band performing at Ole Brook Festival",
             caption: "Full band performance at Ole Brook Festival",
             featured: true,
@@ -294,6 +306,7 @@ export const epkData: EPKData = {
             alt: "Noah Lynch at Ole Brook Festival",
             caption: "Live performance at Ole Brook Festival",
           },
+
         ],
       },
       {

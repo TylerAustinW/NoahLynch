@@ -1,12 +1,12 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { Clock, MapPin, X } from "lucide-react";
+import { MapPin, X } from "lucide-react";
 import { Button } from "@/components/ui/button.component";
 import { useFocusTrap } from "@/lib/hooks/use-focus-trap.hook";
 import { formatDate } from "@/lib/utils/date.utils";
-import { Patrick_Hand } from "next/font/google";
 import type { TourDate } from "@/lib/data/tour";
+import { Patrick_Hand } from "next/font/google";
 
 const Font = Patrick_Hand({
   weight: "400",
@@ -80,18 +80,10 @@ export default ({ isOpen, onClose, pastShows }: PastShowsModalProps) => {
                           </span>
                         </div>
                         {show.description && (
-                          <p className="text-zinc-400 text-sm mt-3 line-clamp-3">
-                            {show.description}
-                          </p>
+                          <p className="text-zinc-400 text-sm mt-3 line-clamp-3">{show.description}</p>
                         )}
                         <div className="mt-4 space-y-1">
                           <div className="text-amber-200 font-medium">{formatDate(show.date)}</div>
-                          {show.time && (
-                            <div className="flex items-center gap-1 text-zinc-400 text-sm">
-                              <Clock className="h-3 w-3" />
-                              <span>{show.time}</span>
-                            </div>
-                          )}
                         </div>
                       </div>
                     </motion.div>
@@ -127,12 +119,6 @@ export default ({ isOpen, onClose, pastShows }: PastShowsModalProps) => {
                         </div>
                         <div className="flex flex-col sm:items-end gap-1">
                           <div className="text-amber-200 font-medium">{formatDate(show.date)}</div>
-                          {show.time && (
-                            <div className="flex items-center gap-1 text-zinc-400 text-sm">
-                              <Clock className="h-3 w-3" />
-                              <span>{show.time}</span>
-                            </div>
-                          )}
                         </div>
                       </div>
                     </div>
