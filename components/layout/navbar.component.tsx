@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 const baseLinkClass =
@@ -36,6 +36,7 @@ export default function Navbar() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const shouldRestoreScrollRef = useRef(true);
 
   useEffect(() => {
     setIsMounted(true);
@@ -56,6 +57,7 @@ export default function Navbar() {
       return;
     }
 
+    shouldRestoreScrollRef.current = true;
     const scrollY = window.scrollY;
     const originalBodyOverflow = document.body.style.overflow;
     const originalBodyPosition = document.body.style.position;
@@ -75,7 +77,9 @@ export default function Navbar() {
       document.body.style.position = originalBodyPosition;
       document.body.style.top = originalBodyTop;
       document.body.style.width = originalBodyWidth;
-      window.scrollTo(0, scrollY);
+      if (shouldRestoreScrollRef.current) {
+        window.scrollTo(0, scrollY);
+      }
     };
   }, [mobileOpen]);
 
@@ -128,10 +132,15 @@ export default function Navbar() {
       e.preventDefault();
       const navElement = document.getElementById(id);
       if (navElement) {
+        shouldRestoreScrollRef.current = false;
         navElement.scrollIntoView({ behavior: "smooth" });
         window.history.pushState(null, "", `/#${id}`);
+        requestAnimationFrame(() => closeMenu());
+        return;
       }
     }
+
+    closeMenu();
   };
 
   const closeMenu = () => {
@@ -220,10 +229,7 @@ export default function Navbar() {
                     className={cn(baseLinkClass, textColor, "flex items-center justify-center")}
                     onClick={
                       link.id
-                        ? (e) => {
-                            handleNavClick(e, link.id);
-                            closeMenu();
-                          }
+                        ? (e) => handleNavClick(e, link.id)
                         : () => closeMenu()
                     }
                   >
