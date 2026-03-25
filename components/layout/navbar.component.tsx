@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 const baseLinkClass =
@@ -36,6 +36,31 @@ export default function Navbar() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(false);
+
+  const scrollToSection = useCallback(
+    (id: string, updateHistory = true) => {
+      const navElement = document.getElementById(id);
+
+      if (!navElement) {
+        return false;
+      }
+
+      const navbarOffset = 96;
+      const targetTop = navElement.getBoundingClientRect().top + window.scrollY - navbarOffset;
+
+      window.scrollTo({
+        top: Math.max(targetTop, 0),
+        behavior: reducedMotion ? "auto" : "smooth",
+      });
+
+      if (updateHistory) {
+        window.history.pushState(null, "", `/#${id}`);
+      }
+
+      return true;
+    },
+    [reducedMotion],
+  );
 
   useEffect(() => {
     setIsMounted(true);
@@ -121,17 +146,43 @@ export default function Navbar() {
     }
   }, [mobileOpen]);
 
+  useEffect(() => {
+    const handleHashNavigation = () => {
+      const hash = window.location.hash.replace(/^#/, "");
+
+      if (!hash) {
+        return;
+      }
+
+      window.setTimeout(() => {
+        scrollToSection(hash, false);
+      }, 50);
+    };
+
+    handleHashNavigation();
+    window.addEventListener("hashchange", handleHashNavigation);
+
+    return () => window.removeEventListener("hashchange", handleHashNavigation);
+  }, [scrollToSection]);
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     const isHomepage = window.location.pathname === "/";
 
-    if (isHomepage) {
-      e.preventDefault();
-      const navElement = document.getElementById(id);
-      if (navElement) {
-        navElement.scrollIntoView({ behavior: "smooth" });
-        window.history.pushState(null, "", `/#${id}`);
-      }
+    if (!isHomepage) {
+      return;
     }
+
+    e.preventDefault();
+
+    if (mobileOpen) {
+      closeMenu();
+      window.setTimeout(() => {
+        scrollToSection(id);
+      }, 50);
+      return;
+    }
+
+    scrollToSection(id);
   };
 
   const closeMenu = () => {
