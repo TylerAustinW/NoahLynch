@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 const baseLinkClass =
@@ -36,7 +36,6 @@ export default function Navbar() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(false);
-  const shouldRestoreScrollRef = useRef(true);
 
   useEffect(() => {
     setIsMounted(true);
@@ -125,6 +124,29 @@ export default function Navbar() {
     }
   }, [mobileOpen]);
 
+  useEffect(() => {
+    const handleHashNavigation = () => {
+      const hash = window.location.hash.replace(/^#/, "");
+
+      if (!hash) {
+        return;
+      }
+
+      window.setTimeout(() => {
+        scrollToSection(hash, false);
+      }, 50);
+    };
+
+    handleHashNavigation();
+    window.addEventListener("hashchange", handleHashNavigation);
+
+    return () => window.removeEventListener("hashchange", handleHashNavigation);
+  }, [scrollToSection]);
+
+  const closeMenu = () => {
+    setMobileOpen(false);
+  };
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     const isHomepage = window.location.pathname === "/";
 
@@ -132,15 +154,10 @@ export default function Navbar() {
       e.preventDefault();
       const navElement = document.getElementById(id);
       if (navElement) {
-        shouldRestoreScrollRef.current = false;
         navElement.scrollIntoView({ behavior: "smooth" });
         window.history.pushState(null, "", `/#${id}`);
-        requestAnimationFrame(() => closeMenu());
-        return;
       }
     }
-
-    closeMenu();
   };
 
   const closeMenu = () => {
@@ -229,7 +246,10 @@ export default function Navbar() {
                     className={cn(baseLinkClass, textColor, "flex items-center justify-center")}
                     onClick={
                       link.id
-                        ? (e) => handleNavClick(e, link.id)
+                        ? (e) => {
+                            handleNavClick(e, link.id);
+                            closeMenu();
+                          }
                         : () => closeMenu()
                     }
                   >
@@ -327,7 +347,10 @@ export default function Navbar() {
                           className="relative flex w-full items-center justify-center text-2xl sm:text-3xl font-bold tracking-wider text-white transition-all duration-300 hover:text-amber-400 active:text-amber-300 py-4"
                           onClick={
                             link.id
-                              ? (e) => handleNavClick(e, link.id)
+                              ? (e) => {
+                                  handleNavClick(e, link.id);
+                                  closeMenu();
+                                }
                               : () => closeMenu()
                           }
                         >
