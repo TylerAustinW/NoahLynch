@@ -327,10 +327,7 @@ export default function Navbar() {
                           className="relative flex w-full items-center justify-center text-2xl sm:text-3xl font-bold tracking-wider text-white transition-all duration-300 hover:text-amber-400 active:text-amber-300 py-4"
                           onClick={
                             link.id
-                              ? (e) => {
-                                  handleNavClick(e, link.id);
-                                  closeMenu();
-                                }
+                              ? (e) => handleNavClick(e, link.id)
                               : () => closeMenu()
                           }
                         >
