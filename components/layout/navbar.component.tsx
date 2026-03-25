@@ -165,6 +165,10 @@ export default function Navbar() {
     return () => window.removeEventListener("hashchange", handleHashNavigation);
   }, [scrollToSection]);
 
+  const closeMenu = () => {
+    setMobileOpen(false);
+  };
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     const isHomepage = window.location.pathname === "/";
 
@@ -174,19 +178,21 @@ export default function Navbar() {
 
     e.preventDefault();
 
+    const performScroll = () => {
+      const didScroll = scrollToSection(id);
+
+      if (!didScroll) {
+        window.location.assign(`/#${id}`);
+      }
+    };
+
     if (mobileOpen) {
       closeMenu();
-      window.setTimeout(() => {
-        scrollToSection(id);
-      }, 50);
+      window.setTimeout(performScroll, 80);
       return;
     }
 
-    scrollToSection(id);
-  };
-
-  const closeMenu = () => {
-    setMobileOpen(false);
+    performScroll();
   };
 
   const textColor = "text-white transition-colors duration-300";
@@ -269,14 +275,7 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     className={cn(baseLinkClass, textColor, "flex items-center justify-center")}
-                    onClick={
-                      link.id
-                        ? (e) => {
-                            handleNavClick(e, link.id);
-                            closeMenu();
-                          }
-                        : () => closeMenu()
-                    }
+                    onClick={link.id ? (e) => handleNavClick(e, link.id) : undefined}
                   >
                     <span className="relative z-10">{link.label}</span>
                     <div className="absolute inset-0 rounded-lg bg-amber-500/10 opacity-0 transition-all duration-300 group-hover:opacity-100" />
@@ -370,14 +369,7 @@ export default function Navbar() {
                         <Link
                           href={link.href}
                           className="relative flex w-full items-center justify-center text-2xl sm:text-3xl font-bold tracking-wider text-white transition-all duration-300 hover:text-amber-400 active:text-amber-300 py-4"
-                          onClick={
-                            link.id
-                              ? (e) => {
-                                  handleNavClick(e, link.id);
-                                  closeMenu();
-                                }
-                              : () => closeMenu()
-                          }
+                          onClick={link.id ? (e) => handleNavClick(e, link.id) : () => closeMenu()}
                         >
                           <span className="relative z-10">{link.label}</span>
                           <div className="absolute inset-0 -inset-x-4 -inset-y-2 rounded-xl bg-gradient-to-r from-amber-500/0 via-amber-500/10 to-amber-500/0 opacity-0 transition-all duration-300 group-hover:opacity-100 group-active:opacity-100" />
