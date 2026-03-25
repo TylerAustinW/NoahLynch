@@ -275,7 +275,9 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     className={cn(baseLinkClass, textColor, "flex items-center justify-center")}
-                    onClick={link.id ? (e) => handleNavClick(e, link.id) : undefined}
+                    onClick={
+                      link.id ? (e) => handleNavClick(e, link.id) : () => undefined
+                    }
                   >
                     <span className="relative z-10">{link.label}</span>
                     <div className="absolute inset-0 rounded-lg bg-amber-500/10 opacity-0 transition-all duration-300 group-hover:opacity-100" />
