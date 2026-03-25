@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 const baseLinkClass =
@@ -36,6 +36,32 @@ export default function Navbar() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const shouldRestoreScrollRef = useRef(true);
+
+  const scrollToSection = useCallback(
+    (id: string, updateHistory = true) => {
+      const navElement = document.getElementById(id);
+
+      if (!navElement) {
+        return false;
+      }
+
+      const navbarOffset = 96;
+      const targetTop = navElement.getBoundingClientRect().top + window.scrollY - navbarOffset;
+
+      window.scrollTo({
+        top: Math.max(targetTop, 0),
+        behavior: reducedMotion ? "auto" : "smooth",
+      });
+
+      if (updateHistory) {
+        window.history.pushState(null, "", `/#${id}`);
+      }
+
+      return true;
+    },
+    [reducedMotion],
+  );
 
   useEffect(() => {
     setIsMounted(true);
@@ -124,6 +150,10 @@ export default function Navbar() {
     }
   }, [mobileOpen]);
 
+  const closeMenu = () => {
+    setMobileOpen(false);
+  };
+
   useEffect(() => {
     const handleHashNavigation = () => {
       const hash = window.location.hash.replace(/^#/, "");
@@ -143,25 +173,34 @@ export default function Navbar() {
     return () => window.removeEventListener("hashchange", handleHashNavigation);
   }, [scrollToSection]);
 
-  const closeMenu = () => {
-    setMobileOpen(false);
-  };
-
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     const isHomepage = window.location.pathname === "/";
 
-    if (isHomepage) {
-      e.preventDefault();
-      const navElement = document.getElementById(id);
-      if (navElement) {
-        navElement.scrollIntoView({ behavior: "smooth" });
-        window.history.pushState(null, "", `/#${id}`);
-      }
+    if (!isHomepage) {
+      return;
     }
-  };
 
-  const closeMenu = () => {
-    setMobileOpen(false);
+    e.preventDefault();
+
+    const performScroll = () => {
+      const didScroll = scrollToSection(id);
+
+      if (didScroll) {
+        shouldRestoreScrollRef.current = false;
+        requestAnimationFrame(() => closeMenu());
+        return;
+      }
+
+      window.location.assign(`/#${id}`);
+    };
+
+    if (mobileOpen) {
+      closeMenu();
+      window.setTimeout(performScroll, 80);
+      return;
+    }
+
+    performScroll();
   };
 
   const textColor = "text-white transition-colors duration-300";
@@ -244,14 +283,7 @@ export default function Navbar() {
                   <Link
                     href={link.href}
                     className={cn(baseLinkClass, textColor, "flex items-center justify-center")}
-                    onClick={
-                      link.id
-                        ? (e) => {
-                            handleNavClick(e, link.id);
-                            closeMenu();
-                          }
-                        : () => closeMenu()
-                    }
+                    onClick={link.id ? (e) => handleNavClick(e, link.id) : () => undefined}
                   >
                     <span className="relative z-10">{link.label}</span>
                     <div className="absolute inset-0 rounded-lg bg-amber-500/10 opacity-0 transition-all duration-300 group-hover:opacity-100" />
@@ -345,14 +377,7 @@ export default function Navbar() {
                         <Link
                           href={link.href}
                           className="relative flex w-full items-center justify-center text-2xl sm:text-3xl font-bold tracking-wider text-white transition-all duration-300 hover:text-amber-400 active:text-amber-300 py-4"
-                          onClick={
-                            link.id
-                              ? (e) => {
-                                  handleNavClick(e, link.id);
-                                  closeMenu();
-                                }
-                              : () => closeMenu()
-                          }
+                          onClick={link.id ? (e) => handleNavClick(e, link.id) : () => closeMenu()}
                         >
                           <span className="relative z-10">{link.label}</span>
                           <div className="absolute inset-0 -inset-x-4 -inset-y-2 rounded-xl bg-gradient-to-r from-amber-500/0 via-amber-500/10 to-amber-500/0 opacity-0 transition-all duration-300 group-hover:opacity-100 group-active:opacity-100" />
