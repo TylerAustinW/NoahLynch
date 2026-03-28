@@ -10,6 +10,16 @@
     "description": "New show added for April 4 at Shaggy's on the Rez."
   },
   {
+    "id": "show-2026-05-30-roof",
+    "venueId": "roof-1311",
+    "date": "2026-05-30",
+    "startTimeLocal": "19:00",
+    "endTimeLocal": "22:00",
+    "featured": true,
+    "status": "scheduled",
+    "description": "Noah is going back to The Roof at 1311 on May 30, 2026."
+  },
+  {
     "id": "show-2026-05-23-backwater",
     "venueId": "backwater-grill",
     "date": "2026-05-23",
