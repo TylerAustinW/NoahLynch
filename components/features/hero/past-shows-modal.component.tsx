@@ -6,12 +6,6 @@ import { Button } from "@/components/ui/button.component";
 import { useFocusTrap } from "@/lib/hooks/use-focus-trap.hook";
 import { formatDate } from "@/lib/utils/date.utils";
 import type { TourDate } from "@/lib/data/tour";
-import { Patrick_Hand } from "next/font/google";
-
-const Font = Patrick_Hand({
-  weight: "400",
-  subsets: ["latin"],
-});
 
 interface PastShowsModalProps {
   isOpen: boolean;
@@ -19,7 +13,7 @@ interface PastShowsModalProps {
   pastShows: TourDate[];
 }
 
-export default ({ isOpen, onClose, pastShows }: PastShowsModalProps) => {
+export default function PastShowsModal({ isOpen, onClose, pastShows }: PastShowsModalProps) {
   const modalRef = useFocusTrap({
     isActive: isOpen,
     restoreFocus: true,
@@ -45,7 +39,7 @@ export default ({ isOpen, onClose, pastShows }: PastShowsModalProps) => {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="sticky top-0 bg-zinc-900/95 backdrop-blur-sm border-b border-zinc-700/50 px-6 py-4 flex items-center justify-between">
-              <h2 className={`text-xl sm:text-2xl font-bold text-amber-200 ${Font.className}`}>
+              <h2 className="text-xl sm:text-2xl font-bold text-amber-200 font-patrick">
                 Previous Shows
               </h2>
               <Button onClick={onClose} variant="ghost" size="icon-sm" aria-label="Close modal">

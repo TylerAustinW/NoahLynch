@@ -120,18 +120,37 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-
         <meta name="format-detection" content="telephone=no" />
         <meta name="theme-color" content="#d97706" />
         <link rel="canonical" href={siteUrl} />
-        <title></title>
       </head>
       <body className={`${inter.className} ${dancingScript.variable} ${patrickHand.variable}`}>
         <SocialSidebar />
         <ScrollToTop />
         {children}
 
-        <script type="application/ld+json" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "MusicGroup",
+              name: "Noah Lynch",
+              url: siteUrl,
+              genre: ["Acoustic Pop", "Singer-Songwriter"],
+              description:
+                "Mississippi-born singer-songwriter blending blues, neo-rock, and acoustic vibes.",
+              sameAs: [
+                "https://instagram.com/noahlynchmusic",
+                "https://facebook.com/noahlynchmusic",
+                "https://tiktok.com/@noahlynchmusic",
+                "https://youtube.com/@noahlynch",
+                "https://open.spotify.com/artist/4IKFKRnwaMGZQoExatIlHH",
+                "https://music.apple.com/us/artist/noah-lynch/1744359568",
+              ],
+            }),
+          }}
+        />
         <Analytics />
         <SpeedInsights />
       </body>

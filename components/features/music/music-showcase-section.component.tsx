@@ -9,7 +9,7 @@ import Link from "next/link";
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button.component";
 
-const SHOW_FEATURED_COMING_SOON = true;
+
 
 const FeaturedCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
   return (
@@ -235,7 +235,7 @@ export default function MusicShowcaseSection(): React.ReactElement {
           </p>
         </motion.div>
 
-        {SHOW_FEATURED_COMING_SOON && featured && (
+        {featured && (
           <motion.div
             className="mb-12 sm:mb-16"
             initial={{ opacity: 0, y: 40 }}
@@ -312,7 +312,6 @@ export default function MusicShowcaseSection(): React.ReactElement {
         )}
       </div>
 
-      <style jsx>{``}</style>
     </section>
   );
 }

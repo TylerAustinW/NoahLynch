@@ -1,69 +1,27 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useReducedMotion } from "@/lib/hooks/use-reduced-motion.hook";
+import { SOCIAL_LINK_DATA } from "@/lib/config/constants";
 import { FaFacebookF, FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa6";
+import type { IconType } from "react-icons";
 
-const socialLinks = [
-  {
-    href: "https://instagram.com/noahlynchmusic",
-    label: "Follow Noah Lynch on Instagram",
-    handle: "@noahlynchmusic",
-    icon: FaInstagram,
-    hoverColors: "hover:border-pink-500/50 hover:bg-pink-500/10 hover:text-pink-400",
-    focusColors: "focus:ring-pink-500/50",
-    handleColors: "bg-pink-500/90 text-white",
-  },
-  {
-    href: "https://facebook.com/noahlynchmusic",
-    label: "Follow Noah Lynch on Facebook",
-    handle: "noahlynchmusic",
-    icon: FaFacebookF,
-    hoverColors: "hover:border-blue-500/50 hover:bg-blue-500/10 hover:text-blue-400",
-    focusColors: "focus:ring-blue-500/50",
-    handleColors: "bg-blue-500/90 text-white",
-  },
-  {
-    href: "https://tiktok.com/@noahlynchmusic",
-    label: "Follow Noah Lynch on TikTok",
-    handle: "@noahlynchmusic",
-    icon: FaTiktok,
-    hoverColors: "hover:border-red-500/50 hover:bg-red-500/10 hover:text-red-400",
-    focusColors: "focus:ring-red-500/50",
-    handleColors: "bg-red-500/90 text-white",
-  },
-  {
-    href: "https://youtube.com/@noahlynch",
-    label: "Subscribe to Noah Lynch on YouTube",
-    handle: "@noahlynch",
-    icon: FaYoutube,
-    hoverColors: "hover:border-red-500/50 hover:bg-red-500/10 hover:text-red-400",
-    focusColors: "focus:ring-red-500/50",
-    handleColors: "bg-red-500/90 text-white",
-  },
-];
+const platformIcons: Record<string, IconType> = {
+  instagram: FaInstagram,
+  facebook: FaFacebookF,
+  tiktok: FaTiktok,
+  youtube: FaYoutube,
+};
 
 export default function SocialSidebar() {
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setPrefersReducedMotion(mediaQuery.matches);
-
-    const handleChange = (e: MediaQueryListEvent) => {
-      setPrefersReducedMotion(e.matches);
-    };
-
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, []);
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <div className="fixed left-6 top-1/2 z-40 hidden -translate-y-1/2 lg:block">
       <div className="flex flex-col gap-4">
-        {socialLinks.map((social, index) => {
-          const Icon = social.icon;
+        {SOCIAL_LINK_DATA.map((social) => {
+          const Icon = platformIcons[social.platform] || FaInstagram;
           return (
-            <div key={index} className="group relative">
+            <div key={social.platform} className="group relative">
               <a
                 href={social.href}
                 target="_blank"
@@ -90,7 +48,7 @@ export default function SocialSidebar() {
               >
                 {social.handle}
                 <div
-                  className={`absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent ${social.handleColors.includes("pink") ? "border-r-pink-500/90" : social.handleColors.includes("blue") ? "border-r-blue-500/90" : "border-r-red-500/90"}`}
+                  className={`absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent ${social.arrowBorderColor}`}
                 />
               </div>
             </div>

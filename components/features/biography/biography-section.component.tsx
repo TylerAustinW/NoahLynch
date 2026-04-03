@@ -8,17 +8,13 @@ import { ChevronDown, Music, ExternalLink, Award } from "lucide-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-const photoSlides = [
-  {
-    id: "portrait",
-    src: "/venues/backwater-grill/IMG_6718.jpg",
-    alt: "Noah Lynch - The Artist",
-  },
-];
+const PORTRAIT_IMAGE = {
+  src: "/venues/backwater-grill/IMG_6718.jpg",
+  alt: "Noah Lynch - The Artist",
+};
 
 export default function BiographySection() {
   const { ref, inView } = useInView({ threshold: 0.1, once: true });
-  const [currentSlide] = useState(0);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const isMobile = useIsMobile();
@@ -229,33 +225,16 @@ export default function BiographySection() {
           >
             <div className="relative overflow-hidden rounded-2xl border border-zinc-800/50 shadow-2xl">
               <div className="relative aspect-[4/5] md:aspect-[3/4]">
-                {photoSlides.map((slide, index) => (
-                  <motion.div
-                    key={slide.id}
-                    className="absolute inset-0"
-                    initial={{ opacity: 0 }}
-                    animate={{
-                      opacity: index === currentSlide ? 1 : 0,
-                    }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                  >
-                    <Image
-                      src={slide.src}
-                      alt={slide.alt}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                      priority={index === 0}
-                      quality={75}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-
-                    <div className="absolute bottom-4 left-4 right-4">
-                      <p className="font-patrick mb-1 text-xl text-white/90 drop-shadow-lg"></p>
-                      <p className="text-sm text-zinc-300/80 drop-shadow"></p>
-                    </div>
-                  </motion.div>
-                ))}
+                <Image
+                  src={PORTRAIT_IMAGE.src}
+                  alt={PORTRAIT_IMAGE.alt}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
+                  quality={75}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
               </div>
             </div>
           </motion.div>

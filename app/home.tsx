@@ -1,5 +1,3 @@
-"use client";
-
 import Navbar from "@/components/layout/navbar.component";
 import HeroSection from "@/components/features/hero/hero-section.component";
 import MusicShowcaseSection from "@/components/features/music/music-showcase-section.component";
@@ -23,9 +21,9 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
       <EntranceAnimation />
+      <Navbar />
       <HeroSection />
       <PageFadeWrapper>
-        <Navbar />
         <MusicShowcaseSection />
         <StudioSessionsSection />
         <BiographySection />

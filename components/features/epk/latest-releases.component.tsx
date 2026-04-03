@@ -2,14 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Patrick_Hand } from "next/font/google";
 import { Music, ExternalLink, Star, Calendar, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
-
-const patrickHand = Patrick_Hand({
-  weight: "400",
-  subsets: ["latin"],
-});
 
 interface Release {
   title: string;
@@ -89,7 +83,7 @@ export default function LatestReleases({ releases, className = "" }: LatestRelea
                   )}
 
                   <p
-                    className={`${patrickHand.className} text-zinc-400 group-hover:text-zinc-300 transition-colors duration-300 text-base lg:text-lg italic leading-relaxed`}
+                    className="font-patrick text-zinc-400 group-hover:text-zinc-300 transition-colors duration-300 text-base lg:text-lg italic leading-relaxed"
                   >
                     "Every note tells a story worth sharing"
                   </p>

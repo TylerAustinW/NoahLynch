@@ -5,28 +5,31 @@ import ErrorBoundary from "@/components/ui/error-boundary.component";
 import PastShowsModal from "./past-shows-modal.component";
 import ShowBadge from "./show-badge.component";
 import { useInView } from "@/lib/hooks/use-in-view.hook";
+import { useReducedMotion } from "@/lib/hooks/use-reduced-motion.hook";
 import { useScrollLock } from "@/lib/hooks/use-scroll-lock.hook";
 import { getPastShows } from "@/lib/data/tour";
-import { SOCIAL_LINKS } from "@/lib/config/constants";
+import { SOCIAL_LINKS, SOCIAL_LINK_DATA } from "@/lib/config/constants";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import { Patrick_Hand } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebookF, FaTiktok, FaYoutube } from "react-icons/fa6";
+import type { IconType } from "react-icons";
 
-const Font = Patrick_Hand({
-  weight: "400",
-  subsets: ["latin"],
-});
+const platformIcons: Record<string, IconType> = {
+  instagram: FaInstagram,
+  facebook: FaFacebookF,
+  tiktok: FaTiktok,
+  youtube: FaYoutube,
+};
 
 export default function HeroSection(): React.ReactElement {
   const { ref } = useInView({ threshold: 0.1 });
   const [loaded, setLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
-  const [reducedMotion, setPrefersReducedMotion] = useState(false);
+  const reducedMotion = useReducedMotion();
   const [showPastShows, setShowPreviousShows] = useState(false);
   const pastShows = getPastShows();
 
@@ -35,16 +38,6 @@ export default function HeroSection(): React.ReactElement {
 
   useEffect(() => {
     setLoaded(true);
-
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setPrefersReducedMotion(mediaQuery.matches);
-
-    const handleChange = (e: MediaQueryListEvent) => {
-      setPrefersReducedMotion(e.matches);
-    };
-
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
   useEffect(() => {
@@ -70,7 +63,7 @@ export default function HeroSection(): React.ReactElement {
         className="relative flex min-h-screen items-center justify-center bg-black pt-16"
       >
         <div className="text-center">
-          <h1 className={`mb-4 text-5xl font-bold md:text-7xl ${Font.className}`}>
+          <h1 className="mb-4 text-5xl font-bold md:text-7xl font-patrick">
             Noah Lynch
             <br />
             <span className="mb-4 text-5xl font-bold text-amber-100 md:text-7xl">Musician</span>
@@ -176,42 +169,21 @@ export default function HeroSection(): React.ReactElement {
 
                 {/* Social Icons - Mobile only, directly under Listen Now */}
                 <div className="flex gap-3 lg:hidden">
-                  <Link
-                    href={SOCIAL_LINKS.INSTAGRAM}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Follow Noah Lynch on Instagram"
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/80 backdrop-blur-sm text-white transition-all duration-300 hover:bg-zinc-800/90 hover:border-zinc-600/50 focus:outline-none focus:ring-2 focus:ring-zinc-500/40"
-                  >
-                    <FaInstagram className="h-4 w-4" aria-hidden="true" />
-                  </Link>
-                  <Link
-                    href={SOCIAL_LINKS.FACEBOOK}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Follow Noah Lynch on Facebook"
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/80 backdrop-blur-sm text-white transition-all duration-300 hover:bg-zinc-800/90 hover:border-zinc-600/50 focus:outline-none focus:ring-2 focus:ring-zinc-500/40"
-                  >
-                    <FaFacebookF className="h-4 w-4" aria-hidden="true" />
-                  </Link>
-                  <Link
-                    href={SOCIAL_LINKS.TIKTOK}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Follow Noah Lynch on TikTok"
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/80 backdrop-blur-sm text-white transition-all duration-300 hover:bg-zinc-800/90 hover:border-zinc-600/50 focus:outline-none focus:ring-2 focus:ring-zinc-500/40"
-                  >
-                    <FaTiktok className="h-4 w-4" aria-hidden="true" />
-                  </Link>
-                  <Link
-                    href={SOCIAL_LINKS.YOUTUBE}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Subscribe to Noah Lynch on YouTube"
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/80 backdrop-blur-sm text-white transition-all duration-300 hover:bg-zinc-800/90 hover:border-zinc-600/50 focus:outline-none focus:ring-2 focus:ring-zinc-500/40"
-                  >
-                    <FaYoutube className="h-4 w-4" aria-hidden="true" />
-                  </Link>
+                  {SOCIAL_LINK_DATA.map((social) => {
+                    const Icon = platformIcons[social.platform] || FaInstagram;
+                    return (
+                      <Link
+                        key={social.platform}
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={social.label}
+                        className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/80 backdrop-blur-sm text-white transition-all duration-300 hover:bg-zinc-800/90 hover:border-zinc-600/50 focus:outline-none focus:ring-2 focus:ring-zinc-500/40"
+                      >
+                        <Icon className="h-4 w-4" aria-hidden="true" />
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
             </div>

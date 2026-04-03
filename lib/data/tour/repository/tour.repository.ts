@@ -1,83 +1,73 @@
 import { EVENTS_DATA, VENUES } from "../data/shows.data";
 import { isShowUpcoming, resolveShows, sortShowsForDisplay } from "../helpers";
-import type { TourDate, TourEvent, Venue } from "../models/tour.model";
+import type { TourDate, Venue } from "../models/tour.model";
 
-class TourRepository {
-  private events: TourEvent[] = [...EVENTS_DATA];
+/**
+ * Tour data access layer.
+ * Replaced class with plain functions — the data is static imports,
+ * so mutation methods (addShow/updateShow/removeShow) were removed
+ * since they only mutated an in-memory copy with no persistence.
+ */
 
-  private get shows(): TourDate[] {
-    return resolveShows(this.events, VENUES);
-  }
+const allShows: TourDate[] = resolveShows(EVENTS_DATA, VENUES);
 
-  getAllShows(): TourDate[] {
-    return this.shows;
-  }
-
-  getUpcomingShows(): TourDate[] {
-    return sortShowsForDisplay(this.shows.filter((show) => isShowUpcoming(show)), "asc");
-  }
-
-  getPastShows(): TourDate[] {
-    return sortShowsForDisplay(this.shows.filter((show) => !isShowUpcoming(show)), "desc");
-  }
-
-  getNextShow(): TourDate | null {
-    return this.getUpcomingShows()[0] ?? null;
-  }
-
-  getFeaturedShows(): TourDate[] {
-    return this.getUpcomingShows().filter((show) => show.featured);
-  }
-
-  getShowsSortedByDate(): TourDate[] {
-    return [...this.getUpcomingShows(), ...this.getPastShows()];
-  }
-
-  addShow(showData: Omit<TourEvent, "id">): TourEvent {
-    const newShow: TourEvent = {
-      ...showData,
-      id: this.generateId(showData.date, showData.venueId),
-      status: showData.status ?? "scheduled",
-    };
-
-    this.events.push(newShow);
-    return newShow;
-  }
-
-  updateShow(id: string, updates: Partial<TourEvent>): void {
-    const index = this.events.findIndex((show) => show.id === id);
-    if (index !== -1) {
-      this.events[index] = { ...this.events[index]!, ...updates };
-    }
-  }
-
-  removeShow(id: string): void {
-    this.events = this.events.filter((show) => show.id !== id);
-  }
-
-  findShowById(id: string): TourDate | undefined {
-    return this.shows.find((show) => show.id === id);
-  }
-
-  isShowUpcoming(show: TourDate): boolean {
-    return isShowUpcoming(show);
-  }
-
-  getAllVenues(): Venue[] {
-    return Object.values(VENUES);
-  }
-
-  getVenueById(id: string): Venue | undefined {
-    return VENUES[id];
-  }
-
-  getShowsByVenue(venueId: string): TourDate[] {
-    return this.shows.filter((show) => show.venueId === venueId);
-  }
-
-  private generateId(date: string, venueId: string): string {
-    return `show-${date}-${venueId}`;
-  }
+export function getAllShows(): TourDate[] {
+  return allShows;
 }
 
-export const tourRepository = new TourRepository();
+export function getUpcomingShows(): TourDate[] {
+  return sortShowsForDisplay(
+    allShows.filter((show) => isShowUpcoming(show)),
+    "asc",
+  );
+}
+
+export function getPastShows(): TourDate[] {
+  return sortShowsForDisplay(
+    allShows.filter((show) => !isShowUpcoming(show)),
+    "desc",
+  );
+}
+
+export function getNextShow(): TourDate | null {
+  return getUpcomingShows()[0] ?? null;
+}
+
+export function getFeaturedShows(): TourDate[] {
+  return getUpcomingShows().filter((show) => show.featured);
+}
+
+export function getShowsSortedByDate(): TourDate[] {
+  return [...getUpcomingShows(), ...getPastShows()];
+}
+
+export function findShowById(id: string): TourDate | undefined {
+  return allShows.find((show) => show.id === id);
+}
+
+export function getAllVenues(): Venue[] {
+  return Object.values(VENUES);
+}
+
+export function getVenueById(id: string): Venue | undefined {
+  return VENUES[id];
+}
+
+export function getShowsByVenue(venueId: string): TourDate[] {
+  return allShows.filter((show) => show.venueId === venueId);
+}
+
+// Backwards compatibility — export an object matching the old class interface
+export const tourRepository = {
+  getAllShows,
+  getUpcomingShows,
+  getPastShows,
+  getNextShow,
+  getFeaturedShows,
+  getShowsSortedByDate,
+  findShowById,
+  isShowUpcoming,
+  getAllVenues,
+  getVenueById,
+  getShowsByVenue,
+};

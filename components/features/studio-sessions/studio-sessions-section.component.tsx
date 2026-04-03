@@ -353,7 +353,6 @@ export default function StudioSessionsSection(): React.ReactElement {
         </motion.div>
       )}
 
-      <style jsx>{``}</style>
     </section>
   );
 }

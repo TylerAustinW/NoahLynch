@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { useReducedMotion } from "@/lib/hooks/use-reduced-motion.hook";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import React, { useCallback, useEffect, useRef, useState } from "react";
@@ -35,7 +36,7 @@ export default function Navbar() {
   const [isMounted, setIsMounted] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
-  const [reducedMotion, setReducedMotion] = useState(false);
+  const reducedMotion = useReducedMotion();
   const shouldRestoreScrollRef = useRef(true);
 
   const scrollToSection = useCallback(
@@ -65,16 +66,6 @@ export default function Navbar() {
 
   useEffect(() => {
     setIsMounted(true);
-
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReducedMotion(mediaQuery.matches);
-
-    const handleChange = (e: MediaQueryListEvent) => {
-      setReducedMotion(e.matches);
-    };
-
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
   useEffect(() => {

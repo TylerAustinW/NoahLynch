@@ -5,20 +5,14 @@ import { motion } from "framer-motion";
 import { AlertTriangle, Home, RefreshCw } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { Patrick_Hand } from "next/font/google";
 import Image from "next/image";
-
-const Font = Patrick_Hand({
-  weight: "400",
-  subsets: ["latin"],
-});
 
 interface ErrorProps {
   error: Error & { digest?: string };
   reset: () => void;
 }
 
-export default ({ error, reset }: ErrorProps): React.ReactElement => {
+export default function ErrorPage({ error, reset }: ErrorProps): React.ReactElement {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -71,7 +65,7 @@ export default ({ error, reset }: ErrorProps): React.ReactElement => {
           transition={{ delay: 0.4, duration: 0.6 }}
         >
           <h1
-            className={`text-2xl xs:text-3xl sm:text-3xl md:text-4xl font-bold text-amber-200 mb-3 sm:mb-4 leading-tight px-4 sm:px-0 ${Font.className}`}
+            className="text-2xl xs:text-3xl sm:text-3xl md:text-4xl font-bold text-amber-200 mb-3 sm:mb-4 leading-tight px-4 sm:px-0 font-patrick"
           >
             Something went wrong!
           </h1>

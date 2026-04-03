@@ -6,20 +6,12 @@ import {
 } from "@/lib/data/music";
 import { ArrowLeft, Heart } from "lucide-react";
 import type { Metadata } from "next";
-import { Patrick_Hand } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import React, { Suspense } from "react";
-import Navbar from "@/components/layout/navbar.component";
-import SocialSidebar from "@/components/layout/social-sidebar.component";
+import React from "react";
 import ErrorBoundary from "@/components/ui/error-boundary.component";
 import { Button } from "@/components/ui/button.component";
-
-const patrickHand = Patrick_Hand({
-  weight: ["400"],
-  subsets: ["latin"],
-});
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -161,7 +153,7 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
 
   const SpecialThanksContent = (
     <div
-      className={`${patrickHand.className} text-center text-lg lg:text-xl leading-relaxed text-amber-100/90`}
+      className="font-patrick text-center text-lg lg:text-xl leading-relaxed text-amber-100/90"
     >
       <p className="text-center font-medium">
         Bringing "Honest" to life has been one of the most meaningful creative experiences of my
@@ -199,12 +191,31 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
     </div>
   );
 
+  // JSON-LD structured data for this release
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "MusicRecording",
+    name: release.title,
+    byArtist: {
+      "@type": "MusicGroup",
+      name: "Noah Lynch",
+      url: "https://www.noahlynch.com",
+    },
+    datePublished: release.releaseDate,
+    producer: release.releasedBy,
+    ...(release.writtenBy && { author: release.writtenBy }),
+    description: release.description,
+    image: release.imageURL,
+    genre: "Acoustic Pop",
+  };
+
   return (
     <ErrorBoundary>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="relative min-h-screen bg-zinc-950 text-white">
-        <Navbar />
-        <SocialSidebar />
-
         <div className="absolute inset-0 overflow-hidden">
           <Image
             src={release.imageURL}
@@ -223,16 +234,6 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
         </div>
 
         <main className="relative z-10">
-          <Suspense
-            fallback={
-              <div className="min-h-screen flex items-center justify-center">
-                <div className="text-center">
-                  <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-amber-400 border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" />
-                  <p className="mt-4 text-zinc-400">Loading release...</p>
-                </div>
-              </div>
-            }
-          >
             <div className="container mx-auto px-4 py-24 sm:py-28 md:px-6 lg:py-32">
               <div className="mx-auto max-w-7xl">
                 {BackToMusicLink}
@@ -241,7 +242,7 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
                   <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
                     {release.title}
                   </h1>
-                  <p className={`${patrickHand.className} text-xl text-amber-200/80 md:text-2xl`}>
+                  <p className="font-patrick text-xl text-amber-200/80 md:text-2xl">
                     "Every song tells a story"
                   </p>
                 </div>
@@ -318,7 +319,6 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
                 )}
               </div>
             </div>
-          </Suspense>
         </main>
       </div>
     </ErrorBoundary>
