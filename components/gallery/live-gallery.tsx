@@ -211,7 +211,7 @@ export default function LiveGallerySection() {
 
               elements.push(
                 <motion.div
-                  key={venue.id + "-" + index}
+                  key={`${venue.id  }-${  index}`}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.2 }}

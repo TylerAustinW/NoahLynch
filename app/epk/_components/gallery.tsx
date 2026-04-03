@@ -154,7 +154,7 @@ export default function EPKGallery({ title, collections }: EPKGalleryProps) {
                     <h3 className="font-semibold text-amber-400">{collection.venue}</h3>
                     <p className="text-sm text-zinc-400">
                       {collection.city}, {collection.state} •{" "}
-                      {new Date(collection.date + "T12:00:00").toLocaleDateString("en-US", {
+                      {new Date(`${collection.date  }T12:00:00`).toLocaleDateString("en-US", {
                         year: "numeric",
                         month: "short",
                         day: "numeric",
