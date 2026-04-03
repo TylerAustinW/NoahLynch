@@ -4,8 +4,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 // Note: This component doesn't use reducedMotion yet but could benefit from it.
-import { useScrollLock } from "@/lib/hooks/use-scroll-lock.hook";
-import { useViewportHeight } from "@/lib/hooks/use-viewport-height.hook";
+import { useScrollLock } from "@/lib/hooks/use-scroll-lock";
+import { useViewportHeight } from "@/lib/hooks/use-viewport-height";
 
 export default function EntranceAnimation() {
   const [isVisible, setIsVisible] = useState(true);

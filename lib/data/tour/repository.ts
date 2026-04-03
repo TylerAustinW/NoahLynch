@@ -1,6 +1,6 @@
-import { EVENTS_DATA, VENUES } from "../data/shows.data";
-import { isShowUpcoming, resolveShows, sortShowsForDisplay } from "../helpers";
-import type { TourDate, Venue } from "../models/tour.model";
+import { EVENTS_DATA, VENUES } from "./data/shows.data";
+import { isShowUpcoming, resolveShows, sortShowsForDisplay } from "./helpers";
+import type { TourDate, Venue } from "./models/tour.model";
 
 /**
  * Tour data access layer.

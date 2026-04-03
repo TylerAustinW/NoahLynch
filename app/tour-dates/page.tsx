@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import TourDatesSection from "@/components/features/tour-dates/tour-dates-section.component";
+import TourDatesSection from "@/components/tour-dates/tour-dates";
 import { getTourPageData } from "@/lib/data/tour/server";
 
 export const metadata: Metadata = {

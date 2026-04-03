@@ -10,8 +10,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
-import ErrorBoundary from "@/components/ui/error-boundary.component";
-import { Button } from "@/components/ui/button.component";
+import ErrorBoundary from "@/components/ui/error-boundary";
+import { Button } from "@/components/ui/button";
 
 interface PageProps {
   params: Promise<{ slug: string }>;

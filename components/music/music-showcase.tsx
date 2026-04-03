@@ -1,13 +1,13 @@
 "use client";
 
-import { useInView } from "@/lib/hooks/use-in-view.hook";
+import { useInView } from "@/lib/hooks/use-in-view";
 import { allReleases, type ReleaseWithPlatforms } from "@/lib/data/music";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, ExternalLink, Play } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
-import { Button } from "@/components/ui/button.component";
+import { Button } from "@/components/ui/button";
 
 const FeaturedCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
   return (

@@ -1,7 +1,7 @@
 "use client";
 
-import { useInView } from "@/lib/hooks/use-in-view.hook";
-import { useIsMobile } from "@/lib/hooks/use-mobile.hook";
+import { useInView } from "@/lib/hooks/use-in-view";
+import { useIsMobile } from "@/lib/hooks/use-mobile";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { ChevronDown, Music, ExternalLink, Award } from "lucide-react";

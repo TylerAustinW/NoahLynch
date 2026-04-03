@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { useReducedMotion } from "@/lib/hooks/use-reduced-motion.hook";
+import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import React, { useCallback, useEffect, useRef, useState } from "react";

@@ -1,13 +1,13 @@
-import ExpandableBio from "@/components/ui/expandable-bio.component";
-import YouTubeEmbed from "@/components/ui/youtube-embed.component";
+import ExpandableBio from "@/components/ui/expandable-bio";
+import YouTubeEmbed from "@/components/ui/youtube-embed";
 import { epkData } from "@/lib/data/epk/epk.data";
 import { ArrowLeft, Award, Mail, MapPin, Music, Play } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaAmazon, FaApple, FaFacebookF, FaInstagram, FaSpotify, FaYoutube } from "react-icons/fa6";
-import EPKMobileActions from "./components/epk-mobile-actions.component";
-import EPKProfileCarousel from "./components/epk-profile-carousel.component";
-import EPKGallery from "./components/epk-gallery.component";
+import EPKMobileActions from "./_components/mobile-actions";
+import EPKProfileCarousel from "./_components/profile-carousel";
+import EPKGallery from "./_components/gallery";
 
 const getPlatformIcon = (platform: string) => {
   switch (platform) {

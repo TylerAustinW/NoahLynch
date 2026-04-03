@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@/components/ui/button.component";
+import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { AlertTriangle, Home, RefreshCw } from "lucide-react";
 import Link from "next/link";

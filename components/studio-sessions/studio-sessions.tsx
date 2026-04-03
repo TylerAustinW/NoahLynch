@@ -1,11 +1,11 @@
 "use client";
 
-import { useInView } from "@/lib/hooks/use-in-view.hook";
+import { useInView } from "@/lib/hooks/use-in-view";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import React, { memo, useEffect, useRef, useState } from "react";
-import { Button } from "@/components/ui/button.component";
+import { Button } from "@/components/ui/button";
 
 interface StudioSession {
   id: string;

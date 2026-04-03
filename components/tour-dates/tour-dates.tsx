@@ -7,7 +7,7 @@ import {
   type TourDate,
 } from "@/lib/data/tour";
 import { motion } from "framer-motion";
-import Navbar from "@/components/layout/navbar.component";
+import Navbar from "@/components/layout/navbar";
 import Image from "next/image";
 
 interface TourDatesSectionProps {

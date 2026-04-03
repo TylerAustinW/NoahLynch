@@ -2,8 +2,8 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { MapPin, X } from "lucide-react";
-import { Button } from "@/components/ui/button.component";
-import { useFocusTrap } from "@/lib/hooks/use-focus-trap.hook";
+import { Button } from "@/components/ui/button";
+import { useFocusTrap } from "@/lib/hooks/use-focus-trap";
 import { formatDate } from "@/lib/utils/date.utils";
 import type { TourDate } from "@/lib/data/tour";
 

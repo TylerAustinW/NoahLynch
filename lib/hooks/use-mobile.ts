@@ -1,4 +1,4 @@
-import { useMediaQuery } from "./use-media-query.hook";
+import { useMediaQuery } from "./use-media-query";
 
 const MOBILE_BREAKPOINT = 768;
 

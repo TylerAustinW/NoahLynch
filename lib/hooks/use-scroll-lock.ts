@@ -74,7 +74,7 @@ export const useScrollLock = (isLocked: boolean) => {
 
     // Cleanup function for component unmount
     return () => {
-      if (isLocked) {
+      if (isLocked) { 
         body.style.position = originalStylesRef.current.position;
         body.style.top = originalStylesRef.current.top;
         body.style.width = originalStylesRef.current.width;

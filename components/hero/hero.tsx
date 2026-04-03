@@ -1,12 +1,12 @@
 "use client";
 
-import { Button } from "@/components/ui/button.component";
-import ErrorBoundary from "@/components/ui/error-boundary.component";
-import PastShowsModal from "./past-shows-modal.component";
-import ShowBadge from "./show-badge.component";
-import { useInView } from "@/lib/hooks/use-in-view.hook";
-import { useReducedMotion } from "@/lib/hooks/use-reduced-motion.hook";
-import { useScrollLock } from "@/lib/hooks/use-scroll-lock.hook";
+import { Button } from "@/components/ui/button";
+import ErrorBoundary from "@/components/ui/error-boundary";
+import PastShowsModal from "./past-shows-modal";
+import ShowBadge from "./show-badge";
+import { useInView } from "@/lib/hooks/use-in-view";
+import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
+import { useScrollLock } from "@/lib/hooks/use-scroll-lock";
 import { getPastShows } from "@/lib/data/tour";
 import { SOCIAL_LINKS, SOCIAL_LINK_DATA } from "@/lib/config/constants";
 import { motion } from "framer-motion";

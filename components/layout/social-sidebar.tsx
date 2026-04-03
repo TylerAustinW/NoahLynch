@@ -1,6 +1,6 @@
 "use client";
 
-import { useReducedMotion } from "@/lib/hooks/use-reduced-motion.hook";
+import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 import { SOCIAL_LINK_DATA } from "@/lib/config/constants";
 import { FaFacebookF, FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa6";
 import type { IconType } from "react-icons";
