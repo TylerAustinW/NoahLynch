@@ -7,10 +7,7 @@ const DATE_FORMATTER = new Intl.DateTimeFormat("en-US", {
   timeZone: "UTC",
 });
 
-export function resolveShows(
-  events: TourEvent[],
-  venues: Record<string, Venue>,
-): TourDate[] {
+export function resolveShows(events: TourEvent[], venues: Record<string, Venue>): TourDate[] {
   return events.reduce<TourDate[]>((resolved, event) => {
     const venue = venues[event.venueId];
     if (!venue) {
@@ -49,7 +46,9 @@ export function formatTourDate(dateString: string): string {
   return DATE_FORMATTER.format(date).toUpperCase();
 }
 
-export function formatTourTimeRange(show: Pick<TourDate, "startTimeLocal" | "endTimeLocal">): string | null {
+export function formatTourTimeRange(
+  show: Pick<TourDate, "startTimeLocal" | "endTimeLocal">,
+): string | null {
   if (!show.startTimeLocal && !show.endTimeLocal) {
     return null;
   }
@@ -65,12 +64,18 @@ export function formatTourTimeRange(show: Pick<TourDate, "startTimeLocal" | "end
   return `Until ${formatTourTime(show.endTimeLocal!)}`;
 }
 
-export function isShowTodayLocal(show: Pick<TourDate, "date" | "timezone">, now = new Date()): boolean {
+export function isShowTodayLocal(
+  show: Pick<TourDate, "date" | "timezone">,
+  now = new Date(),
+): boolean {
   const zonedNow = getZonedNow(show.timezone, now);
   return show.date === zonedNow.date;
 }
 
-export function isShowUpcoming(show: Pick<TourDate, "date" | "timezone" | "startTimeLocal" | "endTimeLocal">, now = new Date()): boolean {
+export function isShowUpcoming(
+  show: Pick<TourDate, "date" | "timezone" | "startTimeLocal" | "endTimeLocal">,
+  now = new Date(),
+): boolean {
   const zonedNow = getZonedNow(show.timezone, now);
   const nowKey = `${zonedNow.date}T${zonedNow.time}`;
   const showKey = `${show.date}T${show.endTimeLocal ?? show.startTimeLocal ?? "23:59"}`;
@@ -78,7 +83,10 @@ export function isShowUpcoming(show: Pick<TourDate, "date" | "timezone" | "start
   return showKey >= nowKey;
 }
 
-export function sortShowsForDisplay(shows: TourDate[], direction: "asc" | "desc" = "asc"): TourDate[] {
+export function sortShowsForDisplay(
+  shows: TourDate[],
+  direction: "asc" | "desc" = "asc",
+): TourDate[] {
   return [...shows].sort((a, b) => {
     const aKey = `${a.date}T${a.startTimeLocal ?? "23:59"}`;
     const bKey = `${b.date}T${b.startTimeLocal ?? "23:59"}`;

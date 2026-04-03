@@ -129,28 +129,28 @@ export default function EPKGallery({ title, collections }: EPKGalleryProps) {
   return (
     <>
       <section id="gallery" className="mt-12">
-        <div className="relative bg-zinc-900/50 backdrop-blur-sm rounded-2xl border border-zinc-800/50 p-8 overflow-hidden">
+        <div className="relative overflow-hidden rounded-2xl border border-zinc-800/50 bg-zinc-900/50 p-8 backdrop-blur-sm">
           <div className="absolute inset-0">
             <Image
               src="/venues/the-roof/NoahAtTheRoof.jpg"
               alt="Noah Lynch gallery"
               fill
-              className="object-cover opacity-5 rounded-2xl"
+              className="rounded-2xl object-cover opacity-5"
               sizes="100vw"
               quality={75}
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/90 via-zinc-900/95 to-zinc-900/95 rounded-2xl" />
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-zinc-900/90 via-zinc-900/95 to-zinc-900/95" />
           </div>
           <div className="relative z-10">
-            <h2 className="text-2xl font-bold text-white mb-8 flex items-center gap-3">
-              <div className="w-1 h-8 bg-amber-400 rounded-full" />
+            <h2 className="mb-8 flex items-center gap-3 text-2xl font-bold text-white">
+              <div className="h-8 w-1 rounded-full bg-amber-400" />
               {title}
             </h2>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {sortedCollections.map((collection) => (
                 <div key={collection.id} className="space-y-4">
-                  <div className="bg-zinc-800/50 rounded-lg p-4">
+                  <div className="rounded-lg bg-zinc-800/50 p-4">
                     <h3 className="font-semibold text-amber-400">{collection.venue}</h3>
                     <p className="text-sm text-zinc-400">
                       {collection.city}, {collection.state} •{" "}
@@ -164,7 +164,7 @@ export default function EPKGallery({ title, collections }: EPKGalleryProps) {
                   {collection.photos.slice(0, 1).map((photo, photoIdx) => (
                     <div
                       key={photoIdx}
-                      className="relative aspect-video overflow-hidden rounded-lg group cursor-pointer"
+                      className="group relative aspect-video cursor-pointer overflow-hidden rounded-lg"
                       onClick={() => handleGalleryClick(collection, photoIdx)}
                     >
                       <Image
@@ -174,10 +174,10 @@ export default function EPKGallery({ title, collections }: EPKGalleryProps) {
                         className="object-cover transition-transform duration-500 group-hover:scale-110"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                        <div className="bg-black/50 backdrop-blur-sm rounded-full p-3">
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
+                        <div className="rounded-full bg-black/50 p-3 backdrop-blur-sm">
                           <svg
-                            className="w-6 h-6 text-white"
+                            className="h-6 w-6 text-white"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -192,8 +192,8 @@ export default function EPKGallery({ title, collections }: EPKGalleryProps) {
                         </div>
                       </div>
                       {collection.photos.length > 1 && (
-                        <div className="absolute top-4 right-4 bg-black/70 backdrop-blur-sm rounded-full px-3 py-1">
-                          <span className="text-white text-sm font-medium">
+                        <div className="absolute top-4 right-4 rounded-full bg-black/70 px-3 py-1 backdrop-blur-sm">
+                          <span className="text-sm font-medium text-white">
                             +{collection.photos.length - 1}
                           </span>
                         </div>
@@ -213,36 +213,36 @@ export default function EPKGallery({ title, collections }: EPKGalleryProps) {
           <button
             type="button"
             onClick={closeGalleryModal}
-            className="absolute inset-0 bg-black/90 backdrop-blur-sm z-0"
+            className="absolute inset-0 z-0 bg-black/90 backdrop-blur-sm"
             aria-label="Close gallery"
           />
           <div
-            className="relative z-10 max-w-5xl max-h-full w-full"
+            className="relative z-10 max-h-full w-full max-w-5xl"
             role="dialog"
             aria-modal="true"
             aria-labelledby="gallery-title"
           >
             <button
               onClick={closeGalleryModal}
-              className="absolute -top-10 sm:-top-12 right-0 p-2 text-white hover:text-amber-400 transition-colors z-30 bg-black/50 rounded-full w-10 h-10 sm:w-auto sm:h-auto sm:bg-transparent flex items-center justify-center"
+              className="absolute -top-10 right-0 z-30 flex h-10 w-10 items-center justify-center rounded-full bg-black/50 p-2 text-white transition-colors hover:text-amber-400 sm:-top-12 sm:h-auto sm:w-auto sm:bg-transparent"
               aria-label="Close gallery"
             >
-              <X className="w-6 h-6 sm:w-8 sm:h-8" />
+              <X className="h-6 w-6 sm:h-8 sm:w-8" />
             </button>
 
-            <div className="relative w-full max-h-[80vh] flex items-center justify-center">
-              <div className="relative w-full h-full flex items-center justify-center">
-                <div className="relative inline-block max-w-full max-h-full">
+            <div className="relative flex max-h-[80vh] w-full items-center justify-center">
+              <div className="relative flex h-full w-full items-center justify-center">
+                <div className="relative inline-block max-h-full max-w-full">
                   {imageLoadingStates[`${selectedCollection.id}-${currentGalleryPhotoIndex}`] && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-zinc-900/80 rounded-lg z-10">
-                      <Loader2 className="w-8 h-8 text-amber-400 animate-spin" />
+                    <div className="absolute inset-0 z-10 flex items-center justify-center rounded-lg bg-zinc-900/80">
+                      <Loader2 className="h-8 w-8 animate-spin text-amber-400" />
                     </div>
                   )}
                   <Image
                     key={`${selectedCollection.id}-${currentGalleryPhotoIndex}`}
                     src={selectedCollection.photos[currentGalleryPhotoIndex]?.src || ""}
                     alt={selectedCollection.photos[currentGalleryPhotoIndex]?.alt || ""}
-                    className={`w-auto h-auto max-w-full max-h-[80vh] object-contain rounded-lg transition-opacity duration-300 ${
+                    className={`h-auto max-h-[80vh] w-auto max-w-full rounded-lg object-contain transition-opacity duration-300 ${
                       imageLoadingStates[`${selectedCollection.id}-${currentGalleryPhotoIndex}`]
                         ? "opacity-0"
                         : "opacity-100"
@@ -273,17 +273,17 @@ export default function EPKGallery({ title, collections }: EPKGalleryProps) {
               <>
                 <button
                   onClick={prevGalleryPhoto}
-                  className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-black/80 backdrop-blur-sm rounded-full text-white hover:text-amber-400 transition-colors z-20 w-12 h-12 sm:w-auto sm:h-auto flex items-center justify-center"
+                  className="absolute top-1/2 left-2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-black/80 p-2 text-white backdrop-blur-sm transition-colors hover:text-amber-400 sm:left-4 sm:h-auto sm:w-auto sm:p-3"
                   aria-label="Previous photo"
                 >
-                  <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+                  <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
                 </button>
                 <button
                   onClick={nextGalleryPhoto}
-                  className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 sm:p-3 bg-black/80 backdrop-blur-sm rounded-full text-white hover:text-amber-400 transition-colors z-20 w-12 h-12 sm:w-auto sm:h-auto flex items-center justify-center"
+                  className="absolute top-1/2 right-2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-black/80 p-2 text-white backdrop-blur-sm transition-colors hover:text-amber-400 sm:right-4 sm:h-auto sm:w-auto sm:p-3"
                   aria-label="Next photo"
                 >
-                  <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+                  <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
                 </button>
               </>
             )}

@@ -19,8 +19,14 @@ export async function getTourPageData(): Promise<{ upcoming: TourDate[]; past: T
   const shows = isProduction ? resolveShows(EVENTS_DATA, VENUES) : await getFileBackedShows();
 
   return {
-    upcoming: sortShowsForDisplay(shows.filter((show) => isShowUpcoming(show)), "asc"),
-    past: sortShowsForDisplay(shows.filter((show) => !isShowUpcoming(show)), "desc"),
+    upcoming: sortShowsForDisplay(
+      shows.filter((show) => isShowUpcoming(show)),
+      "asc",
+    ),
+    past: sortShowsForDisplay(
+      shows.filter((show) => !isShowUpcoming(show)),
+      "desc",
+    ),
   };
 }
 

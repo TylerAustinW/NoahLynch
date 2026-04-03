@@ -24,12 +24,12 @@ export default function YouTubeEmbed({
   };
 
   return (
-    <div className={`relative group ${className}`}>
+    <div className={`group relative ${className}`}>
       <div
-        className="aspect-video bg-zinc-900/50 backdrop-blur-sm rounded-xl border border-zinc-700/50 overflow-hidden shadow-2xl cursor-pointer transition-all duration-300 hover:border-amber-500/50 hover:shadow-2xl hover:shadow-amber-500/10"
+        className="aspect-video cursor-pointer overflow-hidden rounded-xl border border-zinc-700/50 bg-zinc-900/50 shadow-2xl backdrop-blur-sm transition-all duration-300 hover:border-amber-500/50 hover:shadow-2xl hover:shadow-amber-500/10"
         onClick={handleClick}
       >
-        <div className="relative w-full h-full">
+        <div className="relative h-full w-full">
           <Image
             src={thumbnailUrl}
             alt={`${title} video thumbnail`}
@@ -42,14 +42,14 @@ export default function YouTubeEmbed({
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-16 h-16 bg-amber-500/90 backdrop-blur-sm rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-amber-400/90 shadow-2xl">
-              <Play className="w-6 h-6 text-black ml-1" fill="currentColor" />
+            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-amber-500/90 shadow-2xl backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-amber-400/90">
+              <Play className="ml-1 h-6 w-6 text-black" fill="currentColor" />
             </div>
           </div>
 
           <div className="absolute top-3 right-3">
-            <div className="flex items-center gap-1 bg-red-600/90 backdrop-blur-sm px-2 py-1 rounded text-white text-xs font-medium">
-              <ExternalLink className="w-3 h-3" />
+            <div className="flex items-center gap-1 rounded bg-red-600/90 px-2 py-1 text-xs font-medium text-white backdrop-blur-sm">
+              <ExternalLink className="h-3 w-3" />
               YouTube
             </div>
           </div>
@@ -60,18 +60,18 @@ export default function YouTubeEmbed({
         <div className="mt-4 space-y-2">
           {title && (
             <div className="flex items-start justify-between gap-3">
-              <h3 className="text-lg font-medium text-white leading-tight">{title}</h3>
+              <h3 className="text-lg leading-tight font-medium text-white">{title}</h3>
               <button
                 onClick={handleClick}
-                className="flex items-center gap-1 text-amber-200 hover:text-amber-100 transition-colors text-xs font-medium opacity-75 hover:opacity-100 flex-shrink-0 mt-1"
+                className="mt-1 flex flex-shrink-0 items-center gap-1 text-xs font-medium text-amber-200 opacity-75 transition-colors hover:text-amber-100 hover:opacity-100"
                 aria-label={`Watch ${title} on YouTube`}
               >
-                <ExternalLink className="w-3 h-3" />
+                <ExternalLink className="h-3 w-3" />
                 Watch
               </button>
             </div>
           )}
-          {description && <p className="text-zinc-400 text-sm leading-relaxed">{description}</p>}
+          {description && <p className="text-sm leading-relaxed text-zinc-400">{description}</p>}
         </div>
       )}
     </div>

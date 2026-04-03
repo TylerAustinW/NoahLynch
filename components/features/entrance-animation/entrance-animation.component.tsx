@@ -27,7 +27,7 @@ export default function EntranceAnimation() {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          className="fixed top-0 left-0 right-0 bottom-0 z-[9999] flex items-center justify-center overflow-hidden bg-zinc-950"
+          className="fixed top-0 right-0 bottom-0 left-0 z-[9999] flex items-center justify-center overflow-hidden bg-zinc-950"
           style={{
             // Use actual viewport height from JS, with CSS fallbacks
             height: viewportHeight ? `${viewportHeight}px` : "100dvh",
@@ -40,7 +40,7 @@ export default function EntranceAnimation() {
         >
           <div className="absolute inset-0 bg-[url('/overlays/grain-texture-overlay.png')] bg-repeat opacity-5" />
 
-          <div className="relative text-center z-10 px-4 w-full">
+          <div className="relative z-10 w-full px-4 text-center">
             <motion.div
               className="relative mx-auto will-change-transform"
               style={{
@@ -73,7 +73,7 @@ export default function EntranceAnimation() {
             </motion.div>
 
             <motion.div
-              className="-mt-8 sm:-mt-10 md:-mt-12 will-change-transform"
+              className="-mt-8 will-change-transform sm:-mt-10 md:-mt-12"
               style={{
                 transform: "translateZ(0)",
               }}
@@ -91,7 +91,7 @@ export default function EntranceAnimation() {
                 ease: [0.25, 0.1, 0.25, 1],
               }}
             >
-              <span className="text-white/80 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-[0.4em] sm:tracking-[0.5em] md:tracking-[0.6em] uppercase">
+              <span className="text-3xl font-light tracking-[0.4em] text-white/80 uppercase sm:text-4xl sm:tracking-[0.5em] md:text-5xl md:tracking-[0.6em] lg:text-6xl">
                 Music
               </span>
             </motion.div>

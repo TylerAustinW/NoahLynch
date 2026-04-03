@@ -63,7 +63,7 @@ export default function HeroSection(): React.ReactElement {
         className="relative flex min-h-screen items-center justify-center bg-black pt-16"
       >
         <div className="text-center">
-          <h1 className="mb-4 text-5xl font-bold md:text-7xl font-patrick">
+          <h1 className="font-patrick mb-4 text-5xl font-bold md:text-7xl">
             Noah Lynch
             <br />
             <span className="mb-4 text-5xl font-bold text-amber-100 md:text-7xl">Musician</span>
@@ -95,7 +95,7 @@ export default function HeroSection(): React.ReactElement {
       <section
         ref={ref}
         id="hero"
-        className="relative flex min-h-screen items-center overflow-hidden pt-16 pb-0 bg-zinc-950"
+        className="relative flex min-h-screen items-center overflow-hidden bg-zinc-950 pt-16 pb-0"
       >
         <div className="absolute top-0 h-full w-full">
           <Image
@@ -119,7 +119,7 @@ export default function HeroSection(): React.ReactElement {
             alt="Noah Lynch performing at The Roof"
             fill
             sizes="(min-width: 768px) 100vw, 0px"
-            className="object-cover hidden md:block"
+            className="hidden object-cover md:block"
             style={{
               objectPosition: "center 20%",
               transform: loaded ? "scale(1.02)" : "scale(1)",
@@ -160,7 +160,7 @@ export default function HeroSection(): React.ReactElement {
                   </Button>
                   <Link
                     href={"#music"}
-                    className="rounded-full border px-3 py-1.5 text-sm font-medium text-white backdrop-blur-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent min-h-[32px] flex items-center justify-center sm:px-4 sm:py-2 sm:min-h-[36px] border-zinc-700/40 bg-zinc-900/80 hover:bg-zinc-800/90 hover:border-zinc-600/50 focus:ring-zinc-500/40 lg:border-white/20 lg:bg-white/5 lg:hover:bg-white/15 lg:hover:border-white/35 lg:focus:ring-white/30"
+                    className="flex min-h-[32px] items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/80 px-3 py-1.5 text-sm font-medium text-white backdrop-blur-sm transition-all duration-300 hover:border-zinc-600/50 hover:bg-zinc-800/90 focus:ring-2 focus:ring-zinc-500/40 focus:ring-offset-2 focus:ring-offset-transparent focus:outline-none sm:min-h-[36px] sm:px-4 sm:py-2 lg:border-white/20 lg:bg-white/5 lg:hover:border-white/35 lg:hover:bg-white/15 lg:focus:ring-white/30"
                     aria-label="Explore Noah Lynch's music catalog"
                   >
                     Explore Music
@@ -178,7 +178,7 @@ export default function HeroSection(): React.ReactElement {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={social.label}
-                        className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/80 backdrop-blur-sm text-white transition-all duration-300 hover:bg-zinc-800/90 hover:border-zinc-600/50 focus:outline-none focus:ring-2 focus:ring-zinc-500/40"
+                        className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/80 text-white backdrop-blur-sm transition-all duration-300 hover:border-zinc-600/50 hover:bg-zinc-800/90 focus:ring-2 focus:ring-zinc-500/40 focus:outline-none"
                       >
                         <Icon className="h-4 w-4" aria-hidden="true" />
                       </Link>

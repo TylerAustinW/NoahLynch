@@ -230,10 +230,10 @@ export default function Navbar() {
     <>
       <motion.header
         className={cn(
-          "fixed top-0 right-0 left-0 z-50 py-3 sm:py-4 transition-all duration-300",
+          "fixed top-0 right-0 left-0 z-50 py-3 transition-all duration-300 sm:py-4",
           "bg-zinc-900/80 backdrop-blur-sm md:bg-zinc-900/80 md:backdrop-blur-sm",
-          "opacity-100 pointer-events-auto translate-y-0",
-          "will-change-[backdrop-filter] transform-gpu",
+          "pointer-events-auto translate-y-0 opacity-100",
+          "transform-gpu will-change-[backdrop-filter]",
         )}
         initial={{ y: 0 }}
         animate={{
@@ -244,16 +244,16 @@ export default function Navbar() {
           },
         }}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 md:px-12 min-h-[44px]">
+        <div className="mx-auto flex min-h-[44px] max-w-7xl items-center justify-between px-4 sm:px-6 md:px-12">
           <motion.div
-            className="flex items-center h-full"
+            className="flex h-full items-center"
             whileHover={reducedMotion ? {} : { scale: 1.02 }}
             transition={{ duration: 0.2 }}
           >
-            <Link href="/" className="group flex items-center h-full">
+            <Link href="/" className="group flex h-full items-center">
               <h1
                 className={cn(
-                  "text-xl sm:text-2xl md:text-3xl font-bold tracking-wider text-white transition-all duration-300 group-hover:text-amber-400 leading-none",
+                  "text-xl leading-none font-bold tracking-wider text-white transition-all duration-300 group-hover:text-amber-400 sm:text-2xl md:text-3xl",
                 )}
               >
                 NOAH LYNCH
@@ -261,15 +261,15 @@ export default function Navbar() {
             </Link>
           </motion.div>
 
-          <div className="flex items-center h-full">
-            <nav className="hidden items-center space-x-2 md:flex h-full">
+          <div className="flex h-full items-center">
+            <nav className="hidden h-full items-center space-x-2 md:flex">
               {navLinks.map((link, index) => (
                 <motion.div
                   key={link.label}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.03 * index, duration: 0.2 }}
-                  className="flex items-center h-full"
+                  className="flex h-full items-center"
                 >
                   <Link
                     href={link.href}
@@ -278,7 +278,7 @@ export default function Navbar() {
                   >
                     <span className="relative z-10">{link.label}</span>
                     <div className="absolute inset-0 rounded-lg bg-amber-500/10 opacity-0 transition-all duration-300 group-hover:opacity-100" />
-                    <div className="absolute bottom-1 left-4 right-4 h-0.5 bg-gradient-to-r from-amber-400 to-amber-600 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+                    <div className="absolute right-4 bottom-1 left-4 h-0.5 scale-x-0 bg-gradient-to-r from-amber-400 to-amber-600 transition-transform duration-300 group-hover:scale-x-100" />
                   </Link>
                 </motion.div>
               ))}
@@ -287,7 +287,7 @@ export default function Navbar() {
             <button
               type="button"
               className={cn(
-                "relative z-50 h-10 w-10 border rounded-lg md:hidden flex items-center justify-center",
+                "relative z-50 flex h-10 w-10 items-center justify-center rounded-lg border md:hidden",
                 "border-zinc-600/50 bg-zinc-900/80 backdrop-blur-sm transition-colors",
                 "hover:border-amber-500/50 hover:bg-amber-500/10",
                 mobileOpen && "border-amber-500/70 bg-amber-500/20",
@@ -336,7 +336,7 @@ export default function Navbar() {
           <AnimatePresence>
             {mobileOpen && (
               <motion.div
-                className="fixed inset-0 z-[100] flex h-[100dvh] min-h-screen-dynamic w-screen items-center justify-center overflow-y-auto overscroll-contain bg-zinc-900/95 backdrop-blur-2xl md:hidden safe-area-inset safe-area-inset-top safe-area-inset-bottom"
+                className="min-h-screen-dynamic safe-area-inset safe-area-inset-top safe-area-inset-bottom fixed inset-0 z-[100] flex h-[100dvh] w-screen items-center justify-center overflow-y-auto overscroll-contain bg-zinc-900/95 backdrop-blur-2xl md:hidden"
                 initial={variants.overlay.initial}
                 animate={variants.overlay.animate}
                 exit={variants.overlay.exit}
@@ -367,7 +367,7 @@ export default function Navbar() {
                       >
                         <Link
                           href={link.href}
-                          className="relative flex w-full items-center justify-center text-2xl sm:text-3xl font-bold tracking-wider text-white transition-all duration-300 hover:text-amber-400 active:text-amber-300 py-4"
+                          className="relative flex w-full items-center justify-center py-4 text-2xl font-bold tracking-wider text-white transition-all duration-300 hover:text-amber-400 active:text-amber-300 sm:text-3xl"
                           onClick={link.id ? (e) => handleNavClick(e, link.id) : () => closeMenu()}
                         >
                           <span className="relative z-10">{link.label}</span>
@@ -379,13 +379,13 @@ export default function Navbar() {
                 </nav>
 
                 <motion.div
-                  className="pointer-events-none absolute bottom-6 left-0 right-0 p-4 text-center"
+                  className="pointer-events-none absolute right-0 bottom-6 left-0 p-4 text-center"
                   initial={variants.footer.initial}
                   animate={variants.footer.animate}
                   exit={variants.footer.exit}
                   transition={variants.footer.transition}
                 >
-                  <p className="text-xs sm:text-sm font-medium text-zinc-500">
+                  <p className="text-xs font-medium text-zinc-500 sm:text-sm">
                     Tap anywhere to close
                   </p>
                 </motion.div>

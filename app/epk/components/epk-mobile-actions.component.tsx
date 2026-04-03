@@ -46,11 +46,11 @@ export default function EPKMobileActions() {
   return (
     <AnimatePresence>
       {isVisible && (
-        <div className="fixed bottom-6 right-6 z-50 md:hidden">
+        <div className="fixed right-6 bottom-6 z-50 md:hidden">
           <div className="flex flex-col gap-3">
             {showScroll && (
               <motion.button
-                className="flex h-12 w-12 items-center justify-center rounded-full bg-zinc-900/90 backdrop-blur-sm border border-zinc-700/50 text-zinc-300 transition-all duration-300 hover:border-amber-500/50 hover:bg-amber-500/10 hover:text-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50 shadow-lg"
+                className="flex h-12 w-12 items-center justify-center rounded-full border border-zinc-700/50 bg-zinc-900/90 text-zinc-300 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-amber-500/50 hover:bg-amber-500/10 hover:text-amber-400 focus:ring-2 focus:ring-amber-500/50 focus:outline-none"
                 onClick={scrollToTop}
                 aria-label="Scroll to top of page"
                 initial={{
@@ -74,7 +74,7 @@ export default function EPKMobileActions() {
               >
                 <div className="flex flex-col items-center">
                   <ChevronUp className="h-5 w-5" />
-                  <span className="text-[10px] font-medium mt-0.5">TOP</span>
+                  <span className="mt-0.5 text-[10px] font-medium">TOP</span>
                 </div>
               </motion.button>
             )}
@@ -99,12 +99,12 @@ export default function EPKMobileActions() {
             >
               <Link
                 href="/"
-                className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-500/90 backdrop-blur-sm border border-amber-400/50 text-zinc-900 transition-all duration-300 hover:bg-amber-400 hover:border-amber-300 hover:shadow-amber-500/25 focus:outline-none focus:ring-2 focus:ring-amber-500/50 shadow-lg hover:shadow-xl"
+                className="flex h-12 w-12 items-center justify-center rounded-full border border-amber-400/50 bg-amber-500/90 text-zinc-900 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-amber-300 hover:bg-amber-400 hover:shadow-xl hover:shadow-amber-500/25 focus:ring-2 focus:ring-amber-500/50 focus:outline-none"
                 aria-label="Go back to home page"
               >
                 <div className="flex flex-col items-center">
                   <Home className="h-5 w-5" />
-                  <span className="text-[10px] font-bold mt-0.5">HOME</span>
+                  <span className="mt-0.5 text-[10px] font-bold">HOME</span>
                 </div>
               </Link>
             </motion.div>

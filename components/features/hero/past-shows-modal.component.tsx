@@ -32,14 +32,14 @@ export default function PastShowsModal({ isOpen, onClose, pastShows }: PastShows
         >
           <motion.div
             ref={modalRef}
-            className="relative w-full max-w-2xl max-h-[80vh] mx-4 bg-zinc-900/95 backdrop-blur-sm rounded-2xl border border-zinc-700/50 overflow-hidden"
+            className="relative mx-4 max-h-[80vh] w-full max-w-2xl overflow-hidden rounded-2xl border border-zinc-700/50 bg-zinc-900/95 backdrop-blur-sm"
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="sticky top-0 bg-zinc-900/95 backdrop-blur-sm border-b border-zinc-700/50 px-6 py-4 flex items-center justify-between">
-              <h2 className="text-xl sm:text-2xl font-bold text-amber-200 font-patrick">
+            <div className="sticky top-0 flex items-center justify-between border-b border-zinc-700/50 bg-zinc-900/95 px-6 py-4 backdrop-blur-sm">
+              <h2 className="font-patrick text-xl font-bold text-amber-200 sm:text-2xl">
                 Previous Shows
               </h2>
               <Button onClick={onClose} variant="ghost" size="icon-sm" aria-label="Close modal">
@@ -50,7 +50,7 @@ export default function PastShowsModal({ isOpen, onClose, pastShows }: PastShows
             <div className="px-6 py-4">
               <div className="block sm:hidden">
                 <motion.div
-                  className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide"
+                  className="scrollbar-hide flex snap-x snap-mandatory gap-4 overflow-x-auto"
                   style={{
                     WebkitOverflowScrolling: "touch",
                     scrollbarWidth: "none",
@@ -60,59 +60,61 @@ export default function PastShowsModal({ isOpen, onClose, pastShows }: PastShows
                   {pastShows.map((show, index) => (
                     <motion.div
                       key={show.id}
-                      className="snap-center shrink-0 w-[85vw] max-w-sm"
+                      className="w-[85vw] max-w-sm shrink-0 snap-center"
                       initial={{ opacity: 0, x: 50 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.1 }}
                     >
-                      <div className="h-full rounded-xl bg-zinc-800/50 border border-zinc-700/30 p-4">
-                        <h3 className="font-semibold text-zinc-100 text-lg">{show.venue}</h3>
-                        <div className="flex items-center gap-2 text-zinc-300 text-sm mt-1">
+                      <div className="h-full rounded-xl border border-zinc-700/30 bg-zinc-800/50 p-4">
+                        <h3 className="text-lg font-semibold text-zinc-100">{show.venue}</h3>
+                        <div className="mt-1 flex items-center gap-2 text-sm text-zinc-300">
                           <MapPin className="h-4 w-4" />
                           <span>
                             {show.city}, {show.state}
                           </span>
                         </div>
                         {show.description && (
-                          <p className="text-zinc-400 text-sm mt-3 line-clamp-3">{show.description}</p>
+                          <p className="mt-3 line-clamp-3 text-sm text-zinc-400">
+                            {show.description}
+                          </p>
                         )}
                         <div className="mt-4 space-y-1">
-                          <div className="text-amber-200 font-medium">{formatDate(show.date)}</div>
+                          <div className="font-medium text-amber-200">{formatDate(show.date)}</div>
                         </div>
                       </div>
                     </motion.div>
                   ))}
                 </motion.div>
-                <div className="flex justify-center gap-1 mt-4">
+                <div className="mt-4 flex justify-center gap-1">
                   {pastShows.map((_, index) => (
                     <div key={index} className="h-1.5 w-1.5 rounded-full bg-zinc-600" />
                   ))}
                 </div>
-                <p className="text-center text-zinc-400 text-xs mt-3">Swipe to see more shows</p>
+                <p className="mt-3 text-center text-xs text-zinc-400">Swipe to see more shows</p>
               </div>
 
-              <div className="hidden sm:block overflow-y-auto max-h-[60vh]">
+              <div className="hidden max-h-[60vh] overflow-y-auto sm:block">
                 <div className="space-y-4">
                   {pastShows.map((show) => (
                     <div
                       key={show.id}
-                      className="group rounded-xl bg-zinc-800/50 border border-zinc-700/30 p-4 transition-all duration-300 hover:bg-zinc-800/70 hover:border-zinc-600/50"
+                      className="group rounded-xl border border-zinc-700/30 bg-zinc-800/50 p-4 transition-all duration-300 hover:border-zinc-600/50 hover:bg-zinc-800/70"
                     >
-                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                         <div className="flex-1">
-                          <h3 className="font-semibold text-zinc-100 text-lg">{show.venue}</h3>
-                          <div className="flex items-center gap-2 text-zinc-300 text-sm mt-1">
+                          <h3 className="text-lg font-semibold text-zinc-100">{show.venue}</h3>
+                          <div className="mt-1 flex items-center gap-2 text-sm text-zinc-300">
                             <MapPin className="h-4 w-4" />
                             <span>
                               {show.city}, {show.state}
                             </span>
                           </div>
                           {show.description && (
-                            <p className="text-zinc-400 text-sm mt-2">{show.description}</p>
+                            <p className="mt-2 text-sm text-zinc-400">{show.description}</p>
                           )}
                         </div>
-                        <div className="flex flex-col sm:items-end gap-1">
-                          <div className="text-amber-200 font-medium">{formatDate(show.date)}</div>
+                        <div className="flex flex-col gap-1 sm:items-end">
+                          <div className="font-medium text-amber-200">{formatDate(show.date)}</div>
                         </div>
                       </div>
                     </div>
@@ -121,8 +123,8 @@ export default function PastShowsModal({ isOpen, onClose, pastShows }: PastShows
               </div>
             </div>
 
-            <div className="sticky bottom-0 bg-zinc-900/95 backdrop-blur-sm border-t border-zinc-700/50 px-6 py-4">
-              <p className="text-center text-zinc-400 text-sm">
+            <div className="sticky bottom-0 border-t border-zinc-700/50 bg-zinc-900/95 px-6 py-4 backdrop-blur-sm">
+              <p className="text-center text-sm text-zinc-400">
                 Follow Noah's socials for updates on upcoming shows!
               </p>
             </div>
@@ -131,4 +133,4 @@ export default function PastShowsModal({ isOpen, onClose, pastShows }: PastShows
       )}
     </AnimatePresence>
   );
-};
+}

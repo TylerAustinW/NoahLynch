@@ -83,10 +83,10 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
 
   const PlatformButtons = (
     <>
-      <h3 className="mb-4 text-xl font-semibold text-center md:text-left text-white">
+      <h3 className="mb-4 text-center text-xl font-semibold text-white md:text-left">
         Listen Now:
       </h3>
-      <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-4 justify-center md:justify-start">
+      <div className="grid grid-cols-2 justify-center gap-3 md:grid-cols-3 md:justify-start md:gap-4">
         {release.platforms.map((platform: Platform) => {
           const buttonStyle: React.CSSProperties = {};
           const iconStyle: React.CSSProperties = {};
@@ -104,7 +104,7 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
               asChild
               variant="outline"
               size="default"
-              className="flex flex-col sm:flex-row items-center justify-center gap-2 min-h-[48px] hover:border-amber-500/50"
+              className="flex min-h-[48px] flex-col items-center justify-center gap-2 hover:border-amber-500/50 sm:flex-row"
               style={platform.bgColor ? buttonStyle : {}}
             >
               <Link
@@ -137,7 +137,7 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
           asChild
           variant="primary"
           size="lg"
-          className="w-full bg-amber-600 hover:bg-amber-500 text-black font-semibold"
+          className="w-full bg-amber-600 font-semibold text-black hover:bg-amber-500"
         >
           <Link href={release.linkURL} target="_blank" rel="noopener noreferrer">
             {release.linkText || "Coming Soon"}
@@ -152,9 +152,7 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
   );
 
   const SpecialThanksContent = (
-    <div
-      className="font-patrick text-center text-lg lg:text-xl leading-relaxed text-amber-100/90"
-    >
+    <div className="font-patrick text-center text-lg leading-relaxed text-amber-100/90 lg:text-xl">
       <p className="text-center font-medium">
         Bringing "Honest" to life has been one of the most meaningful creative experiences of my
         life, and I couldn't have done it without the support, talent, and heart of some truly
@@ -174,7 +172,7 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
         With all my gratitude,
         <br />-{" "}
         <strong>
-          Noah Lynch <Heart className="h-4 w-4 text-red-400 inline-block ml-1 relative -top-px" />
+          Noah Lynch <Heart className="relative -top-px ml-1 inline-block h-4 w-4 text-red-400" />
         </strong>
       </p>
     </div>
@@ -234,91 +232,91 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
         </div>
 
         <main className="relative z-10">
-            <div className="container mx-auto px-4 py-24 sm:py-28 md:px-6 lg:py-32">
-              <div className="mx-auto max-w-7xl">
-                {BackToMusicLink}
+          <div className="container mx-auto px-4 py-24 sm:py-28 md:px-6 lg:py-32">
+            <div className="mx-auto max-w-7xl">
+              {BackToMusicLink}
 
-                <div className="mb-12 text-center">
-                  <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
-                    {release.title}
-                  </h1>
-                  <p className="font-patrick text-xl text-amber-200/80 md:text-2xl">
-                    "Every song tells a story"
-                  </p>
-                </div>
-
-                <div className="grid gap-8 lg:grid-cols-2 lg:gap-16 xl:gap-20 mb-12">
-                  <div className="space-y-6">
-                    <div className="relative mx-auto max-w-md overflow-hidden rounded-2xl border border-zinc-700/50 shadow-2xl">
-                      <div className="relative aspect-square">
-                        <Image
-                          src={release.imageURL}
-                          alt={`${release.title} Cover Art`}
-                          fill
-                          priority
-                          sizes="(max-width: 768px) 90vw, (max-width: 1024px) 50vw, 400px"
-                          className="object-cover"
-                          quality={75}
-                        />
-                        <div
-                          className={`absolute top-4 right-4 rounded-full px-3 py-1.5 text-xs font-semibold ${typeBgColor} ${typeColor} border ${typeBorderColor} backdrop-blur-sm`}
-                        >
-                          {release.type.toUpperCase()}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/30 backdrop-blur-sm p-6">
-                      <div className="space-y-3 text-center lg:text-left">
-                        <p className="text-lg text-zinc-300">Single • {release.year}</p>
-                        <div className="space-y-2 text-sm text-zinc-400">
-                          <p>
-                            <span className="text-zinc-500">Produced By:</span>{" "}
-                            <span className="text-zinc-300">{release.releasedBy}</span>
-                          </p>
-                          {release.writtenBy && (
-                            <p>
-                              <span className="text-zinc-500">Written By:</span>{" "}
-                              <span className="text-zinc-300">{release.writtenBy}</span>
-                            </p>
-                          )}
-                          <p>
-                            <span className="text-zinc-500">Release date:</span>{" "}
-                            <span className="text-zinc-300">{release.releaseDate}</span>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-6">
-                    <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/30 backdrop-blur-sm p-6">
-                      <h2 className="mb-4 text-2xl font-bold text-white">About This Release</h2>
-                      <div className="prose prose-lg prose-invert max-w-none text-zinc-300 leading-relaxed">
-                        {release.description}
-                      </div>
-                    </div>
-
-                    {(!isUpcoming ||
-                      (isUpcoming && release.linkURL) ||
-                      (release.platforms && release.platforms.length > 0)) && (
-                      <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/30 backdrop-blur-sm p-6">
-                        {ListenNowLinks}
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {slug === "honest" && (
-                  <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/30 backdrop-blur-sm p-8 flex flex-col max-w-4xl mx-auto">
-                    <h2 className="mb-6 text-3xl font-bold text-amber-200 text-center">
-                      Special Thanks
-                    </h2>
-                    {SpecialThanksContent}
-                  </div>
-                )}
+              <div className="mb-12 text-center">
+                <h1 className="mb-4 text-4xl font-bold text-white md:text-5xl lg:text-6xl">
+                  {release.title}
+                </h1>
+                <p className="font-patrick text-xl text-amber-200/80 md:text-2xl">
+                  "Every song tells a story"
+                </p>
               </div>
+
+              <div className="mb-12 grid gap-8 lg:grid-cols-2 lg:gap-16 xl:gap-20">
+                <div className="space-y-6">
+                  <div className="relative mx-auto max-w-md overflow-hidden rounded-2xl border border-zinc-700/50 shadow-2xl">
+                    <div className="relative aspect-square">
+                      <Image
+                        src={release.imageURL}
+                        alt={`${release.title} Cover Art`}
+                        fill
+                        priority
+                        sizes="(max-width: 768px) 90vw, (max-width: 1024px) 50vw, 400px"
+                        className="object-cover"
+                        quality={75}
+                      />
+                      <div
+                        className={`absolute top-4 right-4 rounded-full px-3 py-1.5 text-xs font-semibold ${typeBgColor} ${typeColor} border ${typeBorderColor} backdrop-blur-sm`}
+                      >
+                        {release.type.toUpperCase()}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/30 p-6 backdrop-blur-sm">
+                    <div className="space-y-3 text-center lg:text-left">
+                      <p className="text-lg text-zinc-300">Single • {release.year}</p>
+                      <div className="space-y-2 text-sm text-zinc-400">
+                        <p>
+                          <span className="text-zinc-500">Produced By:</span>{" "}
+                          <span className="text-zinc-300">{release.releasedBy}</span>
+                        </p>
+                        {release.writtenBy && (
+                          <p>
+                            <span className="text-zinc-500">Written By:</span>{" "}
+                            <span className="text-zinc-300">{release.writtenBy}</span>
+                          </p>
+                        )}
+                        <p>
+                          <span className="text-zinc-500">Release date:</span>{" "}
+                          <span className="text-zinc-300">{release.releaseDate}</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-6">
+                  <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/30 p-6 backdrop-blur-sm">
+                    <h2 className="mb-4 text-2xl font-bold text-white">About This Release</h2>
+                    <div className="prose prose-lg prose-invert max-w-none leading-relaxed text-zinc-300">
+                      {release.description}
+                    </div>
+                  </div>
+
+                  {(!isUpcoming ||
+                    (isUpcoming && release.linkURL) ||
+                    (release.platforms && release.platforms.length > 0)) && (
+                    <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/30 p-6 backdrop-blur-sm">
+                      {ListenNowLinks}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {slug === "honest" && (
+                <div className="mx-auto flex max-w-4xl flex-col rounded-2xl border border-zinc-700/50 bg-zinc-900/30 p-8 backdrop-blur-sm">
+                  <h2 className="mb-6 text-center text-3xl font-bold text-amber-200">
+                    Special Thanks
+                  </h2>
+                  {SpecialThanksContent}
+                </div>
+              )}
             </div>
+          </div>
         </main>
       </div>
     </ErrorBoundary>

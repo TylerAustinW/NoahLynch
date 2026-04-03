@@ -9,8 +9,6 @@ import Link from "next/link";
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button.component";
 
-
-
 const FeaturedCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
   return (
     <motion.div className="group relative overflow-hidden rounded-xl border border-zinc-800/50 bg-zinc-900/40 backdrop-blur-sm md:rounded-2xl">
@@ -62,11 +60,11 @@ const FeaturedCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
               asChild
               variant="primary"
               size="sm"
-              className="sm:h-10 sm:px-6 sm:text-sm sm:gap-2"
+              className="sm:h-10 sm:gap-2 sm:px-6 sm:text-sm"
             >
               <Link href={`/music/${release.id}`} aria-label={`Listen to ${release.title}`}>
                 <Play
-                  className="h-4 w-4 sm:h-5 sm:w-5 transition-transform group-hover/btn:scale-110"
+                  className="h-4 w-4 transition-transform group-hover/btn:scale-110 sm:h-5 sm:w-5"
                   fill="currentColor"
                 />
                 Listen Now
@@ -76,7 +74,7 @@ const FeaturedCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
               asChild
               variant="secondary"
               size="sm"
-              className="sm:h-10 sm:px-6 sm:text-sm sm:gap-2"
+              className="sm:h-10 sm:gap-2 sm:px-6 sm:text-sm"
             >
               <Link href={`/music/${release.id}`} aria-label={`View details for ${release.title}`}>
                 <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4" />
@@ -95,7 +93,7 @@ const RegularCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
   return (
     <Link
       href={`/music/${release.id}`}
-      className="group block h-full w-[85vw] sm:w-80 flex-shrink-0"
+      className="group block h-full w-[85vw] flex-shrink-0 sm:w-80"
     >
       <motion.div className="flex h-full flex-col overflow-hidden rounded-xl border border-zinc-800/50 bg-zinc-900/40 backdrop-blur-sm transition-all duration-300 hover:border-amber-400/50 hover:bg-zinc-800/50">
         <div className="relative aspect-square w-full overflow-hidden">
@@ -217,7 +215,7 @@ export default function MusicShowcaseSection(): React.ReactElement {
       </video>
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 h-80 w-80 rounded-full bg-white/4 blur-3xl" />
-        <div className="absolute bottom-1/3 right-1/3 h-64 w-64 rounded-full bg-white/3 blur-2xl" />
+        <div className="absolute right-1/3 bottom-1/3 h-64 w-64 rounded-full bg-white/3 blur-2xl" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl">
@@ -257,22 +255,22 @@ export default function MusicShowcaseSection(): React.ReactElement {
             </h3>
 
             <div className="relative px-4 sm:px-8 md:px-12">
-              <div className="absolute -left-2 sm:-left-4 md:-left-6 top-1/2 z-20 hidden -translate-y-1/2 md:block">
+              <div className="absolute top-1/2 -left-2 z-20 hidden -translate-y-1/2 sm:-left-4 md:-left-6 md:block">
                 <button
                   onClick={() => scrollTo("left")}
                   disabled={!canScrollLeft}
-                  className={`rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:border-white/30 focus:outline-none focus:ring-2 focus:ring-amber-400/50 disabled:opacity-50 disabled:cursor-not-allowed`}
+                  className={`rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition-all hover:border-white/30 hover:bg-white/20 focus:ring-2 focus:ring-amber-400/50 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50`}
                   aria-label="Previous releases"
                 >
                   <ChevronLeft className="h-6 w-6" />
                 </button>
               </div>
 
-              <div className="absolute -right-2 sm:-right-4 md:-right-6 top-1/2 z-20 hidden -translate-y-1/2 md:block">
+              <div className="absolute top-1/2 -right-2 z-20 hidden -translate-y-1/2 sm:-right-4 md:-right-6 md:block">
                 <button
                   onClick={() => scrollTo("right")}
                   disabled={!canScrollRight}
-                  className={`rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition-all hover:bg-white/20 hover:border-white/30 focus:outline-none focus:ring-2 focus:ring-amber-400/50 disabled:opacity-50 disabled:cursor-not-allowed`}
+                  className={`rounded-full bg-white/10 p-3 text-white backdrop-blur-sm transition-all hover:border-white/30 hover:bg-white/20 focus:ring-2 focus:ring-amber-400/50 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50`}
                   aria-label="Next releases"
                 >
                   <ChevronRight className="h-6 w-6" />
@@ -281,7 +279,7 @@ export default function MusicShowcaseSection(): React.ReactElement {
 
               <div
                 ref={containerRef}
-                className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth pb-4"
+                className="scrollbar-hide flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-4"
                 style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
               >
                 {releases.map((release, index) => (
@@ -302,7 +300,7 @@ export default function MusicShowcaseSection(): React.ReactElement {
                   <button
                     key={index}
                     onClick={() => scrollToCard(index)}
-                    className={`h-2 rounded-full transition-all duration-300 ${index === currentIndex ? "w-8 bg-amber-400" : "w-2 bg-zinc-600"} hover:bg-amber-400/70 focus:outline-none focus:ring-2 focus:ring-amber-400/50`}
+                    className={`h-2 rounded-full transition-all duration-300 ${index === currentIndex ? "w-8 bg-amber-400" : "w-2 bg-zinc-600"} hover:bg-amber-400/70 focus:ring-2 focus:ring-amber-400/50 focus:outline-none`}
                     aria-label={`Go to release ${index + 1}`}
                   />
                 ))}
@@ -311,7 +309,6 @@ export default function MusicShowcaseSection(): React.ReactElement {
           </motion.div>
         )}
       </div>
-
     </section>
   );
 }

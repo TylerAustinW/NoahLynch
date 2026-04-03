@@ -62,9 +62,9 @@ const YouTubeThumbnail = ({ videoId, title }: { videoId: string; title: string }
 
   if (hasError) {
     return (
-      <div className="h-full w-full bg-zinc-800 flex items-center justify-center">
+      <div className="flex h-full w-full items-center justify-center bg-zinc-800">
         <div className="text-center">
-          <Play className="h-12 w-12 text-zinc-400 mx-auto mb-2" />
+          <Play className="mx-auto mb-2 h-12 w-12 text-zinc-400" />
           <p className="text-xs text-zinc-400">Video Unavailable</p>
         </div>
       </div>
@@ -74,7 +74,7 @@ const YouTubeThumbnail = ({ videoId, title }: { videoId: string; title: string }
   return (
     <div className="relative h-full w-full">
       {isLoading && (
-        <div className="absolute inset-0 h-full w-full bg-zinc-800 flex items-center justify-center">
+        <div className="absolute inset-0 flex h-full w-full items-center justify-center bg-zinc-800">
           <div className="animate-pulse">
             <Play className="h-8 w-8 text-zinc-500" />
           </div>
@@ -106,7 +106,7 @@ const VideoCard = memo(
   }) => {
     return (
       <motion.button
-        className="group relative w-80 flex-shrink-0 cursor-pointer overflow-hidden rounded-lg border border-zinc-800/50 bg-zinc-900/40 backdrop-blur-sm text-left transition-all hover:border-amber-400/50 focus:border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-400/50"
+        className="group relative w-80 flex-shrink-0 cursor-pointer overflow-hidden rounded-lg border border-zinc-800/50 bg-zinc-900/40 text-left backdrop-blur-sm transition-all hover:border-amber-400/50 focus:border-amber-400 focus:ring-2 focus:ring-amber-400/50 focus:outline-none"
         whileHover={{ scale: 1.02 }}
         transition={{ duration: 0.2 }}
         onClick={() => onSelect(session)}
@@ -236,7 +236,7 @@ export default function StudioSessionsSection(): React.ReactElement {
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <div className="absolute -left-4 top-1/2 z-10 hidden -translate-y-1/2 md:block">
+          <div className="absolute top-1/2 -left-4 z-10 hidden -translate-y-1/2 md:block">
             <Button
               variant="ghost"
               onClick={() => scrollTo("left")}
@@ -248,7 +248,7 @@ export default function StudioSessionsSection(): React.ReactElement {
             </Button>
           </div>
 
-          <div className="absolute -right-4 top-1/2 z-10 hidden -translate-y-1/2 md:block">
+          <div className="absolute top-1/2 -right-4 z-10 hidden -translate-y-1/2 md:block">
             <Button
               variant="ghost"
               onClick={() => scrollTo("right")}
@@ -262,7 +262,7 @@ export default function StudioSessionsSection(): React.ReactElement {
 
           <div
             ref={scrollContainerRef}
-            className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth pb-4"
+            className="scrollbar-hide flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-4"
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
             role="group"
             aria-label="Studio session videos"
@@ -352,7 +352,6 @@ export default function StudioSessionsSection(): React.ReactElement {
           </motion.div>
         </motion.div>
       )}
-
     </section>
   );
 }

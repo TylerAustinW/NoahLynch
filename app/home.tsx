@@ -10,7 +10,7 @@ const BiographySection = dynamic(
   () => import("@/components/features/biography/biography-section.component"),
   {
     loading: () => (
-      <div className="min-h-[50vh] bg-zinc-950 flex items-center justify-center">
+      <div className="flex min-h-[50vh] items-center justify-center bg-zinc-950">
         <div className="text-zinc-400">Loading...</div>
       </div>
     ),

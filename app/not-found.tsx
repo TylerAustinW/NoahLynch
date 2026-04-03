@@ -11,9 +11,9 @@ export default function NotFound(): React.ReactElement {
   }, [router]);
 
   return (
-    <div className="min-h-screen bg-zinc-950 flex items-center justify-center">
+    <div className="flex min-h-screen items-center justify-center bg-zinc-950">
       <div className="text-center">
-        <div className="text-amber-400 text-lg">Redirecting...</div>
+        <div className="text-lg text-amber-400">Redirecting...</div>
       </div>
     </div>
   );

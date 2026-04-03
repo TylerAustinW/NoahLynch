@@ -16,7 +16,7 @@ export default function SocialSidebar() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <div className="fixed left-6 top-1/2 z-40 hidden -translate-y-1/2 lg:block">
+    <div className="fixed top-1/2 left-6 z-40 hidden -translate-y-1/2 lg:block">
       <div className="flex flex-col gap-4">
         {SOCIAL_LINK_DATA.map((social) => {
           const Icon = platformIcons[social.platform] || FaInstagram;
@@ -27,7 +27,7 @@ export default function SocialSidebar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className={`flex h-12 w-12 items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/30 text-zinc-400 backdrop-blur-sm transition-all duration-300 ${social.hoverColors} focus:outline-none focus:ring-2 ${social.focusColors} focus:ring-offset-2 focus:ring-offset-zinc-950`}
+                className={`flex h-12 w-12 items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/30 text-zinc-400 backdrop-blur-sm transition-all duration-300 ${social.hoverColors} focus:ring-2 focus:outline-none ${social.focusColors} focus:ring-offset-2 focus:ring-offset-zinc-950`}
                 style={{
                   transform: prefersReducedMotion ? "none" : undefined,
                   transition: prefersReducedMotion
@@ -39,16 +39,16 @@ export default function SocialSidebar() {
               </a>
 
               <div
-                className={`absolute left-14 top-1/2 -translate-y-1/2 whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium ${social.handleColors} shadow-lg transition-all duration-300 ${
+                className={`absolute top-1/2 left-14 -translate-y-1/2 rounded-md px-3 py-1.5 text-sm font-medium whitespace-nowrap ${social.handleColors} shadow-lg transition-all duration-300 ${
                   prefersReducedMotion
                     ? "opacity-0 group-hover:opacity-100"
-                    : "opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"
+                    : "-translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100"
                 } pointer-events-none`}
                 aria-hidden="true"
               >
                 {social.handle}
                 <div
-                  className={`absolute right-full top-1/2 -translate-y-1/2 border-4 border-transparent ${social.arrowBorderColor}`}
+                  className={`absolute top-1/2 right-full -translate-y-1/2 border-4 border-transparent ${social.arrowBorderColor}`}
                 />
               </div>
             </div>

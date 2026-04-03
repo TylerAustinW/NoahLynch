@@ -30,7 +30,7 @@ export default function ExpandableBio({
   return (
     <div className={`space-y-3 sm:space-y-4 ${className}`}>
       <motion.div
-        className="text-zinc-300 text-base sm:text-lg leading-relaxed print:text-sm print:text-black overflow-hidden will-change-transform"
+        className="overflow-hidden text-base leading-relaxed text-zinc-300 will-change-transform sm:text-lg print:text-sm print:text-black"
         layout
         transition={{
           duration: 0.4,
@@ -92,7 +92,7 @@ export default function ExpandableBio({
                 <ChevronDown className="h-4 w-4" />
               </motion.div>
             }
-            className="text-amber-200 hover:text-amber-100 hover:bg-amber-500/10 transition-colors duration-200 print:hidden"
+            className="text-amber-200 transition-colors duration-200 hover:bg-amber-500/10 hover:text-amber-100 print:hidden"
           >
             {isExpanded ? "Read Less" : "Read More"}
           </Button>

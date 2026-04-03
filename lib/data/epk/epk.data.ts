@@ -306,7 +306,6 @@ export const epkData: EPKData = {
             alt: "Noah Lynch at Ole Brook Festival",
             caption: "Live performance at Ole Brook Festival",
           },
-
         ],
       },
       {

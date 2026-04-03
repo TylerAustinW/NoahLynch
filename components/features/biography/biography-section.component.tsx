@@ -59,12 +59,12 @@ export default function BiographySection() {
           <h2 className="mb-4 text-4xl font-bold text-zinc-200 md:text-5xl lg:text-6xl">
             The Story
           </h2>
-          <p className="font-patrick text-xl text-zinc-300 md:text-2xl mb-6">
+          <p className="font-patrick mb-6 text-xl text-zinc-300 md:text-2xl">
             "Music isn't just what I do, it's who I am"
           </p>
           <div className="flex justify-center">
-            <span className="inline-flex items-center px-4 py-2 bg-amber-500/20 border border-amber-500/30 rounded-lg text-amber-300 font-semibold">
-              <Award className="w-4 h-4" />
+            <span className="inline-flex items-center rounded-lg border border-amber-500/30 bg-amber-500/20 px-4 py-2 font-semibold text-amber-300">
+              <Award className="h-4 w-4" />
               2025 Best Local Solo Artist Winner
             </span>
           </div>
@@ -77,9 +77,9 @@ export default function BiographySection() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="space-y-6 text-lg leading-relaxed text-white md:text-xl max-w-none md:max-w-[65ch]">
+            <div className="max-w-none space-y-6 text-lg leading-relaxed text-white md:max-w-[65ch] md:text-xl">
               <p>
-                <span className="font-bold text-amber-400 text-xl md:text-2xl">Noah Lynch</span> is
+                <span className="text-xl font-bold text-amber-400 md:text-2xl">Noah Lynch</span> is
                 an acoustic pop singer-songwriter who takes inspiration from{" "}
                 <span className="font-semibold text-amber-400">John Mayer</span>, blending heartfelt
                 storytelling with smooth, soulful melodies. Coming from a small town where pursuing
@@ -100,13 +100,13 @@ export default function BiographySection() {
                   His{" "}
                   <Link
                     href="/music/for-you"
-                    className="font-semibold text-amber-400 hover:text-amber-300 transition-colors relative group/link inline-flex items-center gap-1"
+                    className="group/link relative inline-flex items-center gap-1 font-semibold text-amber-400 transition-colors hover:text-amber-300"
                     title='Listen to "For You"'
                   >
                     <span className="relative inline">
                       debut single
                       <svg
-                        className="absolute left-0 w-full pointer-events-none"
+                        className="pointer-events-none absolute left-0 w-full"
                         style={{ bottom: "-1px", height: "6px" }}
                         viewBox="0 0 100 6"
                         fill="none"
@@ -122,8 +122,8 @@ export default function BiographySection() {
                         />
                       </svg>
                     </span>
-                    <ExternalLink className="w-3 h-3 opacity-60 md:hidden" />
-                    <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-zinc-900/95 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap opacity-0 group-hover/link:opacity-100 transition-opacity duration-200 pointer-events-none border border-zinc-700/50 hidden md:block">
+                    <ExternalLink className="h-3 w-3 opacity-60 md:hidden" />
+                    <span className="pointer-events-none absolute -top-8 left-1/2 hidden -translate-x-1/2 rounded-md border border-zinc-700/50 bg-zinc-900/95 px-2 py-1 text-xs whitespace-nowrap text-white opacity-0 transition-opacity duration-200 group-hover/link:opacity-100 md:block">
                       Listen to "For You" →
                     </span>
                   </Link>{" "}
@@ -132,13 +132,13 @@ export default function BiographySection() {
                   airplay on the UK's Crags Radio, signaling the start of a promising career. With{" "}
                   <Link
                     href="/music/honest"
-                    className="font-semibold text-amber-400 hover:text-amber-300 transition-colors relative group/link inline-flex items-center gap-1"
+                    className="group/link relative inline-flex items-center gap-1 font-semibold text-amber-400 transition-colors hover:text-amber-300"
                     title='Listen to "Honest"'
                   >
                     <span className="relative inline">
                       honest
                       <svg
-                        className="absolute left-0 w-full pointer-events-none"
+                        className="pointer-events-none absolute left-0 w-full"
                         style={{ bottom: "-1px", height: "6px" }}
                         viewBox="0 0 100 6"
                         fill="none"
@@ -154,8 +154,8 @@ export default function BiographySection() {
                         />
                       </svg>
                     </span>
-                    <ExternalLink className="w-3 h-3 opacity-60 md:hidden" />
-                    <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-zinc-900/95 text-white text-xs px-2 py-1 rounded-md whitespace-nowrap opacity-0 group-hover/link:opacity-100 transition-opacity duration-200 pointer-events-none border border-zinc-700/50 hidden md:block">
+                    <ExternalLink className="h-3 w-3 opacity-60 md:hidden" />
+                    <span className="pointer-events-none absolute -top-8 left-1/2 hidden -translate-x-1/2 rounded-md border border-zinc-700/50 bg-zinc-900/95 px-2 py-1 text-xs whitespace-nowrap text-white opacity-0 transition-opacity duration-200 group-hover/link:opacity-100 md:block">
                       Listen to "Honest" →
                     </span>
                   </Link>{" "}
@@ -167,7 +167,7 @@ export default function BiographySection() {
               {isMounted && isMobile && (
                 <motion.button
                   onClick={() => setIsExpanded(!isExpanded)}
-                  className="group inline-flex items-center gap-2 text-zinc-300 transition-colors hover:text-white focus:outline-none focus:ring-2 focus:ring-zinc-400/50 rounded-lg px-2 py-1"
+                  className="group inline-flex items-center gap-2 rounded-lg px-2 py-1 text-zinc-300 transition-colors hover:text-white focus:ring-2 focus:ring-zinc-400/50 focus:outline-none"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5 }}
@@ -193,7 +193,7 @@ export default function BiographySection() {
             >
               <Link
                 href={"#music"}
-                className="group inline-flex items-center gap-3 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm px-7 py-4 font-medium text-white transition-all duration-300 hover:bg-white/20 hover:border-white/50 focus:outline-none focus:ring-2 focus:ring-amber-400/50"
+                className="group inline-flex items-center gap-3 rounded-full border border-white/30 bg-white/10 px-7 py-4 font-medium text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/20 focus:ring-2 focus:ring-amber-400/50 focus:outline-none"
               >
                 <Music className="h-5 w-5" />
                 Explore The Music
