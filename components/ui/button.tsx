@@ -130,12 +130,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const Comp = asChild ? Slot : "button";
     const isDisabled = disabled || loading;
 
-    const spinnerSize =
-      size === "sm" || size === "icon-sm"
-        ? "sm"
-        : size === "lg" || size === "xl" || size === "icon-lg"
-          ? "lg"
-          : "default";
+    const getSpinnerSize = (): "sm" | "lg" | "default" => {
+      if (size === "sm" || size === "icon-sm") return "sm";
+      if (size === "lg" || size === "xl" || size === "icon-lg") return "lg";
+      return "default";
+    };
+    const spinnerSize = getSpinnerSize();
 
     if (asChild) {
       return (

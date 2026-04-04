@@ -17,7 +17,14 @@ export function getAllShows(): TourDate[] {
 
 export function getUpcomingShows(): TourDate[] {
   return sortShowsForDisplay(
-    allShows.filter((show) => isShowUpcoming(show)),
+    allShows.filter((show) => isShowUpcoming(show) && show.status !== "cancelled"),
+    "asc",
+  );
+}
+
+export function getCancelledUpcomingShows(): TourDate[] {
+  return sortShowsForDisplay(
+    allShows.filter((show) => isShowUpcoming(show) && show.status === "cancelled"),
     "asc",
   );
 }
@@ -61,6 +68,7 @@ export function getShowsByVenue(venueId: string): TourDate[] {
 export const tourRepository = {
   getAllShows,
   getUpcomingShows,
+  getCancelledUpcomingShows,
   getPastShows,
   getNextShow,
   getFeaturedShows,

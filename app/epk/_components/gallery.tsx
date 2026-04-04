@@ -53,14 +53,14 @@ export default function EPKGallery({ title, collections }: EPKGalleryProps) {
     setSelectedCollection(collection);
     setCurrentGalleryPhotoIndex(photoIndex);
     const currentPhoto = collection.photos[photoIndex];
-    if (currentPhoto) preloadImage(currentPhoto.src);
+    if (currentPhoto) void preloadImage(currentPhoto.src);
     if (photoIndex > 0) {
       const prev = collection.photos[photoIndex - 1];
-      if (prev) preloadImage(prev.src);
+      if (prev) void preloadImage(prev.src);
     }
     if (photoIndex < collection.photos.length - 1) {
       const next = collection.photos[photoIndex + 1];
-      if (next) preloadImage(next.src);
+      if (next) void preloadImage(next.src);
     }
   };
 
@@ -154,7 +154,7 @@ export default function EPKGallery({ title, collections }: EPKGalleryProps) {
                     <h3 className="font-semibold text-amber-400">{collection.venue}</h3>
                     <p className="text-sm text-zinc-400">
                       {collection.city}, {collection.state} •{" "}
-                      {new Date(`${collection.date  }T12:00:00`).toLocaleDateString("en-US", {
+                      {new Date(`${collection.date}T12:00:00`).toLocaleDateString("en-US", {
                         year: "numeric",
                         month: "short",
                         day: "numeric",

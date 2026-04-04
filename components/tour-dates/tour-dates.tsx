@@ -10,6 +10,55 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/layout/navbar";
 import Image from "next/image";
 
+function ActionButton({
+  isCancelled,
+  show,
+  isToday,
+  variant = "mobile",
+}: {
+  isCancelled: boolean;
+  show: TourDate;
+  isToday: boolean;
+  variant?: "mobile" | "desktop";
+}) {
+  if (isCancelled) {
+    const cancelledClasses =
+      variant === "mobile"
+        ? "inline-block w-full cursor-not-allowed border border-red-800/50 px-6 py-3 text-center text-sm font-medium tracking-wider text-red-400/70 uppercase"
+        : "inline-block cursor-not-allowed border border-red-800/50 px-6 py-2 text-xs font-medium tracking-wider text-red-400/70 uppercase md:text-sm";
+
+    return (
+      <button disabled className={cancelledClasses}>
+        Cancelled
+      </button>
+    );
+  }
+
+  if (show.actionLink) {
+    const linkClasses =
+      variant === "mobile"
+        ? "inline-block w-full border border-zinc-500 px-6 py-3 text-center text-sm font-medium tracking-wider text-zinc-300 uppercase transition-all duration-300 hover:border-amber-500 hover:text-amber-400 active:bg-amber-500/10"
+        : "inline-block border border-zinc-500 px-6 py-2 text-xs font-medium tracking-wider text-zinc-300 uppercase transition-all duration-300 hover:border-amber-500 hover:text-amber-400 md:text-sm";
+
+    return (
+      <a href={show.actionLink} target="_blank" rel="noopener noreferrer" className={linkClasses}>
+        {show.actionText || "Tickets"}
+      </a>
+    );
+  }
+
+  const disabledClasses =
+    variant === "mobile"
+      ? "inline-block w-full cursor-not-allowed border border-zinc-600 px-6 py-3 text-center text-sm font-medium tracking-wider text-zinc-600 uppercase"
+      : "inline-block cursor-not-allowed border border-zinc-600 px-6 py-2 text-xs font-medium tracking-wider text-zinc-600 uppercase md:text-sm";
+
+  return (
+    <button disabled className={disabledClasses}>
+      {isToday ? "Show Is Today" : "Free Entry"}
+    </button>
+  );
+}
+
 interface TourDatesSectionProps {
   upcoming: TourDate[];
   past: TourDate[];
@@ -59,6 +108,7 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
           {upcoming.map((show, index) => {
             const timeLabel = formatTourTimeRange(show);
             const isToday = isShowTodayLocal(show);
+            const isCancelled = show.status === "cancelled";
 
             return (
               <motion.div
@@ -66,94 +116,98 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.05 * index, duration: 0.2 }}
-                className="border-b border-zinc-700/40 last:border-b-0"
+                className={`border-b border-zinc-700/40 last:border-b-0${isCancelled ? "opacity-60" : ""}`}
               >
                 <div className="w-full py-6 sm:py-5 md:py-6">
                   <div className="flex flex-col items-center space-y-3 text-center sm:hidden">
                     <div className="mb-1">
-                      <span className="text-lg font-medium" style={{ letterSpacing: "0.05em" }}>
+                      <span
+                        className={`text-lg font-medium${isCancelled ? "text-zinc-500 line-through" : ""}`}
+                        style={{ letterSpacing: "0.05em" }}
+                      >
                         {formatTourDate(show.date)}
                       </span>
                     </div>
 
                     <div className="space-y-1">
-                      <div className="text-base font-bold tracking-wide text-white uppercase">
+                      <div
+                        className={`text-base font-bold tracking-wide uppercase${isCancelled ? "text-zinc-500 line-through" : "text-white"}`}
+                      >
                         {show.venue}
                       </div>
-                      <div className="text-sm tracking-wide text-zinc-300 uppercase">
+                      <div
+                        className={`text-sm tracking-wide uppercase${isCancelled ? "text-zinc-500" : "text-zinc-300"}`}
+                      >
                         {show.city}
                         {show.state ? `, ${show.state}` : ""}
                       </div>
-                      <div className="text-sm tracking-wide text-amber-300 uppercase">
-                        {timeLabel ?? "TIME TBA"}
-                      </div>
+                      {isCancelled ? (
+                        <div className="text-sm font-semibold tracking-wide text-red-400 uppercase">
+                          Cancelled — {show.description || "Weather Conditions"}
+                        </div>
+                      ) : (
+                        <div className="text-sm tracking-wide text-amber-300 uppercase">
+                          {timeLabel ?? "TIME TBA"}
+                        </div>
+                      )}
                     </div>
 
                     <div className="flex w-full justify-center pt-2">
-                      {show.actionLink ? (
-                        <a
-                          href={show.actionLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-block w-full border border-zinc-500 px-6 py-3 text-center text-sm font-medium tracking-wider text-zinc-300 uppercase transition-all duration-300 hover:border-amber-500 hover:text-amber-400 active:bg-amber-500/10"
-                        >
-                          {show.actionText || "Tickets"}
-                        </a>
-                      ) : (
-                        <button
-                          disabled
-                          className="inline-block w-full cursor-not-allowed border border-zinc-600 px-6 py-3 text-center text-sm font-medium tracking-wider text-zinc-600 uppercase"
-                        >
-                          {isToday ? "Show Is Today" : "Free Entry"}
-                        </button>
-                      )}
+                      <ActionButton
+                        isCancelled={isCancelled}
+                        show={show}
+                        isToday={isToday}
+                        variant="mobile"
+                      />
                     </div>
                   </div>
 
                   <div className="hidden grid-cols-1 items-center gap-4 sm:grid md:grid-cols-12 md:gap-6">
                     <div className="text-left md:col-span-3">
-                      <span className="text-lg font-medium" style={{ letterSpacing: "0.05em" }}>
+                      <span
+                        className={`text-lg font-medium${isCancelled ? "text-zinc-500 line-through" : ""}`}
+                        style={{ letterSpacing: "0.05em" }}
+                      >
                         {formatTourDate(show.date)}
                       </span>
                     </div>
 
                     <div className="text-left md:col-span-3">
-                      <div className="text-sm font-bold tracking-wide text-white uppercase md:text-base">
+                      <div
+                        className={`text-sm font-bold tracking-wide uppercase md:text-base${isCancelled ? "text-zinc-500 line-through" : "text-white"}`}
+                      >
                         {show.venue}
                       </div>
                     </div>
 
                     <div className="text-left md:col-span-2">
-                      <div className="text-sm tracking-wide text-zinc-300 uppercase md:text-base">
+                      <div
+                        className={`text-sm tracking-wide uppercase md:text-base${isCancelled ? "text-zinc-500" : "text-zinc-300"}`}
+                      >
                         {show.city}
                         {show.state ? `, ${show.state}` : ""}
                       </div>
                     </div>
 
                     <div className="text-left md:col-span-2 md:text-center">
-                      <div className="text-xs font-medium tracking-wide text-amber-300 uppercase md:text-sm">
-                        {timeLabel ?? "Time TBA"}
-                      </div>
+                      {isCancelled ? (
+                        <div className="text-xs font-semibold tracking-wide text-red-400 uppercase md:text-sm">
+                          Cancelled
+                        </div>
+                      ) : (
+                        <div className="text-xs font-medium tracking-wide text-amber-300 uppercase md:text-sm">
+                          {timeLabel ?? "Time TBA"}
+                        </div>
+                      )}
                     </div>
 
                     <div className="flex justify-start md:col-span-2 md:justify-end">
-                      {show.actionLink ? (
-                        <a
-                          href={show.actionLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-block border border-zinc-500 px-6 py-2 text-xs font-medium tracking-wider text-zinc-300 uppercase transition-all duration-300 hover:border-amber-500 hover:text-amber-400 md:text-sm"
-                        >
-                          {show.actionText || "Tickets"}
-                        </a>
-                      ) : (
-                        <button
-                          disabled
-                          className="inline-block cursor-not-allowed border border-zinc-600 px-6 py-2 text-xs font-medium tracking-wider text-zinc-600 uppercase md:text-sm"
-                        >
-                          {isToday ? "Show Is Today" : "Free Entry"}
-                        </button>
-                      )}
+                      <ActionButton
+                        isCancelled={isCancelled}
+                        show={show}
+                        isToday={isToday}
+                        variant="desktop"
+                      />
                     </div>
                   </div>
                 </div>

@@ -12,6 +12,7 @@ export { VENUES, EVENTS_DATA, SHOWS_DATA } from "./data/shows.data";
 export {
   getAllShows,
   getUpcomingShows,
+  getCancelledUpcomingShows,
   getPastShows,
   getNextShow,
   getFeaturedShows,

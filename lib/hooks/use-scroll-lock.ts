@@ -74,14 +74,12 @@ export const useScrollLock = (isLocked: boolean) => {
 
     // Cleanup function for component unmount
     return () => {
-      if (isLocked) { 
-        body.style.position = originalStylesRef.current.position;
-        body.style.top = originalStylesRef.current.top;
-        body.style.width = originalStylesRef.current.width;
-        body.style.paddingRight = originalStylesRef.current.paddingRight;
-        documentElement.style.overflow = originalStylesRef.current.overflow;
-        window.scrollTo(0, scrollPositionRef.current);
-      }
+      body.style.position = originalStylesRef.current.position;
+      body.style.top = originalStylesRef.current.top;
+      body.style.width = originalStylesRef.current.width;
+      body.style.paddingRight = originalStylesRef.current.paddingRight;
+      documentElement.style.overflow = originalStylesRef.current.overflow;
+      window.scrollTo(0, scrollPositionRef.current);
     };
   }, [isLocked]);
 };

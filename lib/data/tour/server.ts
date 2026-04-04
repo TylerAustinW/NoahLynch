@@ -14,7 +14,7 @@ async function readJsonFile<T>(relativePath: string): Promise<T> {
 }
 
 export async function getTourPageData(): Promise<{ upcoming: TourDate[]; past: TourDate[] }> {
-  const isProduction = globalThis.process?.env.NODE_ENV === "production";
+  const isProduction = process.env.NODE_ENV === "production";
 
   const shows = isProduction ? resolveShows(EVENTS_DATA, VENUES) : await getFileBackedShows();
 

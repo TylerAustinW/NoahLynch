@@ -132,22 +132,26 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
 
   const ListenNowLinks = (
     <div className="w-full border-t border-zinc-700/40 pt-6 md:pt-8">
-      {isUpcoming && release.linkURL ? (
-        <Button
-          asChild
-          variant="primary"
-          size="lg"
-          className="w-full bg-amber-600 font-semibold text-black hover:bg-amber-500"
-        >
-          <Link href={release.linkURL} target="_blank" rel="noopener noreferrer">
-            {release.linkText || "Coming Soon"}
-          </Link>
-        </Button>
-      ) : release.platforms && release.platforms.length > 0 ? (
-        PlatformButtons
-      ) : (
-        <p className="text-center text-zinc-400">Details coming soon.</p>
-      )}
+      {(() => {
+        if (isUpcoming && release.linkURL) {
+          return (
+            <Button
+              asChild
+              variant="primary"
+              size="lg"
+              className="w-full bg-amber-600 font-semibold text-black hover:bg-amber-500"
+            >
+              <Link href={release.linkURL} target="_blank" rel="noopener noreferrer">
+                {release.linkText || "Coming Soon"}
+              </Link>
+            </Button>
+          );
+        }
+        if (release.platforms.length > 0) {
+          return PlatformButtons;
+        }
+        return <p className="text-center text-zinc-400">Details coming soon.</p>;
+      })()}
     </div>
   );
 
@@ -297,9 +301,7 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
                     </div>
                   </div>
 
-                  {(!isUpcoming ||
-                    (isUpcoming && release.linkURL) ||
-                    (release.platforms && release.platforms.length > 0)) && (
+                  {(!isUpcoming || release.linkURL || release.platforms.length > 0) && (
                     <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/30 p-6 backdrop-blur-sm">
                       {ListenNowLinks}
                     </div>

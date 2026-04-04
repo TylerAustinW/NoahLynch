@@ -6,8 +6,8 @@
     "startTimeLocal": "16:00",
     "endTimeLocal": "20:00",
     "featured": true,
-    "status": "scheduled",
-    "description": "New show added for April 4 at Shaggy's on the Rez."
+    "status": "cancelled",
+    "description": "Cancelled due to weather conditions."
   },
   {
     "id": "show-2026-05-30-roof",
