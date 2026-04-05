@@ -8,11 +8,7 @@ export type {
   ReleaseData,
 } from "../../types/music.types";
 
-import {
-  getAllReleasesData,
-  getPreviousReleasesData,
-  getUpcomingReleaseData,
-} from "./releases.data";
+import { getAllReleasesData } from "./releases.data";
 import type { Platform, PlatformName, ReleaseData, ReleaseWithPlatforms } from "@/lib/types";
 import React from "react";
 import {
@@ -78,13 +74,10 @@ function resolveReleasePlatforms(releaseData: ReleaseData): ReleaseWithPlatforms
   };
 }
 
-export const allReleases: ReleaseWithPlatforms[] =
-  getAllReleasesData().map(resolveReleasePlatforms);
-getPreviousReleasesData().map(resolveReleasePlatforms);
-(() => {
-  const upcomingData = getUpcomingReleaseData();
-  return upcomingData ? resolveReleasePlatforms(upcomingData) : null;
-})();
+export const allReleases: ReleaseWithPlatforms[] = getAllReleasesData().map(
+  resolveReleasePlatforms,
+);
+
 export const getReleaseById = (id: string): ReleaseWithPlatforms | undefined => {
   return allReleases.find((release) => release.id === id);
 };

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Dancing_Script, Inter, Patrick_Hand } from "next/font/google";
 import "./globals.css";
 import SocialSidebar from "@/components/layout/social-sidebar";
@@ -20,6 +20,13 @@ const patrickHand = Patrick_Hand({
 });
 
 const siteUrl = "https://www.noahlynch.com";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#d97706",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -118,12 +125,6 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="theme-color" content="#d97706" />
-        <link rel="canonical" href={siteUrl} />
-      </head>
       <body className={`${inter.className} ${dancingScript.variable} ${patrickHand.variable}`}>
         <SocialSidebar />
         <ScrollToTop />

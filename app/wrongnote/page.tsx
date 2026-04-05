@@ -32,7 +32,7 @@ export default function WrongNote(): React.ReactElement {
             </Button>
 
             <Button asChild variant="secondary" size="default">
-              <Link href="/music" className="flex items-center gap-2">
+              <Link href="/#music" className="flex items-center gap-2">
                 <Music className="h-4 w-4" />
                 Music
               </Link>
