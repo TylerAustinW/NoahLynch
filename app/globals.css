@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@config "../tailwind.config.ts";
 
 /* Mobile viewport height fix - use CSS custom property for dynamic viewport height */
 :root {
