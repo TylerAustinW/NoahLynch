@@ -20,11 +20,11 @@ export async function getTourPageData(): Promise<{ upcoming: TourDate[]; past: T
 
   return {
     upcoming: sortShowsForDisplay(
-      shows.filter((show) => isShowUpcoming(show)),
+      shows.filter((show) => isShowUpcoming(show) && show.status !== "cancelled"),
       "asc",
     ),
     past: sortShowsForDisplay(
-      shows.filter((show) => !isShowUpcoming(show)),
+      shows.filter((show) => !isShowUpcoming(show) || show.status === "cancelled"),
       "desc",
     ),
   };

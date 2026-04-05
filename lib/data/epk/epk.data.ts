@@ -83,7 +83,7 @@ export interface EPKData {
 export const epkData: EPKData = {
   artist: {
     name: "Noah Lynch",
-    tagline: "Singer–Songwriter | Guitarist | Storyteller",
+    tagline: "Singer–Songwriter",
     location: "Meadville, MS",
     genre: "Acoustic Soul – Soft Rock – Alt-Pop",
   },

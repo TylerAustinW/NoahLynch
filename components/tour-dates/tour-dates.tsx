@@ -230,50 +230,84 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
             </div>
 
             <div className="w-full">
-              {past.map((show) => (
-                <div key={show.id} className="border-b border-zinc-700/20 last:border-b-0">
-                  <div className="w-full py-4 sm:py-3 md:py-4">
-                    <div className="flex flex-col space-y-2 sm:hidden">
-                      <div className="mb-1">
-                        <span className="text-lg font-medium" style={{ letterSpacing: "0.05em" }}>
-                          {formatTourDate(show.date)}
-                        </span>
-                      </div>
+              {past.map((show) => {
+                const isCancelled = show.status === "cancelled";
 
-                      <div className="space-y-1">
-                        <div className="text-sm font-semibold tracking-wide text-zinc-200 uppercase">
-                          {show.venue}
+                return (
+                  <div
+                    key={show.id}
+                    className={`border-b border-zinc-700/20 last:border-b-0${isCancelled ? " opacity-70" : ""}`}
+                  >
+                    <div className="w-full py-4 sm:py-3 md:py-4">
+                      <div className="flex flex-col space-y-2 sm:hidden">
+                        <div className="mb-1">
+                          <span
+                            className={`text-lg font-medium${isCancelled ? " text-zinc-500 line-through" : ""}`}
+                            style={{ letterSpacing: "0.05em" }}
+                          >
+                            {formatTourDate(show.date)}
+                          </span>
                         </div>
-                        <div className="text-xs tracking-wide text-zinc-300 uppercase">
-                          {show.city}
-                          {show.state ? `, ${show.state}` : ""}
+
+                        <div className="space-y-1">
+                          <div
+                            className={`text-sm font-semibold tracking-wide uppercase${isCancelled ? " text-zinc-500 line-through" : " text-zinc-200"}`}
+                          >
+                            {show.venue}
+                          </div>
+                          <div
+                            className={`text-xs tracking-wide uppercase${isCancelled ? " text-zinc-500" : " text-zinc-300"}`}
+                          >
+                            {show.city}
+                            {show.state ? `, ${show.state}` : ""}
+                          </div>
+                          {isCancelled && (
+                            <div className="text-xs font-semibold tracking-wide text-red-400 uppercase">
+                              Cancelled — {show.description || "Weather Conditions"}
+                            </div>
+                          )}
                         </div>
                       </div>
-                    </div>
 
-                    <div className="hidden grid-cols-1 items-center gap-4 sm:grid md:grid-cols-10 md:gap-6">
-                      <div className="text-left md:col-span-4">
-                        <span className="text-lg font-medium" style={{ letterSpacing: "0.05em" }}>
-                          {formatTourDate(show.date)}
-                        </span>
-                      </div>
-
-                      <div className="text-left md:col-span-4">
-                        <div className="text-sm font-bold tracking-wide text-white uppercase md:text-base">
-                          {show.venue}
+                      <div className="hidden grid-cols-1 items-center gap-4 sm:grid md:grid-cols-12 md:gap-6">
+                        <div className="text-left md:col-span-4">
+                          <span
+                            className={`text-lg font-medium${isCancelled ? " text-zinc-500 line-through" : ""}`}
+                            style={{ letterSpacing: "0.05em" }}
+                          >
+                            {formatTourDate(show.date)}
+                          </span>
                         </div>
-                      </div>
 
-                      <div className="text-left md:col-span-2 md:text-right">
-                        <div className="text-sm tracking-wide text-zinc-300 uppercase md:text-base">
-                          {show.city}
-                          {show.state ? `, ${show.state}` : ""}
+                        <div className="text-left md:col-span-4">
+                          <div
+                            className={`text-sm font-bold tracking-wide uppercase md:text-base${isCancelled ? " text-zinc-500 line-through" : " text-white"}`}
+                          >
+                            {show.venue}
+                          </div>
+                        </div>
+
+                        <div className="text-left md:col-span-2">
+                          <div
+                            className={`text-sm tracking-wide uppercase md:text-base${isCancelled ? " text-zinc-500" : " text-zinc-300"}`}
+                          >
+                            {show.city}
+                            {show.state ? `, ${show.state}` : ""}
+                          </div>
+                        </div>
+
+                        <div className="text-left md:col-span-2 md:text-right">
+                          {isCancelled ? (
+                            <div className="text-xs font-semibold tracking-wide text-red-400 uppercase md:text-sm">
+                              Cancelled
+                            </div>
+                          ) : null}
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </motion.div>
         )}
