@@ -1,1 +1,1 @@
-export { default } from "./wrongnote/page";
+export { default } from "@/app/wrongnote/page";
