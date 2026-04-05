@@ -1,15 +1,19 @@
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { Calendar, FileText, Home, Music } from "lucide-react";
+import type { Metadata } from "next";
+import Link from "next/link";
 import React from "react";
 
-export const metadata = {
-  title: "Wrong Note - Noah Lynch",
+export const metadata: Metadata = {
+  title: "Wrong Note",
   description: "Looks like you hit a wrong note! This page doesn't exist.",
-  robots: "noindex, nofollow",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
-export default function WrongNote(): React.ReactElement {
+export default function WrongNotePage(): React.ReactElement {
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-950 px-4">
       <div className="mx-auto max-w-md text-center">
@@ -57,7 +61,7 @@ export default function WrongNote(): React.ReactElement {
         </div>
 
         <div className="mt-12 border-t border-zinc-800 pt-8">
-          <blockquote className="text-sm text-zinc-500 italic">
+          <blockquote className="text-sm italic text-zinc-500">
             "Sometimes you have to play a wrong note to appreciate the right one."
           </blockquote>
           <cite className="mt-2 block text-xs text-zinc-600">- Noah Lynch</cite>

@@ -3,10 +3,6 @@
 const isProduction = globalThis.process?.env.NODE_ENV === "production";
 
 const nextConfig = {
-  eslint: {
-    dirs: ["app", "components", "hooks", "lib", "styles"],
-  },
-  typescript: {},
   images: {
     qualities: [25, 40, 50, 75, 100],
     remotePatterns: [

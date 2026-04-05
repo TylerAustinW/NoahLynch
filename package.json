@@ -5,12 +5,13 @@
   "scripts": {
     "dev": "next dev --turbopack ",
     "build": "next build",
+    "typegen": "next typegen",
     "start": "next start",
-    "all": "tsc --noEmit && eslint . --ext .js,.jsx,.ts,.tsx --max-warnings 0",
+    "all": "npm run type-check",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md,mjs}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,md,mjs}\"",
     "type-check:watch": "tsc --noEmit --watch",
-    "type-check": "tsc --noEmit && eslint . --ext .js,.jsx,.ts,.tsx --max-warnings 0",
+    "type-check": "next typegen && tsc --noEmit && eslint . --max-warnings 0",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "exit 0"

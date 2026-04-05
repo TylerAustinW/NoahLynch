@@ -1,3 +1,8 @@
+export const SITE_URL = "https://www.noahlynch.com";
+export const SITE_NAME = "Noah Lynch";
+export const SITE_DESCRIPTION =
+  "Discover Noah Lynch, a Mississippi-born singer-songwriter and musician blending blues, neo-rock, and acoustic vibes. Explore his music, upcoming shows, and studio sessions.";
+
 export const SOCIAL_LINKS = {
   INSTAGRAM: "https://instagram.com/noahlynchmusic",
   FACEBOOK: "https://facebook.com/noahlynchmusic",

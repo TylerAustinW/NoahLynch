@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Dancing_Script, Inter, Patrick_Hand } from "next/font/google";
 import "./globals.css";
-import SocialSidebar from "@/components/layout/social-sidebar";
 import ScrollToTop from "@/components/layout/scroll-to-top";
+import SocialSidebar from "@/components/layout/social-sidebar";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/config/constants";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import React from "react";
@@ -19,7 +20,10 @@ const patrickHand = Patrick_Hand({
   display: "swap",
 });
 
-const siteUrl = "https://www.noahlynch.com";
+const siteUrl = SITE_URL;
+const defaultTitle = `${SITE_NAME} - Singer-Songwriter & Musician`;
+const defaultOgImage = "/portraits/noah-lynch-portrait-guitar.jpeg";
+const squareOgImage = "/portraits/noah-lynch-studio-session.jpeg";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -30,14 +34,14 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  applicationName: SITE_NAME,
   title: {
-    default: "Noah Lynch - Singer-Songwriter & Musician",
-    template: `%s | Noah Lynch`,
+    default: defaultTitle,
+    template: `%s | ${SITE_NAME}`,
   },
-  description:
-    "Discover Noah Lynch, a Mississippi-born singer-songwriter and musician blending blues, neo-rock, and acoustic vibes. Explore his music, upcoming shows, and studio sessions.",
+  description: SITE_DESCRIPTION,
   keywords: [
-    "Noah Lynch",
+    SITE_NAME,
     "musician",
     "singer-songwriter",
     "Mississippi musician",
@@ -51,53 +55,51 @@ export const metadata: Metadata = {
     "John Mayer inspired",
     "Stevie Ray Vaughan",
   ],
-  authors: [{ name: "Noah Lynch" }],
-  creator: "Noah Lynch",
+  authors: [{ name: SITE_NAME }],
+  creator: SITE_NAME,
   publisher: "Ready Records",
-
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    siteName: "Noah Lynch",
-    title: "Noah Lynch - Singer-Songwriter & Musician",
-    description:
-      "Discover Noah Lynch, a Mississippi-born singer-songwriter and musician blending blues, neo-rock, and acoustic vibes. Explore his music, upcoming shows, and studio sessions.",
+    siteName: SITE_NAME,
+    title: defaultTitle,
+    description: SITE_DESCRIPTION,
     images: [
       {
-        url: "/portraits/noah-lynch-portrait-guitar.jpeg",
+        url: defaultOgImage,
         width: 1200,
         height: 630,
-        alt: "Noah Lynch - Mississippi-born Singer-Songwriter and Musician",
+        alt: `${SITE_NAME} - Mississippi-born Singer-Songwriter and Musician`,
         type: "image/jpeg",
       },
       {
-        url: "/portraits/noah-lynch-studio-session.jpeg",
+        url: squareOgImage,
         width: 1080,
         height: 1080,
-        alt: "Noah Lynch Music Studio Session",
+        alt: `${SITE_NAME} Music Studio Session`,
         type: "image/jpeg",
       },
     ],
   },
-
   twitter: {
     card: "summary_large_image",
     site: "@NoahLynch17",
     creator: "@NoahLynch17",
-    title: "Noah Lynch - Singer-Songwriter & Musician",
-    description:
-      "Discover Noah Lynch, a Mississippi-born singer-songwriter and musician blending blues, neo-rock, and acoustic vibes. Explore his music, upcoming shows, and studio sessions.",
+    title: defaultTitle,
+    description: SITE_DESCRIPTION,
     images: [
       {
-        url: "/portraits/noah-lynch-portrait-guitar.jpeg",
+        url: defaultOgImage,
         width: 1200,
         height: 630,
-        alt: "Noah Lynch - Mississippi-born Singer-Songwriter and Musician",
+        alt: `${SITE_NAME} - Mississippi-born Singer-Songwriter and Musician`,
       },
     ],
   },
-
   robots: {
     index: true,
     follow: true,
@@ -109,14 +111,13 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-
   other: {
-    author: "Noah Lynch",
-    "article:author": "Noah Lynch",
+    author: SITE_NAME,
+    "article:author": SITE_NAME,
     "mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
-    "apple-mobile-web-app-title": "Noah Lynch",
-    "music:musician": "Noah Lynch",
+    "apple-mobile-web-app-title": SITE_NAME,
+    "music:musician": SITE_NAME,
     "music:album": "Honest",
     "music:release_date": "2025-05-09",
   },
@@ -136,7 +137,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "MusicGroup",
-              name: "Noah Lynch",
+              name: SITE_NAME,
               url: siteUrl,
               genre: ["Acoustic Pop", "Singer-Songwriter"],
               description:

@@ -1,3 +1,6 @@
+import { Button } from "@/components/ui/button";
+import ErrorBoundary from "@/components/ui/error-boundary";
+import { SITE_NAME, SITE_URL } from "@/lib/config/constants";
 import {
   allReleases,
   getReleaseById,
@@ -10,8 +13,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
-import ErrorBoundary from "@/components/ui/error-boundary";
-import { Button } from "@/components/ui/button";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -35,20 +36,23 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const siteUrl = "https://www.noahlynch.com";
+  const siteUrl = SITE_URL;
   const absoluteImageUrl = release.imageURL.startsWith("http")
     ? release.imageURL
     : `${siteUrl}${release.imageURL}`;
 
   return {
-    title: `${release.title} | Noah Lynch Music`,
+    title: release.title,
     description: release.description,
+    alternates: {
+      canonical: `/music/${slug}`,
+    },
     openGraph: {
       type: "music.album",
-      title: `${release.title} - Noah Lynch`,
+      title: `${release.title} | ${SITE_NAME}`,
       description: release.description,
       url: `${siteUrl}/music/${slug}`,
-      siteName: "Noah Lynch Music",
+      siteName: SITE_NAME,
       images: [
         {
           url: absoluteImageUrl,
@@ -60,7 +64,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: "summary_large_image",
-      title: `${release.title} - Noah Lynch`,
+      title: `${release.title} | ${SITE_NAME}`,
       description: release.description,
       images: [absoluteImageUrl],
     },
@@ -193,15 +197,14 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
     </div>
   );
 
-  // JSON-LD structured data for this release
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "MusicRecording",
     name: release.title,
     byArtist: {
       "@type": "MusicGroup",
-      name: "Noah Lynch",
-      url: "https://www.noahlynch.com",
+      name: SITE_NAME,
+      url: SITE_URL,
     },
     datePublished: release.releaseDate,
     producer: release.releasedBy,

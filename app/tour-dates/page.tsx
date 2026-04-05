@@ -3,11 +3,14 @@ import TourDatesSection from "@/components/tour-dates/tour-dates";
 import { getTourPageData } from "@/lib/data/tour/server";
 
 export const metadata: Metadata = {
-  title: "Tour Dates - Noah Lynch",
+  title: "Tour Dates",
   description:
     "View Noah Lynch's upcoming shows and past performances. Don't miss the next live performance - check tour dates and get tickets.",
+  alternates: {
+    canonical: "/tour-dates",
+  },
   openGraph: {
-    title: "Noah Lynch - Tour Dates",
+    title: "Tour Dates",
     description:
       "View Noah Lynch's upcoming shows and past performances. Don't miss the next live performance - check tour dates and get tickets.",
   },
