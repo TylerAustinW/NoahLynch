@@ -5,7 +5,7 @@ import { useIsMobile } from "@/lib/hooks/use-mobile";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { ChevronDown, Music, ExternalLink, Award } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 
 const PORTRAIT_IMAGE = {
@@ -16,12 +16,7 @@ const PORTRAIT_IMAGE = {
 export default function BiographySection() {
   const { ref, inView } = useInView({ threshold: 0.1, once: true });
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
   const isMobile = useIsMobile();
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   return (
     <section
@@ -90,8 +85,8 @@ export default function BiographySection() {
               <motion.div
                 initial={false}
                 animate={{
-                  height: isMounted && isMobile && !isExpanded ? 0 : "auto",
-                  opacity: isMounted && isMobile && !isExpanded ? 0 : 1,
+                  height: isMobile && !isExpanded ? 0 : "auto",
+                  opacity: isMobile && !isExpanded ? 0 : 1,
                 }}
                 transition={{ duration: 0.3, ease: "easeInOut" }}
                 style={{ overflow: "hidden" }}
@@ -164,7 +159,7 @@ export default function BiographySection() {
                 </p>
               </motion.div>
 
-              {isMounted && isMobile && (
+              {isMobile && (
                 <motion.button
                   onClick={() => setIsExpanded(!isExpanded)}
                   className="group inline-flex items-center gap-2 rounded-lg px-2 py-1 text-zinc-300 transition-colors hover:text-white focus:ring-2 focus:ring-zinc-400/50 focus:outline-none"

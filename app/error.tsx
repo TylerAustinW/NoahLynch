@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { AlertTriangle, Home, RefreshCw } from "lucide-react";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 
 interface ErrorProps {
@@ -13,10 +13,7 @@ interface ErrorProps {
 }
 
 export default function ErrorPage({ error, reset }: ErrorProps): React.ReactElement {
-  const [mounted, setMounted] = useState(false);
-
   useEffect(() => {
-    setMounted(true);
     if (process.env.NODE_ENV === "development") {
       console.error("Application error:", error);
     }
@@ -43,7 +40,7 @@ export default function ErrorPage({ error, reset }: ErrorProps): React.ReactElem
       <motion.div
         className="relative z-10 w-full max-w-sm text-center sm:max-w-md md:max-w-2xl"
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: mounted ? 1 : 0, y: mounted ? 0 : 20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         <motion.div
@@ -68,8 +65,8 @@ export default function ErrorPage({ error, reset }: ErrorProps): React.ReactElem
             Something went wrong!
           </h1>
           <p className="mx-auto mb-4 max-w-xs px-2 text-base leading-relaxed text-zinc-400 sm:mb-6 sm:max-w-md sm:px-0 sm:text-lg">
-            We encountered an unexpected error. Don't worry, our team has been notified and we're
-            working on it.
+            We encountered an unexpected error. Don&apos;t worry, our team has been notified and
+            we&apos;re working on it.
           </p>
           {process.env.NODE_ENV === "development" && error.message && (
             <div className="mx-2 mt-4 rounded-lg border border-zinc-800 bg-zinc-900/50 p-3 text-left sm:mx-0 sm:mt-6 sm:p-4">

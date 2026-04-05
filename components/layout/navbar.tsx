@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { useHasMounted } from "@/lib/hooks/use-has-mounted";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
@@ -33,7 +34,7 @@ const CloseIcon = ({ className }: { className?: string }) => (
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
+  const hasMounted = useHasMounted();
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const reducedMotion = useReducedMotion();
@@ -63,10 +64,6 @@ export default function Navbar() {
     },
     [reducedMotion],
   );
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   useEffect(() => {
     if (!mobileOpen) {
@@ -331,7 +328,7 @@ export default function Navbar() {
         </div>
       </motion.header>
 
-      {isMounted &&
+      {hasMounted &&
         createPortal(
           <AnimatePresence>
             {mobileOpen && (

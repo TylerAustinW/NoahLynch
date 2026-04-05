@@ -1,28 +1,34 @@
-import { useEffect, useState } from "react";
+"use client";
+
+import { useSyncExternalStore } from "react";
 
 const mediaQueryInstances = new Map<string, MediaQueryList>();
+const emptySubscribe = () => () => undefined;
 
 function getMediaQueryList(query: string): MediaQueryList {
-  if (!mediaQueryInstances.has(query)) {
-    mediaQueryInstances.set(query, window.matchMedia(query));
+  let mediaQueryList = mediaQueryInstances.get(query);
+
+  if (!mediaQueryList) {
+    mediaQueryList = window.matchMedia(query);
+    mediaQueryInstances.set(query, mediaQueryList);
   }
-  return mediaQueryInstances.get(query)!;
+
+  return mediaQueryList;
 }
 
-export function useMediaQuery(query: string) {
-  const [matches, setMatches] = useState<boolean>(false);
+export function useMediaQuery(query: string): boolean {
+  return useSyncExternalStore(
+    (onStoreChange) => {
+      if (typeof window === "undefined") {
+        return emptySubscribe();
+      }
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
+      const mediaQueryList = getMediaQueryList(query);
+      mediaQueryList.addEventListener("change", onStoreChange);
 
-    const mql = getMediaQueryList(query);
-    const onChange = (e: MediaQueryListEvent) => setMatches(e.matches);
-
-    setMatches(mql.matches);
-    mql.addEventListener("change", onChange);
-
-    return () => mql.removeEventListener("change", onChange);
-  }, [query]);
-
-  return matches;
+      return () => mediaQueryList.removeEventListener("change", onStoreChange);
+    },
+    () => getMediaQueryList(query).matches,
+    () => false,
+  );
 }
