@@ -27,7 +27,7 @@ export default function EntranceAnimation() {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          className="fixed top-0 right-0 bottom-0 left-0 z-[9999] flex items-center justify-center overflow-hidden bg-zinc-950"
+          className="fixed top-0 right-0 bottom-0 left-0 z-9999 flex items-center justify-center overflow-hidden bg-zinc-950"
           style={{
             // Use actual viewport height from JS, with CSS fallbacks
             height: viewportHeight ? `${viewportHeight}px` : "100dvh",
@@ -49,16 +49,18 @@ export default function EntranceAnimation() {
                 height: "min(40vh, 300px)",
               }}
               initial={{
-                scale: 1.3,
+                scale: 1.5,
                 opacity: 0,
+                y: 30,
               }}
               animate={{
                 scale: 1,
                 opacity: 1,
+                y: 0,
               }}
               transition={{
-                duration: 0.7,
-                ease: [0.25, 0.1, 0.25, 1],
+                duration: 0.9,
+                ease: [0.22, 1, 0.36, 1],
               }}
             >
               <Image
@@ -70,30 +72,6 @@ export default function EntranceAnimation() {
                 sizes="(max-width: 768px) 90vw, 600px"
                 quality={75}
               />
-            </motion.div>
-
-            <motion.div
-              className="-mt-8 will-change-transform sm:-mt-10 md:-mt-12"
-              style={{
-                transform: "translateZ(0)",
-              }}
-              initial={{
-                opacity: 0,
-                y: 20,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                duration: 0.6,
-                delay: 0.2,
-                ease: [0.25, 0.1, 0.25, 1],
-              }}
-            >
-              <span className="text-3xl font-light tracking-[0.4em] text-white/80 uppercase sm:text-4xl sm:tracking-[0.5em] md:text-5xl md:tracking-[0.6em] lg:text-6xl">
-                Music
-              </span>
             </motion.div>
           </div>
         </motion.div>

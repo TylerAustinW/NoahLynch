@@ -27,7 +27,7 @@ export default function EPKProfileCarousel() {
   };
 
   return (
-    <div className="group relative mx-auto aspect-[3/4] max-w-sm overflow-hidden rounded-2xl border border-zinc-800/50 shadow-2xl lg:max-w-none">
+    <div className="group relative mx-auto aspect-3/4 max-w-sm overflow-hidden rounded-2xl border border-zinc-800/50 shadow-2xl lg:max-w-none">
       <Image
         src={profilePhotos[currentPhotoIndex]?.src || "/images/profile-1.jpg"}
         alt={profilePhotos[currentPhotoIndex]?.alt || "Noah Lynch"}
@@ -37,7 +37,7 @@ export default function EPKProfileCarousel() {
         priority
         quality={75}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent" />
 
       {profilePhotos.length > 1 && (
         <>

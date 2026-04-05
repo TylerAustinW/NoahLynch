@@ -34,7 +34,7 @@ export default function ErrorPage({ error, reset }: ErrorProps): React.ReactElem
           quality={75}
         />
 
-        <div className="absolute inset-0 bg-black/70 bg-gradient-to-b from-red-950/20 to-black/80" />
+        <div className="absolute inset-0 bg-black/70 bg-linear-to-b from-red-950/20 to-black/80" />
       </div>
 
       <motion.div
@@ -71,7 +71,7 @@ export default function ErrorPage({ error, reset }: ErrorProps): React.ReactElem
           {process.env.NODE_ENV === "development" && error.message && (
             <div className="mx-2 mt-4 rounded-lg border border-zinc-800 bg-zinc-900/50 p-3 text-left sm:mx-0 sm:mt-6 sm:p-4">
               <p className="mb-1 font-mono text-xs text-zinc-500 sm:text-sm">Error details:</p>
-              <p className="font-mono text-xs break-words text-red-400 sm:text-sm">
+              <p className="font-mono text-xs wrap-break-word text-red-400 sm:text-sm">
                 {error.message}
               </p>
               {error.digest && (
