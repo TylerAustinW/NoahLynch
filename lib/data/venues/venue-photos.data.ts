@@ -43,6 +43,19 @@ export const venuePhotoCollections: VenuePhotoCollection[] = [
       { filename: "backwater-grill-2026-4.jpg", featured: false },
     ],
   },
+  {
+    id: "The-Station-JXN",
+    venue: "The Station JXN",
+    city: "Jackson",
+    state: "MS",
+    date: "2026-04-10",
+    photos: [
+      { filename: "669644692_18430258063190873_128529939075063808_n.jpg", featured: true },
+      { filename: "670284721_18430258027190873_2031478971641954450_n.jpg", featured: false },
+      { filename: "670402760_18430258072190873_5888583650218238265_n.jpg", featured: false },
+      { filename: "DSC00591.jpeg", featured: false },
+    ],
+  },
 
   // existing collections (unchanged)
   {

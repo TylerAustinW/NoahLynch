@@ -20,6 +20,15 @@
     "description": "Noah is going back to The Roof at 1311 on May 30, 2026."
   },
   {
+    "id": "show-2026-06-27-shaggys-rez",
+    "venueId": "shaggys-on-the-rez",
+    "date": "2026-06-27",
+    "startTimeLocal": "11:30",
+    "endTimeLocal": "14:30",
+    "featured": true,
+    "status": "scheduled"
+  },
+  {
     "id": "show-2026-05-23-backwater",
     "venueId": "backwater-grill",
     "date": "2026-05-23",
