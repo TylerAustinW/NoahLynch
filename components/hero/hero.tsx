@@ -106,7 +106,7 @@ export default function HeroSection(): React.ReactElement {
             sizes="(max-width: 768px) 100vw, 0px"
             className="object-cover md:hidden"
             style={{
-              objectPosition: "center center",
+              objectPosition: "20% center",
               transform: loaded ? "scale(1.02)" : "scale(1)",
               transition: "transform 30s ease-out",
             }}
