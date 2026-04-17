@@ -100,7 +100,7 @@ export default function HeroSection(): React.ReactElement {
         <div className="absolute top-0 h-full w-full">
           <Image
             quality={75}
-            src="/IMG_0376.JPG"
+            src="/20260410-DSC00265.jpg"
             alt="Noah Lynch"
             fill
             sizes="(max-width: 768px) 100vw, 0px"
@@ -115,7 +115,7 @@ export default function HeroSection(): React.ReactElement {
           />
           <Image
             quality={75}
-            src="/IMG_0376.JPG"
+            src="/20260410-DSC00265.jpg"
             alt="Noah Lynch"
             fill
             sizes="(min-width: 768px) 100vw, 0px"
