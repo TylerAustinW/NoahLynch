@@ -99,7 +99,7 @@ export default function HeroSection(): React.ReactElement {
       >
         <div className="absolute top-0 h-full w-full">
           <Image
-            quality={75}
+            quality={100}
             src="/20260410-DSC00265.jpg"
             alt="Noah Lynch"
             fill
@@ -114,7 +114,7 @@ export default function HeroSection(): React.ReactElement {
             priority
           />
           <Image
-            quality={75}
+            quality={100}
             src="/20260410-DSC00265.jpg"
             alt="Noah Lynch"
             fill
