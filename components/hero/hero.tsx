@@ -98,21 +98,15 @@ export default function HeroSection(): React.ReactElement {
         className="relative flex min-h-screen items-center overflow-hidden bg-zinc-950 pt-16 pb-0"
       >
         <div className="absolute top-0 h-full w-full">
-          <Image
-            quality={100}
-            src="/20260410-DSC00265.jpg"
-            alt="Noah Lynch"
-            fill
-            sizes="(max-width: 768px) 100vw, 0px"
-            className="object-cover md:hidden"
-            style={{
-              objectPosition: "20% center",
-              transform: loaded ? "scale(1.02)" : "scale(1)",
-              transition: "transform 30s ease-out",
-            }}
-            onError={() => setImageError(true)}
-            priority
-          />
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 h-full w-full object-cover md:hidden"
+          >
+            <source src="/0416.mov" type="video/mp4" />
+          </video>
           <Image
             quality={100}
             src="/20260410-DSC00265.jpg"
