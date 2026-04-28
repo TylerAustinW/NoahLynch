@@ -64,5 +64,13 @@
     "state": "MS",
     "country": "US",
     "timezone": "America/Chicago"
+  },
+  "ocean-springs": {
+    "id": "ocean-springs",
+    "name": "Ocean Springs",
+    "city": "Ocean Springs",
+    "state": "MS",
+    "country": "US",
+    "timezone": "America/Chicago"
   }
 }

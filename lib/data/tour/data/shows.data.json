@@ -126,5 +126,14 @@
     "date": "2025-02-01",
     "status": "scheduled",
     "description": "Live acoustic performance at Rushing Roadhouse."
+  },
+  {
+    "id": "show-2026-06-13-ocean-springs",
+    "venueId": "ocean-springs",
+    "date": "2026-06-13",
+    "startTimeLocal": "19:00",
+    "endTimeLocal": "22:00",
+    "featured": true,
+    "status": "scheduled"
   }
 ]
