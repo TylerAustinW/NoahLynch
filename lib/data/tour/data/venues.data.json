@@ -72,5 +72,13 @@
     "state": "MS",
     "country": "US",
     "timezone": "America/Chicago"
+  },
+  "jelly-stone-pelahatchie": {
+    "id": "jelly-stone-pelahatchie",
+    "name": "Jelly Stone Park",
+    "city": "Pelahatchie",
+    "state": "MS",
+    "country": "US",
+    "timezone": "America/Chicago"
   }
 }

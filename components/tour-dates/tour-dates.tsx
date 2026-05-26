@@ -1,24 +1,18 @@
 "use client";
 
-import {
-  formatTourDate,
-  formatTourTimeRange,
-  isShowTodayLocal,
-  type TourDate,
-} from "@/lib/data/tour";
+import { formatTourDate, formatTourTimeRange, type TourDate } from "@/lib/data/tour";
 import { motion } from "framer-motion";
 import Navbar from "@/components/layout/navbar";
 import Image from "next/image";
+import { getGoogleMapsUrl } from "@/lib/utils/date.utils";
 
 function ActionButton({
   isCancelled,
   show,
-  isToday,
   variant = "mobile",
 }: {
   isCancelled: boolean;
   show: TourDate;
-  isToday: boolean;
   variant?: "mobile" | "desktop";
 }) {
   if (isCancelled) {
@@ -47,15 +41,17 @@ function ActionButton({
     );
   }
 
-  const disabledClasses =
+  const directionsClasses =
     variant === "mobile"
-      ? "inline-block w-full cursor-not-allowed border border-zinc-600 px-6 py-3 text-center text-sm font-medium tracking-wider text-zinc-600 uppercase"
-      : "inline-block cursor-not-allowed border border-zinc-600 px-6 py-2 text-xs font-medium tracking-wider text-zinc-600 uppercase md:text-sm";
+      ? "inline-block w-full border border-zinc-500 px-6 py-3 text-center text-sm font-medium tracking-wider text-zinc-300 uppercase transition-all duration-300 hover:border-amber-500 hover:text-amber-400 active:bg-amber-500/10"
+      : "inline-block border border-zinc-500 px-6 py-2 text-xs font-medium tracking-wider text-zinc-300 uppercase transition-all duration-300 hover:border-amber-500 hover:text-amber-400 md:text-sm";
+
+  const googleMapsUrl = getGoogleMapsUrl(show.venue, show.city, show.state || "");
 
   return (
-    <button disabled className={disabledClasses}>
-      {isToday ? "Show Is Today" : "Free Entry"}
-    </button>
+    <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer" className={directionsClasses}>
+      Directions
+    </a>
   );
 }
 
@@ -107,7 +103,6 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
           )}
           {upcoming.map((show, index) => {
             const timeLabel = formatTourTimeRange(show);
-            const isToday = isShowTodayLocal(show);
             const isCancelled = show.status === "cancelled";
 
             return (
@@ -153,12 +148,7 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
                     </div>
 
                     <div className="flex w-full justify-center pt-2">
-                      <ActionButton
-                        isCancelled={isCancelled}
-                        show={show}
-                        isToday={isToday}
-                        variant="mobile"
-                      />
+                      <ActionButton isCancelled={isCancelled} show={show} variant="mobile" />
                     </div>
                   </div>
 
@@ -202,12 +192,7 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
                     </div>
 
                     <div className="flex justify-start md:col-span-2 md:justify-end">
-                      <ActionButton
-                        isCancelled={isCancelled}
-                        show={show}
-                        isToday={isToday}
-                        variant="desktop"
-                      />
+                      <ActionButton isCancelled={isCancelled} show={show} variant="desktop" />
                     </div>
                   </div>
                 </div>
@@ -236,13 +221,13 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
                 return (
                   <div
                     key={show.id}
-                    className={`border-b border-zinc-700/20 last:border-b-0${isCancelled ? " opacity-70" : ""}`}
+                    className={`border-b border-zinc-700/20 last:border-b-0${isCancelled ? "opacity-70" : ""}`}
                   >
                     <div className="w-full py-4 sm:py-3 md:py-4">
                       <div className="flex flex-col space-y-2 sm:hidden">
                         <div className="mb-1">
                           <span
-                            className={`text-lg font-medium${isCancelled ? " text-zinc-500 line-through" : ""}`}
+                            className={`text-lg font-medium${isCancelled ? "text-zinc-500 line-through" : ""}`}
                             style={{ letterSpacing: "0.05em" }}
                           >
                             {formatTourDate(show.date)}
@@ -251,12 +236,12 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
 
                         <div className="space-y-1">
                           <div
-                            className={`text-sm font-semibold tracking-wide uppercase${isCancelled ? " text-zinc-500 line-through" : " text-zinc-200"}`}
+                            className={`text-sm font-semibold tracking-wide uppercase${isCancelled ? "text-zinc-500 line-through" : "text-zinc-200"}`}
                           >
                             {show.venue}
                           </div>
                           <div
-                            className={`text-xs tracking-wide uppercase${isCancelled ? " text-zinc-500" : " text-zinc-300"}`}
+                            className={`text-xs tracking-wide uppercase${isCancelled ? "text-zinc-500" : "text-zinc-300"}`}
                           >
                             {show.city}
                             {show.state ? `, ${show.state}` : ""}
@@ -272,7 +257,7 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
                       <div className="hidden grid-cols-1 items-center gap-4 sm:grid md:grid-cols-12 md:gap-6">
                         <div className="text-left md:col-span-4">
                           <span
-                            className={`text-lg font-medium${isCancelled ? " text-zinc-500 line-through" : ""}`}
+                            className={`text-lg font-medium${isCancelled ? "text-zinc-500 line-through" : ""}`}
                             style={{ letterSpacing: "0.05em" }}
                           >
                             {formatTourDate(show.date)}
@@ -281,7 +266,7 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
 
                         <div className="text-left md:col-span-4">
                           <div
-                            className={`text-sm font-bold tracking-wide uppercase md:text-base${isCancelled ? " text-zinc-500 line-through" : " text-white"}`}
+                            className={`text-sm font-bold tracking-wide uppercase md:text-base${isCancelled ? "text-zinc-500 line-through" : "text-white"}`}
                           >
                             {show.venue}
                           </div>
@@ -289,7 +274,7 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
 
                         <div className="text-left md:col-span-2">
                           <div
-                            className={`text-sm tracking-wide uppercase md:text-base${isCancelled ? " text-zinc-500" : " text-zinc-300"}`}
+                            className={`text-sm tracking-wide uppercase md:text-base${isCancelled ? "text-zinc-500" : "text-zinc-300"}`}
                           >
                             {show.city}
                             {show.state ? `, ${show.state}` : ""}

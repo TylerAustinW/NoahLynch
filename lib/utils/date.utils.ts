@@ -37,3 +37,8 @@ export function isDateToday(dateString: string): boolean {
     date.getDate() === today.getDate()
   );
 }
+
+export function getGoogleMapsUrl(venue: string, city: string, state: string): string {
+  const query = encodeURIComponent(`${venue} ${city} ${state}`);
+  return `https://www.google.com/maps/search/?api=1&query=${query}`;
+}
