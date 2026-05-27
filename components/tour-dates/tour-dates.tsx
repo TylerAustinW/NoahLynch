@@ -1,24 +1,34 @@
 "use client";
 
-import {
-  formatTourDate,
-  formatTourTimeRange,
-  isShowTodayLocal,
-  type TourDate,
-} from "@/lib/data/tour";
+import { formatTourDate, formatTourTimeRange, type TourDate } from "@/lib/data/tour";
 import { motion } from "framer-motion";
 import Navbar from "@/components/layout/navbar";
 import Image from "next/image";
+import { getGoogleMapsUrl } from "@/lib/utils/date.utils";
+import { AddToCalendarButton } from "add-to-calendar-button-react";
+import { useState, useEffect } from "react";
+
+function ClientOnlyCalendarButton({ children }: { children: React.ReactNode }) {
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
+
+  return <>{children}</>;
+}
 
 function ActionButton({
   isCancelled,
   show,
-  isToday,
   variant = "mobile",
 }: {
   isCancelled: boolean;
   show: TourDate;
-  isToday: boolean;
   variant?: "mobile" | "desktop";
 }) {
   if (isCancelled) {
@@ -47,15 +57,17 @@ function ActionButton({
     );
   }
 
-  const disabledClasses =
+  const directionsClasses =
     variant === "mobile"
-      ? "inline-block w-full cursor-not-allowed border border-zinc-600 px-6 py-3 text-center text-sm font-medium tracking-wider text-zinc-600 uppercase"
-      : "inline-block cursor-not-allowed border border-zinc-600 px-6 py-2 text-xs font-medium tracking-wider text-zinc-600 uppercase md:text-sm";
+      ? "inline-block w-full border border-zinc-500 px-6 py-3 text-center text-sm font-medium tracking-wider text-zinc-300 uppercase transition-all duration-300 hover:border-amber-500 hover:text-amber-400 active:bg-amber-500/10"
+      : "inline-block border border-zinc-500 px-4 py-2 text-xs font-medium tracking-wider text-zinc-300 uppercase transition-all duration-300 hover:border-amber-500 hover:text-amber-400 md:px-5 md:text-sm";
+
+  const googleMapsUrl = getGoogleMapsUrl(show.venue, show.city, show.state || "");
 
   return (
-    <button disabled className={disabledClasses}>
-      {isToday ? "Show Is Today" : "Free Entry"}
-    </button>
+    <a href={googleMapsUrl} target="_blank" rel="noopener noreferrer" className={directionsClasses}>
+      Directions
+    </a>
   );
 }
 
@@ -107,7 +119,6 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
           )}
           {upcoming.map((show, index) => {
             const timeLabel = formatTourTimeRange(show);
-            const isToday = isShowTodayLocal(show);
             const isCancelled = show.status === "cancelled";
 
             return (
@@ -116,13 +127,13 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.05 * index, duration: 0.2 }}
-                className={`border-b border-zinc-700/40 last:border-b-0${isCancelled ? "opacity-60" : ""}`}
+                className={`border-b border-zinc-700/40 last:border-b-0${isCancelled ? " opacity-60" : ""}`}
               >
                 <div className="w-full py-6 sm:py-5 md:py-6">
-                  <div className="flex flex-col items-center space-y-3 text-center sm:hidden">
+                  <div className="flex flex-col items-center space-y-3 text-center lg:hidden">
                     <div className="mb-1">
                       <span
-                        className={`text-lg font-medium${isCancelled ? "text-zinc-500 line-through" : ""}`}
+                        className={`text-lg font-medium${isCancelled ? " text-zinc-500 line-through" : ""}`}
                         style={{ letterSpacing: "0.05em" }}
                       >
                         {formatTourDate(show.date)}
@@ -131,12 +142,12 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
 
                     <div className="space-y-1">
                       <div
-                        className={`text-base font-bold tracking-wide uppercase${isCancelled ? "text-zinc-500 line-through" : "text-white"}`}
+                        className={`text-base font-bold tracking-wide uppercase${isCancelled ? " text-zinc-500 line-through" : " text-white"}`}
                       >
                         {show.venue}
                       </div>
                       <div
-                        className={`text-sm tracking-wide uppercase${isCancelled ? "text-zinc-500" : "text-zinc-300"}`}
+                        className={`text-sm tracking-wide uppercase${isCancelled ? " text-zinc-500" : " text-zinc-300"}`}
                       >
                         {show.city}
                         {show.state ? `, ${show.state}` : ""}
@@ -153,61 +164,83 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
                     </div>
 
                     <div className="flex w-full justify-center pt-2">
-                      <ActionButton
-                        isCancelled={isCancelled}
-                        show={show}
-                        isToday={isToday}
-                        variant="mobile"
-                      />
+                      {!isCancelled && show.startTimeLocal && show.endTimeLocal ? (
+                        <ClientOnlyCalendarButton>
+                          <AddToCalendarButton
+                            name={`Noah Lynch at ${show.venue}`}
+                            startDate={show.date}
+                            endDate={show.date}
+                            startTime={show.startTimeLocal}
+                            endTime={show.endTimeLocal}
+                            timeZone={show.timezone}
+                            location={`${show.venue}, ${show.city}${show.state ? `, ${show.state}` : ""}`}
+                            options={["Google", "Apple", "Outlook.com"]}
+                            size="3"
+                          />
+                        </ClientOnlyCalendarButton>
+                      ) : (
+                        <ActionButton isCancelled={isCancelled} show={show} variant="mobile" />
+                      )}
                     </div>
                   </div>
 
-                  <div className="hidden grid-cols-1 items-center gap-4 sm:grid md:grid-cols-12 md:gap-6">
-                    <div className="text-left md:col-span-3">
+                  <div className="hidden grid-cols-1 items-center gap-4 lg:grid lg:grid-cols-12 lg:gap-6">
+                    <div className="text-left md:col-span-2">
                       <span
-                        className={`text-lg font-medium${isCancelled ? "text-zinc-500 line-through" : ""}`}
+                        className={`text-lg font-medium${isCancelled ? " text-zinc-500 line-through" : ""}`}
                         style={{ letterSpacing: "0.05em" }}
                       >
                         {formatTourDate(show.date)}
                       </span>
                     </div>
 
-                    <div className="text-left md:col-span-3">
+                    <div className="min-w-0 text-left md:col-span-3 lg:col-span-4">
                       <div
-                        className={`text-sm font-bold tracking-wide uppercase md:text-base${isCancelled ? "text-zinc-500 line-through" : "text-white"}`}
+                        className={`truncate text-sm font-bold tracking-wide uppercase md:text-base${isCancelled ? " text-zinc-500 line-through" : " text-white"}`}
                       >
                         {show.venue}
                       </div>
                     </div>
 
-                    <div className="text-left md:col-span-2">
+                    <div className="min-w-0 text-left md:col-span-2 lg:col-span-2">
                       <div
-                        className={`text-sm tracking-wide uppercase md:text-base${isCancelled ? "text-zinc-500" : "text-zinc-300"}`}
+                        className={`truncate text-sm tracking-wide uppercase md:text-base${isCancelled ? " text-zinc-500" : " text-zinc-300"}`}
                       >
                         {show.city}
                         {show.state ? `, ${show.state}` : ""}
                       </div>
                     </div>
 
-                    <div className="text-left md:col-span-2 md:text-center">
+                    <div className="text-left md:col-span-2 md:text-center lg:col-span-2">
                       {isCancelled ? (
-                        <div className="text-xs font-semibold tracking-wide text-red-400 uppercase md:text-sm">
+                        <div className="truncate text-xs font-semibold tracking-wide text-red-400 uppercase md:text-sm">
                           Cancelled
                         </div>
                       ) : (
-                        <div className="text-xs font-medium tracking-wide text-amber-300 uppercase md:text-sm">
+                        <div className="truncate text-xs font-medium tracking-wide text-amber-300 uppercase md:text-sm">
                           {timeLabel ?? "Time TBA"}
                         </div>
                       )}
                     </div>
 
-                    <div className="flex justify-start md:col-span-2 md:justify-end">
-                      <ActionButton
-                        isCancelled={isCancelled}
-                        show={show}
-                        isToday={isToday}
-                        variant="desktop"
-                      />
+                    <div className="flex justify-start md:col-span-3 md:justify-end lg:col-span-2">
+                      {!isCancelled && show.startTimeLocal && show.endTimeLocal ? (
+                        <ClientOnlyCalendarButton>
+                          <AddToCalendarButton
+                            name={`Noah Lynch at ${show.venue}`}
+                            startDate={show.date}
+                            endDate={show.date}
+                            startTime={show.startTimeLocal}
+                            endTime={show.endTimeLocal}
+                            timeZone={show.timezone}
+                            location={`${show.venue}, ${show.city}${show.state ? `, ${show.state}` : ""}`}
+                            options={["Google", "Apple", "Outlook.com"]}
+                            size="2"
+                          />
+                        </ClientOnlyCalendarButton>
+                      ) : (
+                        <ActionButton isCancelled={isCancelled} show={show} variant="desktop" />
+                      )}
                     </div>
                   </div>
                 </div>
@@ -239,7 +272,7 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
                     className={`border-b border-zinc-700/20 last:border-b-0${isCancelled ? " opacity-70" : ""}`}
                   >
                     <div className="w-full py-4 sm:py-3 md:py-4">
-                      <div className="flex flex-col space-y-2 sm:hidden">
+                      <div className="flex flex-col space-y-2 lg:hidden">
                         <div className="mb-1">
                           <span
                             className={`text-lg font-medium${isCancelled ? " text-zinc-500 line-through" : ""}`}
@@ -269,7 +302,7 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
                         </div>
                       </div>
 
-                      <div className="hidden grid-cols-1 items-center gap-4 sm:grid md:grid-cols-12 md:gap-6">
+                      <div className="hidden grid-cols-1 items-center gap-4 lg:grid lg:grid-cols-12 lg:gap-6">
                         <div className="text-left md:col-span-4">
                           <span
                             className={`text-lg font-medium${isCancelled ? " text-zinc-500 line-through" : ""}`}

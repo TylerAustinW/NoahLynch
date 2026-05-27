@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Calendar } from "lucide-react";
-import { formatDate } from "@/lib/utils/date.utils";
+import { formatDate, getGoogleMapsUrl } from "@/lib/utils/date.utils";
 import { getNextShow, isShowTodayLocal } from "@/lib/data/tour";
 
 export default function ShowBadge() {
@@ -17,15 +17,17 @@ export default function ShowBadge() {
     );
   }
 
+  const googleMapsUrl = getGoogleMapsUrl(nextShow.venue, nextShow.city, nextShow.state || "");
+
   return (
     <div className="relative">
       <Link
-        href={nextShow.actionLink || "/tour-dates"}
+        href={googleMapsUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         className="group block"
         aria-label={
-          isTodayShow
-            ? "View details for today's show"
-            : "View tour dates and get tickets for the upcoming show"
+          isTodayShow ? "Get directions to today's show" : "Get directions to the upcoming show"
         }
         aria-describedby="next-show-tooltip"
       >
@@ -60,17 +62,13 @@ export default function ShowBadge() {
         className="pointer-events-none absolute top-1/2 left-full z-30 ml-3 -translate-y-1/2 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
       >
         <div className="rounded-lg border border-zinc-700/50 bg-zinc-900/95 px-3 py-2 text-xs font-medium whitespace-nowrap text-zinc-100 shadow-lg backdrop-blur-sm">
-          {isTodayShow
-            ? "Show is today — click for details & FREE entry!"
-            : "Click for details & FREE entry!"}
+          {isTodayShow ? "Show is today — click for directions!" : "Click for directions!"}
           <div className="absolute top-1/2 right-full -translate-y-1/2 border-4 border-transparent border-r-zinc-900/95"></div>
         </div>
 
         <div className="absolute top-full left-1/2 mt-2 -translate-x-1/2 sm:hidden">
           <div className="rounded-lg border border-zinc-700/50 bg-zinc-900/95 px-3 py-2 text-xs font-medium whitespace-nowrap text-zinc-100 shadow-lg backdrop-blur-sm">
-            {isTodayShow
-              ? "Show is today — click for details & FREE entry!"
-              : "Click for details & FREE entry!"}
+            {isTodayShow ? "Show is today — click for directions!" : "Click for directions!"}
             <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-4 border-transparent border-b-zinc-900/95"></div>
           </div>
         </div>

@@ -135,5 +135,15 @@
     "endTimeLocal": "22:00",
     "featured": true,
     "status": "scheduled"
+  },
+  {
+    "id": "show-2026-06-20-jelly-stone",
+    "venueId": "jelly-stone-pelahatchie",
+    "date": "2026-06-20",
+    "startTimeLocal": "19:00",
+    "endTimeLocal": "21:00",
+    "featured": false,
+    "status": "scheduled",
+    "description": "Live performance at Jelly Stone Park."
   }
 ]
