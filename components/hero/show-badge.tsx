@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Calendar } from "lucide-react";
-import { formatDate, getGoogleMapsUrl } from "@/lib/utils/date.utils";
+import { formatDate } from "@/lib/utils/date.utils";
 import { getNextShow, isShowTodayLocal } from "@/lib/data/tour";
 
 export default function ShowBadge() {
@@ -17,18 +17,14 @@ export default function ShowBadge() {
     );
   }
 
-  const googleMapsUrl = getGoogleMapsUrl(nextShow.venue, nextShow.city, nextShow.state || "");
+  const destinationUrl = "/tour-dates";
 
   return (
     <div className="relative">
       <Link
-        href={googleMapsUrl}
-        target="_blank"
-        rel="noopener noreferrer"
+        href={destinationUrl}
         className="group block"
-        aria-label={
-          isTodayShow ? "Get directions to today's show" : "Get directions to the upcoming show"
-        }
+        aria-label={isTodayShow ? "View today's show details" : "View the next show details"}
         aria-describedby="next-show-tooltip"
       >
         <div className="group/button flex w-full cursor-pointer flex-wrap items-center justify-center gap-2 rounded-full border border-zinc-700/40 bg-zinc-900/80 px-3 py-2 text-sm font-medium text-white backdrop-blur-md transition-all duration-300 hover:border-zinc-600/50 hover:bg-zinc-800/90 sm:w-auto sm:justify-start sm:px-4 sm:text-base lg:border-white/25 lg:bg-white/10 lg:hover:border-white/40 lg:hover:bg-white/20">
@@ -62,13 +58,13 @@ export default function ShowBadge() {
         className="pointer-events-none absolute top-1/2 left-full z-30 ml-3 -translate-y-1/2 opacity-0 transition-opacity duration-200 group-hover:opacity-100"
       >
         <div className="rounded-lg border border-zinc-700/50 bg-zinc-900/95 px-3 py-2 text-xs font-medium whitespace-nowrap text-zinc-100 shadow-lg backdrop-blur-sm">
-          {isTodayShow ? "Show is today — click for directions!" : "Click for directions!"}
+          {isTodayShow ? "Show is today — click for tour dates!" : "Click for tour dates!"}
           <div className="absolute top-1/2 right-full -translate-y-1/2 border-4 border-transparent border-r-zinc-900/95"></div>
         </div>
 
         <div className="absolute top-full left-1/2 mt-2 -translate-x-1/2 sm:hidden">
           <div className="rounded-lg border border-zinc-700/50 bg-zinc-900/95 px-3 py-2 text-xs font-medium whitespace-nowrap text-zinc-100 shadow-lg backdrop-blur-sm">
-            {isTodayShow ? "Show is today — click for directions!" : "Click for directions!"}
+            {isTodayShow ? "Show is today — click for tour dates!" : "Click for tour dates!"}
             <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-4 border-transparent border-b-zinc-900/95"></div>
           </div>
         </div>
