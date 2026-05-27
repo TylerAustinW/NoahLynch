@@ -126,7 +126,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} ${dancingScript.variable} ${patrickHand.variable}`}>
+      <body
+        suppressHydrationWarning
+        className={`${inter.className} ${dancingScript.variable} ${patrickHand.variable}`}
+      >
         <SocialSidebar />
         <ScrollToTop />
         {children}
