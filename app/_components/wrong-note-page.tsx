@@ -51,7 +51,7 @@ export default function WrongNotePage(): React.ReactElement {
         </div>
 
         <div className="mt-12 border-t border-zinc-800 pt-8">
-          <blockquote className="text-sm italic text-zinc-500">
+          <blockquote className="text-sm text-zinc-500 italic">
             "Sometimes you have to play a wrong note to appreciate the right one."
           </blockquote>
           <cite className="mt-2 block text-xs text-zinc-600">- Noah Lynch</cite>

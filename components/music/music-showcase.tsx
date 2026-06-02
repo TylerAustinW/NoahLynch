@@ -211,7 +211,7 @@ export default function MusicShowcaseSection(): React.ReactElement {
         playsInline
         className="absolute inset-0 h-full w-full object-cover opacity-15"
       >
-        <source src="/videos/noah-lynch-hero-video.mp4" type="video/mp4" />
+        <source src="/videos/0416.mov" type="video/mp4" />
       </video>
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 h-80 w-80 rounded-full bg-white/4 blur-3xl" />

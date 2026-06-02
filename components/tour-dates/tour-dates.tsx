@@ -127,13 +127,13 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.05 * index, duration: 0.2 }}
-                className={`border-b border-zinc-700/40 last:border-b-0${isCancelled ? " opacity-60" : ""}`}
+                className={`border-b border-zinc-700/40 last:border-b-0${isCancelled ? "opacity-60" : ""}`}
               >
                 <div className="w-full py-6 sm:py-5 md:py-6">
                   <div className="flex flex-col items-center space-y-3 text-center lg:hidden">
                     <div className="mb-1">
                       <span
-                        className={`text-lg font-medium${isCancelled ? " text-zinc-500 line-through" : ""}`}
+                        className={`text-lg font-medium${isCancelled ? "text-zinc-500 line-through" : ""}`}
                         style={{ letterSpacing: "0.05em" }}
                       >
                         {formatTourDate(show.date)}
@@ -142,12 +142,12 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
 
                     <div className="space-y-1">
                       <div
-                        className={`text-base font-bold tracking-wide uppercase${isCancelled ? " text-zinc-500 line-through" : " text-white"}`}
+                        className={`text-base font-bold tracking-wide uppercase${isCancelled ? "text-zinc-500 line-through" : "text-white"}`}
                       >
                         {show.venue}
                       </div>
                       <div
-                        className={`text-sm tracking-wide uppercase${isCancelled ? " text-zinc-500" : " text-zinc-300"}`}
+                        className={`text-sm tracking-wide uppercase${isCancelled ? "text-zinc-500" : "text-zinc-300"}`}
                       >
                         {show.city}
                         {show.state ? `, ${show.state}` : ""}
@@ -187,7 +187,7 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
                   <div className="hidden grid-cols-1 items-center gap-4 lg:grid lg:grid-cols-12 lg:gap-6">
                     <div className="text-left md:col-span-2">
                       <span
-                        className={`text-lg font-medium${isCancelled ? " text-zinc-500 line-through" : ""}`}
+                        className={`text-lg font-medium${isCancelled ? "text-zinc-500 line-through" : ""}`}
                         style={{ letterSpacing: "0.05em" }}
                       >
                         {formatTourDate(show.date)}
@@ -196,7 +196,7 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
 
                     <div className="min-w-0 text-left md:col-span-3 lg:col-span-4">
                       <div
-                        className={`truncate text-sm font-bold tracking-wide uppercase md:text-base${isCancelled ? " text-zinc-500 line-through" : " text-white"}`}
+                        className={`truncate text-sm font-bold tracking-wide uppercase md:text-base${isCancelled ? "text-zinc-500 line-through" : "text-white"}`}
                       >
                         {show.venue}
                       </div>
@@ -204,7 +204,7 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
 
                     <div className="min-w-0 text-left md:col-span-2 lg:col-span-2">
                       <div
-                        className={`truncate text-sm tracking-wide uppercase md:text-base${isCancelled ? " text-zinc-500" : " text-zinc-300"}`}
+                        className={`truncate text-sm tracking-wide uppercase md:text-base${isCancelled ? "text-zinc-500" : "text-zinc-300"}`}
                       >
                         {show.city}
                         {show.state ? `, ${show.state}` : ""}
@@ -269,13 +269,13 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
                 return (
                   <div
                     key={show.id}
-                    className={`border-b border-zinc-700/20 last:border-b-0${isCancelled ? " opacity-70" : ""}`}
+                    className={`border-b border-zinc-700/20 last:border-b-0${isCancelled ? "opacity-70" : ""}`}
                   >
                     <div className="w-full py-4 sm:py-3 md:py-4">
                       <div className="flex flex-col space-y-2 lg:hidden">
                         <div className="mb-1">
                           <span
-                            className={`text-lg font-medium${isCancelled ? " text-zinc-500 line-through" : ""}`}
+                            className={`text-lg font-medium${isCancelled ? "text-zinc-500 line-through" : ""}`}
                             style={{ letterSpacing: "0.05em" }}
                           >
                             {formatTourDate(show.date)}
@@ -284,12 +284,12 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
 
                         <div className="space-y-1">
                           <div
-                            className={`text-sm font-semibold tracking-wide uppercase${isCancelled ? " text-zinc-500 line-through" : " text-zinc-200"}`}
+                            className={`text-sm font-semibold tracking-wide uppercase${isCancelled ? "text-zinc-500 line-through" : "text-zinc-200"}`}
                           >
                             {show.venue}
                           </div>
                           <div
-                            className={`text-xs tracking-wide uppercase${isCancelled ? " text-zinc-500" : " text-zinc-300"}`}
+                            className={`text-xs tracking-wide uppercase${isCancelled ? "text-zinc-500" : "text-zinc-300"}`}
                           >
                             {show.city}
                             {show.state ? `, ${show.state}` : ""}
@@ -305,7 +305,7 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
                       <div className="hidden grid-cols-1 items-center gap-4 lg:grid lg:grid-cols-12 lg:gap-6">
                         <div className="text-left md:col-span-4">
                           <span
-                            className={`text-lg font-medium${isCancelled ? " text-zinc-500 line-through" : ""}`}
+                            className={`text-lg font-medium${isCancelled ? "text-zinc-500 line-through" : ""}`}
                             style={{ letterSpacing: "0.05em" }}
                           >
                             {formatTourDate(show.date)}
@@ -314,7 +314,7 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
 
                         <div className="text-left md:col-span-4">
                           <div
-                            className={`text-sm font-bold tracking-wide uppercase md:text-base${isCancelled ? " text-zinc-500 line-through" : " text-white"}`}
+                            className={`text-sm font-bold tracking-wide uppercase md:text-base${isCancelled ? "text-zinc-500 line-through" : "text-white"}`}
                           >
                             {show.venue}
                           </div>
@@ -322,7 +322,7 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
 
                         <div className="text-left md:col-span-2">
                           <div
-                            className={`text-sm tracking-wide uppercase md:text-base${isCancelled ? " text-zinc-500" : " text-zinc-300"}`}
+                            className={`text-sm tracking-wide uppercase md:text-base${isCancelled ? "text-zinc-500" : "text-zinc-300"}`}
                           >
                             {show.city}
                             {show.state ? `, ${show.state}` : ""}

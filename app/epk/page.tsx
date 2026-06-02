@@ -39,7 +39,7 @@ export default function EPKPage() {
     <div className="relative min-h-screen overflow-hidden bg-zinc-950 text-white print:bg-white print:text-black">
       <div className="pointer-events-none absolute inset-0 z-10 bg-[url('/overlays/grain-texture-overlay.png')] bg-repeat opacity-[0.02]" />
 
-      <header className="relative border-b border-zinc-800/50 bg-gradient-to-b from-zinc-900 to-zinc-950">
+      <header className="relative border-b border-zinc-800/50 bg-linear-to-b from-zinc-900 to-zinc-950">
         <div className="absolute inset-0">
           <Image
             src="/venues/the-roof/NoahAtTheRoof2.jpg"
@@ -50,7 +50,7 @@ export default function EPKPage() {
             priority
             quality={75}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/70 via-zinc-950/85 to-zinc-950" />
+          <div className="absolute inset-0 bg-linear-to-b from-zinc-950/70 via-zinc-950/85 to-zinc-950" />
         </div>
 
         <div className="relative z-20">
@@ -177,7 +177,7 @@ export default function EPKPage() {
             sizes="100vw"
             quality={75}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/80 via-zinc-950/90 to-zinc-950" />
+          <div className="absolute inset-0 bg-linear-to-b from-zinc-950/80 via-zinc-950/90 to-zinc-950" />
         </div>
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
@@ -204,13 +204,13 @@ export default function EPKPage() {
                   sizes="(max-width: 1024px) 50vw, 896px"
                   quality={75}
                 />
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-zinc-900/90 via-zinc-900/95 to-zinc-900/95" />
+                <div className="absolute inset-0 rounded-2xl bg-linear-to-b from-zinc-900/90 via-zinc-900/95 to-zinc-900/95" />
               </div>
               <div className="relative z-10">
                 <div className="flex flex-col items-start gap-4 sm:flex-row lg:items-center lg:gap-6">
-                  <div className="relative aspect-[3/4] w-full flex-shrink-0 overflow-hidden rounded-lg border border-zinc-700/50 sm:w-32 lg:w-36 lg:rounded-xl">
+                  <div className="relative aspect-3/4 w-full shrink-0 overflow-hidden rounded-lg border border-zinc-700/50 sm:w-32 lg:w-36 lg:rounded-xl">
                     <Image
-                      src="/IMG_7130.jpeg"
+                      src="/awards/IMG_7130.jpeg"
                       alt="Noah Lynch - 2025 Readers Choice Award Winner for Best Solo Musician"
                       fill
                       className="object-cover"
@@ -226,7 +226,7 @@ export default function EPKPage() {
                       Best Solo Musician - Enterprise-Journal
                     </p>
                     <span className="inline-flex items-center rounded-full border border-amber-500/30 bg-amber-500/20 px-3 py-1 text-sm font-semibold text-amber-300 lg:px-3.5 lg:py-1.5 lg:text-sm">
-                      <Award className="mr-2 h-4 w-4 lg:h-[18px] lg:w-[18px]" />
+                      <Award className="mr-2 h-4 w-4 lg:h-4.5 lg:w-4.5" />
                       Readers Choice Award
                     </span>
                   </div>
@@ -250,7 +250,7 @@ export default function EPKPage() {
                     sizes="50vw"
                     quality={75}
                   />
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-zinc-900/90 via-zinc-900/95 to-zinc-900/95" />
+                  <div className="absolute inset-0 rounded-2xl bg-linear-to-b from-zinc-900/90 via-zinc-900/95 to-zinc-900/95" />
                 </div>
                 <div className="relative z-10">
                   <h2 className="mb-6 flex items-center gap-3 text-2xl font-bold text-white">
@@ -275,7 +275,7 @@ export default function EPKPage() {
                       sizes="50vw"
                       quality={75}
                     />
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-zinc-900/90 via-zinc-900/95 to-zinc-900/95" />
+                    <div className="absolute inset-0 rounded-2xl bg-linear-to-b from-zinc-900/90 via-zinc-900/95 to-zinc-900/95" />
                   </div>
                   <div className="relative z-10">
                     <h2 className="mb-6 flex items-center gap-3 text-2xl font-bold text-white">
@@ -312,7 +312,7 @@ export default function EPKPage() {
                     sizes="50vw"
                     quality={75}
                   />
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-zinc-900/90 via-zinc-900/95 to-zinc-900/95" />
+                  <div className="absolute inset-0 rounded-2xl bg-linear-to-b from-zinc-900/90 via-zinc-900/95 to-zinc-900/95" />
                 </div>
                 <div className="relative z-10">
                   <h2 className="mb-3 flex items-center gap-2 text-xl font-bold text-white">
@@ -430,7 +430,7 @@ export default function EPKPage() {
                     sizes="33vw"
                     quality={75}
                   />
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-zinc-900/90 via-zinc-900/95 to-zinc-900/95" />
+                  <div className="absolute inset-0 rounded-2xl bg-linear-to-b from-zinc-900/90 via-zinc-900/95 to-zinc-900/95" />
                 </div>
                 <div className="relative z-10">
                   <h3 className="mb-6 flex items-center gap-3 text-xl font-bold text-white">
@@ -464,7 +464,7 @@ export default function EPKPage() {
                   >
                     <source src="/videos/noah-lynch-hero-video.mp4" type="video/mp4" />
                   </video>
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-zinc-900/90 via-zinc-900/95 to-zinc-900/95" />
+                  <div className="absolute inset-0 rounded-2xl bg-linear-to-b from-zinc-900/90 via-zinc-900/95 to-zinc-900/95" />
                 </div>
                 <div className="relative z-10">
                   <h3 className="mb-6 flex items-center gap-3 text-xl font-bold text-white">
@@ -534,6 +534,24 @@ export default function EPKPage() {
 
           {/* Gallery Section — Client Component (interactive modal + image preloading) */}
           <EPKGallery title={gallery.title} collections={gallery.collections} />
+
+          {/* View Full Gallery Link */}
+          <div className="mt-8 flex justify-center">
+            <Link
+              href="/gallery"
+              className="inline-flex items-center gap-2 rounded-full border border-zinc-700/30 bg-zinc-900/40 px-6 py-3 text-sm font-medium text-white backdrop-blur-sm transition-all duration-300 hover:border-zinc-600/50 hover:bg-zinc-800/60 focus:ring-2 focus:ring-zinc-500/40 focus:outline-none"
+            >
+              View Full Gallery
+              <svg
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+          </div>
         </div>
       </main>
 

@@ -1,4 +1,3 @@
-/* eslint-env node */
 /** @type {import('next').NextConfig} */
 const isProduction = globalThis.process?.env.NODE_ENV === "production";
 

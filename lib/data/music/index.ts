@@ -74,9 +74,8 @@ function resolveReleasePlatforms(releaseData: ReleaseData): ReleaseWithPlatforms
   };
 }
 
-export const allReleases: ReleaseWithPlatforms[] = getAllReleasesData().map(
-  resolveReleasePlatforms,
-);
+export const allReleases: ReleaseWithPlatforms[] =
+  getAllReleasesData().map(resolveReleasePlatforms);
 
 export const getReleaseById = (id: string): ReleaseWithPlatforms | undefined => {
   return allReleases.find((release) => release.id === id);

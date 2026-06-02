@@ -78,7 +78,7 @@ export default function EPKGallery({ title, collections }: EPKGalleryProps) {
       setCurrentGalleryPhotoIndex(nextIndex);
       const preloadIndex = nextIndex === selectedCollection.photos.length - 1 ? 0 : nextIndex + 1;
       if (selectedCollection.photos[preloadIndex]) {
-        preloadImage(selectedCollection.photos[preloadIndex].src).catch(() => {});
+        preloadImage(selectedCollection.photos[preloadIndex].src).catch(() => { });
       }
     }
   }, [selectedCollection, currentGalleryPhotoIndex, preloadImage]);
@@ -92,7 +92,7 @@ export default function EPKGallery({ title, collections }: EPKGalleryProps) {
       setCurrentGalleryPhotoIndex(prevIndex);
       const preloadIndex = prevIndex === 0 ? selectedCollection.photos.length - 1 : prevIndex - 1;
       if (selectedCollection.photos[preloadIndex]) {
-        preloadImage(selectedCollection.photos[preloadIndex].src).catch(() => {});
+        preloadImage(selectedCollection.photos[preloadIndex].src).catch(() => { });
       }
     }
   }, [selectedCollection, currentGalleryPhotoIndex, preloadImage]);
@@ -139,7 +139,7 @@ export default function EPKGallery({ title, collections }: EPKGalleryProps) {
               sizes="100vw"
               quality={75}
             />
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-b from-zinc-900/90 via-zinc-900/95 to-zinc-900/95" />
+            <div className="bg-liner-to-b absolute inset-0 rounded-2xl from-zinc-900/90 via-zinc-900/95 to-zinc-900/95" />
           </div>
           <div className="relative z-10">
             <h2 className="mb-8 flex items-center gap-3 text-2xl font-bold text-white">
@@ -242,11 +242,10 @@ export default function EPKGallery({ title, collections }: EPKGalleryProps) {
                     key={`${selectedCollection.id}-${currentGalleryPhotoIndex}`}
                     src={selectedCollection.photos[currentGalleryPhotoIndex]?.src || ""}
                     alt={selectedCollection.photos[currentGalleryPhotoIndex]?.alt || ""}
-                    className={`h-auto max-h-[80vh] w-auto max-w-full rounded-lg object-contain transition-opacity duration-300 ${
-                      imageLoadingStates[`${selectedCollection.id}-${currentGalleryPhotoIndex}`]
-                        ? "opacity-0"
-                        : "opacity-100"
-                    }`}
+                    className={`h-auto max-h-[80vh] w-auto max-w-full rounded-lg object-contain transition-opacity duration-300 ${imageLoadingStates[`${selectedCollection.id}-${currentGalleryPhotoIndex}`]
+                      ? "opacity-0"
+                      : "opacity-100"
+                      }`}
                     width={1200}
                     height={800}
                     sizes="(max-width: 768px) 95vw, (max-width: 1200px) 80vw, 1200px"

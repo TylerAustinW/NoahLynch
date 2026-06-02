@@ -13,20 +13,30 @@ export interface VenuePhotoCollection {
 }
 
 export const venuePhotoCollections: VenuePhotoCollection[] = [
-  // NEW: Sunset Grill (2026) — added for the images uploaded in the conversation
   {
-    id: "sunset-grill/2026",
-    venue: "Sunset Grill",
-    city: "Brandon",
+    id: "the-roof/2026",
+    venue: "The Roof at 1311",
+    city: "Vicksburg",
     state: "MS",
-    date: "2026-01-16",
+    date: "2026-05-30",
     photos: [
-      { filename: "sunset-grill-2026-6.jpg", featured: true },
-      { filename: "Sunset-grill-2026-1.jpg", featured: false },
-      { filename: "Sunset-grill-2026-2.jpg", featured: false },
-      { filename: "sunset-grill-2026-3.jpg", featured: false },
-      { filename: "sunset-grill-2026-4.jpg", featured: false },
-      { filename: "sunset-grill-2026-5.jpg", featured: false },
+      { filename: "20260530-DSC03638.jpg", featured: true },
+      { filename: "DSC03657.jpg", featured: false },
+      { filename: "DSC03696.jpg", featured: false },
+    ],
+  },
+
+  {
+    id: "The-Station-JXN",
+    venue: "The Station JXN",
+    city: "Jackson",
+    state: "MS",
+    date: "2026-04-10",
+    photos: [
+      { filename: "669644692_18430258063190873_128529939075063808_n.jpg", featured: true },
+      { filename: "670284721_18430258027190873_2031478971641954450_n.jpg", featured: false },
+      { filename: "670402760_18430258072190873_5888583650218238265_n.jpg", featured: false },
+      { filename: "DSC00591.jpeg", featured: false },
     ],
   },
 
@@ -43,21 +53,23 @@ export const venuePhotoCollections: VenuePhotoCollection[] = [
       { filename: "backwater-grill-2026-4.jpg", featured: false },
     ],
   },
+
   {
-    id: "The-Station-JXN",
-    venue: "The Station JXN",
-    city: "Jackson",
+    id: "sunset-grill/2026",
+    venue: "Sunset Grill",
+    city: "Brandon",
     state: "MS",
-    date: "2026-04-10",
+    date: "2026-01-16",
     photos: [
-      { filename: "669644692_18430258063190873_128529939075063808_n.jpg", featured: true },
-      { filename: "670284721_18430258027190873_2031478971641954450_n.jpg", featured: false },
-      { filename: "670402760_18430258072190873_5888583650218238265_n.jpg", featured: false },
-      { filename: "DSC00591.jpeg", featured: false },
+      { filename: "sunset-grill-2026-6.jpg", featured: true },
+      { filename: "Sunset-grill-2026-1.jpg", featured: false },
+      { filename: "Sunset-grill-2026-2.jpg", featured: false },
+      { filename: "sunset-grill-2026-3.jpg", featured: false },
+      { filename: "sunset-grill-2026-4.jpg", featured: false },
+      { filename: "sunset-grill-2026-5.jpg", featured: false },
     ],
   },
 
-  // existing collections (unchanged)
   {
     id: "Ole-Brook-Festival",
     venue: "Ole Brook Festival",
@@ -79,6 +91,7 @@ export const venuePhotoCollections: VenuePhotoCollection[] = [
       },
     ],
   },
+
   {
     id: "backwater-grill",
     venue: "Backwater Grill",
@@ -112,6 +125,7 @@ export const venuePhotoCollections: VenuePhotoCollection[] = [
       },
     ],
   },
+
   {
     id: "sunset-grill",
     venue: "Sunset Grill",
@@ -145,6 +159,7 @@ export const venuePhotoCollections: VenuePhotoCollection[] = [
       },
     ],
   },
+
   {
     id: "the-roof",
     venue: "The Roof at 1311",
@@ -178,6 +193,7 @@ export const venuePhotoCollections: VenuePhotoCollection[] = [
       },
     ],
   },
+
   {
     id: "magnolia-blues",
     venue: "Magnolia Blues BBQ",

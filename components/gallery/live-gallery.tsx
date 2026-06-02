@@ -211,7 +211,7 @@ export default function LiveGallerySection() {
 
               elements.push(
                 <motion.div
-                  key={`${venue.id  }-${  index}`}
+                  key={`${venue.id}-${index}`}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.2 }}
@@ -221,7 +221,7 @@ export default function LiveGallerySection() {
                   }`}
                   onClick={() => handleVenueClick(venue)}
                 >
-                  <div className="relative aspect-[4/3] overflow-hidden bg-zinc-800">
+                  <div className="relative aspect-4/3 overflow-hidden bg-zinc-800">
                     <Image
                       src={photoPath}
                       alt={featuredPhoto.filename}
@@ -245,7 +245,7 @@ export default function LiveGallerySection() {
                     </div>
                   </div>
 
-                  <div className="absolute right-0 bottom-0 left-0 bg-gradient-to-t from-black/90 via-black/70 to-transparent p-6 text-white">
+                  <div className="absolute right-0 bottom-0 left-0 bg-linear-to-t from-black/90 via-black/70 to-transparent p-6 text-white">
                     <div className="space-y-2">
                       <h3 className="text-xl font-bold text-white">{venue.venue}</h3>
 

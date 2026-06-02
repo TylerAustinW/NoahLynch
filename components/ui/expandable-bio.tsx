@@ -18,7 +18,7 @@ export default function ExpandableBio({
 }: ExpandableBioProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const truncatedContent = shortContent || `${content.substring(0, 300)  }...`;
+  const truncatedContent = shortContent || `${content.substring(0, 300)}...`;
   const fullContent = content;
 
   const hasMoreContent = fullContent.length > truncatedContent.length;

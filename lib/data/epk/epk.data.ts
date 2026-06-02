@@ -208,6 +208,38 @@ export const epkData: EPKData = {
     title: "Live Performance Gallery",
     collections: [
       {
+        id: "backwater-grill-2026",
+        venue: "Backwater Grill",
+        city: "Brandon",
+        state: "MS",
+        date: "2026-03-14",
+        description: "2026 live performance gallery",
+        featured: false,
+        photos: [
+          {
+            src: "/venues/backwater-grill/2026/backwater-grill-2026-1.jpg",
+            alt: "Noah Lynch performing at Backwater Grill in 2026",
+            caption: "Live acoustic performance at Backwater Grill in 2026",
+            featured: true,
+          },
+          {
+            src: "/venues/backwater-grill/2026/backwater-grill-2026-2.jpg",
+            alt: "Noah Lynch performing at Backwater Grill in 2026",
+            caption: "2026 live set at Backwater Grill",
+          },
+          {
+            src: "/venues/backwater-grill/2026/backwater-grill-2026-3.jpg",
+            alt: "Noah Lynch performing at Backwater Grill in 2026",
+            caption: "Noah Lynch live at Backwater Grill in 2026",
+          },
+          {
+            src: "/venues/backwater-grill/2026/backwater-grill-2026-4.jpg",
+            alt: "Noah Lynch performing at Backwater Grill in 2026",
+            caption: "Another 2026 performance moment at Backwater Grill",
+          },
+        ],
+      },
+      {
         id: "sunset-grill-2026",
         venue: "Sunset Grill",
         city: "Brandon",
@@ -250,38 +282,6 @@ export const epkData: EPKData = {
         ],
       },
       {
-        id: "backwater-grill-2026",
-        venue: "Backwater Grill",
-        city: "Brandon",
-        state: "MS",
-        date: "2026-03-14",
-        description: "2026 live performance gallery",
-        featured: false,
-        photos: [
-          {
-            src: "/venues/backwater-grill/2026/backwater-grill-2026-1.jpg",
-            alt: "Noah Lynch performing at Backwater Grill in 2026",
-            caption: "Live acoustic performance at Backwater Grill in 2026",
-            featured: true,
-          },
-          {
-            src: "/venues/backwater-grill/2026/backwater-grill-2026-2.jpg",
-            alt: "Noah Lynch performing at Backwater Grill in 2026",
-            caption: "2026 live set at Backwater Grill",
-          },
-          {
-            src: "/venues/backwater-grill/2026/backwater-grill-2026-3.jpg",
-            alt: "Noah Lynch performing at Backwater Grill in 2026",
-            caption: "Noah Lynch live at Backwater Grill in 2026",
-          },
-          {
-            src: "/venues/backwater-grill/2026/backwater-grill-2026-4.jpg",
-            alt: "Noah Lynch performing at Backwater Grill in 2026",
-            caption: "Another 2026 performance moment at Backwater Grill",
-          },
-        ],
-      },
-      {
         id: "ole-brook-festival-2025",
         venue: "Ole Brook Festival",
         city: "Brookhaven",
@@ -305,154 +305,6 @@ export const epkData: EPKData = {
             src: "/venues/Ole-Brook-Festival/image.png",
             alt: "Noah Lynch at Ole Brook Festival",
             caption: "Live performance at Ole Brook Festival",
-          },
-        ],
-      },
-      {
-        id: "backwater-grill-2025",
-        venue: "Backwater Grill",
-        city: "Brandon",
-        state: "MS",
-        date: "2025-09-06",
-        description: "Live acoustic performance",
-        featured: false,
-        photos: [
-          {
-            src: "/venues/backwater-grill/IMG_6718.jpg",
-            alt: "Noah Lynch performing at Backwater Grill",
-            caption: "Live acoustic performance at Backwater Grill",
-            featured: true,
-          },
-          {
-            src: "/venues/backwater-grill/BackWaterGrill-NoahLynch.jpg",
-            alt: "Noah Lynch performing at Backwater Grill",
-            caption: "Intimate acoustic set at Backwater Grill",
-          },
-          {
-            src: "/venues/backwater-grill/BackwaterGrill-NoahLynch2.jpg",
-            alt: "Noah Lynch performing at Backwater Grill",
-            caption: "Connecting with the audience at Backwater Grill",
-          },
-          {
-            src: "/venues/backwater-grill/IMG_6716.jpg",
-            alt: "Noah Lynch performing at Backwater Grill",
-            caption: "Guitar and vocals at Backwater Grill",
-          },
-          {
-            src: "/venues/backwater-grill/IMG_6717.jpg",
-            alt: "Noah Lynch performing at Backwater Grill",
-            caption: "Live performance at Backwater Grill",
-          },
-          {
-            src: "/venues/backwater-grill/IMG_6719.jpg",
-            alt: "Noah Lynch performing at Backwater Grill",
-            caption: "Acoustic storytelling at Backwater Grill",
-          },
-        ],
-      },
-      {
-        id: "sunset-grill-2025",
-        venue: "Sunset Grill",
-        city: "Brandon",
-        state: "MS",
-        date: "2025-09-01",
-        description: "Live performance",
-        featured: false,
-        photos: [
-          {
-            src: "/venues/sunset-grill/noah-sunset-grill.jpg",
-            alt: "Noah Lynch performing at Sunset Grill",
-            caption: "Live acoustic performance at Sunset Grill",
-            featured: true,
-          },
-          {
-            src: "/venues/sunset-grill/noah-sunset.jpg",
-            alt: "Noah Lynch performing at Sunset Grill",
-            caption: "Intimate evening performance at Sunset Grill",
-          },
-          {
-            src: "/venues/sunset-grill/noah-jamie-landscape.jpg",
-            alt: "Noah Lynch and Jamie at Sunset Grill",
-            caption: "Collaborative performance with Jamie at Sunset Grill",
-          },
-          {
-            src: "/venues/sunset-grill/Sunset-Grill (4).jpg",
-            alt: "Noah Lynch performing at Sunset Grill",
-            caption: "Guitar and vocals at Sunset Grill",
-          },
-          {
-            src: "/venues/sunset-grill/Sunset-Grill (5).jpg",
-            alt: "Noah Lynch performing at Sunset Grill",
-            caption: "Live set at Sunset Grill",
-          },
-          {
-            src: "/venues/sunset-grill/Sunset-Grill (6).jpg",
-            alt: "Noah Lynch performing at Sunset Grill",
-            caption: "Acoustic storytelling at Sunset Grill",
-          },
-        ],
-      },
-      {
-        id: "the-roof-2025",
-        venue: "The Roof at 1311",
-        city: "Vicksburg",
-        state: "MS",
-        date: "2025-08-16",
-        description: "120+ Draw - intimate rooftop performance",
-        featured: false,
-        photos: [
-          {
-            src: "/venues/the-roof/NoahAtTheRoof.jpg",
-            alt: "Noah Lynch performing at The Roof at 1311 in Vicksburg",
-            caption: "Rooftop performance with 120+ crowd at The Roof",
-            featured: true,
-          },
-          {
-            src: "/venues/the-roof/NoahAtTheRoof2.jpg",
-            alt: "Noah Lynch performing at The Roof at 1311",
-            caption: "Intimate rooftop setting at The Roof at 1311",
-          },
-          {
-            src: "/venues/the-roof/NoahAtTheRoof3.jpg",
-            alt: "Noah Lynch performing at The Roof at 1311",
-            caption: "Live acoustic performance at The Roof",
-          },
-          {
-            src: "/venues/the-roof/NoahAtTheRoof4.jpg",
-            alt: "Noah Lynch performing at The Roof at 1311",
-            caption: "Guitar and vocals at The Roof at 1311",
-          },
-          {
-            src: "/venues/the-roof/NoahAtTheRoof5.jpg",
-            alt: "Noah Lynch performing at The Roof at 1311",
-            caption: "Connecting with the rooftop audience",
-          },
-          {
-            src: "/venues/the-roof/NoahAtTheRoofGuitars.jpg",
-            alt: "Noah Lynch's guitars at The Roof at 1311",
-            caption: "Guitar setup for the rooftop performance",
-          },
-        ],
-      },
-      {
-        id: "magnolia-blues-2025",
-        venue: "Magnolia Blues BBQ",
-        city: "Brookhaven",
-        state: "MS",
-        date: "2025-06-14",
-        description: "Packed house, 90+ draw",
-        featured: false,
-        photos: [
-          {
-            src: "/venues/magnolia-blues/noah-lynch-magnolia-blues-session.jpg",
-            alt: "Noah Lynch performing at Magnolia Blues BBQ with packed crowd",
-            caption: "Packed house performance at Magnolia Blues BBQ",
-            featured: true,
-            people: [
-              { name: "Noah", x: 25, y: 20 },
-              { name: "Blake", x: 50, y: 15 },
-              { name: "Jamie", x: 75, y: 25 },
-            ],
           },
         ],
       },

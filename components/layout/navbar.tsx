@@ -241,7 +241,7 @@ export default function Navbar() {
           },
         }}
       >
-        <div className="mx-auto flex min-h-[44px] max-w-7xl items-center justify-between px-4 sm:px-6 md:px-12">
+        <div className="mx-auto flex min-h-11 max-w-7xl items-center justify-between px-4 sm:px-6 md:px-12">
           <motion.div
             className="flex h-full items-center"
             whileHover={reducedMotion ? {} : { scale: 1.02 }}
@@ -275,7 +275,7 @@ export default function Navbar() {
                   >
                     <span className="relative z-10">{link.label}</span>
                     <div className="absolute inset-0 rounded-lg bg-amber-500/10 opacity-0 transition-all duration-300 group-hover:opacity-100" />
-                    <div className="absolute right-4 bottom-1 left-4 h-0.5 scale-x-0 bg-gradient-to-r from-amber-400 to-amber-600 transition-transform duration-300 group-hover:scale-x-100" />
+                    <div className="absolute right-4 bottom-1 left-4 h-0.5 scale-x-0 bg-linear-to-r from-amber-400 to-amber-600 transition-transform duration-300 group-hover:scale-x-100" />
                   </Link>
                 </motion.div>
               ))}
@@ -333,7 +333,7 @@ export default function Navbar() {
           <AnimatePresence>
             {mobileOpen && (
               <motion.div
-                className="min-h-screen-dynamic safe-area-inset safe-area-inset-top safe-area-inset-bottom fixed inset-0 z-[100] flex h-[100dvh] w-screen items-center justify-center overflow-y-auto overscroll-contain bg-zinc-900/95 backdrop-blur-2xl md:hidden"
+                className="min-h-screen-dynamic safe-area-inset safe-area-inset-top safe-area-inset-bottom fixed inset-0 z-100 flex h-dvh w-screen items-center justify-center overflow-y-auto overscroll-contain bg-zinc-900/95 backdrop-blur-2xl md:hidden"
                 initial={variants.overlay.initial}
                 animate={variants.overlay.animate}
                 exit={variants.overlay.exit}
@@ -368,7 +368,7 @@ export default function Navbar() {
                           onClick={link.id ? (e) => handleNavClick(e, link.id) : () => closeMenu()}
                         >
                           <span className="relative z-10">{link.label}</span>
-                          <div className="absolute inset-0 -inset-x-4 -inset-y-2 rounded-xl bg-gradient-to-r from-amber-500/0 via-amber-500/10 to-amber-500/0 opacity-0 transition-all duration-300 group-hover:opacity-100 group-active:opacity-100" />
+                          <div className="absolute inset-0 -inset-x-4 -inset-y-2 rounded-xl bg-linear-to-r from-amber-500/0 via-amber-500/10 to-amber-500/0 opacity-0 transition-all duration-300 group-hover:opacity-100 group-active:opacity-100" />
                         </Link>
                       </motion.div>
                     ))}

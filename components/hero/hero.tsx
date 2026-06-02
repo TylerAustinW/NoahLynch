@@ -98,22 +98,13 @@ export default function HeroSection(): React.ReactElement {
         className="relative flex min-h-screen items-center overflow-hidden bg-zinc-950 pt-16 pb-0"
       >
         <div className="absolute top-0 h-full w-full">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="absolute inset-0 h-full w-full object-cover md:hidden"
-          >
-            <source src="/0416.mov" type="video/mp4" />
-          </video>
           <Image
             quality={100}
-            src="/20260410-DSC00265.jpg"
+            src="/venues/the-roof/2026/DSC03657.jpg"
             alt="Noah Lynch"
             fill
-            sizes="(min-width: 768px) 100vw, 0px"
-            className="hidden object-cover md:block"
+            sizes="100vw"
+            className="absolute inset-0 h-full w-full object-cover"
             style={{
               objectPosition: "center 20%",
               transform: loaded ? "scale(1.02)" : "scale(1)",
@@ -122,7 +113,7 @@ export default function HeroSection(): React.ReactElement {
             onError={() => setImageError(true)}
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/40" />
+          <div className="absolute inset-0 bg-linear-to-br from-black/10 via-black/20 to-black/40" />
           <div className="pointer-events-none absolute inset-0 bg-[url('/overlays/grain-texture-overlay.png')] bg-repeat opacity-[0.01] md:opacity-[0.03]" />
         </div>
 
@@ -154,7 +145,7 @@ export default function HeroSection(): React.ReactElement {
                   </Button>
                   <Link
                     href={"#music"}
-                    className="flex min-h-[32px] items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/80 px-3 py-1.5 text-sm font-medium text-white backdrop-blur-sm transition-all duration-300 hover:border-zinc-600/50 hover:bg-zinc-800/90 focus:ring-2 focus:ring-zinc-500/40 focus:ring-offset-2 focus:ring-offset-transparent focus:outline-none sm:min-h-[36px] sm:px-4 sm:py-2 lg:border-white/20 lg:bg-white/5 lg:hover:border-white/35 lg:hover:bg-white/15 lg:focus:ring-white/30"
+                    className="flex min-h-8 items-center justify-center rounded-full border border-zinc-700/30 bg-zinc-900/40 px-3 py-1.5 text-sm font-medium text-white backdrop-blur-sm transition-all duration-300 hover:border-zinc-600/50 hover:bg-zinc-800/60 focus:ring-2 focus:ring-zinc-500/40 focus:ring-offset-2 focus:ring-offset-transparent focus:outline-none sm:min-h-9 sm:px-4 sm:py-2 lg:border-white/20 lg:bg-white/5 lg:hover:border-white/35 lg:hover:bg-white/15 lg:focus:ring-white/30"
                     aria-label="Explore Noah Lynch's music catalog"
                   >
                     Explore Music
@@ -172,7 +163,7 @@ export default function HeroSection(): React.ReactElement {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={social.label}
-                        className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700/40 bg-zinc-900/80 text-white backdrop-blur-sm transition-all duration-300 hover:border-zinc-600/50 hover:bg-zinc-800/90 focus:ring-2 focus:ring-zinc-500/40 focus:outline-none"
+                        className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700/30 bg-zinc-900/40 text-white backdrop-blur-sm transition-all duration-300 hover:border-zinc-600/50 hover:bg-zinc-800/60 focus:ring-2 focus:ring-zinc-500/40 focus:outline-none"
                       >
                         <Icon className="h-4 w-4" aria-hidden="true" />
                       </Link>
