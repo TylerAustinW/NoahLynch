@@ -96,6 +96,11 @@ export const epkData: EPKData = {
     title: "Featured Performances",
     videos: [
       {
+        videoId: "_91aCGaYlaY",
+        title: "Better Days (Live) Original - Noah Lynch Band",
+        type: "performance",
+      },
+      {
         videoId: "cPixagF6mkM",
         title: '"Upside Down" (Jack Johnson Cover) - Live at Ole Brook Festival 2025',
         type: "performance",

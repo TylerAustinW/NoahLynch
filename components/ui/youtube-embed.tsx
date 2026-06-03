@@ -2,6 +2,7 @@
 
 import { ExternalLink, Play } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
 
 interface YouTubeEmbedProps {
   videoId: string;
@@ -17,10 +18,27 @@ export default function YouTubeEmbed({
   className = "",
 }: YouTubeEmbedProps) {
   const watchUrl = `https://www.youtube.com/watch?v=${videoId}`;
-  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+
+  const thumbnailVariants = [
+    "maxresdefault.jpg",
+    "sddefault.jpg",
+    "hqdefault.jpg",
+    "mqdefault.jpg",
+    "default.jpg",
+  ];
+
+  const [variantIndex, setVariantIndex] = useState(0);
+
+  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/${thumbnailVariants[variantIndex]}`;
 
   const handleClick = () => {
     window.open(watchUrl, "_blank", "noopener,noreferrer");
+  };
+
+  const handleImageError = () => {
+    if (variantIndex < thumbnailVariants.length - 1) {
+      setVariantIndex((i) => i + 1);
+    }
   };
 
   return (
@@ -37,6 +55,7 @@ export default function YouTubeEmbed({
             className="object-cover"
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 60vw"
             quality={75}
+            onError={handleImageError}
           />
 
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
