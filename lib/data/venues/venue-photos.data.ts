@@ -14,6 +14,23 @@ export interface VenuePhotoCollection {
 
 export const venuePhotoCollections: VenuePhotoCollection[] = [
   {
+    id: "Bayou-Restaurant-Tiki-Bar",
+    venue: "The Bayou Restaurant & Tiki Bar",
+    city: "Ocean Springs",
+    state: "MS",
+    date: "2026-06-13",
+    photos: [
+      { filename: "IMG_7485.jpeg", featured: true },
+      { filename: "IMG_7414.jpeg", featured: false },
+      { filename: "IMG_7450.jpeg", featured: false },
+      { filename: "IMG_7456.jpeg", featured: false },
+      { filename: "IMG_7458.jpeg", featured: false },
+      { filename: "IMG_7497.jpeg", featured: false },
+      { filename: "IMG_7499.jpeg", featured: false },
+    ],
+  },
+
+  {
     id: "the-roof/2026",
     venue: "The Roof at 1311",
     city: "Vicksburg",
