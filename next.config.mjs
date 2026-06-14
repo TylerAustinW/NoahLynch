@@ -2,6 +2,12 @@
 const isProduction = globalThis.process?.env.NODE_ENV === "production";
 
 const nextConfig = {
+  outputFileTracingExcludes: {
+    "/*": ["./public/**/*"],
+    "/tour-dates": ["./public/**/*"],
+    "/gallery": ["./public/**/*"],
+    "/epk": ["./public/**/*"],
+  },
   images: {
     qualities: [25, 40, 50, 75, 90, 100],
     remotePatterns: [
