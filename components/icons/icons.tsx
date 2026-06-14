@@ -1,4 +1,3 @@
-import React from "react";
 import { FaApple, FaDeezer, FaSpotify, FaYoutube } from "react-icons/fa";
 
 export const SpotifyIcon = ({ className = "w-5 h-5" }: { className?: string }) => (

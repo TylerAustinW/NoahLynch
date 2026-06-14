@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 // Note: This component doesn't use reducedMotion yet but could benefit from it.
 import { useScrollLock } from "@/lib/hooks/use-scroll-lock";
