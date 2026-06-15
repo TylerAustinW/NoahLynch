@@ -120,30 +120,12 @@ export const epkData: EPKData = {
   liveShow: {
     formats: [
       {
-        name: "Solo Acoustic",
-        description:
-          "<strong>Just me and my acoustic guitar</strong> — intimate, stripped-down sound.",
-        idealFor: "Small intimate settings",
-      },
-      {
-        name: "Duo",
-        description:
-          "<strong>Acoustic performance with one additional musician</strong> (e.g., second guitarist, percussionist, or keyboardist).",
-        idealFor: "Ideal for medium-sized patios, wine bars, private events, or restaurants",
-      },
-      {
-        name: "Trio",
-        description:
-          "<strong>A fuller sound with three performers</strong> (commonly guitar, percussion, bass or keys).",
-        idealFor: "Medium to large venues",
-      },
-      {
         name: "Full Band",
         description:
-          "<strong>Full lineup available for large venues and events</strong> — high energy, dynamic sound.",
+          "<strong>6-piece band</strong> — high energy, dynamic sound featuring Guitar 1 and vocals, Guitar 2, Backup vocals, Piano, Bass, and Full drum set.",
         idealFor: "Large venues and events",
-        videoUrl: "https://youtu.be/cPixagF6mkM",
-        videoTitle: '"Upside Down" (Jack Johnson Cover) - Live at Ole Brook Festival 2025',
+        videoUrl: "https://www.youtube.com/watch?v=_91aCGaYlaY",
+        videoTitle: "Better Days (Live) Original - Noah Lynch Band",
       },
     ],
     repertoire:

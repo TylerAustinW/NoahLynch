@@ -8,6 +8,7 @@ const nextConfig = {
     "/gallery": ["./public/**/*"],
     "/epk": ["./public/**/*"],
   },
+  allowedDevOrigins: ["192.168.40.205"],
   images: {
     qualities: [25, 40, 50, 75, 90, 100],
     remotePatterns: [
