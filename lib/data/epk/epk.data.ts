@@ -105,16 +105,6 @@ export const epkData: EPKData = {
         title: '"Upside Down" (Jack Johnson Cover) - Live at Ole Brook Festival 2025',
         type: "performance",
       },
-      {
-        videoId: "3rKv1BmopUQ",
-        title: "Chasing a Feelin' (Unreleased, Live at SunSet Grill)",
-        type: "performance",
-      },
-      {
-        videoId: "EPYGIRsGPpw",
-        title: 'Noah Lynch - "Collide" (Live Cover)',
-        type: "performance",
-      },
     ],
   },
   liveShow: {
@@ -149,10 +139,6 @@ export const epkData: EPKData = {
     {
       venue: "The Roof at 1311",
       description: "120+ Draw",
-    },
-    {
-      venue: "Magnolia Blues BBQ",
-      description: "Packed house, 90+ draw",
     },
     {
       venue: "3rd Studio Single - Honest",
