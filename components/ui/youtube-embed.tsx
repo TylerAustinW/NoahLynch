@@ -59,7 +59,7 @@ export default function YouTubeEmbed({
             unoptimized
           />
 
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
 
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="flex h-16 w-16 items-center justify-center rounded-full bg-amber-500/90 shadow-2xl backdrop-blur-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-amber-400/90">
@@ -83,7 +83,7 @@ export default function YouTubeEmbed({
               <h3 className="text-lg leading-tight font-medium text-white">{title}</h3>
               <button
                 onClick={handleClick}
-                className="mt-1 flex flex-shrink-0 items-center gap-1 text-xs font-medium text-amber-200 opacity-75 transition-colors hover:text-amber-100 hover:opacity-100"
+                className="mt-1 flex shrink-0 items-center gap-1 text-xs font-medium text-amber-200 opacity-75 transition-colors hover:text-amber-100 hover:opacity-100"
                 aria-label={`Watch ${title} on YouTube`}
               >
                 <ExternalLink className="h-3 w-3" />

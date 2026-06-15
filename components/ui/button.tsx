@@ -158,9 +158,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {loading && <Spinner size={spinnerSize} />}
-        {!loading && leftIcon && <span className="flex-shrink-0">{leftIcon}</span>}
+        {!loading && leftIcon && <span className="shrink-0">{leftIcon}</span>}
         {children && <span className={cn(loading && "opacity-70")}>{children}</span>}
-        {!loading && rightIcon && <span className="flex-shrink-0">{rightIcon}</span>}
+        {!loading && rightIcon && <span className="shrink-0">{rightIcon}</span>}
       </Comp>
     );
   },
