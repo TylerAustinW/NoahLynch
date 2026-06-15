@@ -1,7 +1,6 @@
 import Navbar from "@/components/layout/navbar";
 import HeroSection from "@/components/hero/hero";
 import MusicShowcaseSection from "@/components/music/music-showcase";
-import StudioSessionsSection from "@/components/studio-sessions/studio-sessions";
 import EntranceAnimation from "@/components/entrance-animation/entrance-animation";
 import PageFadeWrapper from "@/components/entrance-animation/page-fade-wrapper";
 import dynamic from "next/dynamic";
@@ -22,7 +21,6 @@ export default function HomePage() {
       <HeroSection />
       <PageFadeWrapper>
         <MusicShowcaseSection />
-        <StudioSessionsSection />
         <BiographySection />
       </PageFadeWrapper>
     </div>

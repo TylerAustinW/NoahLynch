@@ -49,7 +49,6 @@ export const metadata: Metadata = {
     "neo-rock",
     "acoustic music",
     "indie artist",
-    "studio sessions",
     "Honest album",
     "Ready Records",
     "John Mayer inspired",

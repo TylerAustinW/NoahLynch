@@ -199,7 +199,6 @@ export default function Navbar() {
     { href: "/#biography", label: "ABOUT", id: "biography" },
     { href: "/#music", label: "MUSIC", id: "music" },
     { href: "/tour-dates", label: "TOUR", id: null },
-    { href: "/#studio-sessions", label: "SESSIONS", id: "studio-sessions" },
     { href: "/gallery", label: "GALLERY", id: null },
     { href: "/epk", label: "EPK", id: null },
   ];

@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 const FeaturedCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
   return (
     <motion.div className="group relative overflow-hidden rounded-xl border border-zinc-800/50 bg-zinc-900/40 backdrop-blur-sm md:rounded-2xl">
-      <div className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-[16/9] md:aspect-[16/10]">
+      <div className="relative aspect-4/3 w-full overflow-hidden sm:aspect-video md:aspect-16/10">
         <Image
           src={release.imageURL}
           alt={`${release.title} - ${release.year}`}
@@ -22,8 +22,8 @@ const FeaturedCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
           priority
           quality={75}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent sm:from-black/70 sm:via-black/20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/40 to-transparent sm:from-black/70 sm:via-black/20" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
 
         <div className="absolute top-3 left-3 rounded-full bg-amber-500/90 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-sm sm:top-4 sm:left-4 sm:px-4 sm:py-2 sm:text-sm">
           {release.type === "upcoming" ? "COMING SOON" : "LATEST RELEASE"}
@@ -93,7 +93,7 @@ const RegularCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
   return (
     <Link
       href={`/music/${release.id}`}
-      className="group block h-full w-[85vw] flex-shrink-0 sm:w-80"
+      className="group block h-full w-[85vw] shrink-0 sm:w-80"
     >
       <motion.div className="flex h-full flex-col overflow-hidden rounded-xl border border-zinc-800/50 bg-zinc-900/40 backdrop-blur-sm transition-all duration-300 hover:border-amber-400/50 hover:bg-zinc-800/50">
         <div className="relative aspect-square w-full overflow-hidden">
@@ -106,7 +106,7 @@ const RegularCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
             loading="lazy"
             quality={75}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100" />
+          <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100" />
 
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100">
             <div className="rounded-full bg-amber-400/90 p-3 backdrop-blur-sm">
@@ -115,7 +115,7 @@ const RegularCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
           </div>
         </div>
 
-        <div className="flex flex-grow flex-col p-4">
+        <div className="flex grow flex-col p-4">
           <h4 className="mb-1 text-lg font-semibold text-white transition-colors group-hover:text-amber-400">
             {release.title}
           </h4>
