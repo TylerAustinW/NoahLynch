@@ -2,7 +2,7 @@
 
 import { ExternalLink, Play } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface YouTubeEmbedProps {
   videoId: string;
@@ -18,27 +18,28 @@ export default function YouTubeEmbed({
   className = "",
 }: YouTubeEmbedProps) {
   const watchUrl = `https://www.youtube.com/watch?v=${videoId}`;
+  const [thumbnailUrl, setThumbnailUrl] = useState<string | null>(null);
 
-  const thumbnailVariants = [
-    "maxresdefault.jpg",
-    "sddefault.jpg",
-    "hqdefault.jpg",
-    "mqdefault.jpg",
-    "default.jpg",
-  ];
-
-  const [variantIndex, setVariantIndex] = useState(0);
-
-  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/${thumbnailVariants[variantIndex]}`;
+  useEffect(() => {
+    // Use YouTube oEmbed API to get the thumbnail URL
+    fetch(`https://www.youtube.com/oembed?url=${watchUrl}&format=json`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.thumbnail_url) {
+          setThumbnailUrl(data.thumbnail_url);
+        } else {
+          // Fallback to hqdefault if oEmbed fails
+          setThumbnailUrl(`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`);
+        }
+      })
+      .catch(() => {
+        // Fallback to hqdefault if fetch fails
+        setThumbnailUrl(`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`);
+      });
+  }, [videoId, watchUrl]);
 
   const handleClick = () => {
     window.open(watchUrl, "_blank", "noopener,noreferrer");
-  };
-
-  const handleImageError = () => {
-    if (variantIndex < thumbnailVariants.length - 1) {
-      setVariantIndex((i) => i + 1);
-    }
   };
 
   return (
@@ -48,16 +49,21 @@ export default function YouTubeEmbed({
         onClick={handleClick}
       >
         <div className="relative h-full w-full">
-          <Image
-            src={thumbnailUrl}
-            alt={`${title} video thumbnail`}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 60vw"
-            quality={75}
-            onError={handleImageError}
-            unoptimized
-          />
+          {thumbnailUrl ? (
+            <Image
+              src={thumbnailUrl}
+              alt={`${title} video thumbnail`}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 80vw, 60vw"
+              quality={75}
+              unoptimized
+            />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center bg-zinc-800">
+              <Play className="h-12 w-12 text-zinc-600" />
+            </div>
+          )}
 
           <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
 
