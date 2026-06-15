@@ -24,6 +24,7 @@ export interface EPKGalleryCollection {
 export interface EPKData {
   artist: {
     name: string;
+    role?: string;
     tagline: string;
     location: string;
     genre: string;
@@ -83,6 +84,7 @@ export interface EPKData {
 export const epkData: EPKData = {
   artist: {
     name: "Noah Lynch",
+    role: "Frontman – Noah Lynch Band", 
     tagline: "Singer–Songwriter",
     location: "Meadville, MS",
     genre: "Acoustic Soul – Soft Rock – Alt-Pop",

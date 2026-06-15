@@ -98,6 +98,11 @@ export default function EPKPage() {
                   <h1 className="mb-4 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-7xl">
                     {artist.name}
                   </h1>
+                  {artist.role && (
+                    <p className="mb-4 text-sm font-semibold tracking-widest text-zinc-400 uppercase">
+                      {artist.role}
+                    </p>
+                  )}
                   <p className="font-patrick mb-6 text-xl text-amber-300/90 sm:text-2xl lg:text-3xl">
                     {artist.tagline}
                   </p>
