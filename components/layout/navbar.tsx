@@ -4,32 +4,13 @@ import { cn } from "@/lib/utils";
 import { useHasMounted } from "@/lib/hooks/use-has-mounted";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 import { AnimatePresence, motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 const baseLinkClass =
   "relative group inline-flex items-center justify-center py-2 px-3 text-sm font-medium tracking-wide transition-all duration-300 hover:text-amber-400 h-[44px] leading-none";
-
-const MenuIcon = ({ className }: { className?: string }) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <rect x="4" y="7" width="16" height="1.5" rx="0.75" fill="currentColor" opacity="0.9" />
-    <rect x="4" y="11.25" width="14" height="1.5" rx="0.75" fill="currentColor" opacity="0.8" />
-    <rect x="4" y="15.5" width="12" height="1.5" rx="0.75" fill="currentColor" opacity="0.7" />
-  </svg>
-);
-
-const CloseIcon = ({ className }: { className?: string }) => (
-  <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth={2}
-      d="M7 7l10 10M17 7l-10 10"
-      opacity="0.9"
-    />
-  </svg>
-);
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -227,8 +208,8 @@ export default function Navbar() {
     <>
       <motion.header
         className={cn(
-          "fixed top-0 right-0 left-0 z-50 py-3 transition-all duration-300 sm:py-4",
-          "bg-zinc-900/80 backdrop-blur-sm md:bg-zinc-900/80 md:backdrop-blur-sm",
+          "fixed top-0 right-0 left-0 z-50 py-2 transition-all duration-300 sm:py-3",
+          "bg-zinc-950/60 backdrop-blur-sm md:bg-zinc-900/60 md:backdrop-blur-sm",
           "pointer-events-auto translate-y-0 opacity-100",
           "transform-gpu will-change-[backdrop-filter]",
         )}
@@ -284,10 +265,10 @@ export default function Navbar() {
             <button
               type="button"
               className={cn(
-                "relative z-50 flex h-10 w-10 items-center justify-center rounded-lg border md:hidden",
-                "border-zinc-600/50 bg-zinc-900/80 backdrop-blur-sm transition-colors",
-                "hover:border-amber-500/50 hover:bg-amber-500/10",
-                mobileOpen && "border-amber-500/70 bg-amber-500/20",
+                "relative z-50 flex h-9 w-9 items-center justify-center rounded-lg border md:hidden",
+                "border-zinc-700/30 bg-transparent backdrop-blur-sm transition-colors",
+                "hover:border-zinc-600/50 hover:bg-zinc-800/30",
+                mobileOpen && "border-zinc-600/50 bg-zinc-800/30",
               )}
               aria-label="Toggle navigation menu"
               aria-expanded={mobileOpen}
@@ -298,28 +279,22 @@ export default function Navbar() {
                 {mobileOpen ? (
                   <motion.div
                     key="close"
-                    initial={{
-                      rotate: reducedMotion ? 0 : -90,
-                      opacity: 0,
-                    }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: reducedMotion ? 0 : 90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.15 }}
                   >
-                    <CloseIcon className="h-4 w-4 text-amber-400" />
+                    <X className="h-5 w-5 text-zinc-300" />
                   </motion.div>
                 ) : (
                   <motion.div
                     key="menu"
-                    initial={{
-                      rotate: reducedMotion ? 0 : 90,
-                      opacity: 0,
-                    }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: reducedMotion ? 0 : -90, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.15 }}
                   >
-                    <MenuIcon className="h-4 w-4 text-white" />
+                    <Menu className="h-5 w-5 text-zinc-300" />
                   </motion.div>
                 )}
               </AnimatePresence>

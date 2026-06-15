@@ -95,11 +95,11 @@ export default function HeroSection(): React.ReactElement {
       <section
         ref={ref}
         id="hero"
-        className="relative flex min-h-screen items-center overflow-hidden bg-zinc-950 pt-16 pb-0"
+        className="relative flex min-h-[70vh] items-center overflow-hidden bg-zinc-950 pt-12 pb-0 md:min-h-screen md:pt-16"
       >
         <div className="absolute top-0 h-full w-full">
           <Image
-            quality={100}
+            quality={75}
             src="/venues/the-roof/2026/DSC03657.jpg"
             alt="Noah Lynch"
             fill
@@ -107,8 +107,8 @@ export default function HeroSection(): React.ReactElement {
             className="absolute inset-0 h-full w-full object-cover"
             style={{
               objectPosition: "center 20%",
-              transform: loaded ? "scale(1.02)" : "scale(1)",
-              transition: "transform 30s ease-out",
+              transform: loaded ? "scale(1.01)" : "scale(1)",
+              transition: "transform 20s ease-out",
             }}
             onError={() => setImageError(true)}
             priority
