@@ -232,7 +232,7 @@ export const epkData: EPKData = {
       {
         id: "the-roof-2026",
         venue: "The Roof at 1311",
-        city: "Jackson",
+        city: "Vicksburg",
         state: "MS",
         date: "2026-05-30",
         description: "2026 live performance gallery",
