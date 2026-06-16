@@ -234,12 +234,12 @@ export const epkData: EPKData = {
         venue: "The Roof at 1311",
         city: "Jackson",
         state: "MS",
-        date: "2026-01-16",
+        date: "2026-05-30",
         description: "2026 live performance gallery",
         featured: false,
         photos: [
           {
-            src: "/venues/the-roof/NoahAtTheRoof.jpg",
+            src: "/venues/the-roof/2026/20260530-DSC03638.jpg",
             alt: "Noah Lynch performing at The Roof in 2026",
             caption: "Live acoustic performance at The Roof in 2026",
             featured: true,
