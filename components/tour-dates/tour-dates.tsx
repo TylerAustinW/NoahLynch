@@ -81,15 +81,15 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
     <section className="relative min-h-screen w-full overflow-hidden bg-zinc-950">
       <div className="absolute inset-0 z-0">
         <Image
-          src="/portraits/noah-lynch-portrait-guitar.jpeg"
-          alt="Noah Lynch with guitar"
+          src="/venues/Bayou-Restaurant-Tiki-Bar/IMG_7497.jpeg"
+          alt="Bayou Restaurant Tiki Bar venue"
           fill
           className="object-cover opacity-40 blur-sm sm:object-[40%_30%] md:object-[45%_25%] lg:object-[20%_20%]"
           sizes="100vw"
           priority
           quality={75}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/85 via-zinc-950/70 to-zinc-950/90" />
+        <div className="absolute inset-0 bg-linear-to-b from-zinc-950/85 via-zinc-950/70 to-zinc-950/90" />
       </div>
 
       <div className="relative z-20">
