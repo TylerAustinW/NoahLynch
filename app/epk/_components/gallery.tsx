@@ -136,7 +136,6 @@ export default function EPKGallery({ title, collections }: EPKGalleryProps) {
               alt="Noah Lynch gallery"
               fill
               className="rounded-2xl object-cover opacity-5"
-              sizes="100vw"
               quality={75}
             />
             <div className="bg-liner-to-b absolute inset-0 rounded-2xl from-zinc-900/90 via-zinc-900/95 to-zinc-900/95" />
