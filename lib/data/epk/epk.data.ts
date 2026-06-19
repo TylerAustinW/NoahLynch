@@ -183,60 +183,13 @@ export const epkData: EPKData = {
     title: "Live Performance Gallery",
     collections: [
       {
-        id: "bayou-restaurant-tiki-bar-2026",
-        venue: "Bayou Restaurant Tiki Bar",
-        city: "Brandon",
-        state: "MS",
-        date: "2026-03-14",
-        description: "2026 live performance gallery",
-        featured: false,
-        photos: [
-          {
-            src: "/venues/Bayou-Restaurant-Tiki-Bar/IMG_7414.jpeg",
-            alt: "Noah Lynch performing at Bayou Restaurant Tiki Bar in 2026",
-            caption: "Live acoustic performance at Bayou Restaurant Tiki Bar in 2026",
-            featured: true,
-          },
-          {
-            src: "/venues/Bayou-Restaurant-Tiki-Bar/IMG_7450.jpeg",
-            alt: "Noah Lynch performing at Bayou Restaurant Tiki Bar in 2026",
-            caption: "2026 live set at Bayou Restaurant Tiki Bar",
-          },
-          {
-            src: "/venues/Bayou-Restaurant-Tiki-Bar/IMG_7456.jpeg",
-            alt: "Noah Lynch performing at Bayou Restaurant Tiki Bar in 2026",
-            caption: "Noah Lynch live at Bayou Restaurant Tiki Bar in 2026",
-          },
-          {
-            src: "/venues/Bayou-Restaurant-Tiki-Bar/IMG_7458.jpeg",
-            alt: "Noah Lynch performing at Bayou Restaurant Tiki Bar in 2026",
-            caption: "Another 2026 performance moment at Bayou Restaurant Tiki Bar",
-          },
-          {
-            src: "/venues/Bayou-Restaurant-Tiki-Bar/IMG_7485.jpeg",
-            alt: "Noah Lynch performing at Bayou Restaurant Tiki Bar in 2026",
-            caption: "Bayou Restaurant Tiki Bar 2026 performance moment",
-          },
-          {
-            src: "/venues/Bayou-Restaurant-Tiki-Bar/IMG_7497.jpeg",
-            alt: "Noah Lynch performing at Bayou Restaurant Tiki Bar in 2026",
-            caption: "Live moment at Bayou Restaurant Tiki Bar in 2026",
-          },
-          {
-            src: "/venues/Bayou-Restaurant-Tiki-Bar/IMG_7499.jpeg",
-            alt: "Noah Lynch performing at Bayou Restaurant Tiki Bar in 2026",
-            caption: "Final performance shot at Bayou Restaurant Tiki Bar in 2026",
-          },
-        ],
-      },
-      {
         id: "the-roof-2026",
         venue: "The Roof at 1311",
         city: "Vicksburg",
         state: "MS",
         date: "2026-05-30",
         description: "2026 live performance gallery",
-        featured: false,
+        featured: true,
         photos: [
           {
             src: "/venues/the-roof/2026/20260530-DSC03638.jpg",
@@ -272,13 +225,60 @@ export const epkData: EPKData = {
         ],
       },
       {
+        id: "bayou-restaurant-2026",
+        venue: "DaBayou Restaurant & Tiki Bar",
+        city: "Ocean Springs",
+        state: "MS",
+        date: "2026-06-13",
+        description: "2026 live performance gallery",
+        featured: false,
+        photos: [
+          {
+            src: "/venues/Bayou-Restaurant-Tiki-Bar/IMG_7414.jpeg",
+            alt: "Noah Lynch performing at DaBayou Restaurant & Tiki Bar in 2026",
+            caption: "Live acoustic performance at DaBayou Restaurant & Tiki Bar in 2026",
+            featured: true,
+          },
+          {
+            src: "/venues/Bayou-Restaurant-Tiki-Bar/IMG_7450.jpeg",
+            alt: "Noah Lynch performing at DaBayou Restaurant & Tiki Bar in 2026",
+            caption: "2026 live set at DaBayou Restaurant & Tiki Bar",
+          },
+          {
+            src: "/venues/Bayou-Restaurant-Tiki-Bar/IMG_7456.jpeg",
+            alt: "Noah Lynch performing at DaBayou Restaurant & Tiki Bar in 2026",
+            caption: "Noah Lynch live at DaBayou Restaurant & Tiki Bar in 2026",
+          },
+          {
+            src: "/venues/Bayou-Restaurant-Tiki-Bar/IMG_7458.jpeg",
+            alt: "Noah Lynch performing at DaBayou Restaurant & Tiki Bar in 2026",
+            caption: "Another 2026 performance moment at DaBayou Restaurant & Tiki Bar",
+          },
+          {
+            src: "/venues/Bayou-Restaurant-Tiki-Bar/IMG_7485.jpeg",
+            alt: "Noah Lynch performing at DaBayou Restaurant & Tiki Bar in 2026",
+            caption: "DaBayou Restaurant & Tiki Bar 2026 performance moment",
+          },
+          {
+            src: "/venues/Bayou-Restaurant-Tiki-Bar/IMG_7497.jpeg",
+            alt: "Noah Lynch performing at DaBayou Restaurant & Tiki Bar in 2026",
+            caption: "Live moment at DaBayou Restaurant & Tiki Bar in 2026",
+          },
+          {
+            src: "/venues/Bayou-Restaurant-Tiki-Bar/IMG_7499.jpeg",
+            alt: "Noah Lynch performing at DaBayou Restaurant & Tiki Bar in 2026",
+            caption: "Final performance shot at DaBayou Restaurant & Tiki Bar in 2026",
+          },
+        ],
+      },
+      {
         id: "ole-brook-festival-2025",
         venue: "Ole Brook Festival",
         city: "Brookhaven",
         state: "MS",
         date: "2025-10-04",
         description: "Festival performance with The Noah Lynch Band",
-        featured: true,
+        featured: false,
         photos: [
           {
             src: "/venues/Ole-Brook-Festival/IMG_7287.jpg",
@@ -311,7 +311,6 @@ export const epkData: EPKData = {
   },
 };
 
-// Helper functions for EPK gallery collections
 export function getFeaturedCollection(epkData: EPKData): EPKGalleryCollection | undefined {
   return (
     epkData.gallery.collections.find((collection) => collection.featured) ||

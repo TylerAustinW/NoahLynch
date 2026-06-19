@@ -1,8 +1,6 @@
 import Navbar from "@/components/layout/navbar";
 import HeroSection from "@/components/hero/hero";
 import MusicShowcaseSection from "@/components/music/music-showcase";
-import EntranceAnimation from "@/components/entrance-animation/entrance-animation";
-import PageFadeWrapper from "@/components/entrance-animation/page-fade-wrapper";
 import dynamic from "next/dynamic";
 
 const BiographySection = dynamic(() => import("@/components/biography/biography"), {
@@ -16,13 +14,10 @@ const BiographySection = dynamic(() => import("@/components/biography/biography"
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-zinc-950 text-white">
-      <EntranceAnimation />
       <Navbar />
       <HeroSection />
-      <PageFadeWrapper>
-        <MusicShowcaseSection />
-        <BiographySection />
-      </PageFadeWrapper>
+      <MusicShowcaseSection />
+      <BiographySection />
     </div>
   );
 }

@@ -33,7 +33,6 @@ export default function HeroSection(): React.ReactElement {
   const [showPastShows, setShowPreviousShows] = useState(false);
   const pastShows = getPastShows();
 
-  // Use the new scroll lock hook
   useScrollLock(showPastShows);
 
   useEffect(() => {
@@ -99,8 +98,8 @@ export default function HeroSection(): React.ReactElement {
       >
         <div className="absolute top-0 h-full w-full">
           <Image
-            quality={75}
-            src="/venues/the-roof/2026/DSC03657.jpg"
+            quality={90}
+            src="/homepage/IMG_7450.JPG"
             alt="Noah Lynch"
             fill
             sizes="100vw"
@@ -121,21 +120,22 @@ export default function HeroSection(): React.ReactElement {
           <div
             className={`max-w-xl transition-all duration-1000 ${loaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
           >
-            <div className="relative z-20 mb-4 sm:mb-6">
-              <div className="w-full max-w-fit">
-                <ShowBadge />
+            <div className="mt-64">
+              <div className="relative z-20 mb-4 sm:mb-6">
+                <div className="w-full max-w-fit">
+                  <ShowBadge />
+                </div>
               </div>
-            </div>
 
-            <div className="space-y-5">
-              <div className="flex flex-col gap-3">
+              <div className="space-y-5">
+                <div className="flex flex-col gap-3">
                 <div className="flex flex-wrap gap-2 sm:gap-3">
-                  <Button asChild variant="primary" size="default">
+                  <Button asChild variant="primary" size="sm" className="md:h-12 md:px-8 md:text-base">
                     <Link href="/music/honest" aria-label="Listen to the latest album Honest">
                       Listen Now
                     </Link>
                   </Button>
-                  <Button asChild variant="secondary" size="default">
+                  <Button asChild variant="secondary" size="sm" className="md:h-12 md:px-8 md:text-base">
                     <Link
                       href={`mailto:${SOCIAL_LINKS.EMAIL}`}
                       aria-label="Contact Noah Lynch via email"
@@ -171,6 +171,7 @@ export default function HeroSection(): React.ReactElement {
                   })}
                 </div>
               </div>
+            </div>
             </div>
           </div>
         </div>

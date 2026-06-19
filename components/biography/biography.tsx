@@ -36,7 +36,7 @@ export default function BiographySection() {
           quality={40}
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/80 via-zinc-950/90 to-zinc-950" />
+        <div className="absolute inset-0 bg-linear-to-b from-zinc-950/80 via-zinc-950/90 to-zinc-950" />
       </div>
 
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -219,7 +219,7 @@ export default function BiographySection() {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <div className="relative overflow-hidden rounded-2xl border border-zinc-800/50 shadow-2xl">
-              <div className="relative aspect-[4/5] md:aspect-[3/4]">
+              <div className="relative aspect-4/5 md:aspect-3/4">
                 <Image
                   src={PORTRAIT_IMAGE.src}
                   alt={PORTRAIT_IMAGE.alt}
@@ -229,7 +229,7 @@ export default function BiographySection() {
                   priority
                   quality={75}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
               </div>
             </div>
           </motion.div>

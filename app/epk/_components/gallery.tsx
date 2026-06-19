@@ -24,10 +24,6 @@ interface EPKGalleryProps {
 }
 
 export default function EPKGallery({ title, collections }: EPKGalleryProps) {
-  const sortedCollections = [...collections].sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-  );
-
   const [selectedCollection, setSelectedCollection] = useState<GalleryCollection | null>(null);
   const [currentGalleryPhotoIndex, setCurrentGalleryPhotoIndex] = useState(0);
   const [imageLoadingStates, setImageLoadingStates] = useState<Record<string, boolean>>({});
@@ -147,7 +143,7 @@ export default function EPKGallery({ title, collections }: EPKGalleryProps) {
             </h2>
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {sortedCollections.map((collection) => (
+              {collections.map((collection) => (
                 <div key={collection.id} className="space-y-4">
                   <div className="rounded-lg bg-zinc-800/50 p-4">
                     <h3 className="font-semibold text-amber-400">{collection.venue}</h3>
