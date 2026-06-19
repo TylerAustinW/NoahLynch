@@ -1,5 +1,5 @@
-import Navbar from "@/components/layout/navbar";
 import HeroSection from "@/components/hero/hero";
+import Navbar from "@/components/layout/navbar";
 import MusicShowcaseSection from "@/components/music/music-showcase";
 import dynamic from "next/dynamic";
 

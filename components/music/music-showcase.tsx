@@ -1,13 +1,13 @@
 "use client";
 
-import { useInView } from "@/lib/hooks/use-in-view";
+import { Button } from "@/components/ui/button";
 import { allReleases, type ReleaseWithPlatforms } from "@/lib/data/music";
+import { useInView } from "@/lib/hooks/use-in-view";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, ExternalLink, Play } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
-import { Button } from "@/components/ui/button";
 
 const FeaturedCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
   return (
@@ -30,7 +30,7 @@ const FeaturedCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
         </div>
       </div>
 
-      <div className="absolute inset-0 flex flex-col justify-end p-4 sm:p-6 md:p-8">
+      <div className="absolute inset-0 flex flex-col justify-end p-3 sm:p-4 md:p-5">
         <div className="max-w-2xl">
           <motion.h3
             className="mb-2 text-2xl font-bold text-white sm:text-3xl md:text-4xl lg:text-5xl"
@@ -91,10 +91,7 @@ FeaturedCard.displayName = "FeaturedCard";
 
 const RegularCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
   return (
-    <Link
-      href={`/music/${release.id}`}
-      className="group block h-full w-[85vw] shrink-0 sm:w-80"
-    >
+    <Link href={`/music/${release.id}`} className="group block h-full w-[85vw] shrink-0 sm:w-80">
       <motion.div className="flex h-full flex-col overflow-hidden rounded-xl border border-zinc-800/50 bg-zinc-900/40 backdrop-blur-sm transition-all duration-300 hover:border-amber-400/50 hover:bg-zinc-800/50">
         <div className="relative aspect-square w-full overflow-hidden">
           <Image

@@ -1,12 +1,12 @@
 "use client";
 
-import { formatTourDate, formatTourTimeRange, type TourDate } from "@/lib/data/tour";
-import { motion } from "framer-motion";
 import Navbar from "@/components/layout/navbar";
-import Image from "next/image";
+import { formatTourDate, formatTourTimeRange, type TourDate } from "@/lib/data/tour";
 import { getGoogleMapsUrl } from "@/lib/utils/date.utils";
 import { AddToCalendarButton } from "add-to-calendar-button-react";
-import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 function ClientOnlyCalendarButton({ children }: { children: React.ReactNode }) {
   const [isMounted, setIsMounted] = useState(false);
@@ -103,6 +103,16 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
           transition={{ duration: 0.3 }}
           className="px-4 py-8 text-center sm:py-10 md:py-16"
         >
+          <div className="mb-4 flex justify-center sm:mb-6">
+            <Image
+              src="/branding/NoahSignature.png"
+              alt="Noah Lynch Signature"
+              width={300}
+              height={120}
+              className="h-auto w-40 sm:w-56 md:w-64"
+              priority
+            />
+          </div>
           <h1 className="mb-2 text-4xl font-bold text-zinc-200 sm:mb-4 sm:text-5xl md:text-6xl">
             TOUR DATES
           </h1>
@@ -257,7 +267,7 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
             className="mx-auto mt-16 w-full max-w-6xl px-4 sm:px-6 md:mt-20 md:px-12"
           >
             <div className="py-8 text-center md:py-12">
-              <h3 className="mb-8 text-base font-bold tracking-wider text-zinc-500 uppercase sm:text-lg md:text-xl">
+              <h3 className="mb-8 text-base font-bold tracking-wider text-zinc-200 uppercase sm:text-lg md:text-xl">
                 PAST SHOWS
               </h3>
             </div>
