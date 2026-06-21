@@ -6,11 +6,11 @@ import { useState } from "react";
 
 const profilePhotos = [
   {
-    src: "/venues/the-roof/2026/DSC03696.jpg",
+    src: "/venues/jelly-stone-park/2026/jelly (3).jpeg",
     alt: "Noah Lynch - Professional Studio Photo",
   },
   {
-    src: "/venues/jelly-stone-park/2026/jelly (3).jpeg",
+    src: "/venues/jelly-stone-park/2026/EPK/IMG_0348_VSCO.jpeg",
     alt: "Noah Lynch - Live Performance at The Roof",
   },
 ];
