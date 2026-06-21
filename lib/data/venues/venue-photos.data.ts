@@ -14,15 +14,31 @@ export interface VenuePhotoCollection {
 
 export const venuePhotoCollections: VenuePhotoCollection[] = [
   {
-    id: "Bayou-Restaurant-Tiki-Bar",
-    venue: "The Bayou Restaurant & Tiki Bar",
+    id: "jelly-stone-park/2026",
+    venue: "Jelly Stone Park",
+    city: "Pelahatchie",
+    state: "MS",
+    date: "2026-06-20",
+    photos: [
+      { filename: "jelly (1).jpeg", featured: false },
+      { filename: "jelly (2).jpeg", featured: false },
+      { filename: "jelly (3).jpeg", featured: true },
+      { filename: "jelly (4).jpeg", featured: false },
+      { filename: "jelly (5).jpeg", featured: false },
+      { filename: "jelly (6).jpeg", featured: false },
+    ],
+  },
+
+  {
+    id: "Bayou-Restaurant-Tiki-Bar/2026",
+    venue: "Bayou Restaurant & Tiki Bar",
     city: "Ocean Springs",
     state: "MS",
     date: "2026-06-13",
     photos: [
-      { filename: "IMG_7485.jpeg", featured: true },
+      { filename: "IMG_7485.jpeg", featured: false },
       { filename: "IMG_7414.jpeg", featured: false },
-      { filename: "IMG_7450.jpeg", featured: false },
+      { filename: "IMG_7450.jpeg", featured: true },
       { filename: "IMG_7456.jpeg", featured: false },
       { filename: "IMG_7458.jpeg", featured: false },
       { filename: "IMG_7497.jpeg", featured: false },
@@ -31,15 +47,18 @@ export const venuePhotoCollections: VenuePhotoCollection[] = [
   },
 
   {
-    id: "the-roof/2026",
+    id: "the-roof/2025",
     venue: "The Roof at 1311",
     city: "Vicksburg",
     state: "MS",
-    date: "2026-05-30",
+    date: "2025-08-16",
     photos: [
-      { filename: "20260530-DSC03638.jpg", featured: true },
-      { filename: "DSC03657.jpg", featured: false },
-      { filename: "DSC03696.jpg", featured: false },
+      { filename: "NoahAtTheRoof.jpg", featured: false },
+      { filename: "NoahAtTheRoof2.jpg", featured: true },
+      { filename: "NoahAtTheRoof3.jpg", featured: false },
+      { filename: "NoahAtTheRoof4.jpg", featured: false },
+      { filename: "NoahAtTheRoof5.jpg", featured: false },
+      { filename: "NoahAtTheRoofGuitars.jpg", featured: false },
     ],
   },
 
@@ -58,37 +77,39 @@ export const venuePhotoCollections: VenuePhotoCollection[] = [
   },
 
   {
-    id: "backwater-grill/2026",
+    id: "backwater-grill/2025",
     venue: "Backwater Grill",
     city: "Brandon",
     state: "MS",
-    date: "2026-03-14",
+    date: "2025-09-06",
     photos: [
-      { filename: "backwater-grill-2026-1.jpg", featured: true },
-      { filename: "backwater-grill-2026-2.jpg", featured: false },
-      { filename: "backwater-grill-2026-3.jpg", featured: false },
-      { filename: "backwater-grill-2026-4.jpg", featured: false },
+      { filename: "BackWaterGrill-NoahLynch.jpg", featured: true },
+      { filename: "BackwaterGrill-NoahLynch2.jpg", featured: false },
+      { filename: "IMG_6716.jpg", featured: false },
+      { filename: "IMG_6717.jpg", featured: false },
+      { filename: "IMG_6718.jpg", featured: false },
+      { filename: "IMG_6719.jpg", featured: false },
     ],
   },
 
   {
-    id: "sunset-grill/2026",
+    id: "sunset-grill/2025",
     venue: "Sunset Grill",
     city: "Brandon",
     state: "MS",
-    date: "2026-01-16",
+    date: "2025-09-01",
     photos: [
-      { filename: "sunset-grill-2026-6.jpg", featured: true },
-      { filename: "Sunset-grill-2026-1.jpg", featured: false },
-      { filename: "Sunset-grill-2026-2.jpg", featured: false },
-      { filename: "sunset-grill-2026-3.jpg", featured: false },
-      { filename: "sunset-grill-2026-4.jpg", featured: false },
-      { filename: "sunset-grill-2026-5.jpg", featured: false },
+      { filename: "noah-jamie-landscape.jpg", featured: false },
+      { filename: "noah-sunset-grill.jpg", featured: true },
+      { filename: "noah-sunset.jpg", featured: false },
+      { filename: "Sunset-Grill (4).jpg", featured: false },
+      { filename: "Sunset-Grill (5).jpg", featured: false },
+      { filename: "Sunset-Grill (6).jpg", featured: false },
     ],
   },
 
   {
-    id: "Ole-Brook-Festival",
+    id: "Ole-Brook-Festival/2025",
     venue: "Ole Brook Festival",
     city: "Brookhaven",
     state: "MS",
@@ -110,109 +131,7 @@ export const venuePhotoCollections: VenuePhotoCollection[] = [
   },
 
   {
-    id: "backwater-grill",
-    venue: "Backwater Grill",
-    city: "Brandon",
-    state: "MS",
-    date: "2025-09-06",
-    photos: [
-      {
-        filename: "BackWaterGrill-NoahLynch.jpg",
-        featured: true,
-      },
-      {
-        filename: "BackwaterGrill-NoahLynch2.jpg",
-        featured: false,
-      },
-      {
-        filename: "IMG_6716.jpg",
-        featured: false,
-      },
-      {
-        filename: "IMG_6717.jpg",
-        featured: false,
-      },
-      {
-        filename: "IMG_6718.jpg",
-        featured: false,
-      },
-      {
-        filename: "IMG_6719.jpg",
-        featured: false,
-      },
-    ],
-  },
-
-  {
-    id: "sunset-grill",
-    venue: "Sunset Grill",
-    city: "Brandon",
-    state: "MS",
-    date: "2025-09-01",
-    photos: [
-      {
-        filename: "noah-jamie-landscape.jpg",
-        featured: false,
-      },
-      {
-        filename: "noah-sunset-grill.jpg",
-        featured: true,
-      },
-      {
-        filename: "noah-sunset.jpg",
-        featured: false,
-      },
-      {
-        filename: "Sunset-Grill (4).jpg",
-        featured: false,
-      },
-      {
-        filename: "Sunset-Grill (5).jpg",
-        featured: false,
-      },
-      {
-        filename: "Sunset-Grill (6).jpg",
-        featured: false,
-      },
-    ],
-  },
-
-  {
-    id: "the-roof",
-    venue: "The Roof at 1311",
-    city: "Vicksburg",
-    state: "MS",
-    date: "2025-08-16",
-    photos: [
-      {
-        filename: "NoahAtTheRoof.jpg",
-        featured: false,
-      },
-      {
-        filename: "NoahAtTheRoof2.jpg",
-        featured: true,
-      },
-      {
-        filename: "NoahAtTheRoof3.jpg",
-        featured: false,
-      },
-      {
-        filename: "NoahAtTheRoof4.jpg",
-        featured: false,
-      },
-      {
-        filename: "NoahAtTheRoof5.jpg",
-        featured: false,
-      },
-      {
-        filename: "NoahAtTheRoofGuitars.jpg",
-        featured: false,
-      },
-    ],
-  },
-
-  {
-    id: "magnolia-blues",
+    id: "magnolia-blues/2025",
     venue: "Magnolia Blues BBQ",
     city: "Brookhaven",
     state: "MS",

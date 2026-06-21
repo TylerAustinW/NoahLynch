@@ -1,6 +1,6 @@
-import type { Metadata } from "next";
-import Navbar from "@/components/layout/navbar";
 import LiveGallerySection from "@/components/gallery/live-gallery";
+import Navbar from "@/components/layout/navbar";
+import type { Metadata } from "next";
 import Image from "next/image";
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export default function GalleryPage() {
       <div className="pointer-events-none absolute inset-0 z-10 bg-[url('/overlays/grain-texture-overlay.png')] bg-repeat opacity-[0.02]" />
       <div className="absolute inset-0 z-0">
         <Image
-          src="/venues/the-roof/NoahAtTheRoof2.jpg"
+          src="/venues/the-roof/2025/NoahAtTheRoof2.jpg"
           alt="Noah Lynch performing"
           fill
           className="object-cover opacity-10"

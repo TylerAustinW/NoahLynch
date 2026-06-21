@@ -1,7 +1,5 @@
 {
-
   "backwater-grill": {
-
     "id": "backwater-grill",
 
     "name": "Backwater Grill",
@@ -15,11 +13,9 @@
     "timezone": "America/Chicago",
 
     "defaultLink": "https://www.bandsintown.com/e/107170464-noah-lynch-at-backwater-grill-taphouse-and-oyster-bar?came_from=267&utm_medium=web&utm_source=artist_page&utm_campaign=event"
-
   },
 
   "sunset-grill": {
-
     "id": "sunset-grill",
 
     "name": "Sunset Grill",
@@ -31,11 +27,9 @@
     "country": "US",
 
     "timezone": "America/Chicago"
-
   },
 
   "roof-1311": {
-
     "id": "roof-1311",
 
     "name": "The Roof at 1311",
@@ -47,11 +41,9 @@
     "country": "US",
 
     "timezone": "America/Chicago"
-
   },
 
   "magnolia-blues": {
-
     "id": "magnolia-blues",
 
     "name": "Magnolia Blues BBQ",
@@ -63,11 +55,9 @@
     "country": "US",
 
     "timezone": "America/Chicago"
-
   },
 
   "rushing-roadhouse": {
-
     "id": "rushing-roadhouse",
 
     "name": "Rushing Roadhouse",
@@ -79,11 +69,9 @@
     "country": "US",
 
     "timezone": "America/Chicago"
-
   },
 
   "ole-brook-festival": {
-
     "id": "ole-brook-festival",
 
     "name": "Ole Brook Festival",
@@ -97,11 +85,9 @@
     "timezone": "America/Chicago",
 
     "defaultLink": "https://visitbrookhavenms.com/stay/"
-
   },
 
   "station-jxn": {
-
     "id": "station-jxn",
 
     "name": "The Station JXN",
@@ -113,11 +99,9 @@
     "country": "US",
 
     "timezone": "America/Chicago"
-
   },
 
   "shaggys-on-the-rez": {
-
     "id": "shaggys-on-the-rez",
 
     "name": "Shaggy's on the Rez",
@@ -129,11 +113,9 @@
     "country": "US",
 
     "timezone": "America/Chicago"
-
   },
 
   "ocean-springs": {
-
     "id": "ocean-springs",
 
     "name": "The Bayou Restaurant & Tiki Bar",
@@ -145,11 +127,9 @@
     "country": "US",
 
     "timezone": "America/Chicago"
-
   },
 
   "jelly-stone-pelahatchie": {
-
     "id": "jelly-stone-pelahatchie",
 
     "name": "Jelly Stone Park",
@@ -161,8 +141,5 @@
     "country": "US",
 
     "timezone": "America/Chicago"
-
   }
-
 }
-

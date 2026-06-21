@@ -5,9 +5,9 @@ import { ArrowLeft, Award, Mail, MapPin, Music, Play } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaAmazon, FaApple, FaFacebookF, FaInstagram, FaSpotify, FaYoutube } from "react-icons/fa6";
+import EPKGallery from "./_components/gallery";
 import EPKMobileActions from "./_components/mobile-actions";
 import EPKProfileCarousel from "./_components/profile-carousel";
-import EPKGallery from "./_components/gallery";
 
 const getPlatformIcon = (platform: string) => {
   switch (platform) {
@@ -42,7 +42,7 @@ export default function EPKPage() {
       <header className="sticky top-0 z-50 border-b border-zinc-800/50 bg-zinc-950/95 backdrop-blur-sm">
         <div className="absolute inset-0">
           <Image
-            src="/venues/the-roof/NoahAtTheRoof2.jpg"
+            src="/venues/the-roof/2025/NoahAtTheRoof2.jpg"
             alt="Noah Lynch performing"
             fill
             className="object-cover opacity-10"
@@ -246,9 +246,7 @@ export default function EPKPage() {
                   Live Performance
                 </h2>
                 <div className="mb-6">
-                  <h4 className="mb-4 text-lg font-semibold text-amber-300">
-                    Performance Formats
-                  </h4>
+                  <h4 className="mb-4 text-lg font-semibold text-amber-300">Performance Formats</h4>
                   <div className="space-y-2">
                     {liveShow.formats.map((format, index) => (
                       <div
@@ -396,20 +394,18 @@ export default function EPKPage() {
                     Available on all platforms
                   </p>
                   <div className="flex justify-center gap-3">
-                    {["Spotify", "Apple Music", "YouTube Music", "Amazon Music"].map(
-                      (platform) => (
-                        <a
-                          key={platform}
-                          href={platformLinks[platform]}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-800 text-zinc-400 transition-all hover:bg-zinc-700 hover:text-white"
-                          title={platform}
-                        >
-                          {getPlatformIcon(platform)}
-                        </a>
-                      ),
-                    )}
+                    {["Spotify", "Apple Music", "YouTube Music", "Amazon Music"].map((platform) => (
+                      <a
+                        key={platform}
+                        href={platformLinks[platform]}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-800 text-zinc-400 transition-all hover:bg-zinc-700 hover:text-white"
+                        title={platform}
+                      >
+                        {getPlatformIcon(platform)}
+                      </a>
+                    ))}
                   </div>
                 </div>
               </section>
@@ -430,7 +426,6 @@ export default function EPKPage() {
                   ))}
                 </div>
               </section>
-
             </div>
           </div>
 
@@ -447,13 +442,13 @@ export default function EPKPage() {
               className="inline-flex items-center gap-2 rounded-full border border-zinc-700/30 bg-zinc-900/40 px-6 py-3 text-sm font-medium text-white backdrop-blur-sm transition-all duration-300 hover:border-zinc-600/50 hover:bg-zinc-800/60 focus:ring-2 focus:ring-zinc-500/40 focus:outline-none"
             >
               View Full Gallery
-              <svg
-                className="h-4 w-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
               </svg>
             </Link>
           </div>

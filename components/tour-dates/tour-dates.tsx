@@ -81,7 +81,7 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
     <section className="relative min-h-screen w-full overflow-hidden bg-zinc-950">
       <div className="absolute inset-0 z-0">
         <Image
-          src="/venues/Bayou-Restaurant-Tiki-Bar/IMG_7497.jpeg"
+          src="/venues/Bayou-Restaurant-Tiki-Bar/2026/IMG_7497.jpeg"
           alt="Bayou Restaurant Tiki Bar venue"
           fill
           className="object-cover opacity-40 blur-sm sm:object-[40%_30%] md:object-[45%_25%] lg:object-[20%_20%]"

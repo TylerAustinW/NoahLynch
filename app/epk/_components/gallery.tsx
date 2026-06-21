@@ -74,7 +74,7 @@ export default function EPKGallery({ title, collections }: EPKGalleryProps) {
       setCurrentGalleryPhotoIndex(nextIndex);
       const preloadIndex = nextIndex === selectedCollection.photos.length - 1 ? 0 : nextIndex + 1;
       if (selectedCollection.photos[preloadIndex]) {
-        preloadImage(selectedCollection.photos[preloadIndex].src).catch(() => { });
+        preloadImage(selectedCollection.photos[preloadIndex].src).catch(() => {});
       }
     }
   }, [selectedCollection, currentGalleryPhotoIndex, preloadImage]);
@@ -88,7 +88,7 @@ export default function EPKGallery({ title, collections }: EPKGalleryProps) {
       setCurrentGalleryPhotoIndex(prevIndex);
       const preloadIndex = prevIndex === 0 ? selectedCollection.photos.length - 1 : prevIndex - 1;
       if (selectedCollection.photos[preloadIndex]) {
-        preloadImage(selectedCollection.photos[preloadIndex].src).catch(() => { });
+        preloadImage(selectedCollection.photos[preloadIndex].src).catch(() => {});
       }
     }
   }, [selectedCollection, currentGalleryPhotoIndex, preloadImage]);
@@ -128,7 +128,7 @@ export default function EPKGallery({ title, collections }: EPKGalleryProps) {
         <div className="relative overflow-hidden rounded-2xl border border-zinc-800/50 bg-zinc-900/50 p-8 backdrop-blur-sm">
           <div className="absolute inset-0">
             <Image
-              src="/venues/the-roof/NoahAtTheRoof.jpg"
+              src="/venues/the-roof/2025/NoahAtTheRoof.jpg"
               alt="Noah Lynch gallery"
               fill
               className="rounded-2xl object-cover opacity-5"
@@ -237,10 +237,11 @@ export default function EPKGallery({ title, collections }: EPKGalleryProps) {
                     key={`${selectedCollection.id}-${currentGalleryPhotoIndex}`}
                     src={selectedCollection.photos[currentGalleryPhotoIndex]?.src || ""}
                     alt={selectedCollection.photos[currentGalleryPhotoIndex]?.alt || ""}
-                    className={`h-auto max-h-[80vh] w-auto max-w-full rounded-lg object-contain transition-opacity duration-300 ${imageLoadingStates[`${selectedCollection.id}-${currentGalleryPhotoIndex}`]
-                      ? "opacity-0"
-                      : "opacity-100"
-                      }`}
+                    className={`h-auto max-h-[80vh] w-auto max-w-full rounded-lg object-contain transition-opacity duration-300 ${
+                      imageLoadingStates[`${selectedCollection.id}-${currentGalleryPhotoIndex}`]
+                        ? "opacity-0"
+                        : "opacity-100"
+                    }`}
                     width={1200}
                     height={800}
                     sizes="(max-width: 768px) 95vw, (max-width: 1200px) 80vw, 1200px"

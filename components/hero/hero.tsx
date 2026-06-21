@@ -2,21 +2,21 @@
 
 import { Button } from "@/components/ui/button";
 import ErrorBoundary from "@/components/ui/error-boundary";
-import PastShowsModal from "./past-shows-modal";
-import ShowBadge from "./show-badge";
+import { SOCIAL_LINKS, SOCIAL_LINK_DATA } from "@/lib/config/constants";
+import { getPastShows } from "@/lib/data/tour";
 import { useInView } from "@/lib/hooks/use-in-view";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 import { useScrollLock } from "@/lib/hooks/use-scroll-lock";
-import { getPastShows } from "@/lib/data/tour";
-import { SOCIAL_LINKS, SOCIAL_LINK_DATA } from "@/lib/config/constants";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import type { IconType } from "react-icons";
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebookF, FaTiktok, FaYoutube } from "react-icons/fa6";
-import type { IconType } from "react-icons";
+import PastShowsModal from "./past-shows-modal";
+import ShowBadge from "./show-badge";
 
 const platformIcons: Record<string, IconType> = {
   instagram: FaInstagram,
@@ -106,8 +106,6 @@ export default function HeroSection(): React.ReactElement {
             className="absolute inset-0 h-full w-full object-cover"
             style={{
               objectPosition: "center 20%",
-              transform: loaded ? "scale(1.01)" : "scale(1)",
-              transition: "transform 20s ease-out",
             }}
             onError={() => setImageError(true)}
             priority
@@ -129,49 +127,58 @@ export default function HeroSection(): React.ReactElement {
 
               <div className="space-y-5">
                 <div className="flex flex-col gap-3">
-                <div className="flex flex-wrap gap-2 sm:gap-3">
-                  <Button asChild variant="primary" size="sm" className="md:h-12 md:px-8 md:text-base">
-                    <Link href="/music/honest" aria-label="Listen to the latest album Honest">
-                      Listen Now
-                    </Link>
-                  </Button>
-                  <Button asChild variant="secondary" size="sm" className="md:h-12 md:px-8 md:text-base">
-                    <Link
-                      href={`mailto:${SOCIAL_LINKS.EMAIL}`}
-                      aria-label="Contact Noah Lynch via email"
+                  <div className="flex flex-wrap gap-2 sm:gap-3">
+                    <Button
+                      asChild
+                      variant="primary"
+                      size="sm"
+                      className="md:h-12 md:px-8 md:text-base"
                     >
-                      Contact
-                    </Link>
-                  </Button>
-                  <Link
-                    href={"#music"}
-                    className="flex min-h-8 items-center justify-center rounded-full border border-zinc-700/30 bg-zinc-900/40 px-3 py-1.5 text-sm font-medium text-white backdrop-blur-sm transition-all duration-300 hover:border-zinc-600/50 hover:bg-zinc-800/60 focus:ring-2 focus:ring-zinc-500/40 focus:ring-offset-2 focus:ring-offset-transparent focus:outline-none sm:min-h-9 sm:px-4 sm:py-2 lg:border-white/20 lg:bg-white/5 lg:hover:border-white/35 lg:hover:bg-white/15 lg:focus:ring-white/30"
-                    aria-label="Explore Noah Lynch's music catalog"
-                  >
-                    Explore Music
-                  </Link>
-                </div>
-
-                {/* Social Icons - Mobile only, directly under Listen Now */}
-                <div className="flex gap-3 lg:hidden">
-                  {SOCIAL_LINK_DATA.map((social) => {
-                    const Icon = platformIcons[social.platform] || FaInstagram;
-                    return (
-                      <Link
-                        key={social.platform}
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={social.label}
-                        className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700/30 bg-zinc-900/40 text-white backdrop-blur-sm transition-all duration-300 hover:border-zinc-600/50 hover:bg-zinc-800/60 focus:ring-2 focus:ring-zinc-500/40 focus:outline-none"
-                      >
-                        <Icon className="h-4 w-4" aria-hidden="true" />
+                      <Link href="/music/honest" aria-label="Listen to the latest album Honest">
+                        Listen Now
                       </Link>
-                    );
-                  })}
+                    </Button>
+                    <Button
+                      asChild
+                      variant="secondary"
+                      size="sm"
+                      className="md:h-12 md:px-8 md:text-base"
+                    >
+                      <Link
+                        href={`mailto:${SOCIAL_LINKS.EMAIL}`}
+                        aria-label="Contact Noah Lynch via email"
+                      >
+                        Contact
+                      </Link>
+                    </Button>
+                    <Link
+                      href={"#music"}
+                      className="flex min-h-8 items-center justify-center rounded-full border border-zinc-700/30 bg-zinc-900/40 px-3 py-1.5 text-sm font-medium text-white backdrop-blur-sm transition-all duration-300 hover:border-zinc-600/50 hover:bg-zinc-800/60 focus:ring-2 focus:ring-zinc-500/40 focus:ring-offset-2 focus:ring-offset-transparent focus:outline-none sm:min-h-9 sm:px-4 sm:py-2 lg:border-white/20 lg:bg-white/5 lg:hover:border-white/35 lg:hover:bg-white/15 lg:focus:ring-white/30"
+                      aria-label="Explore Noah Lynch's music catalog"
+                    >
+                      Explore Music
+                    </Link>
+                  </div>
+
+                  <div className="flex gap-3 lg:hidden">
+                    {SOCIAL_LINK_DATA.map((social) => {
+                      const Icon = platformIcons[social.platform] || FaInstagram;
+                      return (
+                        <Link
+                          key={social.platform}
+                          href={social.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={social.label}
+                          className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700/30 bg-zinc-900/40 text-white backdrop-blur-sm transition-all duration-300 hover:border-zinc-600/50 hover:bg-zinc-800/60 focus:ring-2 focus:ring-zinc-500/40 focus:outline-none"
+                        >
+                          <Icon className="h-4 w-4" aria-hidden="true" />
+                        </Link>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
-            </div>
             </div>
           </div>
         </div>

@@ -3,13 +3,13 @@
 import { useInView } from "@/lib/hooks/use-in-view";
 import { useIsMobile } from "@/lib/hooks/use-mobile";
 import { motion } from "framer-motion";
+import { Award, ChevronDown, ExternalLink, Music } from "lucide-react";
 import Image from "next/image";
-import { ChevronDown, Music, ExternalLink, Award } from "lucide-react";
-import { useState } from "react";
 import Link from "next/link";
+import { useState } from "react";
 
 const PORTRAIT_IMAGE = {
-  src: "/venues/backwater-grill/IMG_6718.jpg",
+  src: "/venues/backwater-grill/2025/IMG_6718.jpg",
   alt: "Noah Lynch - The Artist",
 };
 
@@ -27,7 +27,7 @@ export default function BiographySection() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/venues/the-roof/NoahAtTheRoofGuitars.jpg"
+          src="/venues/the-roof/2025/NoahAtTheRoofGuitars.jpg"
           alt="Noah Lynch performing at The Roof"
           fill
           className="object-cover opacity-30"

@@ -6,11 +6,11 @@ import { useState } from "react";
 
 const profilePhotos = [
   {
-    src: "/portraits/noah-lynch-studio-session.jpeg",
+    src: "/venues/the-roof/2026/DSC03696.jpg",
     alt: "Noah Lynch - Professional Studio Photo",
   },
   {
-    src: "/venues/the-roof/NoahAtTheRoof2.jpg",
+    src: "/venues/jelly-stone-park/2026/jelly (3).jpeg",
     alt: "Noah Lynch - Live Performance at The Roof",
   },
 ];
@@ -35,7 +35,7 @@ export default function EPKProfileCarousel() {
         sizes="(max-width: 1024px) 100vw, 40vw"
         className="object-cover object-top transition-opacity duration-500"
         priority
-        quality={75}
+        quality={90}
       />
       <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent" />
 
