@@ -35,7 +35,7 @@ export default function EPKProfileCarousel() {
         sizes="(max-width: 1024px) 100vw, 40vw"
         className="object-cover object-top transition-opacity duration-500"
         priority
-        quality={90}
+        quality={80}
       />
       <div className="absolute inset-0 bg-linear-to-t from-black/30 via-transparent to-transparent" />
 

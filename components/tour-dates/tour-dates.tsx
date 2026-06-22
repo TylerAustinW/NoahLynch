@@ -109,8 +109,10 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
               alt="Noah Lynch Signature"
               width={300}
               height={120}
+              sizes="(max-width: 640px) 160px, (max-width: 768px) 224px, 256px"
               className="h-auto w-40 sm:w-56 md:w-64"
               priority
+              quality={80}
             />
           </div>
           <h1 className="mb-2 text-4xl font-bold text-zinc-200 sm:mb-4 sm:text-5xl md:text-6xl">

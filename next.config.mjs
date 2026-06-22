@@ -10,7 +10,7 @@ const nextConfig = {
   },
   allowedDevOrigins: ["192.168.40.205"],
   images: {
-    qualities: [25, 40, 50, 75, 90, 100],
+    qualities: [25, 40, 50, 75, 80, 90, 100],
     remotePatterns: [
       {
         protocol: "https",

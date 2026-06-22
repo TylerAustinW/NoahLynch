@@ -98,7 +98,7 @@ export default function HeroSection(): React.ReactElement {
       >
         <div className="absolute top-0 h-full w-full">
           <Image
-            quality={90}
+            quality={80}
             src="/homepage/IMG_7450.JPG"
             alt="Noah Lynch"
             fill
