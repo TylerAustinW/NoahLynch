@@ -7,7 +7,6 @@ import type { Metadata, Viewport } from "next";
 import { Dancing_Script, Inter, Patrick_Hand } from "next/font/google";
 import React from "react";
 import "./globals.css";
-import { PostHogProvider } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 const dancingScript = Dancing_Script({
@@ -130,36 +129,34 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         suppressHydrationWarning
         className={`${inter.className} ${dancingScript.variable} ${patrickHand.variable}`}
       >
-        <PostHogProvider>
-          <SocialSidebar />
-          <ScrollToTop />
-          {children}
+        <SocialSidebar />
+        <ScrollToTop />
+        {children}
 
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "MusicGroup",
-                name: SITE_NAME,
-                url: siteUrl,
-                genre: ["Acoustic Pop", "Singer-Songwriter"],
-                description:
-                  "Mississippi-born singer-songwriter blending blues, neo-rock, and acoustic vibes.",
-                sameAs: [
-                  "https://instagram.com/noahlynchmusic",
-                  "https://facebook.com/noahlynchmusic",
-                  "https://tiktok.com/@noahlynchmusic",
-                  "https://youtube.com/@noahlynch",
-                  "https://open.spotify.com/artist/4IKFKRnwaMGZQoExatIlHH",
-                  "https://music.apple.com/us/artist/noah-lynch/1744359568",
-                ],
-              }),
-            }}
-          />
-          <Analytics />
-          <SpeedInsights />
-        </PostHogProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "MusicGroup",
+              name: SITE_NAME,
+              url: siteUrl,
+              genre: ["Acoustic Pop", "Singer-Songwriter"],
+              description:
+                "Mississippi-born singer-songwriter blending blues, neo-rock, and acoustic vibes.",
+              sameAs: [
+                "https://instagram.com/noahlynchmusic",
+                "https://facebook.com/noahlynchmusic",
+                "https://tiktok.com/@noahlynchmusic",
+                "https://youtube.com/@noahlynch",
+                "https://open.spotify.com/artist/4IKFKRnwaMGZQoExatIlHH",
+                "https://music.apple.com/us/artist/noah-lynch/1744359568",
+              ],
+            }),
+          }}
+        />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
