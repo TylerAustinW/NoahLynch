@@ -5,7 +5,6 @@ import { ArrowLeft, Award, Mail, MapPin, Music, Play } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaAmazon, FaApple, FaFacebookF, FaInstagram, FaSpotify, FaYoutube } from "react-icons/fa6";
-import EPKPageTracker from "./_components/epk-page-tracker";
 import EPKGallery from "./_components/gallery";
 import EPKMobileActions from "./_components/mobile-actions";
 import EPKProfileCarousel from "./_components/profile-carousel";
@@ -38,7 +37,6 @@ export default function EPKPage() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-zinc-950 text-white print:bg-white print:text-black">
-      <EPKPageTracker />
       <div className="pointer-events-none absolute inset-0 z-10 bg-[url('/overlays/grain-texture-overlay.png')] bg-repeat opacity-[0.02]" />
 
       <header className="sticky top-0 z-50 border-b border-zinc-800/50 bg-zinc-950/95 backdrop-blur-sm">

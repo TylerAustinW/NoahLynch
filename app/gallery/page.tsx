@@ -2,7 +2,6 @@ import LiveGallerySection from "@/components/gallery/live-gallery";
 import Navbar from "@/components/layout/navbar";
 import type { Metadata } from "next";
 import Image from "next/image";
-import GalleryPageTracker from "./_components/gallery-page-tracker";
 
 export const metadata: Metadata = {
   title: "Gallery",
@@ -21,7 +20,6 @@ export const metadata: Metadata = {
 export default function GalleryPage() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-zinc-950 text-white">
-      <GalleryPageTracker />
       <div className="pointer-events-none absolute inset-0 z-10 bg-[url('/overlays/grain-texture-overlay.png')] bg-repeat opacity-[0.02]" />
       <div className="absolute inset-0 z-0">
         <Image
