@@ -124,3 +124,4 @@ e2e-results/
 *.crt
 private/
 secrets/
+.env.local

@@ -1,24 +1,28 @@
 "use client";
 
-import { track } from "@vercel/analytics/react";
+import { usePostHog } from "posthog-js/react";
 import { useEffect } from "react";
 
 export default function GalleryPageTracker() {
+  const ph = usePostHog();
+
   useEffect(() => {
-    track("gallery_page_view", {
+    ph.capture("gallery_page_view", {
       page: "/gallery",
       timestamp: new Date().toISOString(),
     });
+  }, [ph]);
 
+  useEffect(() => {
     const handleImageClick = () => {
-      track("gallery_image_click", {
+      ph.capture("gallery_image_click", {
         page: "/gallery",
         action: "image_view",
       });
     };
 
     const handleFullGalleryClick = () => {
-      track("gallery_full_link_click", {
+      ph.capture("gallery_full_link_click", {
         page: "/gallery",
         action: "view_full_gallery",
       });
@@ -44,7 +48,7 @@ export default function GalleryPageTracker() {
         fullGalleryLink.removeEventListener("click", handleFullGalleryClick);
       }
     };
-  }, []);
+  }, [ph]);
 
   return null;
 }

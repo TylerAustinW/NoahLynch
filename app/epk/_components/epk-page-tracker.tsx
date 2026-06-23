@@ -1,31 +1,35 @@
 "use client";
 
-import { track } from "@vercel/analytics/react";
+import { usePostHog } from "posthog-js/react";
 import { useEffect } from "react";
 
 export default function EPKPageTracker() {
+  const ph = usePostHog();
+
   useEffect(() => {
-    track("epk_page_view", {
+    ph.capture("epk_page_view", {
       page: "/epk",
       timestamp: new Date().toISOString(),
     });
+  }, [ph]);
 
+  useEffect(() => {
     const handleBookingClick = () => {
-      track("epk_booking_click", {
+      ph.capture("epk_booking_click", {
         page: "/epk",
         action: "booking_button_click",
       });
     };
 
     const handleSocialClick = (platform: string) => {
-      track("epk_social_click", {
+      ph.capture("epk_social_click", {
         page: "/epk",
         platform,
       });
     };
 
     const handleMusicLinkClick = (platform: string) => {
-      track("epk_music_link_click", {
+      ph.capture("epk_music_link_click", {
         page: "/epk",
         platform,
       });
@@ -71,7 +75,7 @@ export default function EPKPageTracker() {
         link.removeEventListener("click", () => handleMusicLinkClick);
       });
     };
-  }, []);
+  }, [ph]);
 
   return null;
 }
