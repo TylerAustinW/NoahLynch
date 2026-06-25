@@ -128,7 +128,7 @@ export default function EPKGallery({ title, collections }: EPKGalleryProps) {
         <div className="relative overflow-hidden rounded-2xl border border-zinc-800/50 bg-zinc-900/50 p-8 backdrop-blur-sm">
           <div className="absolute inset-0">
             <Image
-              src="/venues/the-roof/2025/NoahAtTheRoof.jpg"
+              src="/venues/the-roof/2026/20260530-DSC03634.jpg"
               alt="Noah Lynch gallery"
               fill
               className="rounded-2xl object-cover opacity-5"

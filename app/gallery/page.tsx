@@ -23,7 +23,7 @@ export default function GalleryPage() {
       <div className="pointer-events-none absolute inset-0 z-10 bg-[url('/overlays/grain-texture-overlay.png')] bg-repeat opacity-[0.02]" />
       <div className="absolute inset-0 z-0">
         <Image
-          src="/venues/the-roof/2025/NoahAtTheRoof2.jpg"
+          src="/venues/the-roof/2026/20260530-DSC03634.jpg"
           alt="Noah Lynch performing"
           fill
           className="object-cover opacity-10"

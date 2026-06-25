@@ -27,7 +27,7 @@ export default function BiographySection() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/venues/the-roof/2025/NoahAtTheRoofGuitars.jpg"
+          src="/venues/the-roof/2026/20260530-DSC03634.jpg"
           alt="Noah Lynch performing at The Roof"
           fill
           className="object-cover opacity-30"

@@ -42,7 +42,7 @@ export default function EPKPage() {
       <header className="sticky top-0 z-50 border-b border-zinc-800/50 bg-zinc-950/95 backdrop-blur-sm">
         <div className="absolute inset-0">
           <Image
-            src="/venues/the-roof/2025/NoahAtTheRoof2.jpg"
+            src="/venues/the-roof/2026/20260530-DSC03634.jpg"
             alt="Noah Lynch performing"
             fill
             className="object-cover opacity-10"
