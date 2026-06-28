@@ -2,7 +2,7 @@
 
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronUp, Home } from "lucide-react";
+import { Calendar, ChevronUp, Home } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -39,7 +39,7 @@ export default function EPKMobileActions() {
           <div className="flex flex-col gap-3">
             {showScroll && (
               <motion.button
-                className="flex h-12 w-12 items-center justify-center rounded-full border border-zinc-700/50 bg-zinc-900/90 text-zinc-300 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-amber-500/50 hover:bg-amber-500/10 hover:text-amber-400 focus:ring-2 focus:ring-amber-500/50 focus:outline-none"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-700/50 bg-zinc-900/90 text-zinc-300 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-amber-500/50 hover:bg-amber-500/10 hover:text-amber-400 focus:ring-2 focus:ring-amber-500/50 focus:outline-none"
                 onClick={scrollToTop}
                 aria-label="Scroll to top of page"
                 initial={{
@@ -62,8 +62,8 @@ export default function EPKMobileActions() {
                 whileTap={reducedMotion ? {} : { scale: 0.95 }}
               >
                 <div className="flex flex-col items-center">
-                  <ChevronUp className="h-5 w-5" />
-                  <span className="mt-0.5 text-[10px] font-medium">TOP</span>
+                  <ChevronUp className="h-3.5 w-3.5" />
+                  <span className="text-[8px] leading-tight font-medium">TOP</span>
                 </div>
               </motion.button>
             )}
@@ -87,13 +87,43 @@ export default function EPKMobileActions() {
               transition={{ duration: 0.3, ease: "easeOut", delay: 0.1 }}
             >
               <Link
+                href="/tour-dates"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-700/50 bg-zinc-900/90 text-zinc-300 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-amber-500/50 hover:bg-amber-500/10 hover:text-amber-400 focus:ring-2 focus:ring-amber-500/50 focus:outline-none"
+                aria-label="View tour dates"
+              >
+                <div className="flex flex-col items-center">
+                  <Calendar className="h-3.5 w-3.5" />
+                  <span className="text-[8px] leading-tight font-medium">TOUR</span>
+                </div>
+              </Link>
+            </motion.div>
+
+            <motion.div
+              initial={{
+                opacity: 0,
+                scale: reducedMotion ? 1 : 0.8,
+                y: reducedMotion ? 0 : 20,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                y: 0,
+              }}
+              exit={{
+                opacity: 0,
+                scale: reducedMotion ? 1 : 0.8,
+                y: reducedMotion ? 0 : 20,
+              }}
+              transition={{ duration: 0.3, ease: "easeOut", delay: 0.15 }}
+            >
+              <Link
                 href="/"
-                className="flex h-12 w-12 items-center justify-center rounded-full border border-amber-400/50 bg-amber-500/90 text-zinc-900 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-amber-300 hover:bg-amber-400 hover:shadow-xl hover:shadow-amber-500/25 focus:ring-2 focus:ring-amber-500/50 focus:outline-none"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-amber-400/50 bg-amber-500/90 text-zinc-900 shadow-lg backdrop-blur-sm transition-all duration-300 hover:border-amber-300 hover:bg-amber-400 hover:shadow-xl hover:shadow-amber-500/25 focus:ring-2 focus:ring-amber-500/50 focus:outline-none"
                 aria-label="Go back to home page"
               >
                 <div className="flex flex-col items-center">
-                  <Home className="h-5 w-5" />
-                  <span className="mt-0.5 text-[10px] font-bold">HOME</span>
+                  <Home className="h-3.5 w-3.5" />
+                  <span className="text-[8px] leading-tight font-bold">HOME</span>
                 </div>
               </Link>
             </motion.div>

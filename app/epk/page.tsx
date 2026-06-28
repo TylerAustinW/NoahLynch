@@ -89,6 +89,12 @@ export default function EPKPage() {
                 >
                   Gallery
                 </a>
+                <Link
+                  href="/tour-dates"
+                  className="font-medium text-zinc-400 transition-colors hover:text-white"
+                >
+                  Tour
+                </Link>
               </nav>
             </div>
 
