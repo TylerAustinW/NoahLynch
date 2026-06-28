@@ -143,6 +143,20 @@ export const venuePhotoCollections: VenuePhotoCollection[] = [
       },
     ],
   },
+
+  {
+    id: "Shaggys on The Rez",
+    venue: "Shaggy's on the Rez",
+    city: "Brandon",
+    state: "MS",
+    date: "2026-06-27",
+    photos: [
+      { filename: "Shaggy1.jpg", featured: true },
+      { filename: "Shaggy2.jpg", featured: false },
+      { filename: "Shaggy3.jpg", featured: false },
+      { filename: "Shaggy4.jpg", featured: false },
+    ],
+  },
 ];
 
 export function getFeaturedPhoto(collection: VenuePhotoCollection): VenuePhoto {

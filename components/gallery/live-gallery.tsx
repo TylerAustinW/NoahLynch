@@ -19,40 +19,11 @@ export default function LiveGallerySection() {
   const [imageLoadingStates, setImageLoadingStates] = useState<{ [key: string]: boolean }>({});
   const touchStartRef = useRef<{ x: number; y: number; time: number } | null>(null);
   const touchEndRef = useRef<{ x: number; y: number } | null>(null);
-  const preloadedImages = useRef<Set<string>>(new Set());
-
-  const preloadImage = useCallback((src: string): Promise<void> => {
-    return new Promise((resolve) => {
-      if (preloadedImages.current.has(src)) {
-        resolve();
-        return;
-      }
-      const img = new window.Image();
-      img.onload = () => {
-        preloadedImages.current.add(src);
-        resolve();
-      };
-      img.onerror = () => resolve();
-      img.src = src;
-    });
-  }, []);
 
   const handleVenueClick = (venue: VenuePhotoCollection) => {
     if (hasMultiplePhotos(venue)) {
       setSelectedVenue(venue);
       setCurrentPhotoIndex(0);
-      const firstPhoto = venue.photos[0];
-      if (firstPhoto) {
-        const firstImagePath = getPhotoPath(venue.id, firstPhoto.filename);
-        void preloadImage(firstImagePath);
-      }
-      if (venue.photos.length > 1) {
-        const secondPhoto = venue.photos[1];
-        if (secondPhoto) {
-          const nextImagePath = getPhotoPath(venue.id, secondPhoto.filename);
-          void preloadImage(nextImagePath);
-        }
-      }
     }
   };
 
@@ -66,28 +37,16 @@ export default function LiveGallerySection() {
       const nextIndex =
         currentPhotoIndex === selectedVenue.photos.length - 1 ? 0 : currentPhotoIndex + 1;
       setCurrentPhotoIndex(nextIndex);
-      const preloadIndex = nextIndex === selectedVenue.photos.length - 1 ? 0 : nextIndex + 1;
-      const photoToPreload = selectedVenue.photos[preloadIndex];
-      if (photoToPreload) {
-        const preloadPath = getPhotoPath(selectedVenue.id, photoToPreload.filename);
-        preloadImage(preloadPath).catch(() => {});
-      }
     }
-  }, [selectedVenue, currentPhotoIndex, preloadImage]);
+  }, [selectedVenue, currentPhotoIndex]);
 
   const prevPhoto = useCallback(() => {
     if (selectedVenue) {
       const prevIndex =
         currentPhotoIndex === 0 ? selectedVenue.photos.length - 1 : currentPhotoIndex - 1;
       setCurrentPhotoIndex(prevIndex);
-      const preloadIndex = prevIndex === 0 ? selectedVenue.photos.length - 1 : prevIndex - 1;
-      const photoToPreload = selectedVenue.photos[preloadIndex];
-      if (photoToPreload) {
-        const preloadPath = getPhotoPath(selectedVenue.id, photoToPreload.filename);
-        preloadImage(preloadPath).catch(() => {});
-      }
     }
-  }, [selectedVenue, currentPhotoIndex, preloadImage]);
+  }, [selectedVenue, currentPhotoIndex]);
 
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
     const touch = e.touches[0];
@@ -151,19 +110,6 @@ export default function LiveGallerySection() {
     };
   }, [nextPhoto, prevPhoto, selectedVenue]);
 
-  useEffect(() => {
-    const preloadInitialImages = async () => {
-      const imagesToPreload = venuePhotoCollections.slice(0, 2).map((venue) => {
-        const featured = getFeaturedPhoto(venue);
-        return getPhotoPath(venue.id, featured.filename);
-      });
-
-      await Promise.all(imagesToPreload.map(preloadImage));
-    };
-
-    void preloadInitialImages();
-  }, [preloadImage]);
-
   return (
     <>
       <section className="bg-zinc-900/50 px-4 py-16" suppressHydrationWarning>
@@ -210,7 +156,7 @@ export default function LiveGallerySection() {
                     }`}
                     onClick={() => handleVenueClick(venue)}
                   >
-                    <div className="relative aspect-4/3 overflow-hidden bg-zinc-800">
+                    <div className="relative aspect-3/4 overflow-hidden bg-zinc-800">
                       <Image
                         src={photoPath}
                         alt={featuredPhoto.filename}
