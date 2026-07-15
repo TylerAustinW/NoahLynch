@@ -98,14 +98,14 @@ export default function HeroSection(): React.ReactElement {
       >
         <div className="absolute top-0 h-full w-full">
           <Image
-            quality={80}
-            src="/homepage/IMG_7450.JPG"
+            quality={90}
+            src="/homepage/IMG_2055_VSCO-1.jpg"
             alt="Noah Lynch"
             fill
             sizes="100vw"
             className="absolute inset-0 h-full w-full object-cover"
             style={{
-              objectPosition: "center 20%",
+              objectPosition: "center 60%",
             }}
             onError={() => setImageError(true)}
             priority

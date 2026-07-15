@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 const PORTRAIT_IMAGE = {
-  src: "/venues/backwater-grill/2025/IMG_6718.jpg",
+  src: "/portraits/A9AF0C1D-845C-4F6A-BB30-1425E51EF499.jpeg",
   alt: "Noah Lynch - The Artist",
 };
 
@@ -27,10 +27,10 @@ export default function BiographySection() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/venues/the-roof/2026/20260530-DSC03634.jpg"
-          alt="Noah Lynch performing at The Roof"
+          src="/covers/single-for-you-cover.jpg"
+          alt="Noah Lynch"
           fill
-          className="object-cover opacity-30"
+          className="object-cover opacity-25"
           sizes="100vw"
           priority={false}
           quality={40}
@@ -224,10 +224,10 @@ export default function BiographySection() {
                   src={PORTRAIT_IMAGE.src}
                   alt={PORTRAIT_IMAGE.alt}
                   fill
-                  className="object-cover"
+                  className="scale-110 object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   priority
-                  quality={75}
+                  quality={85}
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
               </div>

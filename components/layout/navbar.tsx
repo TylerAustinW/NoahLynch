@@ -1,8 +1,8 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import { useHasMounted } from "@/lib/hooks/use-has-mounted";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
+import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
@@ -87,8 +87,6 @@ export default function Navbar() {
       }
 
       if (currentScrollY < 10) {
-        setIsVisible(true);
-      } else if (currentScrollY < lastScrollY) {
         setIsVisible(true);
       } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
         if (!mobileOpen) {
@@ -208,9 +206,8 @@ export default function Navbar() {
       <motion.header
         className={cn(
           "fixed top-0 right-0 left-0 z-50 py-2 transition-all duration-300 sm:py-3",
-          "bg-zinc-950/60 backdrop-blur-sm md:bg-zinc-900/60 md:backdrop-blur-sm",
           "pointer-events-auto translate-y-0 opacity-100",
-          "transform-gpu will-change-[backdrop-filter]",
+          "transform-gpu",
         )}
         initial={{ y: 0 }}
         animate={{
@@ -230,10 +227,14 @@ export default function Navbar() {
             <Link href="/" className="group flex h-full items-center">
               <h1
                 className={cn(
-                  "text-xl leading-none font-bold tracking-wider text-white transition-all duration-300 group-hover:text-amber-400 sm:text-2xl md:text-3xl",
+                  "text-2xl leading-none font-bold tracking-wider text-white transition-all duration-300 group-hover:text-amber-400 sm:text-3xl md:text-4xl",
+                  "font-playfair-display",
+                  "text-center",
                 )}
               >
-                NOAH LYNCH
+                NOAH
+                <br />
+                LYNCH
               </h1>
             </Link>
           </motion.div>

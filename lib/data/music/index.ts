@@ -1,22 +1,22 @@
 export type {
-  Release,
   Platform,
+  PlatformName,
+  Release,
+  ReleaseData,
+  ReleaseType,
   ReleaseWithPlatforms,
   Review,
-  PlatformName,
-  ReleaseType,
-  ReleaseData,
 } from "../../types/music.types";
 
-import { getAllReleasesData } from "./releases.data";
-import type { Platform, PlatformName, ReleaseData, ReleaseWithPlatforms } from "@/lib/types";
-import React from "react";
 import {
   AppleMusicIcon,
   DeezerIcon,
   SpotifyIcon,
   YouTubeMusicIcon,
 } from "@/components/icons/icons";
+import type { Platform, PlatformName, ReleaseData, ReleaseWithPlatforms } from "@/lib/types";
+import React from "react";
+import { getAllReleasesData } from "./releases.data";
 
 function createPlatformLink(platform: PlatformName, url: string): Platform {
   const platformConfigs: Record<PlatformName, Omit<Platform, "url">> = {

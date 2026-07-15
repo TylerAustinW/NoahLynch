@@ -4,7 +4,7 @@ import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/config/constants";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
-import { Dancing_Script, Inter, Patrick_Hand } from "next/font/google";
+import { Dancing_Script, Inter, Patrick_Hand, Playfair_Display } from "next/font/google";
 import React from "react";
 import "./globals.css";
 
@@ -17,6 +17,11 @@ const patrickHand = Patrick_Hand({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-patrick-hand",
+  display: "swap",
+});
+const playfairDisplay = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair-display",
   display: "swap",
 });
 
@@ -127,7 +132,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" data-scroll-behavior="smooth">
       <body
         suppressHydrationWarning
-        className={`${inter.className} ${dancingScript.variable} ${patrickHand.variable}`}
+        className={`${inter.className} ${dancingScript.variable} ${patrickHand.variable} ${playfairDisplay.variable}`}
       >
         <SocialSidebar />
         <ScrollToTop />

@@ -88,6 +88,10 @@ html {
     border-color: var(--border);
   }
 
+  .font-playfair-display {
+    font-family: var(--font-playfair-display), serif;
+  }
+
   /* Next.js portal positioning */
   nextjs-portal {
     left: 1755px;
