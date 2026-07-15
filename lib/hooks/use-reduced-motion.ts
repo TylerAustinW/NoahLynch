@@ -1,25 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
+import { getMediaQueryList } from "./use-media-query";
 
-/**
- * Hook to detect user's prefers-reduced-motion setting.
- * Returns true if the user prefers reduced motion.
- *
- * Replaces the duplicated MediaQuery listener pattern that was
- * copy-pasted across navbar, hero, social-sidebar, and entrance-animation.
- */
+const emptySubscribe = () => () => undefined;
+
 export function useReducedMotion(): boolean {
-  const [reducedMotion, setReducedMotion] = useState(false);
+  return useSyncExternalStore(
+    (onStoreChange) => {
+      if (typeof window === "undefined") {
+        return emptySubscribe();
+      }
 
-  useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReducedMotion(mediaQuery.matches);
+      const mediaQueryList = getMediaQueryList("(prefers-reduced-motion: reduce)");
+      mediaQueryList.addEventListener("change", onStoreChange);
 
-    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
-    mediaQuery.addEventListener("change", handler);
-    return () => mediaQuery.removeEventListener("change", handler);
-  }, []);
-
-  return reducedMotion;
+      return () => mediaQueryList.removeEventListener("change", onStoreChange);
+    },
+    () => getMediaQueryList("(prefers-reduced-motion: reduce)").matches,
+    () => false,
+  );
 }

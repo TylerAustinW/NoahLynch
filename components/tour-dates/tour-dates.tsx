@@ -1,8 +1,8 @@
 "use client";
 
 import Navbar from "@/components/layout/navbar";
-import { formatTourDate, formatTourTimeRange, type TourDate } from "@/lib/data/tour";
-import { getGoogleMapsUrl } from "@/lib/utils/date.utils";
+import type { Show as NewShow } from "@/lib/data/tour";
+import { formatDate, formatTimeRange, getGoogleMapsUrl } from "@/lib/utils";
 import { AddToCalendarButton } from "add-to-calendar-button-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -28,7 +28,7 @@ function ActionButton({
   variant = "mobile",
 }: {
   isCancelled: boolean;
-  show: TourDate;
+  show: NewShow;
   variant?: "mobile" | "desktop";
 }) {
   if (isCancelled) {
@@ -44,14 +44,14 @@ function ActionButton({
     );
   }
 
-  if (show.actionLink) {
+  if (show.ticketUrl) {
     const linkClasses =
       variant === "mobile"
         ? "inline-block w-full border border-zinc-500 px-6 py-3 text-center text-sm font-medium tracking-wider text-zinc-300 uppercase transition-all duration-300 hover:border-amber-500 hover:text-amber-400 active:bg-amber-500/10"
         : "inline-block border border-zinc-500 px-6 py-2 text-xs font-medium tracking-wider text-zinc-300 uppercase transition-all duration-300 hover:border-amber-500 hover:text-amber-400 md:text-sm";
 
     return (
-      <a href={show.actionLink} target="_blank" rel="noopener noreferrer" className={linkClasses}>
+      <a href={show.ticketUrl} target="_blank" rel="noopener noreferrer" className={linkClasses}>
         {show.actionText || "Tickets"}
       </a>
     );
@@ -72,8 +72,8 @@ function ActionButton({
 }
 
 interface TourDatesSectionProps {
-  upcoming: TourDate[];
-  past: TourDate[];
+  upcoming: NewShow[];
+  past: NewShow[];
 }
 
 export default function TourDatesSection({ upcoming, past }: TourDatesSectionProps) {
@@ -112,7 +112,7 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
               sizes="(max-width: 640px) 160px, (max-width: 768px) 224px, 256px"
               className="h-auto w-40 sm:w-56 md:w-64"
               priority
-              quality={80}
+              quality={75}
             />
           </div>
           <h1 className="mb-2 text-4xl font-bold text-zinc-200 sm:mb-4 sm:text-5xl md:text-6xl">
@@ -130,7 +130,8 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
             </div>
           )}
           {upcoming.map((show, index) => {
-            const timeLabel = formatTourTimeRange(show);
+            const timeLabel =
+              formatTimeRange(show.startTimeLocal, show.endTimeLocal) || show.time || "";
             const isCancelled = show.status === "cancelled";
 
             return (
@@ -148,7 +149,7 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
                         className={`text-lg font-medium${isCancelled ? "text-zinc-500 line-through" : ""}`}
                         style={{ letterSpacing: "0.05em" }}
                       >
-                        {formatTourDate(show.date)}
+                        {formatDate(show.date)}
                       </span>
                     </div>
 
@@ -170,7 +171,7 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
                         </div>
                       ) : (
                         <div className="text-sm tracking-wide text-amber-300 uppercase">
-                          {timeLabel ?? "TIME TBA"}
+                          {timeLabel || "TIME TBA"}
                         </div>
                       )}
                     </div>
@@ -184,7 +185,7 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
                             endDate={show.date}
                             startTime={show.startTimeLocal}
                             endTime={show.endTimeLocal}
-                            timeZone={show.timezone}
+                            timeZone={show.timezone || "America/Chicago"}
                             location={`${show.venue}, ${show.city}${show.state ? `, ${show.state}` : ""}`}
                             options={["Google", "Apple", "Outlook.com"]}
                             size="3"
@@ -202,7 +203,7 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
                         className={`text-lg font-medium${isCancelled ? "text-zinc-500 line-through" : ""}`}
                         style={{ letterSpacing: "0.05em" }}
                       >
-                        {formatTourDate(show.date)}
+                        {formatDate(show.date)}
                       </span>
                     </div>
 
@@ -230,7 +231,7 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
                         </div>
                       ) : (
                         <div className="truncate text-xs font-medium tracking-wide text-amber-300 uppercase md:text-sm">
-                          {timeLabel ?? "Time TBA"}
+                          {timeLabel || "Time TBA"}
                         </div>
                       )}
                     </div>
@@ -244,7 +245,7 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
                             endDate={show.date}
                             startTime={show.startTimeLocal}
                             endTime={show.endTimeLocal}
-                            timeZone={show.timezone}
+                            timeZone={show.timezone || "America/Chicago"}
                             location={`${show.venue}, ${show.city}${show.state ? `, ${show.state}` : ""}`}
                             options={["Google", "Apple", "Outlook.com"]}
                             size="2"
@@ -290,7 +291,7 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
                             className={`text-lg font-medium${isCancelled ? "text-zinc-500 line-through" : ""}`}
                             style={{ letterSpacing: "0.05em" }}
                           >
-                            {formatTourDate(show.date)}
+                            {formatDate(show.date)}
                           </span>
                         </div>
 
@@ -320,7 +321,7 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
                             className={`text-lg font-medium${isCancelled ? "text-zinc-500 line-through" : ""}`}
                             style={{ letterSpacing: "0.05em" }}
                           >
-                            {formatTourDate(show.date)}
+                            {formatDate(show.date)}
                           </span>
                         </div>
 

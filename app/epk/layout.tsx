@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import "./epk.styles.css";
 import React from "react";
+import "./epk.styles.css";
 
 export const metadata: Metadata = {
   title: "EPK",

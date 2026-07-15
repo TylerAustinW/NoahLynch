@@ -1,9 +1,9 @@
 "use client";
 
+import { SOCIAL_LINKS } from "@/lib/config";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
-import { SOCIAL_LINK_DATA } from "@/lib/config/constants";
-import { FaFacebookF, FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa6";
 import type { IconType } from "react-icons";
+import { FaFacebookF, FaInstagram, FaTiktok, FaYoutube } from "react-icons/fa6";
 
 const platformIcons: Record<string, IconType> = {
   instagram: FaInstagram,
@@ -18,7 +18,7 @@ export default function SocialSidebar() {
   return (
     <div className="fixed top-1/2 left-6 z-40 hidden -translate-y-1/2 lg:block">
       <div className="flex flex-col gap-4">
-        {SOCIAL_LINK_DATA.map((social) => {
+        {SOCIAL_LINKS.map((social) => {
           const Icon = platformIcons[social.platform] || FaInstagram;
           return (
             <div key={social.platform} className="group relative">

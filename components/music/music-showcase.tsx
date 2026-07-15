@@ -1,101 +1,20 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { allReleases, type ReleaseWithPlatforms } from "@/lib/data/music";
+import { RELEASES, type Release as NewRelease } from "@/lib/data/music";
 import { useInView } from "@/lib/hooks/use-in-view";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, ExternalLink, Play } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 
-const FeaturedCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
-  return (
-    <motion.div className="group relative overflow-hidden rounded-xl border border-zinc-800/50 bg-zinc-900/40 backdrop-blur-sm md:rounded-2xl">
-      <div className="relative aspect-4/3 w-full overflow-hidden sm:aspect-video md:aspect-16/10">
-        <Image
-          src={release.imageURL}
-          alt={`${release.title} - ${release.year}`}
-          fill
-          sizes="(max-width: 768px) 100vw, 90vw"
-          className="object-cover"
-          priority
-          quality={75}
-        />
-        <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/40 to-transparent sm:from-black/70 sm:via-black/20" />
-        <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
-
-        <div className="absolute top-3 left-3 rounded-full bg-amber-500/90 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-sm sm:top-4 sm:left-4 sm:px-4 sm:py-2 sm:text-sm">
-          {release.type === "upcoming" ? "COMING SOON" : "LATEST RELEASE"}
-        </div>
-      </div>
-
-      <div className="absolute inset-0 flex flex-col justify-end p-3 sm:p-4 md:p-5">
-        <div className="max-w-2xl">
-          <motion.h3
-            className="mb-2 text-2xl font-bold text-white sm:text-3xl md:text-4xl lg:text-5xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-          >
-            {release.title}
-          </motion.h3>
-
-          <motion.p
-            className="mb-4 text-base text-zinc-300 sm:text-lg md:text-xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-          >
-            {release.year} • {release.releasedBy}
-          </motion.p>
-
-          <motion.div
-            className="flex flex-col gap-3 sm:flex-row sm:gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-            <Button
-              asChild
-              variant="primary"
-              size="sm"
-              className="sm:h-10 sm:gap-2 sm:px-6 sm:text-sm"
-            >
-              <Link href={`/music/${release.id}`} aria-label={`Listen to ${release.title}`}>
-                <Play
-                  className="h-4 w-4 transition-transform group-hover/btn:scale-110 sm:h-5 sm:w-5"
-                  fill="currentColor"
-                />
-                Listen Now
-              </Link>
-            </Button>
-            <Button
-              asChild
-              variant="secondary"
-              size="sm"
-              className="sm:h-10 sm:gap-2 sm:px-6 sm:text-sm"
-            >
-              <Link href={`/music/${release.id}`} aria-label={`View details for ${release.title}`}>
-                <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4" />
-                View Details
-              </Link>
-            </Button>
-          </motion.div>
-        </div>
-      </div>
-    </motion.div>
-  );
-});
-FeaturedCard.displayName = "FeaturedCard";
-
-const RegularCard = memo(({ release }: { release: ReleaseWithPlatforms }) => {
+const RegularCard = memo(({ release }: { release: NewRelease }) => {
   return (
     <Link href={`/music/${release.id}`} className="group block h-full w-[85vw] shrink-0 sm:w-80">
       <motion.div className="flex h-full flex-col overflow-hidden rounded-xl border border-zinc-800/50 bg-zinc-900/40 backdrop-blur-sm transition-all duration-300 hover:border-amber-400/50 hover:bg-zinc-800/50">
         <div className="relative aspect-square w-full overflow-hidden">
           <Image
-            src={release.imageURL}
+            src={release.cover}
             alt={`${release.title} - ${release.year}`}
             fill
             sizes="320px"
@@ -132,11 +51,7 @@ export default function MusicShowcaseSection(): React.ReactElement {
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const featured =
-    allReleases.find((release) => release.featured === true) || allReleases[0] || null;
-  const releases = featured
-    ? allReleases.filter((release) => release.id !== featured.id)
-    : allReleases;
+  const releases = RELEASES;
 
   const updateScrollButtons = useCallback(() => {
     if (containerRef.current) {
@@ -229,17 +144,6 @@ export default function MusicShowcaseSection(): React.ReactElement {
             From intimate acoustic sessions to full productions, explore the musical journey
           </p>
         </motion.div>
-
-        {featured && (
-          <motion.div
-            className="mb-12 sm:mb-16"
-            initial={{ opacity: 0, y: 40 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <FeaturedCard release={featured} />
-          </motion.div>
-        )}
 
         {releases.length > 0 && (
           <motion.div

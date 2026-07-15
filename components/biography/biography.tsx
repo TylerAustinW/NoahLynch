@@ -27,10 +27,11 @@ export default function BiographySection() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/covers/single-for-you-cover.jpg"
+          src="/venues/the-roof/2026/DSC03696.jpg"
           alt="Noah Lynch"
           fill
-          className="object-cover opacity-25"
+          style={{ filter: "blur(4px)" }}
+          className="object-cover opacity-45"
           sizes="100vw"
           priority={false}
           quality={40}
@@ -188,7 +189,7 @@ export default function BiographySection() {
             >
               <Link
                 href={"#music"}
-                className="group inline-flex items-center gap-3 rounded-full border border-white/30 bg-white/10 px-7 py-4 font-medium text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/20 focus:ring-2 focus:ring-amber-400/50 focus:outline-none"
+                className="group inline-flex items-center gap-3 rounded-full border border-white/30 bg-white/10 px-6 py-4 font-medium text-white backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/20 focus:ring-2 focus:ring-amber-400/50 focus:outline-none sm:px-7 sm:py-4"
               >
                 <Music className="h-5 w-5" />
                 Explore The Music
@@ -227,7 +228,7 @@ export default function BiographySection() {
                   className="scale-110 object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   priority
-                  quality={85}
+                  quality={75}
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
               </div>

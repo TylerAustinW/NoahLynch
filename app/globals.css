@@ -1,12 +1,10 @@
 @import "tailwindcss";
 @config "../tailwind.config.ts";
 
-/* Mobile viewport height fix - use CSS custom property for dynamic viewport height */
 :root {
   --vh: 1vh;
 }
 
-/* Support for dynamic viewport units (dvh) with fallback */
 @supports (height: 100dvh) {
   :root {
     --vh: 1dvh;
@@ -71,7 +69,6 @@ html {
     scrollbar-width: none;
   }
 
-  /* Full viewport height utility that works on mobile */
   .h-screen-dynamic {
     height: 100vh;
     height: 100dvh;
@@ -92,7 +89,6 @@ html {
     font-family: var(--font-playfair-display), serif;
   }
 
-  /* Next.js portal positioning */
   nextjs-portal {
     left: 1755px;
     top: -389px;

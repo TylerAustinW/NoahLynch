@@ -1,18 +1,18 @@
+import {
+  AppleMusicIcon,
+  DeezerIcon,
+  SpotifyIcon,
+  YouTubeMusicIcon,
+} from "@/components/icons/icons";
 import { Button } from "@/components/ui/button";
 import ErrorBoundary from "@/components/ui/error-boundary";
-import { SITE_NAME, SITE_URL } from "@/lib/config/constants";
-import {
-  allReleases,
-  getReleaseById,
-  type Platform,
-  type ReleaseWithPlatforms,
-} from "@/lib/data/music";
+import { SITE } from "@/lib/config";
+import { RELEASES, getRelease, type Release as NewRelease } from "@/lib/data/music";
 import { ArrowLeft, Heart } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import React from "react";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -20,7 +20,7 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return allReleases.map((release: ReleaseWithPlatforms) => ({
+  return RELEASES.map((release: NewRelease) => ({
     slug: release.id,
   }));
 }
@@ -28,7 +28,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
-  const release = getReleaseById(slug);
+  const release = getRelease(slug);
 
   if (!release) {
     return {
@@ -36,10 +36,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const siteUrl = SITE_URL;
-  const absoluteImageUrl = release.imageURL.startsWith("http")
-    ? release.imageURL
-    : `${siteUrl}${release.imageURL}`;
+  const siteUrl = SITE.url;
+  const absoluteImageUrl = release.cover.startsWith("http")
+    ? release.cover
+    : `${siteUrl}${release.cover}`;
 
   return {
     title: release.title,
@@ -49,10 +49,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     openGraph: {
       type: "music.album",
-      title: `${release.title} | ${SITE_NAME}`,
+      title: `${release.title} | ${SITE.name}`,
       description: release.description,
       url: `${siteUrl}/music/${slug}`,
-      siteName: SITE_NAME,
+      siteName: SITE.name,
       images: [
         {
           url: absoluteImageUrl,
@@ -64,7 +64,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: "summary_large_image",
-      title: `${release.title} | ${SITE_NAME}`,
+      title: `${release.title} | ${SITE.name}`,
       description: release.description,
       images: [absoluteImageUrl],
     },
@@ -74,7 +74,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function MusicReleasePage({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
   const slug = resolvedParams.slug;
-  const release = getReleaseById(slug);
+  const release = getRelease(slug);
 
   if (!release) {
     notFound();
@@ -90,46 +90,83 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
       <h3 className="mb-4 text-center text-xl font-semibold text-white md:text-left">
         Listen Now:
       </h3>
-      <div className="grid grid-cols-2 justify-center gap-3 md:grid-cols-3 md:justify-start md:gap-4">
-        {release.platforms.map((platform: Platform) => {
-          const buttonStyle: React.CSSProperties = {};
-          const iconStyle: React.CSSProperties = {};
-
-          if (platform.bgColor) {
-            buttonStyle.backgroundColor = platform.bgColor;
-            iconStyle.color = platform.color || "#FFFFFF";
-          } else if (platform.color) {
-            iconStyle.color = platform.color;
-          }
-
-          return (
-            <Button
-              key={platform.name}
-              asChild
-              variant="outline"
-              size="default"
-              className="flex min-h-[48px] flex-col items-center justify-center gap-2 hover:border-amber-500/50 sm:flex-row"
-              style={platform.bgColor ? buttonStyle : {}}
+      <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:justify-start md:gap-4">
+        {release.links.spotify && (
+          <Button
+            asChild
+            variant="outline"
+            size="default"
+            className="flex min-h-[48px] w-full flex-col items-center justify-center gap-2 hover:border-amber-500/50 sm:flex-row"
+            style={{ backgroundColor: "#1DB954" }}
+          >
+            <Link
+              href={release.links.spotify}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Listen on Spotify"
             >
-              <Link
-                href={platform.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Listen on ${platform.name}`}
-              >
-                <div style={iconStyle} className="transition-opacity">
-                  {platform.icon}
-                </div>
-                <span
-                  className="text-sm font-medium"
-                  style={platform.bgColor ? { color: platform.color || "#FFFFFF" } : {}}
-                >
-                  {platform.name}
-                </span>
-              </Link>
-            </Button>
-          );
-        })}
+              <SpotifyIcon className="h-5 w-5 text-white" />
+              <span className="text-sm font-medium text-white">Spotify</span>
+            </Link>
+          </Button>
+        )}
+        {release.links.appleMusic && (
+          <Button
+            asChild
+            variant="outline"
+            size="default"
+            className="flex min-h-[48px] w-full flex-col items-center justify-center gap-2 hover:border-amber-500/50 sm:flex-row"
+            style={{ backgroundColor: "#FA243C" }}
+          >
+            <Link
+              href={release.links.appleMusic}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Listen on Apple Music"
+            >
+              <AppleMusicIcon className="h-5 w-5 text-white" />
+              <span className="text-sm font-medium text-white">Apple Music</span>
+            </Link>
+          </Button>
+        )}
+        {release.links.youtubeMusic && (
+          <Button
+            asChild
+            variant="outline"
+            size="default"
+            className="flex min-h-[48px] w-full flex-col items-center justify-center gap-2 hover:border-amber-500/50 sm:flex-row"
+            style={{ backgroundColor: "#FF0000" }}
+          >
+            <Link
+              href={release.links.youtubeMusic}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Listen on YouTube Music"
+            >
+              <YouTubeMusicIcon className="h-5 w-5 text-white" />
+              <span className="text-sm font-medium text-white">YouTube Music</span>
+            </Link>
+          </Button>
+        )}
+        {release.links.deezer && (
+          <Button
+            asChild
+            variant="outline"
+            size="default"
+            className="flex min-h-[48px] w-full flex-col items-center justify-center gap-2 hover:border-amber-500/50 sm:flex-row"
+            style={{ backgroundColor: "#FEAA2D" }}
+          >
+            <Link
+              href={release.links.deezer}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Listen on Deezer"
+            >
+              <DeezerIcon className="h-5 w-5 text-white" />
+              <span className="text-sm font-medium text-white">Deezer</span>
+            </Link>
+          </Button>
+        )}
       </div>
     </>
   );
@@ -151,7 +188,8 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
             </Button>
           );
         }
-        if (release.platforms.length > 0) {
+        const hasLinks = Object.values(release.links).some((link) => link);
+        if (hasLinks) {
           return PlatformButtons;
         }
         return <p className="text-center text-zinc-400">Details coming soon.</p>;
@@ -188,7 +226,12 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
 
   const BackToMusicLink = (
     <div className="mb-8 text-center">
-      <Button asChild variant="ghost" size="sm">
+      <Button
+        asChild
+        variant="ghost"
+        size="default"
+        className="h-12 px-6 text-base sm:h-10 sm:px-4 sm:text-sm"
+      >
         <Link href="/#music" className="inline-flex items-center gap-2">
           <ArrowLeft className="h-4 w-4" />
           Back to All Music
@@ -203,14 +246,14 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
     name: release.title,
     byArtist: {
       "@type": "MusicGroup",
-      name: SITE_NAME,
-      url: SITE_URL,
+      name: SITE.name,
+      url: SITE.url,
     },
     datePublished: release.releaseDate,
     producer: release.releasedBy,
     ...(release.writtenBy && { author: release.writtenBy }),
     description: release.description,
-    image: release.imageURL,
+    image: release.cover,
     genre: "Acoustic Pop",
   };
 
@@ -223,12 +266,13 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
       <div className="relative min-h-screen bg-zinc-950 text-white">
         <div className="absolute inset-0 overflow-hidden">
           <Image
-            src={release.imageURL}
+            src={release.cover}
             alt={`${release.title} Background`}
             fill
             sizes="100vw"
             className="object-cover opacity-20 blur-sm"
             quality={75}
+            priority
           />
           <div className="absolute inset-0 bg-zinc-950/80"></div>
         </div>
@@ -257,7 +301,7 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
                   <div className="relative mx-auto max-w-md overflow-hidden rounded-2xl border border-zinc-700/50 shadow-2xl">
                     <div className="relative aspect-square">
                       <Image
-                        src={release.imageURL}
+                        src={release.cover}
                         alt={`${release.title} Cover Art`}
                         fill
                         priority
@@ -304,7 +348,9 @@ export default async function MusicReleasePage({ params }: { params: Promise<{ s
                     </div>
                   </div>
 
-                  {(!isUpcoming || release.linkURL || release.platforms.length > 0) && (
+                  {(!isUpcoming ||
+                    release.linkURL ||
+                    Object.values(release.links).some((link) => link)) && (
                     <div className="rounded-2xl border border-zinc-700/50 bg-zinc-900/30 p-6 backdrop-blur-sm">
                       {ListenNowLinks}
                     </div>

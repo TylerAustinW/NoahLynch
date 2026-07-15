@@ -1,7 +1,7 @@
 "use client";
 
 import { getNextShow, isShowTodayLocal } from "@/lib/data/tour";
-import { formatDate } from "@/lib/utils/date.utils";
+import { formatDate } from "@/lib/utils";
 import { Calendar } from "lucide-react";
 import Link from "next/link";
 

@@ -1,16 +1,16 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+import type { Show } from "@/lib/data/tour";
+import { useFocusTrap } from "@/lib/hooks/use-focus-trap";
+import { formatDate } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { MapPin, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useFocusTrap } from "@/lib/hooks/use-focus-trap";
-import { formatDate } from "@/lib/utils/date.utils";
-import type { TourDate } from "@/lib/data/tour";
 
 interface PastShowsModalProps {
   isOpen: boolean;
   onClose: () => void;
-  pastShows: TourDate[];
+  pastShows: Show[];
 }
 
 export default function PastShowsModal({ isOpen, onClose, pastShows }: PastShowsModalProps) {

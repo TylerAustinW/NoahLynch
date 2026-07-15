@@ -3,9 +3,9 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { AlertTriangle, Home, RefreshCw } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect } from "react";
-import Image from "next/image";
 
 interface ErrorProps {
   error: Error & { digest?: string };

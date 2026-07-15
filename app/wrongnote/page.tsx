@@ -1,4 +1,3 @@
-import WrongNotePage from "@/app/_components/wrong-note-page";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -10,6 +9,4 @@ export const metadata: Metadata = {
   },
 };
 
-export default function WrongNoteRoute() {
-  return <WrongNotePage />;
-}
+export default function WrongNoteRoute() {}

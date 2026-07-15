@@ -227,7 +227,7 @@ export default function Navbar() {
             <Link href="/" className="group flex h-full items-center">
               <h1
                 className={cn(
-                  "text-2xl leading-none font-bold tracking-wider text-white transition-all duration-300 group-hover:text-amber-400 sm:text-3xl md:text-4xl",
+                  "text-3xl leading-none font-bold tracking-widest text-white/90 transition-all duration-300 group-hover:text-amber-400 sm:text-3xl md:text-3xl",
                   "font-playfair-display",
                   "text-center",
                 )}

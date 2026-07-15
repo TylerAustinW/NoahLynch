@@ -1,6 +1,6 @@
 import ScrollToTop from "@/components/layout/scroll-to-top";
 import SocialSidebar from "@/components/layout/social-sidebar";
-import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/config/constants";
+import { SITE } from "@/lib/config";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata, Viewport } from "next";
@@ -25,8 +25,8 @@ const playfairDisplay = Playfair_Display({
   display: "swap",
 });
 
-const siteUrl = SITE_URL;
-const defaultTitle = `${SITE_NAME} - Singer-Songwriter & Musician`;
+const siteUrl = SITE.url;
+const defaultTitle = `${SITE.name} - Singer-Songwriter & Musician`;
 const defaultOgImage = "/portraits/noah-lynch-portrait-guitar.jpeg";
 const squareOgImage = "/portraits/noah-lynch-studio-session.jpeg";
 
@@ -39,14 +39,14 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  applicationName: SITE_NAME,
+  applicationName: SITE.name,
   title: {
     default: defaultTitle,
-    template: `%s | ${SITE_NAME}`,
+    template: `%s | ${SITE.name}`,
   },
-  description: SITE_DESCRIPTION,
+  description: SITE.description,
   keywords: [
-    SITE_NAME,
+    SITE.name,
     "musician",
     "singer-songwriter",
     "Mississippi musician",
@@ -59,8 +59,8 @@ export const metadata: Metadata = {
     "John Mayer inspired",
     "Stevie Ray Vaughan",
   ],
-  authors: [{ name: SITE_NAME }],
-  creator: SITE_NAME,
+  authors: [{ name: SITE.name }],
+  creator: SITE.name,
   publisher: "Ready Records",
   alternates: {
     canonical: "/",
@@ -69,22 +69,22 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    siteName: SITE_NAME,
+    siteName: SITE.name,
     title: defaultTitle,
-    description: SITE_DESCRIPTION,
+    description: SITE.description,
     images: [
       {
         url: defaultOgImage,
         width: 1200,
         height: 630,
-        alt: `${SITE_NAME} - Mississippi-born Singer-Songwriter and Musician`,
+        alt: `${SITE.name} - Mississippi-born Singer-Songwriter and Musician`,
         type: "image/jpeg",
       },
       {
         url: squareOgImage,
         width: 1080,
         height: 1080,
-        alt: `${SITE_NAME} Music Studio Session`,
+        alt: `${SITE.name} Music Studio Session`,
         type: "image/jpeg",
       },
     ],
@@ -94,13 +94,13 @@ export const metadata: Metadata = {
     site: "@NoahLynch17",
     creator: "@NoahLynch17",
     title: defaultTitle,
-    description: SITE_DESCRIPTION,
+    description: SITE.description,
     images: [
       {
         url: defaultOgImage,
         width: 1200,
         height: 630,
-        alt: `${SITE_NAME} - Mississippi-born Singer-Songwriter and Musician`,
+        alt: `${SITE.name} - Mississippi-born Singer-Songwriter and Musician`,
       },
     ],
   },
@@ -116,12 +116,12 @@ export const metadata: Metadata = {
     },
   },
   other: {
-    author: SITE_NAME,
-    "article:author": SITE_NAME,
+    author: SITE.name,
+    "article:author": SITE.name,
     "mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
-    "apple-mobile-web-app-title": SITE_NAME,
-    "music:musician": SITE_NAME,
+    "apple-mobile-web-app-title": SITE.name,
+    "music:musician": SITE.name,
     "music:album": "Honest",
     "music:release_date": "2025-05-09",
   },
@@ -144,7 +144,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "MusicGroup",
-              name: SITE_NAME,
+              name: SITE.name,
               url: siteUrl,
               genre: ["Acoustic Pop", "Singer-Songwriter"],
               description:

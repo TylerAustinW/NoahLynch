@@ -21,19 +21,16 @@ export default function YouTubeEmbed({
   const [thumbnailUrl, setThumbnailUrl] = useState<string | null>(null);
 
   useEffect(() => {
-    // Use YouTube oEmbed API to get the thumbnail URL
     fetch(`https://www.youtube.com/oembed?url=${watchUrl}&format=json`)
       .then((res) => res.json())
       .then((data) => {
         if (data.thumbnail_url) {
           setThumbnailUrl(data.thumbnail_url);
         } else {
-          // Fallback to hqdefault if oEmbed fails
           setThumbnailUrl(`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`);
         }
       })
       .catch(() => {
-        // Fallback to hqdefault if fetch fails
         setThumbnailUrl(`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`);
       });
   }, [videoId, watchUrl]);

@@ -5,7 +5,7 @@ import { useSyncExternalStore } from "react";
 const mediaQueryInstances = new Map<string, MediaQueryList>();
 const emptySubscribe = () => () => undefined;
 
-function getMediaQueryList(query: string): MediaQueryList {
+export function getMediaQueryList(query: string): MediaQueryList {
   let mediaQueryList = mediaQueryInstances.get(query);
 
   if (!mediaQueryList) {

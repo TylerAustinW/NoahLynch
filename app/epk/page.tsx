@@ -173,7 +173,6 @@ export default function EPKPage() {
 
       <main className="relative z-20">
         <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
-          {/* Stats Section - Moved higher for better hierarchy */}
           <div className="mx-auto mb-12 grid max-w-2xl grid-cols-2 gap-4">
             <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-6 text-center">
               <div className="mb-1 text-4xl font-bold text-amber-400">200k+</div>
@@ -185,7 +184,6 @@ export default function EPKPage() {
             </div>
           </div>
 
-          {/* Simplified Readers Choice Section */}
           <div className="mx-auto mb-16 max-w-2xl">
             <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-6 text-center">
               <div className="mb-3 flex items-center justify-center gap-2">
@@ -196,7 +194,6 @@ export default function EPKPage() {
             </div>
           </div>
 
-          {/* Section Divider */}
           <div className="mx-auto mb-16 h-px max-w-4xl bg-linear-to-r from-transparent via-zinc-700 to-transparent" />
 
           <div className="grid gap-8 lg:grid-cols-3 lg:items-start">
@@ -212,7 +209,6 @@ export default function EPKPage() {
                 <ExpandableBio content={bio.long} shortContent={bio.short} />
               </section>
 
-              {/* Section Divider */}
               <div className="h-px bg-linear-to-r from-transparent via-zinc-700 to-transparent" />
 
               {featuredVideos && (
@@ -243,7 +239,6 @@ export default function EPKPage() {
                 </section>
               )}
 
-              {/* Section Divider */}
               <div className="h-px bg-linear-to-r from-transparent via-zinc-700 to-transparent" />
 
               <section className="rounded-2xl border border-zinc-800/50 bg-zinc-900/50 p-6">
@@ -346,11 +341,9 @@ export default function EPKPage() {
                 </div>
               </section>
 
-              {/* Section Divider */}
               <div className="h-px bg-linear-to-r from-transparent via-zinc-700 to-transparent lg:hidden" />
             </div>
 
-            {/* Right Column - Music & Highlights */}
             <div className="space-y-8">
               <section
                 id="music"
@@ -394,7 +387,6 @@ export default function EPKPage() {
                     </Link>
                   ))}
                 </div>
-
                 <div className="mt-6 border-t border-zinc-700/50 pt-6">
                   <p className="mb-4 text-center text-sm text-zinc-400">
                     Available on all platforms
@@ -415,7 +407,6 @@ export default function EPKPage() {
                   </div>
                 </div>
               </section>
-
               <section className="rounded-2xl border border-zinc-800/50 bg-zinc-900/50 p-6">
                 <h3 className="mb-6 flex items-center gap-3 text-xl font-bold text-white">
                   <Award className="h-5 w-5 text-amber-400" />
@@ -434,14 +425,8 @@ export default function EPKPage() {
               </section>
             </div>
           </div>
-
-          {/* Section Divider */}
           <div className="mb-16 h-px max-w-4xl bg-linear-to-r from-transparent via-zinc-700 to-transparent" />
-
-          {/* Gallery Section — Client Component (interactive modal + image preloading) */}
           <EPKGallery title={gallery.title} collections={gallery.collections} />
-
-          {/* View Full Gallery Link */}
           <div className="mt-8 flex justify-center">
             <Link
               href="/gallery"
@@ -460,7 +445,6 @@ export default function EPKPage() {
           </div>
         </div>
       </main>
-
       <EPKMobileActions />
     </div>
   );

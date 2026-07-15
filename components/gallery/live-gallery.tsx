@@ -7,7 +7,7 @@ import {
   type VenuePhotoCollection,
   venuePhotoCollections,
 } from "@/lib/data/venues/venue-photos.data";
-import { formatDate } from "@/lib/utils/date.utils";
+import { formatDate } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { Calendar, ChevronLeft, ChevronRight, Loader2, MapPin, X } from "lucide-react";
 import Image from "next/image";
