@@ -5,7 +5,6 @@ import ErrorBoundary from "@/components/ui/error-boundary";
 import { SOCIAL_LINKS, SOCIALS } from "@/lib/config";
 import { getPast } from "@/lib/data/tour";
 import { useInView } from "@/lib/hooks/use-in-view";
-import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 import { useScrollLock } from "@/lib/hooks/use-scroll-lock";
 import Image from "next/image";
 import Link from "next/link";
@@ -25,17 +24,11 @@ const platformIcons: Record<string, IconType> = {
 
 export default function HeroSection(): React.ReactElement {
   const { ref } = useInView({ threshold: 0.1 });
-  const [loaded, setLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
-  const reducedMotion = useReducedMotion();
   const [showPastShows, setShowPreviousShows] = useState(false);
   const pastShows = getPast();
 
   useScrollLock(showPastShows);
-
-  useEffect(() => {
-    setLoaded(true);
-  }, []);
 
   useEffect(() => {
     const handleEscapeKey = (e: KeyboardEvent) => {
@@ -69,23 +62,6 @@ export default function HeroSection(): React.ReactElement {
       </section>
     );
   }
-
-  const animationVariants = {
-    scroll: {
-      y: reducedMotion ? [0] : [0, 10, 0],
-      transition: {
-        repeat: Infinity,
-        duration: reducedMotion ? 0 : 1.5,
-        ease: "easeInOut",
-      },
-    },
-    fadeIn: {
-      opacity: {
-        delay: reducedMotion ? 0 : 1.5,
-        duration: reducedMotion ? 0 : 0.8,
-      },
-    },
-  };
 
   return (
     <ErrorBoundary>
