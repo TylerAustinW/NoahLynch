@@ -1,12 +1,12 @@
 export interface Show {
   id: string;
-  date: string; // YYYY-MM-DD
+  date: string;
   venue: string;
   city: string;
   state: string;
-  time?: string; // Formatted time string
-  startTimeLocal?: string; // HH:mm
-  endTimeLocal?: string; // HH:mm
+  time?: string;
+  startTimeLocal?: string;
+  endTimeLocal?: string;
   timezone?: string;
   ticketUrl?: string;
   actionText?: string;
@@ -16,6 +16,19 @@ export interface Show {
 }
 
 export const SHOWS: Show[] = [
+  {
+    id: "show-2026-08-01-overbrook",
+    date: "2026-08-01",
+    venue: "Overbrook Songwriters Festival",
+    city: "Brookhaven",
+    state: "MS",
+    startTimeLocal: "16:30",
+    timezone: "America/Chicago",
+    time: "4:30 PM",
+    featured: true,
+    status: "scheduled",
+    description: "Songwriters festival performance.",
+  },
   {
     id: "show-2026-04-04-shaggys-rez",
     date: "2026-04-04",
@@ -239,16 +252,20 @@ export const SHOWS: Show[] = [
 
 export const getUpcoming = (): Show[] => {
   const now = new Date();
+  now.setHours(0, 0, 0, 0);
   return SHOWS.filter((show) => {
     const showDate = new Date(show.date);
+    showDate.setHours(0, 0, 0, 0);
     return showDate >= now && show.status !== "cancelled";
   }).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 };
 
 export const getPast = (): Show[] => {
   const now = new Date();
+  now.setHours(0, 0, 0, 0);
   return SHOWS.filter((show) => {
     const showDate = new Date(show.date);
+    showDate.setHours(0, 0, 0, 0);
     return showDate < now;
   }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 };
@@ -262,7 +279,15 @@ export const getFeatured = (): Show[] => {
 };
 
 export const getAll = (): Show[] => {
-  return [...getUpcoming(), ...getPast()];
+  const allShows = [...getUpcoming(), ...getPast()];
+  const seen = new Set<string>();
+  return allShows.filter((show) => {
+    if (seen.has(show.id)) {
+      return false;
+    }
+    seen.add(show.id);
+    return true;
+  });
 };
 
 export const getById = (id: string): Show | undefined => {

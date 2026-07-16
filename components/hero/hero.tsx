@@ -7,8 +7,6 @@ import { getPast } from "@/lib/data/tour";
 import { useInView } from "@/lib/hooks/use-in-view";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 import { useScrollLock } from "@/lib/hooks/use-scroll-lock";
-import { motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -115,9 +113,7 @@ export default function HeroSection(): React.ReactElement {
         </div>
 
         <div className="relative z-10 container mx-auto px-4 md:px-6">
-          <div
-            className={`max-w-xl transition-all duration-1000 ${loaded ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
-          >
+          <div className="max-w-xl">
             <div className="mt-64">
               <div className="relative z-20 mb-4 sm:mb-6">
                 <div className="w-full max-w-fit">
@@ -134,7 +130,10 @@ export default function HeroSection(): React.ReactElement {
                       size="default"
                       className="h-12 w-full px-6 text-base sm:h-12 sm:w-auto sm:px-8 sm:text-base"
                     >
-                      <Link href="/music/honest" aria-label="Listen to the latest album Honest">
+                      <Link
+                        href="/music/chasing-a-feelin"
+                        aria-label="Listen to the latest single Chasing A Feelin'"
+                      >
                         Listen Now
                       </Link>
                     </Button>
@@ -163,7 +162,7 @@ export default function HeroSection(): React.ReactElement {
                     </Button>
                   </div>
 
-                  <div className="flex gap-3 lg:hidden">
+                  <div className="flex justify-center gap-3 lg:hidden">
                     {SOCIAL_LINKS.map((social) => {
                       const Icon = platformIcons[social.platform] || FaInstagram;
                       return (
@@ -185,18 +184,6 @@ export default function HeroSection(): React.ReactElement {
             </div>
           </div>
         </div>
-
-        <motion.div
-          className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 sm:hidden"
-          initial={{ opacity: 0 }}
-          animate={{
-            opacity: loaded ? 1 : 0,
-          }}
-          transition={animationVariants.fadeIn}
-        >
-          <ChevronDown className="h-7 w-7 text-zinc-300" aria-hidden="true" />
-        </motion.div>
-
         <PastShowsModal
           isOpen={showPastShows}
           onClose={() => setShowPreviousShows(false)}
