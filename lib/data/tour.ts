@@ -8,12 +8,17 @@ export interface Show {
   startTimeLocal?: string;
   endTimeLocal?: string;
   timezone?: string;
-  ticketUrl?: string;
-  actionText?: string;
   description?: string;
   featured?: boolean;
-  status?: "scheduled" | "cancelled" | "sold-out";
 }
+
+export const CANCELLED_SHOW_IDS = new Set(["show-2026-04-04-shaggys-rez"]);
+
+const normalizeDate = (date: Date): Date => {
+  const normalized = new Date(date);
+  normalized.setHours(0, 0, 0, 0);
+  return normalized;
+};
 
 export const SHOWS: Show[] = [
   {
@@ -23,10 +28,10 @@ export const SHOWS: Show[] = [
     city: "Brookhaven",
     state: "MS",
     startTimeLocal: "16:30",
+    endTimeLocal: "18:00",
     timezone: "America/Chicago",
     time: "4:30 PM",
     featured: true,
-    status: "scheduled",
     description: "Songwriters festival performance.",
   },
   {
@@ -36,11 +41,9 @@ export const SHOWS: Show[] = [
     city: "Brandon",
     state: "MS",
     startTimeLocal: "16:00",
-    endTimeLocal: "20:00",
     timezone: "America/Chicago",
     time: "4:00 PM – 8:00 PM",
     featured: true,
-    status: "cancelled",
     description: "due to weather conditions.",
   },
   {
@@ -50,11 +53,9 @@ export const SHOWS: Show[] = [
     city: "Vicksburg",
     state: "MS",
     startTimeLocal: "19:00",
-    endTimeLocal: "22:00",
     timezone: "America/Chicago",
     time: "7:00 PM – 10:00 PM",
     featured: true,
-    status: "scheduled",
     description: "Noah is going back to The Roof at 1311 on May 30, 2026.",
   },
   {
@@ -64,11 +65,9 @@ export const SHOWS: Show[] = [
     city: "Brandon",
     state: "MS",
     startTimeLocal: "11:30",
-    endTimeLocal: "14:30",
     timezone: "America/Chicago",
     time: "11:30 AM – 2:30 PM",
     featured: true,
-    status: "scheduled",
   },
   {
     id: "show-2026-05-23-backwater",
@@ -77,14 +76,9 @@ export const SHOWS: Show[] = [
     city: "Brandon",
     state: "MS",
     startTimeLocal: "13:00",
-    endTimeLocal: "16:00",
     timezone: "America/Chicago",
     time: "1:00 PM – 4:00 PM",
-    ticketUrl:
-      "https://www.bandsintown.com/e/107170464-noah-lynch-at-backwater-grill-taphouse-and-oyster-bar?came_from=267&utm_medium=web&utm_source=artist_page&utm_campaign=event",
-    actionText: "Tickets",
     featured: true,
-    status: "scheduled",
   },
   {
     id: "show-2026-04-10-station-jxn",
@@ -93,11 +87,9 @@ export const SHOWS: Show[] = [
     city: "Jackson",
     state: "MS",
     startTimeLocal: "18:00",
-    endTimeLocal: "21:00",
     timezone: "America/Chicago",
     time: "6:00 PM – 9:00 PM",
     featured: true,
-    status: "scheduled",
   },
   {
     id: "show-2026-03-13-backwater",
@@ -106,14 +98,9 @@ export const SHOWS: Show[] = [
     city: "Brandon",
     state: "MS",
     startTimeLocal: "18:00",
-    endTimeLocal: "21:00",
     timezone: "America/Chicago",
     time: "6:00 PM – 9:00 PM",
-    ticketUrl:
-      "https://www.bandsintown.com/e/107170464-noah-lynch-at-backwater-grill-taphouse-and-oyster-bar?came_from=267&utm_medium=web&utm_source=artist_page&utm_campaign=event",
-    actionText: "Tickets",
     featured: true,
-    status: "scheduled",
   },
   {
     id: "show-2026-01-29-roof",
@@ -122,11 +109,9 @@ export const SHOWS: Show[] = [
     city: "Vicksburg",
     state: "MS",
     startTimeLocal: "18:00",
-    endTimeLocal: "21:00",
     timezone: "America/Chicago",
     time: "6:00 PM – 9:00 PM",
     featured: true,
-    status: "scheduled",
   },
   {
     id: "show-2026-01-16-sunset",
@@ -135,12 +120,10 @@ export const SHOWS: Show[] = [
     city: "Brandon",
     state: "MS",
     startTimeLocal: "19:00",
-    endTimeLocal: "23:00",
     timezone: "America/Chicago",
     time: "7:00 PM – 11:00 PM",
     description: "First gig of 2026!",
     featured: true,
-    status: "scheduled",
   },
   {
     id: "show-2025-10-03-ole-brook",
@@ -149,13 +132,9 @@ export const SHOWS: Show[] = [
     city: "Brookhaven",
     state: "MS",
     startTimeLocal: "18:00",
-    endTimeLocal: "19:00",
     timezone: "America/Chicago",
     time: "6:00 PM – 7:00 PM",
-    ticketUrl: "https://www.bandsintown.com/e/107374328?&came_from=210",
-    actionText: "Event Info",
     featured: true,
-    status: "scheduled",
     description: "Live performance at Ole Brook Festival.",
   },
   {
@@ -167,11 +146,7 @@ export const SHOWS: Show[] = [
     startTimeLocal: "18:00",
     timezone: "America/Chicago",
     time: "6:00 PM",
-    ticketUrl:
-      "https://www.bandsintown.com/e/107170464-noah-lynch-at-backwater-grill-taphouse-and-oyster-bar?came_from=267&utm_medium=web&utm_source=artist_page&utm_campaign=event",
-    actionText: "Tickets",
     featured: false,
-    status: "scheduled",
     description: "Join Noah Lynch for a live performance at Backwater Grill.",
   },
   {
@@ -184,7 +159,6 @@ export const SHOWS: Show[] = [
     timezone: "America/Chicago",
     time: "12:00 PM",
     featured: false,
-    status: "scheduled",
     description: "Join Noah Lynch for a live performance at Sunset Grill.",
   },
   {
@@ -197,7 +171,6 @@ export const SHOWS: Show[] = [
     timezone: "America/Chicago",
     time: "7:00 PM",
     featured: false,
-    status: "scheduled",
     description: "Amazing performance at The Roof on the 3rd floor with a packed crowd.",
   },
   {
@@ -208,7 +181,6 @@ export const SHOWS: Show[] = [
     state: "MS",
     timezone: "America/Chicago",
     featured: false,
-    status: "scheduled",
   },
   {
     id: "show-2025-02-01-rushing",
@@ -218,7 +190,6 @@ export const SHOWS: Show[] = [
     state: "MS",
     timezone: "America/Chicago",
     featured: false,
-    status: "scheduled",
     description: "Live acoustic performance at Rushing Roadhouse.",
   },
   {
@@ -228,11 +199,9 @@ export const SHOWS: Show[] = [
     city: "Ocean Springs",
     state: "MS",
     startTimeLocal: "19:00",
-    endTimeLocal: "22:00",
     timezone: "America/Chicago",
     time: "7:00 PM – 10:00 PM",
     featured: true,
-    status: "scheduled",
   },
   {
     id: "show-2026-06-20-jelly-stone",
@@ -241,31 +210,25 @@ export const SHOWS: Show[] = [
     city: "Pelahatchie",
     state: "MS",
     startTimeLocal: "19:00",
-    endTimeLocal: "21:00",
     timezone: "America/Chicago",
     time: "7:00 PM – 9:00 PM",
     featured: false,
-    status: "scheduled",
     description: "Live performance at Jelly Stone Park.",
   },
 ];
 
 export const getUpcoming = (): Show[] => {
-  const now = new Date();
-  now.setHours(0, 0, 0, 0);
+  const now = normalizeDate(new Date());
   return SHOWS.filter((show) => {
-    const showDate = new Date(show.date);
-    showDate.setHours(0, 0, 0, 0);
-    return showDate >= now && show.status !== "cancelled";
+    const showDate = normalizeDate(new Date(show.date));
+    return showDate >= now && !CANCELLED_SHOW_IDS.has(show.id);
   }).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 };
 
 export const getPast = (): Show[] => {
-  const now = new Date();
-  now.setHours(0, 0, 0, 0);
+  const now = normalizeDate(new Date());
   return SHOWS.filter((show) => {
-    const showDate = new Date(show.date);
-    showDate.setHours(0, 0, 0, 0);
+    const showDate = normalizeDate(new Date(show.date));
     return showDate < now;
   }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 };
@@ -279,31 +242,15 @@ export const getFeatured = (): Show[] => {
 };
 
 export const getAll = (): Show[] => {
-  const allShows = [...getUpcoming(), ...getPast()];
-  const seen = new Set<string>();
-  return allShows.filter((show) => {
-    if (seen.has(show.id)) {
-      return false;
-    }
-    seen.add(show.id);
-    return true;
-  });
+  return [...getUpcoming(), ...getPast()];
 };
 
 export const getById = (id: string): Show | undefined => {
   return SHOWS.find((show) => show.id === id);
 };
 
-export const getNextShow = (): Show | null => {
-  return getNext();
-};
-
 export const isShowTodayLocal = (show: Show): boolean => {
-  const today = new Date();
-  const showDate = new Date(show.date);
-  return (
-    today.getFullYear() === showDate.getFullYear() &&
-    today.getMonth() === showDate.getMonth() &&
-    today.getDate() === showDate.getDate()
-  );
+  const today = normalizeDate(new Date());
+  const showDate = normalizeDate(new Date(show.date));
+  return today.getTime() === showDate.getTime();
 };

@@ -1,12 +1,12 @@
 "use client";
 
-import { getNextShow, isShowTodayLocal } from "@/lib/data/tour";
+import { getNext, isShowTodayLocal } from "@/lib/data/tour";
 import { formatDate } from "@/lib/utils";
 import { Calendar } from "lucide-react";
 import Link from "next/link";
 
 export default function ShowBadge() {
-  const nextShow = getNextShow();
+  const nextShow = getNext();
   const isTodayShow = nextShow ? isShowTodayLocal(nextShow) : false;
 
   if (!nextShow) {
