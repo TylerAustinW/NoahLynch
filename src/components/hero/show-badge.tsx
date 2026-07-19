@@ -2,7 +2,7 @@
 
 import { getNext, isShowTodayLocal } from "@/lib/data/tour";
 import { formatDate } from "@/lib/utils";
-import { Calendar, ChevronRight } from "lucide-react";
+import { Calendar } from "lucide-react";
 import Link from "next/link";
 
 export default function ShowBadge() {
@@ -38,10 +38,6 @@ export default function ShowBadge() {
           <span className="text-xs text-white/90 transition-colors duration-300 group-hover/button:text-white sm:text-sm md:text-base">
             • {nextShow.venue}
           </span>
-
-          <div className="ml-1 opacity-60 transition-opacity duration-300 group-hover/button:opacity-100">
-            <ChevronRight className="h-3 w-3 text-white/70 group-hover/button:text-white sm:h-4 sm:w-4" />
-          </div>
         </div>
       </Link>
 
