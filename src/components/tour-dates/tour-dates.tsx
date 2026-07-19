@@ -78,7 +78,7 @@ function ShowCard({ show, index, isPast = false }: ShowCardProps) {
             )}
             {!isCancelled && !isPast && (
               <div className="text-sm tracking-wide text-amber-300 uppercase">
-                {timeLabel ? `Starting at ${timeLabel}` : "TIME TBA"}
+                {timeLabel ? `Starts at ${timeLabel}` : "TIME TBA"}
               </div>
             )}
           </div>
@@ -134,14 +134,9 @@ function ShowCard({ show, index, isPast = false }: ShowCardProps) {
           </div>
 
           <div className="text-left md:col-span-2 md:text-center lg:col-span-2">
-            {isCancelled && (
-              <div className="truncate text-xs font-semibold tracking-wide text-red-400 uppercase md:text-sm">
-                Cancelled
-              </div>
-            )}
             {!isCancelled && !isPast && (
               <div className="truncate text-xs font-medium tracking-wide text-amber-300 uppercase md:text-sm">
-                {timeLabel ? `Starting at ${timeLabel}` : "Time TBA"}
+                {timeLabel ? `Starts at ${timeLabel}` : "Time TBA"}
               </div>
             )}
           </div>

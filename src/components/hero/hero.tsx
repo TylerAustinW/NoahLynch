@@ -36,7 +36,6 @@ export default function HeroSection(): React.ReactElement {
         setShowPreviousShows(false);
       }
     };
-
     if (showPastShows) {
       document.addEventListener("keydown", handleEscapeKey);
     }
@@ -85,7 +84,7 @@ export default function HeroSection(): React.ReactElement {
             priority
           />
           <div className="absolute inset-0 bg-linear-to-b from-transparent via-black/10 to-black/30" />
-          <div className="pointer-events-none absolute inset-0 bg-[url('/overlays/grain-texture-overlay.png')] bg-repeat opacity-[0.01] md:opacity-[0.03]" />
+          <div className="pointer-events-none absolute inset-0 bg-[url('/overlays/grain-texture-overlay.png')] bg-repeat opacity-[0.03]" />
         </div>
 
         <div className="relative z-10 container mx-auto px-4 md:px-6">
@@ -138,7 +137,7 @@ export default function HeroSection(): React.ReactElement {
                     </Button>
                   </div>
 
-                  <div className="flex justify-center gap-3 lg:hidden">
+                  <div className="3xl:hidden flex justify-center gap-3 sm:justify-start">
                     {SOCIAL_LINKS.map((social) => {
                       const Icon = platformIcons[social.platform] || FaInstagram;
                       return (
@@ -148,9 +147,9 @@ export default function HeroSection(): React.ReactElement {
                           target="_blank"
                           rel="noopener noreferrer"
                           aria-label={social.label}
-                          className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-700/30 bg-zinc-900/40 text-white backdrop-blur-sm transition-all duration-300 hover:border-zinc-600/50 hover:bg-zinc-800/60 focus:ring-2 focus:ring-zinc-500/40 focus:outline-none"
+                          className="flex h-11 w-11 items-center justify-center rounded-full border border-zinc-700/30 bg-zinc-900/40 text-white backdrop-blur-sm transition-all duration-300 hover:border-zinc-600/50 hover:bg-zinc-800/60 focus:ring-2 focus:ring-zinc-500/40 focus:outline-none"
                         >
-                          <Icon className="h-4 w-4" aria-hidden="true" />
+                          <Icon className="h-5 w-5" aria-hidden="true" />
                         </Link>
                       );
                     })}

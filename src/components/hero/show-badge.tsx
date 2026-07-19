@@ -11,7 +11,7 @@ export default function ShowBadge() {
 
   if (!nextShow) {
     return (
-      <div className="flex w-full flex-wrap items-center justify-center gap-2 rounded-full border border-zinc-700/30 bg-zinc-900/40 px-3 py-2 text-sm font-medium text-white backdrop-blur-md transition-all duration-300 sm:w-auto sm:justify-start sm:px-4 sm:text-base lg:border-white/20 lg:bg-white/5">
+      <div className="flex w-full flex-wrap items-center justify-center gap-2 rounded-full border border-zinc-700/30 bg-zinc-900/40 px-3 py-2 text-sm font-medium text-white backdrop-blur-md transition-all duration-300 sm:w-auto sm:justify-start sm:px-4 sm:text-base">
         <span className="text-xs sm:text-sm md:text-base">MORE SHOWS COMING SOON</span>
       </div>
     );
@@ -27,12 +27,12 @@ export default function ShowBadge() {
         aria-label={isTodayShow ? "View today's show details" : "View the next show details"}
         aria-describedby="next-show-tooltip"
       >
-        <div className="group/button flex w-full cursor-pointer flex-wrap items-center justify-center gap-2 rounded-full border border-zinc-700/30 bg-zinc-900/40 px-3 py-2 text-sm font-medium text-white backdrop-blur-md transition-all duration-300 hover:border-zinc-600/50 hover:bg-zinc-800/60 sm:w-auto sm:justify-start sm:px-4 sm:text-base lg:border-white/25 lg:bg-white/10 lg:hover:border-white/40 lg:hover:bg-white/20">
+        <div className="group/button flex w-full cursor-pointer flex-wrap items-center justify-center gap-2 rounded-full border border-zinc-700/30 bg-zinc-900/40 px-3 py-2 text-sm font-medium text-white backdrop-blur-md transition-all duration-300 hover:border-zinc-600/50 hover:bg-zinc-800/60 sm:w-auto sm:justify-start sm:px-4 sm:text-base">
           <Calendar className="inline-block h-4 w-4 text-white/80 transition-colors duration-300 group-hover/button:text-white sm:h-5 sm:w-5" />
           <span className="text-xs text-white/90 transition-colors duration-300 group-hover/button:text-white sm:text-sm md:text-base">
             {isTodayShow ? "Today's Show:" : "Next Show:"}
           </span>
-          <span className="text-sm font-black whitespace-nowrap text-amber-400 drop-shadow-sm transition-colors duration-300 group-hover/button:text-amber-300 sm:text-lg md:text-xl lg:text-amber-300 lg:group-hover/button:text-amber-200">
+          <span className="text-sm font-black whitespace-nowrap text-amber-400 drop-shadow-sm transition-colors duration-300 group-hover/button:text-amber-300 sm:text-lg md:text-xl">
             {formatDate(nextShow.date)}
           </span>
           <span className="text-xs text-white/90 transition-colors duration-300 group-hover/button:text-white sm:text-sm md:text-base">

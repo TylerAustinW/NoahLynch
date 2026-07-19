@@ -31,29 +31,19 @@ const buttonVariants = cva(
       variant: {
         primary: [
           "rounded-full border text-white backdrop-blur-sm font-medium",
-          // Mobile styles
           "border-zinc-700/40 bg-zinc-900/80",
           "hover:bg-zinc-800/90 hover:border-zinc-600/50",
-          // Desktop styles
-          "lg:border-white/30 lg:bg-zinc-900/60",
-          "lg:hover:bg-zinc-800/70 lg:hover:border-white/50",
-          // Common styles
           "hover:backdrop-blur-md transition-all duration-300",
-          "focus-visible:ring-2 focus-visible:ring-zinc-500/40 lg:focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
-          "active:bg-zinc-800/95 lg:active:bg-zinc-800/80 disabled:opacity-50 disabled:transform-none",
+          "focus-visible:ring-2 focus-visible:ring-zinc-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
+          "active:bg-zinc-800/95 disabled:opacity-50 disabled:transform-none",
         ],
         secondary: [
           "rounded-full border text-white backdrop-blur-md font-medium",
-          // Mobile styles
           "border-zinc-700/40 bg-zinc-900/70",
           "hover:bg-zinc-800/80 hover:border-zinc-600/50",
-          // Desktop styles
-          "lg:border-white/20 lg:bg-zinc-900/90",
-          "lg:hover:bg-zinc-800 lg:hover:border-white/40",
-          // Common styles
           "transition-all duration-300",
-          "focus-visible:ring-2 focus-visible:ring-zinc-500/40 lg:focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
-          "active:bg-zinc-800/90 lg:active:bg-zinc-800 disabled:opacity-50 disabled:transform-none",
+          "focus-visible:ring-2 focus-visible:ring-zinc-500/40 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
+          "active:bg-zinc-800/90 disabled:opacity-50 disabled:transform-none",
         ],
         ghost: [
           "rounded-lg text-zinc-300",

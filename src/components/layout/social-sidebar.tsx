@@ -16,7 +16,7 @@ export default function SocialSidebar() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <div className="fixed top-1/2 left-6 z-40 hidden -translate-y-1/2 lg:block">
+    <div className="3xl:block fixed top-1/2 left-6 z-40 hidden -translate-y-1/2">
       <div className="flex flex-col gap-4">
         {SOCIAL_LINKS.map((social) => {
           const Icon = platformIcons[social.platform] || FaInstagram;

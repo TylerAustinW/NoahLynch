@@ -347,11 +347,10 @@ export default function Navbar() {
                       >
                         <Link
                           href={link.href}
-                          className="relative flex w-full items-center justify-center py-4 text-2xl font-bold tracking-wider text-white transition-all duration-300 hover:text-amber-400 active:text-amber-300 sm:text-3xl"
+                          className="relative flex w-full items-center justify-center py-4 text-2xl font-bold tracking-wider transition-all duration-300 hover:text-amber-400 active:text-amber-300 sm:text-3xl"
                           onClick={link.id ? (e) => handleNavClick(e, link.id) : () => closeMenu()}
                         >
-                          <span className="relative z-10">{link.label}</span>
-                          <div className="absolute inset-0 -inset-x-4 -inset-y-2 rounded-xl bg-linear-to-r from-amber-500/0 via-amber-500/10 to-amber-500/0 opacity-0 transition-all duration-300 group-hover:opacity-100 group-active:opacity-100" />
+                          <span>{link.label}</span>
                         </Link>
                       </motion.div>
                     ))}
