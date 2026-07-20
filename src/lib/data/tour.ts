@@ -22,6 +22,18 @@ const normalizeDate = (date: Date): Date => {
 
 export const SHOWS: Show[] = [
   {
+    id: "show-2026-10-02-ocean-springs",
+    date: "2026-10-02",
+    venue: "The Bayou Restaurant & Tiki Bar",
+    city: "Ocean Springs",
+    state: "MS",
+    startTimeLocal: "19:00",
+    endTimeLocal: "22:00",
+    timezone: "America/Chicago",
+    time: "7:00 PM – 10:00 PM",
+    featured: true,
+  },
+  {
     id: "show-2026-08-01-overbrook",
     date: "2026-08-01",
     venue: "Overbrook Songwriters Festival",

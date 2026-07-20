@@ -6,7 +6,7 @@ export function formatDate(dateString: string): string {
   const date = new Date(year, month - 1, day);
   return date.toLocaleDateString("en-US", {
     month: "short",
-    day: "2-digit",
+    day: "numeric",
     year: "numeric",
   });
 }

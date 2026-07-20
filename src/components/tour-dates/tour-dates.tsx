@@ -42,7 +42,7 @@ function ShowCard({ show, index, isPast = false }: ShowCardProps) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: isPast ? 0 : 0.05 * index, duration: 0.2 }}
-      className={`border-b border-zinc-700/40 last:border-b-0${isCancelled ? "opacity-60" : ""}${isPast && !isCancelled ? "opacity-70" : ""}`}
+      className={`${isCancelled ? "opacity-60" : ""}${isPast && !isCancelled ? "opacity-70" : ""}`}
     >
       <div className="w-full py-6 sm:py-5 md:py-6">
         <div className="flex flex-col items-center space-y-3 text-center lg:hidden">
@@ -232,12 +232,17 @@ export default function TourDatesSection({ upcoming, past }: TourDatesSectionPro
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.3 }}
-            className="mx-auto mt-16 w-full max-w-6xl px-4 sm:px-6 md:mt-20 md:px-12"
+            className="mx-auto mt-12 w-full max-w-6xl px-4 sm:px-6 md:mt-16 md:px-12"
           >
-            <div className="py-8 text-center md:py-12">
-              <h3 className="mb-8 text-base font-bold tracking-wider text-zinc-200 uppercase sm:text-lg md:text-xl">
-                PAST SHOWS
-              </h3>
+            <div className="relative my-8 flex items-center justify-center sm:my-10 md:my-12">
+              <div className="absolute inset-0 flex items-center">
+                <div className="h-px w-full bg-zinc-700/50" />
+              </div>
+              <div className="relative z-10 bg-zinc-950 px-6 sm:px-8">
+                <h3 className="text-sm font-bold tracking-widest text-zinc-400 uppercase sm:text-base md:text-lg">
+                  PAST SHOWS
+                </h3>
+              </div>
             </div>
 
             <div className="w-full">

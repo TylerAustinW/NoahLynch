@@ -131,24 +131,12 @@ export const epkData: EPKData = {
       description: "Readers Choice Award Winner",
     },
     {
-      venue: "Ole Brook Festival 2025",
-      description: "Headliner",
+      venue: "200,000+ Streams",
+      description: "Across all platforms",
     },
     {
-      venue: "International Radio Airplay",
-      description: "3 singles played on international radio stations",
-    },
-    {
-      venue: "The Roof at 1311",
-      description: "120+ Draw",
-    },
-    {
-      venue: "3rd Studio Single - Honest",
-      description: "Out Now (Produced by Ready Records)",
-    },
-    {
-      venue: "4th Studio Single - Chasing a Feelin'",
-      description: "Out Now (Produced by Ready Records)",
+      venue: "Festivals",
+      description: "Ole Brook Festival 2025 Headliner (500+ attendees)",
     },
   ],
   releases: [
@@ -192,13 +180,13 @@ export const epkData: EPKData = {
         featured: true,
         photos: [
           {
-            src: "/venues/the-roof/2026/20260530-DSC03634.jpg",
+            src: "/venues/the-roof/2026/20260530-DSC03638.jpg",
             alt: "Noah Lynch performing at The Roof in 2026",
             caption: "2026 live set at The Roof",
             featured: true,
           },
           {
-            src: "/venues/the-roof/2026/20260530-DSC03638.jpg",
+            src: "/venues/the-roof/2026/20260530-DSC03634.jpg",
             alt: "Noah Lynch performing at The Roof in 2026",
             caption: "Noah Lynch live at The Roof in 2026",
           },
@@ -224,15 +212,15 @@ export const epkData: EPKData = {
         featured: false,
         photos: [
           {
-            src: "/venues/Bayou-Restaurant-Tiki-Bar/2026/IMG_7414.jpeg",
-            alt: "Noah Lynch performing at DaBayou Restaurant & Tiki Bar in 2026",
-            caption: "Live acoustic performance at DaBayou Restaurant & Tiki Bar in 2026",
-            featured: true,
-          },
-          {
             src: "/venues/Bayou-Restaurant-Tiki-Bar/2026/IMG_7450.jpeg",
             alt: "Noah Lynch performing at DaBayou Restaurant & Tiki Bar in 2026",
             caption: "2026 live set at DaBayou Restaurant & Tiki Bar",
+            featured: true,
+          },
+          {
+            src: "/venues/Bayou-Restaurant-Tiki-Bar/2026/IMG_7414.jpeg",
+            alt: "Noah Lynch performing at DaBayou Restaurant & Tiki Bar in 2026",
+            caption: "Live acoustic performance at DaBayou Restaurant & Tiki Bar in 2026",
           },
           {
             src: "/venues/Bayou-Restaurant-Tiki-Bar/2026/IMG_7456.jpeg",

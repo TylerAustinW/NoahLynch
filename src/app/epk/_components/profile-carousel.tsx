@@ -10,8 +10,8 @@ const profilePhotos = [
     alt: "Noah Lynch - Professional Studio Photo",
   },
   {
-    src: "/portraits/IMG_2045.jpeg",
-    alt: "Noah Lynch - Live Performance at The Roof",
+    src: "/venues/jelly-stone-park/2026/jelly (3).jpeg",
+    alt: "Noah Lynch - Live Performance at Jelly Stone Park",
   },
 ];
 

@@ -173,24 +173,24 @@ export default function EPKPage() {
 
       <main className="relative z-20">
         <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
-          <div className="mx-auto mb-12 grid max-w-2xl grid-cols-2 gap-4">
-            <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-6 text-center">
-              <div className="mb-1 text-4xl font-bold text-amber-400">200k+</div>
-              <div className="text-sm font-medium text-zinc-300">Total Streams</div>
-            </div>
-            <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-6 text-center">
-              <div className="mb-1 text-4xl font-bold text-amber-400">4</div>
-              <div className="text-sm font-medium text-zinc-300">Original Releases</div>
-            </div>
-          </div>
-
-          <div className="mx-auto mb-16 max-w-2xl">
+          <div className="mx-auto mb-12 max-w-2xl">
             <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-6 text-center">
               <div className="mb-3 flex items-center justify-center gap-2">
                 <Award className="h-6 w-6 text-amber-400" />
                 <h3 className="text-xl font-bold text-white">2025 Readers Choice Award</h3>
               </div>
               <p className="text-amber-300">Best Solo Musician - Enterprise-Journal</p>
+            </div>
+          </div>
+
+          <div className="mx-auto mb-16 grid max-w-2xl grid-cols-2 gap-4">
+            <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-6 text-center">
+              <div className="mb-1 text-4xl font-bold text-amber-400">4</div>
+              <div className="text-sm font-medium text-zinc-300">Original Releases</div>
+            </div>
+            <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-6 text-center">
+              <div className="mb-1 text-4xl font-bold text-amber-400">200k+</div>
+              <div className="text-sm font-medium text-zinc-300">Total Streams</div>
             </div>
           </div>
 

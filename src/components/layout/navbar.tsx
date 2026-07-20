@@ -4,6 +4,7 @@ import { useHasMounted } from "@/lib/hooks/use-has-mounted";
 import { useReducedMotion } from "@/lib/hooks/use-reduced-motion";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
@@ -204,9 +205,10 @@ export default function Navbar() {
     <>
       <motion.header
         className={cn(
-          "fixed top-0 right-0 left-0 z-50 py-2 transition-all duration-300 sm:py-3",
+          "fixed top-0 right-0 left-0 py-2 transition-all duration-300 sm:py-3",
           "pointer-events-auto translate-y-0 opacity-100",
           "transform-gpu",
+          mobileOpen ? "z-150" : "z-50",
         )}
         initial={{ y: 0 }}
         animate={{
@@ -264,7 +266,7 @@ export default function Navbar() {
             <button
               type="button"
               className={cn(
-                "relative z-50 flex h-[44px] w-[44px] items-center justify-center md:hidden",
+                "relative flex h-[44px] w-[44px] items-center justify-center md:hidden",
                 "transition-all duration-300",
                 "hover:scale-105 active:scale-95",
               )}
@@ -273,39 +275,29 @@ export default function Navbar() {
               aria-controls="mobile-menu"
               onClick={() => setMobileOpen(!mobileOpen)}
             >
-              <motion.div
-                className="flex flex-col items-center justify-center gap-1.5"
-                initial={false}
-                animate={mobileOpen ? "open" : "closed"}
-              >
-                <motion.span
-                  aria-hidden="true"
-                  className="h-0.5 w-6 bg-white"
-                  variants={{
-                    closed: { rotate: 0, y: 0 },
-                    open: { rotate: 45, y: 6 },
-                  }}
-                  transition={{ duration: 0.2 }}
-                />
-                <motion.span
-                  aria-hidden="true"
-                  className="h-0.5 w-6 bg-white"
-                  variants={{
-                    closed: { opacity: 1 },
-                    open: { opacity: 0 },
-                  }}
-                  transition={{ duration: 0.2 }}
-                />
-                <motion.span
-                  aria-hidden="true"
-                  className="h-0.5 w-6 bg-white"
-                  variants={{
-                    closed: { rotate: 0, y: 0 },
-                    open: { rotate: -45, y: -6 },
-                  }}
-                  transition={{ duration: 0.2 }}
-                />
-              </motion.div>
+              <AnimatePresence mode="wait">
+                {mobileOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{ opacity: 0, scale: 0.8, rotate: -90 }}
+                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                    exit={{ opacity: 0, scale: 0.8, rotate: 90 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <X className="h-6 w-6 text-white" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ opacity: 0, scale: 0.8, rotate: 90 }}
+                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                    exit={{ opacity: 0, scale: 0.8, rotate: -90 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Menu className="h-6 w-6 text-white" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </button>
           </div>
         </div>
