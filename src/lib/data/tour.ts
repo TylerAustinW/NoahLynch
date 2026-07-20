@@ -53,8 +53,9 @@ export const SHOWS: Show[] = [
     city: "Brandon",
     state: "MS",
     startTimeLocal: "16:00",
+    endTimeLocal: "20:00",
     timezone: "America/Chicago",
-    time: "4:00 PM",
+    time: "4:00 PM – 8:00 PM",
     featured: true,
   },
   {
