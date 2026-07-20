@@ -47,6 +47,17 @@ export const SHOWS: Show[] = [
     description: "Songwriters festival performance.",
   },
   {
+    id: "show-2026-09-04-shaggys-rez",
+    date: "2026-09-04",
+    venue: "Shaggy's on the Rez",
+    city: "Brandon",
+    state: "MS",
+    startTimeLocal: "16:00",
+    timezone: "America/Chicago",
+    time: "4:00 PM",
+    featured: true,
+  },
+  {
     id: "show-2026-04-04-shaggys-rez",
     date: "2026-04-04",
     venue: "Shaggy's on the Rez",
