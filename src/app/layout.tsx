@@ -115,6 +115,10 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  icons: {
+    icon: "/portraits/IMG_2058_VSCO.jpeg",
+    apple: "/portraits/IMG_2058_VSCO.jpeg",
+  },
   other: {
     author: SITE.name,
     "article:author": SITE.name,
