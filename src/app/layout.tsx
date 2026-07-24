@@ -26,7 +26,7 @@ const playfairDisplay = Playfair_Display({
 });
 
 const siteUrl = SITE.url;
-const defaultTitle = `${SITE.name} - Singer-Songwriter & Musician`;
+const defaultTitle = "Noah Lynch | Official Website";
 const defaultOgImage = "/portraits/noah-lynch-portrait-guitar.jpeg";
 const squareOgImage = "/portraits/noah-lynch-studio-session.jpeg";
 
