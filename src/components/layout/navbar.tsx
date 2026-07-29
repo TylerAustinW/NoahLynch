@@ -266,7 +266,7 @@ export default function Navbar() {
             <button
               type="button"
               className={cn(
-                "relative flex h-[44px] w-[44px] items-center justify-center md:hidden",
+                "relative flex h-11 w-11 items-center justify-center md:hidden",
                 "transition-all duration-300",
                 "hover:scale-105 active:scale-95",
               )}

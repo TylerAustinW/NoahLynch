@@ -90,6 +90,22 @@ export default function HeroSection(): React.ReactElement {
         <div className="relative z-10 container mx-auto px-4 md:px-6">
           <div className="max-w-xl">
             <div className="mt-64">
+              <div className="relative z-20 mb-3 sm:mb-4">
+                <div className="w-full max-w-fit">
+                  <Link
+                    href="https://thebrookhavendailyleader2.secondstreetapp.com/Best-of-Southwest-Mississippi-2026/gallery/546873311/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Vote for Noah Lynch as Best Local Musician"
+                    className="group flex w-full cursor-pointer items-center justify-center gap-2 rounded-full border border-zinc-600/50 bg-zinc-800/50 px-4 py-3 text-base font-medium text-zinc-100 backdrop-blur-md transition-all duration-300 hover:border-zinc-500/60 hover:bg-zinc-700/60 hover:text-white sm:w-auto sm:justify-start sm:px-4 sm:text-base"
+                  >
+                    <span className="text-base text-zinc-100 transition-colors duration-300 group-hover:text-white sm:text-sm md:text-base">
+                      Vote for Best Local Musician
+                    </span>
+                  </Link>
+                </div>
+              </div>
+
               <div className="relative z-20 mb-4 sm:mb-6">
                 <div className="w-full max-w-fit">
                   <ShowBadge />
