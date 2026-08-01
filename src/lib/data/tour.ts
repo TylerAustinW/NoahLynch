@@ -14,8 +14,9 @@ export interface Show {
 
 export const CANCELLED_SHOW_IDS = new Set(["show-2026-04-04-shaggys-rez"]);
 
-const normalizeDate = (date: Date): Date => {
-  const normalized = new Date(date);
+const normalizeDate = (date: Date | string): Date => {
+  const d = typeof date === "string" ? new Date(`${date}T00:00:00`) : new Date(date);
+  const normalized = new Date(d);
   normalized.setHours(0, 0, 0, 0);
   return normalized;
 };
@@ -244,7 +245,7 @@ export const SHOWS: Show[] = [
 export const getUpcoming = (): Show[] => {
   const now = normalizeDate(new Date());
   return SHOWS.filter((show) => {
-    const showDate = normalizeDate(new Date(show.date));
+    const showDate = normalizeDate(show.date);
     return showDate >= now && !CANCELLED_SHOW_IDS.has(show.id);
   }).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 };
@@ -252,7 +253,7 @@ export const getUpcoming = (): Show[] => {
 export const getPast = (): Show[] => {
   const now = normalizeDate(new Date());
   return SHOWS.filter((show) => {
-    const showDate = normalizeDate(new Date(show.date));
+    const showDate = normalizeDate(show.date);
     return showDate < now;
   }).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 };
@@ -275,6 +276,6 @@ export const getById = (id: string): Show | undefined => {
 
 export const isShowTodayLocal = (show: Show): boolean => {
   const today = normalizeDate(new Date());
-  const showDate = normalizeDate(new Date(show.date));
+  const showDate = normalizeDate(show.date);
   return today.getTime() === showDate.getTime();
 };
