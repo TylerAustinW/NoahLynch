@@ -15,10 +15,16 @@ export interface Show {
 export const CANCELLED_SHOW_IDS = new Set(["show-2026-04-04-shaggys-rez"]);
 
 const normalizeDate = (date: Date | string): Date => {
-  const d = typeof date === "string" ? new Date(`${date}T00:00:00`) : new Date(date);
+  const d = typeof date === "string" ? new Date(`${date}T00:00:00Z`) : new Date(date);
   const normalized = new Date(d);
-  normalized.setHours(0, 0, 0, 0);
+  normalized.setUTCHours(0, 0, 0, 0);
   return normalized;
+};
+
+const getTodayUTC = (): Date => {
+  const now = new Date();
+  const today = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+  return today;
 };
 
 export const SHOWS: Show[] = [
@@ -243,7 +249,7 @@ export const SHOWS: Show[] = [
 ];
 
 export const getUpcoming = (): Show[] => {
-  const now = normalizeDate(new Date());
+  const now = getTodayUTC();
   return SHOWS.filter((show) => {
     const showDate = normalizeDate(show.date);
     return showDate >= now && !CANCELLED_SHOW_IDS.has(show.id);
@@ -251,7 +257,7 @@ export const getUpcoming = (): Show[] => {
 };
 
 export const getPast = (): Show[] => {
-  const now = normalizeDate(new Date());
+  const now = getTodayUTC();
   return SHOWS.filter((show) => {
     const showDate = normalizeDate(show.date);
     return showDate < now;
@@ -275,7 +281,7 @@ export const getById = (id: string): Show | undefined => {
 };
 
 export const isShowTodayLocal = (show: Show): boolean => {
-  const today = normalizeDate(new Date());
+  const today = getTodayUTC();
   const showDate = normalizeDate(show.date);
   return today.getTime() === showDate.getTime();
 };
