@@ -157,6 +157,19 @@ export const venuePhotoCollections: VenuePhotoCollection[] = [
       { filename: "Shaggy4.jpg", featured: false },
     ],
   },
+
+  {
+    id: "overbrook/2026",
+    venue: "Overbrook Songwriters Festival",
+    city: "Brookhaven",
+    state: "MS",
+    date: "2026-08-01",
+    photos: [
+      { filename: "overbrook (1).jpeg", featured: true },
+      { filename: "overbrook (2).jpeg", featured: false },
+      { filename: "overbrook (3).jpeg", featured: false },
+    ],
+  },
 ];
 
 export function getFeaturedPhoto(collection: VenuePhotoCollection): VenuePhoto {
